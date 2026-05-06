@@ -1,5 +1,9 @@
 # Vaibhav Lalwani — Portfolio
 
+<p align="center">
+  <a href="https://vaibhavlalwani.vercel.app"><img src="docs/screenshots/hero.png" alt="Personal portfolio - Vaibhav Lalwani" width="100%" /></a>
+</p>
+
 Static, hand-coded portfolio site. No build step. Drop these three files anywhere with a static host.
 
 ## Files
