@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vaibhavlalwani.vercel.app/sitemap.xml
