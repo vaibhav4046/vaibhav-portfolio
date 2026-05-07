@@ -571,3 +571,28 @@ p { margin: 0 0 1em; }
   a { color: #5b21b6; text-decoration: underline; }
   .project-link svg { display: none; }
 }
+
+/* -- Project thumbnails ---------------------------------------------------- */
+.project-thumb {
+  display: block;
+  width: calc(100% + 36px);
+  margin: -22px -18px 14px -18px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+  border-top-left-radius: var(--r-md);
+  border-top-right-radius: var(--r-md);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-elev);
+  transition: transform 320ms var(--ease), filter 320ms var(--ease);
+}
+.project:hover .project-thumb {
+  transform: scale(1.015);
+  filter: brightness(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-thumb { transition: none; }
+}
+.project-featured .project-thumb {
+  border-bottom-color: var(--accent-soft);
+}
