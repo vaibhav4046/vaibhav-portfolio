@@ -222,7 +222,7 @@ const html = `<!doctype html>
 <div class="row"><strong>University of Liverpool</strong><span class="right">Jan 2026 – Jan 2027</span></div>
 <div class="role-meta"><i>MSc Advanced Data Science &amp; Artificial Intelligence</i></div>
 <div class="row" style="margin-top:2px"><strong>Christ University, Bengaluru</strong><span class="right">2022 – 2025</span></div>
-<div class="role-meta"><i>Bachelor of Computer Applications · CGPA 7.86 / 10</i></div>
+<div class="role-meta"><i>Bachelor of Computer Applications · CGPA 8.7 / 10</i></div>
 
 </body>
 </html>`;
