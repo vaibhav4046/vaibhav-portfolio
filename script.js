@@ -63,4 +63,62 @@
   // ---- Footer year ------------------------------------------------------
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
+
+  // Resume button is now a direct PDF download via <a download>; no JS needed.
+
+  // ---- Scroll reveal ----------------------------------------------------
+  // Adds .is-in to anything tagged [data-reveal] when it enters the viewport.
+  // Honors prefers-reduced-motion: instantly reveals everything.
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tagReveals() {
+    var sels = [
+      '.hero-title', '.hero .lede', '.hero-cta',
+      '.section-title', '.section-eyebrow',
+      '.card', '.timeline-item', '.skill-col',
+      '.contact-card', '.foot p'
+    ];
+    var nodes = document.querySelectorAll(sels.join(','));
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (!n.hasAttribute('data-reveal')) n.setAttribute('data-reveal', '');
+    }
+    // Stagger project cards within their grid.
+    var projects = document.querySelectorAll('.project');
+    for (var j = 0; j < projects.length; j++) {
+      projects[j].style.setProperty('--reveal-delay', (j % 4 * 60) + 'ms');
+    }
+  }
+  tagReveals();
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
+  }
+
+  // ---- Pointer-tracked card glow ---------------------------------------
+  // Subtle radial highlight that follows cursor. Skipped under reduced motion.
+  if (!reduced && window.matchMedia('(hover: hover)').matches) {
+    var cards = document.querySelectorAll('.project, .contact-card');
+    cards.forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+      card.addEventListener('pointerleave', function () {
+        card.style.removeProperty('--mx');
+        card.style.removeProperty('--my');
+      });
+    });
+  }
 })();
