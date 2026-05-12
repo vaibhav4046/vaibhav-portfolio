@@ -4,13 +4,14 @@
   <a href="https://vaibhavlalwani.vercel.app"><img src="docs/screenshots/hero.png" alt="Personal portfolio - Vaibhav Lalwani" width="100%" /></a>
 </p>
 
-Static, hand-coded portfolio site. No build step. Drop these three files anywhere with a static host.
+Static, hand-coded portfolio site. No build step. The repository root is the single deployment source for Vercel.
 
 ## Files
 
 - `index.html` — content
 - `style.css` — design tokens + layout
 - `script.js` — theme toggle, sticky bar, footer year
+- `vercel.json` — static routing and cache policy for Vercel
 
 ## Run locally
 
@@ -31,9 +32,12 @@ python -m http.server 8000
 3. Live at `https://<your-handle>.github.io/portfolio/`.
 
 ### Vercel
-1. Drag the folder into vercel.com or `vercel deploy`.
-2. Pick "Other" framework. Output dir: `.`.
-3. Done.
+1. Connect GitHub repository `vaibhav4046/vaibhav-portfolio`.
+2. Production branch: `main`.
+3. Framework preset: `Other`.
+4. Root directory: repository root (`.`).
+5. Build command: empty.
+6. Output directory: `.`.
 
 ### Netlify
 1. Drag the folder into netlify.com app drop zone.

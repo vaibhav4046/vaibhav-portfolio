@@ -454,7 +454,7 @@ p { margin: 0 0 1em; }
 .bullet-list li {
   position: relative;
   padding-left: 18px;
-  color: var(--muted);
+  color: var(--ink-muted);
   line-height: 1.55;
   font-size: 0.96rem;
 }
@@ -470,7 +470,7 @@ p { margin: 0 0 1em; }
   opacity: 0.7;
 }
 .bullet-list strong {
-  color: var(--text);
+  color: var(--ink);
   font-weight: 600;
 }
 
