@@ -1704,3 +1704,175 @@ main { overflow: clip; }
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   Declutter pass
+   ========================================================================== */
+
+.theme-swatches,
+.hero-console,
+.hero-facts,
+.hero-trust {
+  display: none !important;
+}
+
+.topbar {
+  max-width: min(1080px, calc(100% - 28px));
+  padding: 10px 14px;
+  gap: 12px;
+  border-radius: 22px;
+  box-shadow: 0 18px 60px -46px rgba(0, 0, 0, 0.82);
+}
+
+.nav {
+  gap: 10px;
+}
+
+.nav a {
+  padding: 6px 9px;
+}
+
+.hero {
+  display: block;
+  max-width: min(980px, 100%);
+  padding-top: clamp(44px, 7vw, 88px);
+  padding-bottom: clamp(42px, 6vw, 82px);
+}
+
+.hero::before {
+  inset: 20px var(--pad-x) 18px var(--pad-x);
+  border-radius: clamp(20px, 3vw, 32px);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 42%),
+    color-mix(in srgb, var(--bg-card) 28%, transparent);
+  box-shadow: 0 28px 90px -66px rgba(0, 0, 0, 0.75);
+}
+
+.kicker {
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  max-width: 13ch;
+  margin-bottom: 18px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.98;
+}
+
+.hero-title br {
+  display: none;
+}
+
+.lede {
+  max-width: 66ch;
+  margin-bottom: 24px;
+  font-size: clamp(16px, 1.45vw, 19px);
+  line-height: 1.62;
+}
+
+.hero-cta {
+  margin-bottom: 24px;
+}
+
+.hero-signals {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+  margin: 0;
+}
+
+.hero-signals li {
+  min-height: auto;
+  padding: 16px;
+}
+
+.hero [data-reveal] {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.section {
+  padding-top: clamp(56px, 8vw, 96px);
+}
+
+.section::before {
+  margin-bottom: 20px;
+}
+
+.card,
+.principle,
+.contact-card {
+  box-shadow: 0 18px 56px -50px rgba(0, 0, 0, 0.72);
+}
+
+@media (max-width: 860px) {
+  .topbar {
+    max-width: calc(100% - 16px);
+  }
+
+  .topbar-cta {
+    display: none;
+  }
+
+  .hero {
+    max-width: 100%;
+    padding-top: 26px;
+  }
+
+  .hero-title {
+    max-width: 12ch;
+    font-size: clamp(34px, 9.6vw, 50px);
+  }
+
+  .hero-signals {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    top: 8px;
+    margin-top: 8px;
+    padding: 10px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav {
+    gap: 6px;
+  }
+
+  .nav a[href="#experience"],
+  .nav a[href="#skills"] {
+    display: none;
+  }
+
+  .nav a {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  .hero::before {
+    inset: 8px 10px 0 10px;
+  }
+
+  .status-pill {
+    font-size: 12px;
+  }
+
+  .lede {
+    font-size: 15.5px;
+  }
+
+  .hero-cta .btn-primary,
+  .hero-cta .btn {
+    flex: 1 1 100%;
+  }
+}
