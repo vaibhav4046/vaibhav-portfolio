@@ -6,15 +6,25 @@
   var STORAGE_KEY = 'vl-theme';
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
+  var themeButtons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-choice]'));
+  var themes = ['dark', 'light', 'graphite', 'solar'];
+  var themeColors = {
+    dark: '#080a0d',
+    light: '#f7f8f8',
+    graphite: '#0d0f12',
+    solar: '#f8fafc'
+  };
 
   function applyTheme(theme) {
-    if (theme === 'light') {
-      root.removeAttribute('data-theme');
-    } else {
-      root.setAttribute('data-theme', 'dark');
-    }
+    if (themes.indexOf(theme) === -1) theme = 'dark';
+    root.setAttribute('data-theme', theme);
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#faf7f2' : '#161310');
+    if (meta) meta.setAttribute('content', themeColors[theme] || themeColors.dark);
+    themeButtons.forEach(function (themeButton) {
+      var isActive = themeButton.getAttribute('data-theme-choice') === theme;
+      themeButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+    if (btn) btn.setAttribute('title', 'Theme: ' + theme);
   }
 
   function getSavedTheme() {
@@ -26,7 +36,7 @@
 
   function initTheme() {
     var saved = getSavedTheme();
-    if (saved === 'light' || saved === 'dark') { applyTheme(saved); return; }
+    if (themes.indexOf(saved) !== -1) { applyTheme(saved); return; }
     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     applyTheme(prefersLight ? 'light' : 'dark');
   }
@@ -34,12 +44,19 @@
 
   if (btn) {
     btn.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      var next = current === 'dark' ? 'light' : 'dark';
+      var current = root.getAttribute('data-theme') || 'dark';
+      var next = themes[(themes.indexOf(current) + 1) % themes.length] || 'dark';
       applyTheme(next);
       saveTheme(next);
     });
   }
+  themeButtons.forEach(function (themeButton) {
+    themeButton.addEventListener('click', function () {
+      var next = themeButton.getAttribute('data-theme-choice') || 'dark';
+      applyTheme(next);
+      saveTheme(next);
+    });
+  });
 
   // Respond to system theme changes only when user has not chosen.
   if (window.matchMedia) {
