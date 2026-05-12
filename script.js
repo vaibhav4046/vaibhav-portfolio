@@ -51,6 +51,7 @@
 
   // ---- Sticky topbar border on scroll ----------------------------------
   var topbar = document.querySelector('.topbar');
+  var progress = document.querySelector('.scroll-progress');
   if (topbar) {
     var setStuck = function () {
       if (window.scrollY > 4) topbar.classList.add('is-stuck');
@@ -59,6 +60,46 @@
     setStuck();
     window.addEventListener('scroll', setStuck, { passive: true });
   }
+
+  // ---- Reading progress + active navigation ----------------------------
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var sections = navLinks
+    .map(function (link) {
+      var id = link.getAttribute('href');
+      return id ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
+  function updateScrollState() {
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var pct = Math.min(1, Math.max(0, window.scrollY / max));
+    if (progress) progress.style.setProperty('--scroll-progress', pct.toFixed(4));
+
+    var active = sections[0];
+    var offset = (topbar ? topbar.offsetHeight : 72) + 80;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= offset) active = sections[i];
+      else break;
+    }
+    navLinks.forEach(function (link) {
+      var match = active && link.getAttribute('href') === '#' + active.id;
+      link.classList.toggle('is-active', !!match);
+      if (match) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  var scrollTicking = false;
+  function requestScrollState() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(function () {
+      updateScrollState();
+      scrollTicking = false;
+    });
+  }
+  updateScrollState();
+  window.addEventListener('scroll', requestScrollState, { passive: true });
+  window.addEventListener('resize', requestScrollState);
 
   // ---- Footer year ------------------------------------------------------
   var y = document.getElementById('year');
@@ -75,7 +116,8 @@
     var sels = [
       '.hero-title', '.hero .lede', '.hero-cta',
       '.section-title', '.section-eyebrow',
-      '.card', '.timeline-item', '.skill-col',
+      '.hero-signals li', '.hero-facts .fact',
+      '.card', '.timeline-item', '.skill-col', '.principle',
       '.contact-card', '.foot p'
     ];
     var nodes = document.querySelectorAll(sels.join(','));
