@@ -233,9 +233,17 @@
     }
 
     // Sampling grid resolution (higher = denser dots)
-    var GRID = 90;          // sample image at 90 × 90 cells
+    var GRID = 70;          // sample image at 70 × 70 cells
     var DISPLAY = 480;      // canvas px (matches width/height attrs)
     var STEP = DISPLAY / GRID;
+
+    // Bayer 4x4 ordered-dither threshold matrix (0..15)
+    var BAYER = [
+      [ 0,  8,  2, 10],
+      [12,  4, 14,  6],
+      [ 3, 11,  1,  9],
+      [15,  7, 13,  5]
+    ];
 
     var off = document.createElement('canvas');
     off.width = GRID; off.height = GRID;
@@ -251,30 +259,45 @@
       } catch (e) { return false; }
       var data = octx.getImageData(0, 0, GRID, GRID).data;
       particles = [];
+      // First pass: contrast stretch — find min/max luminance, normalise
+      var lmin = 255, lmax = 0, lumGrid = new Float32Array(GRID * GRID);
+      for (var iy = 0; iy < GRID; iy++) {
+        for (var ix = 0; ix < GRID; ix++) {
+          var k = (iy * GRID + ix) * 4;
+          var lv = data[k] * 0.299 + data[k + 1] * 0.587 + data[k + 2] * 0.114;
+          lumGrid[iy * GRID + ix] = lv;
+          if (lv < lmin) lmin = lv;
+          if (lv > lmax) lmax = lv;
+        }
+      }
+      var lrange = Math.max(1, lmax - lmin);
+
       for (var y = 0; y < GRID; y++) {
         for (var x = 0; x < GRID; x++) {
-          var idx = (y * GRID + x) * 4;
-          var lum = data[idx] * 0.299 + data[idx + 1] * 0.587 + data[idx + 2] * 0.114;
-          // darker pixels (face features, hair, suit) become dots
-          // brighter (background) skipped
-          // contrast: ignore mid pixels too, threshold ~ 160
-          if (lum < 165) {
-            // size keyed to darkness: darker = larger
-            var intensity = (165 - lum) / 165; // 0..1
-            // sub-sample with jitter so dots feel hand-placed
-            var jx = (Math.random() - 0.5) * 0.6;
-            var jy = (Math.random() - 0.5) * 0.6;
-            var cx = (x + 0.5 + jx) * STEP;
-            var cy = (y + 0.5 + jy) * STEP;
-            particles.push({
-              tx: cx, ty: cy,                          // target
-              x: cx + (Math.random() - 0.5) * DISPLAY, // start offscreen-ish
-              y: cy + (Math.random() - 0.5) * DISPLAY,
-              r: 1.6 + intensity * 2.6,                // radius 1.6..4.2
-              a: 0.55 + intensity * 0.45,              // alpha 0.55..1
-              phase: Math.random() * Math.PI * 2       // pulse phase
-            });
-          }
+          // normalised luminance 0..1 (0 = darkest in image)
+          var norm = (lumGrid[y * GRID + x] - lmin) / lrange;
+          // darkness 0..1 (face/hair/suit features high)
+          var dark = 1 - norm;
+          // Bayer threshold for ordered halftone: emit a dot only when darkness exceeds matrix value
+          var bayer = BAYER[y & 3][x & 3] / 16; // 0..0.9375
+          if (dark < bayer + 0.04) continue;     // brighter pixels stay empty
+          // dot size scales with darkness above threshold
+          var over = dark - bayer;
+          var r = 0.8 + over * 3.4;             // 0.8..~4.2
+          var alpha = 0.65 + over * 0.35;
+          // Slight in-cell jitter for organic feel
+          var jx = (Math.random() - 0.5) * 0.5;
+          var jy = (Math.random() - 0.5) * 0.5;
+          var cx = (x + 0.5 + jx) * STEP;
+          var cy = (y + 0.5 + jy) * STEP;
+          particles.push({
+            tx: cx, ty: cy,
+            x: cx + (Math.random() - 0.5) * DISPLAY * 1.4,
+            y: cy + (Math.random() - 0.5) * DISPLAY * 1.4,
+            r: r,
+            a: alpha,
+            phase: Math.random() * Math.PI * 2
+          });
         }
       }
       return true;

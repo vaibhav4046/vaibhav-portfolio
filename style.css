@@ -2011,11 +2011,11 @@ body { counter-reset: section-counter; }
   margin-bottom: clamp(24px, 4vw, 40px);
 }
 .hero-minimal .hero-title {
-  font-size: clamp(40px, 7.2vw, 88px);
-  line-height: 1.02;
-  letter-spacing: -0.032em;
-  max-width: 18ch;
-  margin: 0 0 clamp(20px, 2.6vw, 32px);
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  max-width: 14ch;
+  margin: 0 0 clamp(18px, 2.4vw, 28px);
   font-weight: 600;
 }
 .hero-minimal .hero-title em {
