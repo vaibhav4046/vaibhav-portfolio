@@ -224,6 +224,10 @@
     var cvs = document.getElementById('hero-glitch');
     var img = document.querySelector('.hero-art-src');
     if (!cvs || !img) return;
+    // Skip when canvas is display:none (current Hermes hero replaces art layer)
+    if (getComputedStyle(cvs).display === 'none') return;
+    var heroArt = cvs.closest('.hero-art');
+    if (heroArt && getComputedStyle(heroArt).display === 'none') return;
     var ctx = cvs.getContext('2d', { willReadFrequently: false });
 
     function accentColor() {
