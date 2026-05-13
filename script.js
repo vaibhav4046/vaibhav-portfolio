@@ -159,6 +159,115 @@
     });
   });
 
+  // ---- Hero figurine (Hermes-style pixelated glitch canvas) -----------
+  (function heroFigurine() {
+    var cvs = document.getElementById('figurine-canvas');
+    var img = document.querySelector('.fig-src');
+    if (!cvs || !img) return;
+    var ctx = cvs.getContext('2d', { willReadFrequently: false });
+    ctx.imageSmoothingEnabled = false;
+
+    var LOW = 80;          // pixelation grid
+    var off = document.createElement('canvas');
+    off.width = LOW; off.height = LOW;
+    var octx = off.getContext('2d', { willReadFrequently: true });
+    octx.imageSmoothingEnabled = false;
+
+    var baseData = null;
+
+    function buildBase() {
+      try {
+        octx.clearRect(0, 0, LOW, LOW);
+        octx.drawImage(img, 0, 0, LOW, LOW);
+        var id = octx.getImageData(0, 0, LOW, LOW);
+        var d = id.data;
+        for (var i = 0; i < d.length; i += 4) {
+          // Slight desaturation toward accent
+          var lum = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+          lum = Math.max(0, Math.min(255, (lum - 128) * 1.18 + 128));
+          d[i] = d[i + 1] = d[i + 2] = lum;
+        }
+        baseData = id;
+      } catch (e) { baseData = null; }
+    }
+
+    function loop() {
+      if (!baseData) { requestAnimationFrame(loop); return; }
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var lastBurst = 0;
+      var glitchUntil = 0;
+      var slices = [];
+
+      function frame(t) {
+        var work = octx.createImageData(LOW, LOW);
+        work.data.set(baseData.data);
+
+        // Spawn glitch burst
+        if (!reduced && t - lastBurst > 380 + Math.random() * 720) {
+          lastBurst = t;
+          glitchUntil = t + 80 + Math.random() * 140;
+          slices = [];
+          var n = 1 + Math.floor(Math.random() * 3);
+          for (var s = 0; s < n; s++) {
+            slices.push({
+              y: Math.floor(Math.random() * LOW),
+              h: 2 + Math.floor(Math.random() * 5),
+              dx: Math.floor((Math.random() - 0.5) * 14)
+            });
+          }
+        }
+
+        // Apply slice shifts
+        if (t < glitchUntil) {
+          for (var k = 0; k < slices.length; k++) {
+            var sl = slices[k];
+            for (var y = sl.y; y < Math.min(sl.y + sl.h, LOW); y++) {
+              var srcRow = baseData.data.subarray(y * LOW * 4, (y + 1) * LOW * 4);
+              var dstStart = y * LOW * 4;
+              for (var x = 0; x < LOW; x++) {
+                var sx = (x - sl.dx + LOW) % LOW;
+                work.data[dstStart + x * 4]     = srcRow[sx * 4];
+                work.data[dstStart + x * 4 + 1] = srcRow[sx * 4 + 1];
+                work.data[dstStart + x * 4 + 2] = srcRow[sx * 4 + 2];
+                work.data[dstStart + x * 4 + 3] = srcRow[sx * 4 + 3];
+              }
+            }
+          }
+        }
+
+        // Per-frame noise + scanline darken (subtle)
+        if (!reduced) {
+          var dd = work.data;
+          for (var p = 0; p < dd.length; p += 4) {
+            var n2 = (Math.random() - 0.5) * 12;
+            dd[p]     = Math.max(0, Math.min(255, dd[p] + n2));
+            dd[p + 1] = Math.max(0, Math.min(255, dd[p + 1] + n2));
+            dd[p + 2] = Math.max(0, Math.min(255, dd[p + 2] + n2));
+          }
+          for (var yy = 1; yy < LOW; yy += 2) {
+            var rowStart = yy * LOW * 4;
+            for (var xx = 0; xx < LOW; xx++) {
+              dd[rowStart + xx * 4]     *= 0.82;
+              dd[rowStart + xx * 4 + 1] *= 0.82;
+              dd[rowStart + xx * 4 + 2] *= 0.82;
+            }
+          }
+        }
+
+        octx.putImageData(work, 0, 0);
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
+
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function init() { buildBase(); loop(); }
+    if (img.complete && img.naturalWidth > 0) init();
+    else img.addEventListener('load', init);
+  })();
+
   // ---- Hero dot-portrait — edge-only halftone, interactive cursor -----
   (function heroDots() {
     var cvs = document.getElementById('hero-glitch');
