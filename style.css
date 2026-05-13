@@ -2381,3 +2381,39 @@ body { counter-reset: section-counter; }
   font-size: 11px;
   color: var(--ink-faint);
 }
+
+/* Hero stats — compact KPI strip */
+.hero-hermes .hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 28px;
+  max-width: 640px;
+  margin: 32px auto 28px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.hero-hermes .hero-stats > div { display: flex; flex-direction: column; gap: 2px; }
+.hero-hermes .hero-stats dt {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  line-height: 1;
+}
+.hero-hermes .hero-stats dd {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .hero-hermes .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Topbar shouldn't sit inside hero blob — keep above */
+.topbar { position: sticky; top: 0; z-index: 60; }
