@@ -276,13 +276,13 @@
       for (var y = 0; y < GRID; y++) {
         for (var x = 0; x < GRID; x++) {
           var lv = sm[y * GRID + x];
-          if (lv > 170) continue; // background skipped (no fill outside silhouette)
-          // probability of dot proportional to darkness
-          var dark = (170 - lv) / 170; // 0..1
-          var prob = 0.35 + dark * 0.65;
+          if (lv > 175) continue;
+          var dark = (175 - lv) / 175;
+          // Sparser overall: edges (high local contrast) keep most dots, interior decimated
+          var prob = 0.18 + dark * 0.45;
           if (Math.random() > prob) continue;
-          var r = 0.9 + dark * 2.0;
-          var alpha = 0.55 + dark * 0.4;
+          var r = 0.7 + dark * 1.7;
+          var alpha = 0.6 + dark * 0.4;
           var jx = (Math.random() - 0.5) * 0.5;
           var jy = (Math.random() - 0.5) * 0.5;
           var cx = (x + 0.5 + jx) * STEP;
