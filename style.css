@@ -1894,25 +1894,9 @@ main { overflow: clip; }
   }
 }
 
-/* -- Section number gutter (small mono number before each h2) ----------- */
-body { counter-reset: section-counter; }
-.section { counter-increment: section-counter; }
-.section .section-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.section .section-eyebrow::before {
-  content: counter(section-counter, decimal-leading-zero);
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-faint);
-  letter-spacing: 0.12em;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 2px 8px;
-  background: var(--bg-elev);
-}
+/* Section number gutter removed for minimal feel */
+.section .section-eyebrow::before { content: none !important; }
+.section .section-eyebrow { display: block; }
 
 /* -- Toast ---------------------------------------------------------------- */
 .toast {
