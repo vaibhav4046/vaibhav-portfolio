@@ -259,32 +259,20 @@
       } catch (e) { return false; }
       var data = octx.getImageData(0, 0, GRID, GRID).data;
       particles = [];
-      // First pass: contrast stretch — find min/max luminance, normalise
-      var lmin = 255, lmax = 0, lumGrid = new Float32Array(GRID * GRID);
-      for (var iy = 0; iy < GRID; iy++) {
-        for (var ix = 0; ix < GRID; ix++) {
-          var k = (iy * GRID + ix) * 4;
-          var lv = data[k] * 0.299 + data[k + 1] * 0.587 + data[k + 2] * 0.114;
-          lumGrid[iy * GRID + ix] = lv;
-          if (lv < lmin) lmin = lv;
-          if (lv > lmax) lmax = lv;
-        }
-      }
-      var lrange = Math.max(1, lmax - lmin);
-
       for (var y = 0; y < GRID; y++) {
         for (var x = 0; x < GRID; x++) {
-          // normalised luminance 0..1 (0 = darkest in image)
-          var norm = (lumGrid[y * GRID + x] - lmin) / lrange;
-          // darkness 0..1 (face/hair/suit features high)
-          var dark = 1 - norm;
-          // Bayer threshold for ordered halftone: emit a dot only when darkness exceeds matrix value
+          var k = (y * GRID + x) * 4;
+          var lum = data[k] * 0.299 + data[k + 1] * 0.587 + data[k + 2] * 0.114;
+          // Skip clearly light pixels (background)
+          if (lum > 200) continue;
+          // Darkness 0..1 from 200 down to 0
+          var dark = Math.min(1, (200 - lum) / 200);
+          // Bayer threshold for ordered halftone
           var bayer = BAYER[y & 3][x & 3] / 16; // 0..0.9375
-          if (dark < bayer - 0.05) continue;    // emit slightly aggressively
-          // dot size scales with darkness above threshold
-          var over = Math.max(0, dark - bayer + 0.1);
-          var r = 0.7 + over * 2.6;             // 0.7..~3.3
-          var alpha = 0.6 + Math.min(0.4, over * 0.6);
+          if (dark < bayer + 0.05) continue;
+          var over = dark - bayer;
+          var r = 0.7 + over * 3.2;             // 0.7..~3.9
+          var alpha = 0.7 + Math.min(0.3, over * 0.5);
           // Slight in-cell jitter for organic feel
           var jx = (Math.random() - 0.5) * 0.5;
           var jy = (Math.random() - 0.5) * 0.5;
