@@ -2110,14 +2110,9 @@ body { counter-reset: section-counter; }
   position: relative;
   width: clamp(280px, 32vw, 460px);
   aspect-ratio: 1 / 1;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0a0a0a;
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 32%, transparent),
-    0 0 0 6px color-mix(in srgb, var(--accent) 7%, transparent),
-    0 28px 80px -28px color-mix(in srgb, var(--accent) 55%, transparent);
+  background: transparent;
   isolation: isolate;
+  cursor: crosshair;
 }
 .hero-art canvas {
   display: block;
@@ -2125,6 +2120,7 @@ body { counter-reset: section-counter; }
   height: 100%;
   position: relative;
   z-index: 1;
+  background: transparent;
 }
 
 .hero-art-src {
@@ -2136,27 +2132,10 @@ body { counter-reset: section-counter; }
   pointer-events: none;
 }
 
-/* Soft accent glow behind dots */
-.hero-art-scan {
-  position: absolute;
-  inset: -10%;
-  background:
-    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 55%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.85;
-}
-
-/* Subtle accent vignette near edges */
-.hero-art-noise {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,0,0,0.4) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
+/* Hide previous overlays so dots float against site background */
+.hero-art-scan,
+.hero-art-noise,
+.hero-art-frame { display: none; }
 
 /* Corner frame ticks (terminal-esque) */
 .hero-art-frame {
@@ -2177,10 +2156,7 @@ body { counter-reset: section-counter; }
   opacity: 0.75;
 }
 
-/* Tiny breathing motion on the frame */
-.hero-art {
-  animation: heroArtBreathe 8s var(--ease) infinite alternate;
-}
+/* Subtle breathing motion (kept) */
 @keyframes heroArtBreathe {
   0%   { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(0, -4px, 0) scale(1.008); }

@@ -219,31 +219,21 @@
     });
   });
 
-  // ---- Hero dot-portrait (particle mosaic of profile photo) -----------
+  // ---- Hero dot-portrait — edge-only halftone, interactive cursor -----
   (function heroDots() {
     var cvs = document.getElementById('hero-glitch');
     var img = document.querySelector('.hero-art-src');
     if (!cvs || !img) return;
     var ctx = cvs.getContext('2d', { willReadFrequently: false });
 
-    // Resolve CSS accent colour so dots match theme
     function accentColor() {
       var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
       return v || '#cc785c';
     }
 
-    // Sampling grid resolution (higher = denser dots)
-    var GRID = 110;         // sample image at 110 × 110 cells (denser)
-    var DISPLAY = 480;      // canvas px (matches width/height attrs)
+    var GRID = 140;          // edge detection resolution
+    var DISPLAY = 480;
     var STEP = DISPLAY / GRID;
-
-    // Bayer 4x4 ordered-dither threshold matrix (0..15)
-    var BAYER = [
-      [ 0,  8,  2, 10],
-      [12,  4, 14,  6],
-      [ 3, 11,  1,  9],
-      [15,  7, 13,  5]
-    ];
 
     var off = document.createElement('canvas');
     off.width = GRID; off.height = GRID;
@@ -251,39 +241,60 @@
     octx.imageSmoothingEnabled = true;
 
     var particles = [];
+    var mouse = { x: -9999, y: -9999, active: false };
 
     function buildParticles() {
       try {
         octx.clearRect(0, 0, GRID, GRID);
         octx.drawImage(img, 0, 0, GRID, GRID);
       } catch (e) { return false; }
-      var data = octx.getImageData(0, 0, GRID, GRID).data;
+      var imgData = octx.getImageData(0, 0, GRID, GRID).data;
+
+      // Convert to grayscale array
+      var lum = new Float32Array(GRID * GRID);
+      for (var i = 0, p = 0; i < imgData.length; i += 4, p++) {
+        lum[p] = imgData[i] * 0.299 + imgData[i + 1] * 0.587 + imgData[i + 2] * 0.114;
+      }
+
+      // Sobel edge detection
+      var grad = new Float32Array(GRID * GRID);
+      var maxG = 0;
+      for (var y = 1; y < GRID - 1; y++) {
+        for (var x = 1; x < GRID - 1; x++) {
+          var tl = lum[(y - 1) * GRID + (x - 1)];
+          var t  = lum[(y - 1) * GRID + x];
+          var tr = lum[(y - 1) * GRID + (x + 1)];
+          var l  = lum[y * GRID + (x - 1)];
+          var r  = lum[y * GRID + (x + 1)];
+          var bl = lum[(y + 1) * GRID + (x - 1)];
+          var b  = lum[(y + 1) * GRID + x];
+          var br = lum[(y + 1) * GRID + (x + 1)];
+          var gx = -tl - 2 * l - bl + tr + 2 * r + br;
+          var gy = -tl - 2 * t - tr + bl + 2 * b + br;
+          var g = Math.sqrt(gx * gx + gy * gy);
+          grad[y * GRID + x] = g;
+          if (g > maxG) maxG = g;
+        }
+      }
+
       particles = [];
-      for (var y = 0; y < GRID; y++) {
-        for (var x = 0; x < GRID; x++) {
-          var k = (y * GRID + x) * 4;
-          var lum = data[k] * 0.299 + data[k + 1] * 0.587 + data[k + 2] * 0.114;
-          // Skip clearly light pixels (background)
-          if (lum > 200) continue;
-          // Darkness 0..1 from 200 down to 0
-          var dark = Math.min(1, (200 - lum) / 200);
-          // Bayer threshold for ordered halftone
-          var bayer = BAYER[y & 3][x & 3] / 16; // 0..0.9375
-          if (dark < bayer + 0.05) continue;
-          var over = dark - bayer;
-          var r = 0.7 + over * 3.2;             // 0.7..~3.9
-          var alpha = 0.7 + Math.min(0.3, over * 0.5);
-          // Slight in-cell jitter for organic feel
-          var jx = (Math.random() - 0.5) * 0.5;
-          var jy = (Math.random() - 0.5) * 0.5;
-          var cx = (x + 0.5 + jx) * STEP;
-          var cy = (y + 0.5 + jy) * STEP;
+      var threshold = maxG * 0.18; // tune: only strong edges
+      for (var y2 = 1; y2 < GRID - 1; y2++) {
+        for (var x2 = 1; x2 < GRID - 1; x2++) {
+          var g2 = grad[y2 * GRID + x2];
+          if (g2 < threshold) continue;
+          var strength = Math.min(1, (g2 - threshold) / (maxG - threshold + 1e-3));
+          var jx = (Math.random() - 0.5) * 0.6;
+          var jy = (Math.random() - 0.5) * 0.6;
+          var cx = (x2 + 0.5 + jx) * STEP;
+          var cy = (y2 + 0.5 + jy) * STEP;
           particles.push({
             tx: cx, ty: cy,
-            x: cx + (Math.random() - 0.5) * DISPLAY * 1.4,
-            y: cy + (Math.random() - 0.5) * DISPLAY * 1.4,
-            r: r,
-            a: alpha,
+            x: cx + (Math.random() - 0.5) * DISPLAY * 1.6,
+            y: cy + (Math.random() - 0.5) * DISPLAY * 1.6,
+            vx: 0, vy: 0,
+            r: 0.9 + strength * 2.0,            // 0.9..2.9
+            a: 0.55 + strength * 0.45,          // 0.55..1
             phase: Math.random() * Math.PI * 2
           });
         }
@@ -291,58 +302,81 @@
       return true;
     }
 
+    function bindCursor() {
+      function update(e) {
+        var r = cvs.getBoundingClientRect();
+        var scaleX = DISPLAY / r.width;
+        var scaleY = DISPLAY / r.height;
+        mouse.x = (e.clientX - r.left) * scaleX;
+        mouse.y = (e.clientY - r.top) * scaleY;
+        mouse.active = true;
+      }
+      function leave() { mouse.active = false; mouse.x = -9999; mouse.y = -9999; }
+      cvs.addEventListener('pointermove', update);
+      cvs.addEventListener('pointerleave', leave);
+      cvs.addEventListener('pointerdown', function (e) {
+        update(e);
+        // ripple: push particles outward
+        for (var k = 0; k < particles.length; k++) {
+          var p = particles[k];
+          var dx = p.x - mouse.x;
+          var dy = p.y - mouse.y;
+          var d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (d < 200) {
+            var force = (1 - d / 200) * 12;
+            p.vx += (dx / d) * force;
+            p.vy += (dy / d) * force;
+          }
+        }
+      });
+    }
+
     function startLoop() {
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var burstUntil = 0;
-      var lastBurst = 0;
       var ease = 0.12;
+      var REPEL_R = 70;     // cursor influence radius (canvas px)
+      var REPEL_F = 28;     // strength
 
       function frame(t) {
         ctx.clearRect(0, 0, DISPLAY, DISPLAY);
-
-        // Periodic scatter burst — particles fly out, then reform (less frequent)
-        if (!reduced && t > 9000 && t - lastBurst > 12000 + Math.random() * 6000) {
-          lastBurst = t;
-          burstUntil = t + 720;
-          for (var i = 0; i < particles.length; i++) {
-            var p = particles[i];
-            var ang = Math.random() * Math.PI * 2;
-            var mag = 24 + Math.random() * 60;
-            p.vx = Math.cos(ang) * mag;
-            p.vy = Math.sin(ang) * mag;
-          }
-        }
-
-        var burstActive = t < burstUntil;
-        var accent = accentColor();
-        // Resolve once for performance
-        ctx.fillStyle = accent;
+        ctx.fillStyle = accentColor();
 
         for (var k = 0; k < particles.length; k++) {
-          var p2 = particles[k];
+          var p = particles[k];
 
-          if (burstActive) {
-            // brief explosive offset, decays
-            p2.x += (p2.vx || 0) * 0.05;
-            p2.y += (p2.vy || 0) * 0.05;
-            p2.vx *= 0.92;
-            p2.vy *= 0.92;
+          // Cursor repel
+          if (mouse.active) {
+            var dx = p.x - mouse.x;
+            var dy = p.y - mouse.y;
+            var d2 = dx * dx + dy * dy;
+            if (d2 < REPEL_R * REPEL_R) {
+              var d = Math.sqrt(d2) || 1;
+              var force = (1 - d / REPEL_R) * REPEL_F;
+              p.vx += (dx / d) * force * 0.08;
+              p.vy += (dy / d) * force * 0.08;
+            }
           }
-          // ease towards target
-          p2.x += (p2.tx - p2.x) * ease;
-          p2.y += (p2.ty - p2.y) * ease;
 
-          // subtle pulse
-          var pulse = reduced ? 1 : 1 + Math.sin(t * 0.0025 + p2.phase) * 0.15;
-          var r = p2.r * pulse;
+          // Velocity decay
+          p.vx *= 0.86;
+          p.vy *= 0.86;
+          p.x += p.vx;
+          p.y += p.vy;
 
-          ctx.globalAlpha = p2.a;
+          // Spring to target
+          p.x += (p.tx - p.x) * ease;
+          p.y += (p.ty - p.y) * ease;
+
+          // Pulse
+          var pulse = reduced ? 1 : 1 + Math.sin(t * 0.002 + p.phase) * 0.18;
+          var r = p.r * pulse;
+
+          ctx.globalAlpha = p.a;
           ctx.beginPath();
-          ctx.arc(p2.x, p2.y, r, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.globalAlpha = 1;
-
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
@@ -350,16 +384,12 @@
 
     function init() {
       if (!buildParticles()) return;
+      bindCursor();
       startLoop();
     }
 
     if (img.complete && img.naturalWidth > 0) init();
     else { img.addEventListener('load', init); }
-
-    // Rebuild on theme change so accent stays consistent (re-paint via existing loop)
-    new MutationObserver(function () {
-      // colour is read live each frame, but in case GRID/DISPLAY changes we could rebuild
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   })();
 
   // ---- Smooth in-page anchor scroll -----------------------------------
