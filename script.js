@@ -233,7 +233,7 @@
     }
 
     // Sampling grid resolution (higher = denser dots)
-    var GRID = 70;          // sample image at 70 × 70 cells
+    var GRID = 110;         // sample image at 110 × 110 cells (denser)
     var DISPLAY = 480;      // canvas px (matches width/height attrs)
     var STEP = DISPLAY / GRID;
 
@@ -280,11 +280,11 @@
           var dark = 1 - norm;
           // Bayer threshold for ordered halftone: emit a dot only when darkness exceeds matrix value
           var bayer = BAYER[y & 3][x & 3] / 16; // 0..0.9375
-          if (dark < bayer + 0.04) continue;     // brighter pixels stay empty
+          if (dark < bayer - 0.05) continue;    // emit slightly aggressively
           // dot size scales with darkness above threshold
-          var over = dark - bayer;
-          var r = 0.8 + over * 3.4;             // 0.8..~4.2
-          var alpha = 0.65 + over * 0.35;
+          var over = Math.max(0, dark - bayer + 0.1);
+          var r = 0.7 + over * 2.6;             // 0.7..~3.3
+          var alpha = 0.6 + Math.min(0.4, over * 0.6);
           // Slight in-cell jitter for organic feel
           var jx = (Math.random() - 0.5) * 0.5;
           var jy = (Math.random() - 0.5) * 0.5;
@@ -312,8 +312,8 @@
       function frame(t) {
         ctx.clearRect(0, 0, DISPLAY, DISPLAY);
 
-        // Periodic scatter burst — particles fly out, then reform
-        if (!reduced && t - lastBurst > 5200 + Math.random() * 3600) {
+        // Periodic scatter burst — particles fly out, then reform (less frequent)
+        if (!reduced && t > 9000 && t - lastBurst > 12000 + Math.random() * 6000) {
           lastBurst = t;
           burstUntil = t + 720;
           for (var i = 0; i < particles.length; i++) {
