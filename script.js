@@ -249,84 +249,51 @@
         octx.drawImage(img, 0, 0, GRID, GRID);
       } catch (e) { return false; }
       var imgData = octx.getImageData(0, 0, GRID, GRID).data;
-
-      // Convert to grayscale array
       var lum = new Float32Array(GRID * GRID);
       for (var i = 0, p = 0; i < imgData.length; i += 4, p++) {
         lum[p] = imgData[i] * 0.299 + imgData[i + 1] * 0.587 + imgData[i + 2] * 0.114;
       }
 
-      // Box-blur (3x3) twice to denoise — kill JPEG artifact gradients
-      function blurOnce(src) {
-        var out = new Float32Array(src.length);
-        for (var yy = 1; yy < GRID - 1; yy++) {
-          for (var xx = 1; xx < GRID - 1; xx++) {
-            var s = 0;
-            for (var oy = -1; oy <= 1; oy++) {
-              for (var ox = -1; ox <= 1; ox++) {
-                s += src[(yy + oy) * GRID + (xx + ox)];
-              }
+      // 3x3 box blur (single pass) to smooth jpeg noise
+      var sm = new Float32Array(GRID * GRID);
+      for (var yy = 0; yy < GRID; yy++) {
+        for (var xx = 0; xx < GRID; xx++) {
+          var s = 0, c = 0;
+          for (var oy = -1; oy <= 1; oy++) {
+            for (var ox = -1; ox <= 1; ox++) {
+              var nx = xx + ox, ny = yy + oy;
+              if (nx < 0 || nx >= GRID || ny < 0 || ny >= GRID) continue;
+              s += lum[ny * GRID + nx];
+              c++;
             }
-            out[yy * GRID + xx] = s / 9;
           }
-        }
-        return out;
-      }
-      lum = blurOnce(blurOnce(lum));
-
-      // Sobel edge detection
-      var grad = new Float32Array(GRID * GRID);
-      var maxG = 0;
-      for (var y = 1; y < GRID - 1; y++) {
-        for (var x = 1; x < GRID - 1; x++) {
-          var tl = lum[(y - 1) * GRID + (x - 1)];
-          var t  = lum[(y - 1) * GRID + x];
-          var tr = lum[(y - 1) * GRID + (x + 1)];
-          var l  = lum[y * GRID + (x - 1)];
-          var r  = lum[y * GRID + (x + 1)];
-          var bl = lum[(y + 1) * GRID + (x - 1)];
-          var b  = lum[(y + 1) * GRID + x];
-          var br = lum[(y + 1) * GRID + (x + 1)];
-          var gx = -tl - 2 * l - bl + tr + 2 * r + br;
-          var gy = -tl - 2 * t - tr + bl + 2 * b + br;
-          var g = Math.sqrt(gx * gx + gy * gy);
-          grad[y * GRID + x] = g;
-          if (g > maxG) maxG = g;
+          sm[yy * GRID + xx] = s / c;
         }
       }
 
-      // ALSO collect dark-fill points (face / hair / suit) so portrait reads as a person
-      // Combine: strong edges (outline) + sampled dark interior dots
       particles = [];
-      var edgeT = maxG * 0.32; // strict threshold → only true edges
-      for (var y2 = 1; y2 < GRID - 1; y2++) {
-        for (var x2 = 1; x2 < GRID - 1; x2++) {
-          var idx = y2 * GRID + x2;
-          var g2 = grad[idx];
-          var lpx = lum[idx];
-          var isEdge = g2 >= edgeT;
-          // Sparse dark-interior sampling: 1 in 4 dark pixels
-          var isDarkInterior = !isEdge && lpx < 110 && (((x2 * 31 + y2 * 17) & 3) === 0);
-          if (!isEdge && !isDarkInterior) continue;
-
-          var strength;
-          if (isEdge) {
-            strength = Math.min(1, (g2 - edgeT) / (maxG - edgeT + 1e-3));
-          } else {
-            strength = Math.min(1, (110 - lpx) / 110) * 0.6;
-          }
-
-          var jx = (Math.random() - 0.5) * 0.6;
-          var jy = (Math.random() - 0.5) * 0.6;
-          var cx = (x2 + 0.5 + jx) * STEP;
-          var cy = (y2 + 0.5 + jy) * STEP;
+      // Dark-pixel halftone: only pixels below 170 luminance, density scaled by darkness
+      for (var y = 0; y < GRID; y++) {
+        for (var x = 0; x < GRID; x++) {
+          var lv = sm[y * GRID + x];
+          if (lv > 170) continue; // background skipped (no fill outside silhouette)
+          // probability of dot proportional to darkness
+          var dark = (170 - lv) / 170; // 0..1
+          var prob = 0.35 + dark * 0.65;
+          if (Math.random() > prob) continue;
+          var r = 0.9 + dark * 2.0;
+          var alpha = 0.55 + dark * 0.4;
+          var jx = (Math.random() - 0.5) * 0.5;
+          var jy = (Math.random() - 0.5) * 0.5;
+          var cx = (x + 0.5 + jx) * STEP;
+          var cy = (y + 0.5 + jy) * STEP;
           particles.push({
             tx: cx, ty: cy,
-            x: cx + (Math.random() - 0.5) * DISPLAY * 1.6,
-            y: cy + (Math.random() - 0.5) * DISPLAY * 1.6,
+            x: cx + (Math.random() - 0.5) * DISPLAY * 1.4,
+            y: cy + (Math.random() - 0.5) * DISPLAY * 1.4,
             vx: 0, vy: 0,
-            r: isEdge ? (1.0 + strength * 2.4) : (0.8 + strength * 1.4),
-            a: isEdge ? (0.7 + strength * 0.3) : 0.45,
+            r: r,
+            a: alpha,
             phase: Math.random() * Math.PI * 2
           });
         }
