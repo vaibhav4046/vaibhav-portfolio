@@ -256,6 +256,24 @@
         lum[p] = imgData[i] * 0.299 + imgData[i + 1] * 0.587 + imgData[i + 2] * 0.114;
       }
 
+      // Box-blur (3x3) twice to denoise — kill JPEG artifact gradients
+      function blurOnce(src) {
+        var out = new Float32Array(src.length);
+        for (var yy = 1; yy < GRID - 1; yy++) {
+          for (var xx = 1; xx < GRID - 1; xx++) {
+            var s = 0;
+            for (var oy = -1; oy <= 1; oy++) {
+              for (var ox = -1; ox <= 1; ox++) {
+                s += src[(yy + oy) * GRID + (xx + ox)];
+              }
+            }
+            out[yy * GRID + xx] = s / 9;
+          }
+        }
+        return out;
+      }
+      lum = blurOnce(blurOnce(lum));
+
       // Sobel edge detection
       var grad = new Float32Array(GRID * GRID);
       var maxG = 0;
@@ -277,13 +295,27 @@
         }
       }
 
+      // ALSO collect dark-fill points (face / hair / suit) so portrait reads as a person
+      // Combine: strong edges (outline) + sampled dark interior dots
       particles = [];
-      var threshold = maxG * 0.18; // tune: only strong edges
+      var edgeT = maxG * 0.32; // strict threshold → only true edges
       for (var y2 = 1; y2 < GRID - 1; y2++) {
         for (var x2 = 1; x2 < GRID - 1; x2++) {
-          var g2 = grad[y2 * GRID + x2];
-          if (g2 < threshold) continue;
-          var strength = Math.min(1, (g2 - threshold) / (maxG - threshold + 1e-3));
+          var idx = y2 * GRID + x2;
+          var g2 = grad[idx];
+          var lpx = lum[idx];
+          var isEdge = g2 >= edgeT;
+          // Sparse dark-interior sampling: 1 in 4 dark pixels
+          var isDarkInterior = !isEdge && lpx < 110 && (((x2 * 31 + y2 * 17) & 3) === 0);
+          if (!isEdge && !isDarkInterior) continue;
+
+          var strength;
+          if (isEdge) {
+            strength = Math.min(1, (g2 - edgeT) / (maxG - edgeT + 1e-3));
+          } else {
+            strength = Math.min(1, (110 - lpx) / 110) * 0.6;
+          }
+
           var jx = (Math.random() - 0.5) * 0.6;
           var jy = (Math.random() - 0.5) * 0.6;
           var cx = (x2 + 0.5 + jx) * STEP;
@@ -293,8 +325,8 @@
             x: cx + (Math.random() - 0.5) * DISPLAY * 1.6,
             y: cy + (Math.random() - 0.5) * DISPLAY * 1.6,
             vx: 0, vy: 0,
-            r: 0.9 + strength * 2.0,            // 0.9..2.9
-            a: 0.55 + strength * 0.45,          // 0.55..1
+            r: isEdge ? (1.0 + strength * 2.4) : (0.8 + strength * 1.4),
+            a: isEdge ? (0.7 + strength * 0.3) : 0.45,
             phase: Math.random() * Math.PI * 2
           });
         }
