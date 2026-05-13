@@ -219,125 +219,136 @@
     });
   });
 
-  // ---- Hero glitch portrait (canvas, monochrome, pixelated) -----------
-  (function heroGlitch() {
+  // ---- Hero dot-portrait (particle mosaic of profile photo) -----------
+  (function heroDots() {
     var cvs = document.getElementById('hero-glitch');
     var img = document.querySelector('.hero-art-src');
     if (!cvs || !img) return;
-    var ctx = cvs.getContext('2d', { willReadFrequently: true });
-    ctx.imageSmoothingEnabled = false;
+    var ctx = cvs.getContext('2d', { willReadFrequently: false });
 
-    var lowW = 84, lowH = 84;            // pixelation resolution
+    // Resolve CSS accent colour so dots match theme
+    function accentColor() {
+      var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      return v || '#cc785c';
+    }
+
+    // Sampling grid resolution (higher = denser dots)
+    var GRID = 90;          // sample image at 90 × 90 cells
+    var DISPLAY = 480;      // canvas px (matches width/height attrs)
+    var STEP = DISPLAY / GRID;
+
     var off = document.createElement('canvas');
-    off.width = lowW; off.height = lowH;
+    off.width = GRID; off.height = GRID;
     var octx = off.getContext('2d', { willReadFrequently: true });
-    octx.imageSmoothingEnabled = false;
+    octx.imageSmoothingEnabled = true;
 
-    var ready = false;
-    var baseImageData = null;
+    var particles = [];
 
-    function buildBase() {
+    function buildParticles() {
       try {
-        octx.clearRect(0, 0, lowW, lowH);
-        octx.drawImage(img, 0, 0, lowW, lowH);
-        var id = octx.getImageData(0, 0, lowW, lowH);
-        var d = id.data;
-        for (var i = 0; i < d.length; i += 4) {
-          // luminance
-          var l = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
-          // boost contrast
-          l = Math.max(0, Math.min(255, (l - 128) * 1.35 + 128));
-          d[i] = d[i + 1] = d[i + 2] = l;
+        octx.clearRect(0, 0, GRID, GRID);
+        octx.drawImage(img, 0, 0, GRID, GRID);
+      } catch (e) { return false; }
+      var data = octx.getImageData(0, 0, GRID, GRID).data;
+      particles = [];
+      for (var y = 0; y < GRID; y++) {
+        for (var x = 0; x < GRID; x++) {
+          var idx = (y * GRID + x) * 4;
+          var lum = data[idx] * 0.299 + data[idx + 1] * 0.587 + data[idx + 2] * 0.114;
+          // darker pixels (face features, hair, suit) become dots
+          // brighter (background) skipped
+          // contrast: ignore mid pixels too, threshold ~ 160
+          if (lum < 165) {
+            // size keyed to darkness: darker = larger
+            var intensity = (165 - lum) / 165; // 0..1
+            // sub-sample with jitter so dots feel hand-placed
+            var jx = (Math.random() - 0.5) * 0.6;
+            var jy = (Math.random() - 0.5) * 0.6;
+            var cx = (x + 0.5 + jx) * STEP;
+            var cy = (y + 0.5 + jy) * STEP;
+            particles.push({
+              tx: cx, ty: cy,                          // target
+              x: cx + (Math.random() - 0.5) * DISPLAY, // start offscreen-ish
+              y: cy + (Math.random() - 0.5) * DISPLAY,
+              r: 1.6 + intensity * 2.6,                // radius 1.6..4.2
+              a: 0.55 + intensity * 0.45,              // alpha 0.55..1
+              phase: Math.random() * Math.PI * 2       // pulse phase
+            });
+          }
         }
-        baseImageData = id;
-        ready = true;
-      } catch (e) {
-        ready = false;
       }
+      return true;
     }
 
     function startLoop() {
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var glitchUntil = 0;
-      var glitchSlices = [];
-      var lastTriggered = 0;
+      var burstUntil = 0;
+      var lastBurst = 0;
+      var ease = 0.12;
 
       function frame(t) {
-        if (!ready) { requestAnimationFrame(frame); return; }
-        // Copy base
-        var work = octx.createImageData(lowW, lowH);
-        work.data.set(baseImageData.data);
+        ctx.clearRect(0, 0, DISPLAY, DISPLAY);
 
-        // Maybe trigger a new glitch burst
-        if (!reduced && t - lastTriggered > 450 + Math.random() * 900) {
-          lastTriggered = t;
-          glitchUntil = t + 90 + Math.random() * 140;
-          glitchSlices = [];
-          var burstCount = 1 + Math.floor(Math.random() * 3);
-          for (var s = 0; s < burstCount; s++) {
-            glitchSlices.push({
-              y: Math.floor(Math.random() * lowH),
-              h: 2 + Math.floor(Math.random() * 6),
-              dx: Math.floor((Math.random() - 0.5) * 16)
-            });
+        // Periodic scatter burst — particles fly out, then reform
+        if (!reduced && t - lastBurst > 5200 + Math.random() * 3600) {
+          lastBurst = t;
+          burstUntil = t + 720;
+          for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            var ang = Math.random() * Math.PI * 2;
+            var mag = 24 + Math.random() * 60;
+            p.vx = Math.cos(ang) * mag;
+            p.vy = Math.sin(ang) * mag;
           }
         }
 
-        // Apply slice shifts during glitch window
-        if (t < glitchUntil) {
-          for (var k = 0; k < glitchSlices.length; k++) {
-            var sl = glitchSlices[k];
-            for (var y = sl.y; y < Math.min(sl.y + sl.h, lowH); y++) {
-              var srcRow = baseImageData.data.subarray(y * lowW * 4, (y + 1) * lowW * 4);
-              var dstStart = y * lowW * 4;
-              for (var x = 0; x < lowW; x++) {
-                var sx = (x - sl.dx + lowW) % lowW;
-                work.data[dstStart + x * 4]     = srcRow[sx * 4];
-                work.data[dstStart + x * 4 + 1] = srcRow[sx * 4 + 1];
-                work.data[dstStart + x * 4 + 2] = srcRow[sx * 4 + 2];
-                work.data[dstStart + x * 4 + 3] = srcRow[sx * 4 + 3];
-              }
-            }
-          }
-        }
+        var burstActive = t < burstUntil;
+        var accent = accentColor();
+        // Resolve once for performance
+        ctx.fillStyle = accent;
 
-        // Scanline + noise tint per-pixel
-        if (!reduced) {
-          var data = work.data;
-          for (var p = 0; p < data.length; p += 4) {
-            var noise = (Math.random() - 0.5) * 18;
-            data[p]     = Math.max(0, Math.min(255, data[p] + noise));
-            data[p + 1] = Math.max(0, Math.min(255, data[p + 1] + noise));
-            data[p + 2] = Math.max(0, Math.min(255, data[p + 2] + noise));
-          }
-          // every 3rd row darken (scanline)
-          for (var yy = 1; yy < lowH; yy += 3) {
-            var rowStart = yy * lowW * 4;
-            for (var xx = 0; xx < lowW; xx++) {
-              data[rowStart + xx * 4]     *= 0.78;
-              data[rowStart + xx * 4 + 1] *= 0.78;
-              data[rowStart + xx * 4 + 2] *= 0.78;
-            }
-          }
-        }
+        for (var k = 0; k < particles.length; k++) {
+          var p2 = particles[k];
 
-        octx.putImageData(work, 0, 0);
-        // upscale pixelated to display canvas
-        ctx.clearRect(0, 0, cvs.width, cvs.height);
-        ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
+          if (burstActive) {
+            // brief explosive offset, decays
+            p2.x += (p2.vx || 0) * 0.05;
+            p2.y += (p2.vy || 0) * 0.05;
+            p2.vx *= 0.92;
+            p2.vy *= 0.92;
+          }
+          // ease towards target
+          p2.x += (p2.tx - p2.x) * ease;
+          p2.y += (p2.ty - p2.y) * ease;
+
+          // subtle pulse
+          var pulse = reduced ? 1 : 1 + Math.sin(t * 0.0025 + p2.phase) * 0.15;
+          var r = p2.r * pulse;
+
+          ctx.globalAlpha = p2.a;
+          ctx.beginPath();
+          ctx.arc(p2.x, p2.y, r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
 
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
     }
 
-    if (img.complete && img.naturalWidth > 0) {
-      buildBase();
+    function init() {
+      if (!buildParticles()) return;
       startLoop();
-    } else {
-      img.addEventListener('load', function () { buildBase(); startLoop(); });
-      img.addEventListener('error', function () { /* silent */ });
     }
+
+    if (img.complete && img.naturalWidth > 0) init();
+    else { img.addEventListener('load', init); }
+
+    // Rebuild on theme change so accent stays consistent (re-paint via existing loop)
+    new MutationObserver(function () {
+      // colour is read live each frame, but in case GRID/DISPLAY changes we could rebuild
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   })();
 
   // ---- Smooth in-page anchor scroll -----------------------------------
