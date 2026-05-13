@@ -2082,3 +2082,135 @@ body { counter-reset: section-counter; }
       0 8px 24px -10px color-mix(in srgb, var(--accent) 45%, transparent);
   }
 }
+
+/* ==========================================================================
+   Hero glitch art — pixelated monochrome portrait with scanlines + noise
+   ========================================================================== */
+
+.hero.hero-minimal {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 96px);
+}
+.hero.hero-minimal > .kicker,
+.hero.hero-minimal > .hero-title,
+.hero.hero-minimal > .lede,
+.hero.hero-minimal > .hero-cta {
+  grid-column: 1;
+}
+.hero.hero-minimal > .hero-art {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  justify-self: center;
+  align-self: center;
+}
+
+.hero-art {
+  position: relative;
+  width: clamp(260px, 30vw, 420px);
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 28%, var(--line)),
+    0 24px 60px -24px color-mix(in srgb, var(--accent) 35%, transparent);
+  isolation: isolate;
+}
+.hero-art canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: contrast(1.05) brightness(1.02);
+}
+
+.hero-art-src {
+  position: absolute;
+  inset: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scanlines */
+.hero-art-scan {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
+
+/* Animated noise overlay */
+.hero-art-noise {
+  position: absolute;
+  inset: -20%;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0, transparent 30%),
+                    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04) 0, transparent 30%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 3;
+  animation: heroNoiseShift 8s var(--ease) infinite alternate;
+}
+@keyframes heroNoiseShift {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(8%, -6%, 0); }
+}
+
+/* Corner frame ticks (terminal-esque) */
+.hero-art-frame {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  z-index: 4;
+  border-radius: 10px;
+  background:
+    linear-gradient(var(--accent), var(--accent)) top left / 18px 1.5px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top left / 1.5px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 18px 1.5px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 1.5px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 18px 1.5px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 1.5px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 18px 1.5px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 1.5px 18px no-repeat;
+  opacity: 0.75;
+}
+
+/* Glitch flicker on the whole frame */
+.hero-art {
+  animation: heroArtFlicker 7s steps(60) infinite;
+}
+@keyframes heroArtFlicker {
+  0%, 96%, 100%  { transform: translate3d(0, 0, 0); }
+  96.5%          { transform: translate3d(-2px, 1px, 0); }
+  97%            { transform: translate3d(3px, -1px, 0); }
+  97.5%          { transform: translate3d(-1px, 0, 0); }
+  98%            { transform: translate3d(0, 2px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art-noise, .hero-art { animation: none; }
+}
+
+@media (max-width: 880px) {
+  .hero.hero-minimal {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+  }
+  .hero.hero-minimal > .hero-art {
+    grid-column: 1;
+    grid-row: auto;
+    width: min(80vw, 320px);
+  }
+}

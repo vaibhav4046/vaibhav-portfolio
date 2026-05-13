@@ -219,6 +219,127 @@
     });
   });
 
+  // ---- Hero glitch portrait (canvas, monochrome, pixelated) -----------
+  (function heroGlitch() {
+    var cvs = document.getElementById('hero-glitch');
+    var img = document.querySelector('.hero-art-src');
+    if (!cvs || !img) return;
+    var ctx = cvs.getContext('2d', { willReadFrequently: true });
+    ctx.imageSmoothingEnabled = false;
+
+    var lowW = 84, lowH = 84;            // pixelation resolution
+    var off = document.createElement('canvas');
+    off.width = lowW; off.height = lowH;
+    var octx = off.getContext('2d', { willReadFrequently: true });
+    octx.imageSmoothingEnabled = false;
+
+    var ready = false;
+    var baseImageData = null;
+
+    function buildBase() {
+      try {
+        octx.clearRect(0, 0, lowW, lowH);
+        octx.drawImage(img, 0, 0, lowW, lowH);
+        var id = octx.getImageData(0, 0, lowW, lowH);
+        var d = id.data;
+        for (var i = 0; i < d.length; i += 4) {
+          // luminance
+          var l = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+          // boost contrast
+          l = Math.max(0, Math.min(255, (l - 128) * 1.35 + 128));
+          d[i] = d[i + 1] = d[i + 2] = l;
+        }
+        baseImageData = id;
+        ready = true;
+      } catch (e) {
+        ready = false;
+      }
+    }
+
+    function startLoop() {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var glitchUntil = 0;
+      var glitchSlices = [];
+      var lastTriggered = 0;
+
+      function frame(t) {
+        if (!ready) { requestAnimationFrame(frame); return; }
+        // Copy base
+        var work = octx.createImageData(lowW, lowH);
+        work.data.set(baseImageData.data);
+
+        // Maybe trigger a new glitch burst
+        if (!reduced && t - lastTriggered > 450 + Math.random() * 900) {
+          lastTriggered = t;
+          glitchUntil = t + 90 + Math.random() * 140;
+          glitchSlices = [];
+          var burstCount = 1 + Math.floor(Math.random() * 3);
+          for (var s = 0; s < burstCount; s++) {
+            glitchSlices.push({
+              y: Math.floor(Math.random() * lowH),
+              h: 2 + Math.floor(Math.random() * 6),
+              dx: Math.floor((Math.random() - 0.5) * 16)
+            });
+          }
+        }
+
+        // Apply slice shifts during glitch window
+        if (t < glitchUntil) {
+          for (var k = 0; k < glitchSlices.length; k++) {
+            var sl = glitchSlices[k];
+            for (var y = sl.y; y < Math.min(sl.y + sl.h, lowH); y++) {
+              var srcRow = baseImageData.data.subarray(y * lowW * 4, (y + 1) * lowW * 4);
+              var dstStart = y * lowW * 4;
+              for (var x = 0; x < lowW; x++) {
+                var sx = (x - sl.dx + lowW) % lowW;
+                work.data[dstStart + x * 4]     = srcRow[sx * 4];
+                work.data[dstStart + x * 4 + 1] = srcRow[sx * 4 + 1];
+                work.data[dstStart + x * 4 + 2] = srcRow[sx * 4 + 2];
+                work.data[dstStart + x * 4 + 3] = srcRow[sx * 4 + 3];
+              }
+            }
+          }
+        }
+
+        // Scanline + noise tint per-pixel
+        if (!reduced) {
+          var data = work.data;
+          for (var p = 0; p < data.length; p += 4) {
+            var noise = (Math.random() - 0.5) * 18;
+            data[p]     = Math.max(0, Math.min(255, data[p] + noise));
+            data[p + 1] = Math.max(0, Math.min(255, data[p + 1] + noise));
+            data[p + 2] = Math.max(0, Math.min(255, data[p + 2] + noise));
+          }
+          // every 3rd row darken (scanline)
+          for (var yy = 1; yy < lowH; yy += 3) {
+            var rowStart = yy * lowW * 4;
+            for (var xx = 0; xx < lowW; xx++) {
+              data[rowStart + xx * 4]     *= 0.78;
+              data[rowStart + xx * 4 + 1] *= 0.78;
+              data[rowStart + xx * 4 + 2] *= 0.78;
+            }
+          }
+        }
+
+        octx.putImageData(work, 0, 0);
+        // upscale pixelated to display canvas
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
+
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    if (img.complete && img.naturalWidth > 0) {
+      buildBase();
+      startLoop();
+    } else {
+      img.addEventListener('load', function () { buildBase(); startLoop(); });
+      img.addEventListener('error', function () { /* silent */ });
+    }
+  })();
+
   // ---- Smooth in-page anchor scroll -----------------------------------
   if (!reduced) {
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
