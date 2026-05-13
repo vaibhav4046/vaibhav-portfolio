@@ -180,4 +180,57 @@
       });
     });
   }
+
+  // ---- Magnetic CTAs (pointer-tracked translate) ----------------------
+  if (!reduced && window.matchMedia('(hover: hover)').matches) {
+    var mag = document.querySelectorAll('.btn-primary, .topbar-cta');
+    mag.forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = ((e.clientX - r.left) / r.width - 0.5) * 8;
+        var y = ((e.clientY - r.top) / r.height - 0.5) * 8;
+        el.style.setProperty('--mx-off', x + 'px');
+        el.style.setProperty('--my-off', y + 'px');
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.setProperty('--mx-off', '0');
+        el.style.setProperty('--my-off', '0');
+      });
+    });
+  }
+
+  // ---- Toast helper + email-link copy on click ------------------------
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(function () { t.classList.add('is-on'); });
+    setTimeout(function () {
+      t.classList.remove('is-on');
+      setTimeout(function () { t.remove(); }, 280);
+    }, 1800);
+  }
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (!navigator.clipboard) return;
+      var email = (a.getAttribute('href') || '').replace(/^mailto:/, '').split('?')[0];
+      try { navigator.clipboard.writeText(email); toast('Email copied · ' + email); } catch (_) {}
+    });
+  });
+
+  // ---- Smooth in-page anchor scroll -----------------------------------
+  if (!reduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id.length < 2) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', id);
+      });
+    });
+  }
 })();
