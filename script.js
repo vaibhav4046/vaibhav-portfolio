@@ -2,69 +2,9 @@
 (function () {
   'use strict';
 
-  // ---- Theme ------------------------------------------------------------
-  var STORAGE_KEY = 'vl-theme';
-  var root = document.documentElement;
-  var btn = document.getElementById('theme-toggle');
-  var themeButtons = Array.prototype.slice.call(document.querySelectorAll('[data-theme-choice]'));
-  var themes = ['dark', 'light', 'graphite', 'solar'];
-  var themeColors = {
-    dark: '#080a0d',
-    light: '#f7f8f8',
-    graphite: '#0d0f12',
-    solar: '#f8fafc'
-  };
-
-  function applyTheme(theme) {
-    if (themes.indexOf(theme) === -1) theme = 'dark';
-    root.setAttribute('data-theme', theme);
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', themeColors[theme] || themeColors.dark);
-    themeButtons.forEach(function (themeButton) {
-      var isActive = themeButton.getAttribute('data-theme-choice') === theme;
-      themeButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-    if (btn) btn.setAttribute('title', 'Theme: ' + theme);
-  }
-
-  function getSavedTheme() {
-    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
-  }
-  function saveTheme(t) {
-    try { localStorage.setItem(STORAGE_KEY, t); } catch (e) {}
-  }
-
-  function initTheme() {
-    var saved = getSavedTheme();
-    if (themes.indexOf(saved) !== -1) { applyTheme(saved); return; }
-    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    applyTheme(prefersLight ? 'light' : 'dark');
-  }
-  initTheme();
-
-  if (btn) {
-    btn.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme') || 'dark';
-      var next = themes[(themes.indexOf(current) + 1) % themes.length] || 'dark';
-      applyTheme(next);
-      saveTheme(next);
-    });
-  }
-  themeButtons.forEach(function (themeButton) {
-    themeButton.addEventListener('click', function () {
-      var next = themeButton.getAttribute('data-theme-choice') || 'dark';
-      applyTheme(next);
-      saveTheme(next);
-    });
-  });
-
-  // Respond to system theme changes only when user has not chosen.
-  if (window.matchMedia) {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onChange = function (e) { if (!getSavedTheme()) applyTheme(e.matches ? 'dark' : 'light'); };
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  }
+  // ---- Theme: locked to dark (toggle removed) ----------------------------
+  document.documentElement.setAttribute('data-theme', 'dark');
+  try { localStorage.removeItem('vl-theme'); } catch (e) {}
 
   // ---- Sticky topbar border on scroll ----------------------------------
   var topbar = document.querySelector('.topbar');

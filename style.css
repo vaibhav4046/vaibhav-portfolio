@@ -2311,10 +2311,11 @@ body { counter-reset: section-counter; }
   border-bottom: 1px solid var(--line);
   padding: 0 !important;
   display: grid;
-  grid-template-columns: 240px 1fr auto auto;
+  grid-template-columns: 240px 1fr auto;
   gap: 0;
   background: color-mix(in srgb, var(--bg) 92%, transparent);
 }
+.theme-toggle { display: none !important; }
 .topbar .brand {
   padding: 18px 22px;
   border-right: 1px solid var(--line);
