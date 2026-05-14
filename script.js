@@ -2,9 +2,57 @@
 (function () {
   'use strict';
 
-  // ---- Theme: locked to dark (toggle removed) ----------------------------
-  document.documentElement.setAttribute('data-theme', 'dark');
-  try { localStorage.removeItem('vl-theme'); } catch (e) {}
+  // ---- Theme ------------------------------------------------------------
+  var STORAGE_KEY = 'vl-theme';
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  var themes = ['dark', 'light'];
+  var themeColors = {
+    dark: '#070707',
+    light: '#fbfaf7'
+  };
+
+  function applyTheme(theme) {
+    if (themes.indexOf(theme) === -1) theme = 'dark';
+    root.setAttribute('data-theme', theme);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', themeColors[theme] || themeColors.dark);
+    if (btn) {
+      btn.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  }
+
+  function getSavedTheme() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+  function saveTheme(theme) {
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+  }
+
+  function initTheme() {
+    var saved = getSavedTheme();
+    if (themes.indexOf(saved) !== -1) { applyTheme(saved); return; }
+    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    applyTheme(prefersLight ? 'light' : 'dark');
+  }
+  initTheme();
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      saveTheme(next);
+    });
+  }
+
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onThemeChange = function (e) { if (!getSavedTheme()) applyTheme(e.matches ? 'dark' : 'light'); };
+    if (mq.addEventListener) mq.addEventListener('change', onThemeChange);
+    else if (mq.addListener) mq.addListener(onThemeChange);
+  }
 
   // ---- Sticky topbar border on scroll ----------------------------------
   var topbar = document.querySelector('.topbar');
