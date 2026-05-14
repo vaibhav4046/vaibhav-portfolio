@@ -11,6 +11,7 @@ Static, hand-coded portfolio site. No build step. The repository root is the sin
 - `index.html` — content
 - `style.css` — design tokens + layout
 - `script.js` — theme toggle, sticky bar, footer year
+- `api/linkedin-posts.js` — optional LinkedIn post sync endpoint for Vercel
 - `vercel.json` — static routing and cache policy for Vercel
 
 ## Run locally
@@ -64,6 +65,18 @@ Point an A or CNAME record to your host. Update `<meta property="og:*">` in `ind
 - User preference saved to localStorage.
 - Falls back to `prefers-color-scheme` if no preference saved.
 - Tweak colours under the `:root` and `[data-theme="dark"]` blocks in `style.css`.
+
+## LinkedIn post sync
+
+The LinkedIn section is hidden until OAuth credentials are configured in Vercel.
+
+Required environment variables:
+
+- `LINKEDIN_ACCESS_TOKEN` — member OAuth token with the approved post-read permission.
+- `LINKEDIN_AUTHOR_URN` — LinkedIn member URN, for example `urn:li:person:<id>`.
+- `LINKEDIN_API_VERSION` — optional, defaults to `202602`.
+
+After setting env vars, redeploy. The portfolio calls `/api/linkedin-posts` and renders the latest returned posts.
 
 ## Accessibility
 

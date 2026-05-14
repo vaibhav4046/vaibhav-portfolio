@@ -492,6 +492,54 @@
     else { img.addEventListener('load', init); }
   })();
 
+  // ---- LinkedIn activity sync -----------------------------------------
+  // The section stays hidden until /api/linkedin-posts has OAuth-backed data.
+  (function initLinkedInPosts() {
+    var section = document.getElementById('linkedin-activity');
+    var grid = document.getElementById('linkedin-posts');
+    if (!section || !grid || !window.fetch) return;
+
+    fetch('/api/linkedin-posts', { headers: { Accept: 'application/json' } })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (payload) {
+        if (!payload || !payload.configured || !payload.posts || !payload.posts.length) return;
+
+        grid.innerHTML = '';
+        payload.posts.slice(0, 6).forEach(function (post) {
+          var article = document.createElement('article');
+          article.className = 'card linkedin-post';
+
+          var meta = document.createElement('p');
+          meta.className = 'muted';
+          meta.textContent = post.publishedAt || 'LinkedIn post';
+
+          var text = document.createElement('p');
+          text.textContent = post.text || 'View this LinkedIn update.';
+
+          article.appendChild(meta);
+          article.appendChild(text);
+
+          if (post.url) {
+            var row = document.createElement('p');
+            row.className = 'project-link-row';
+            var link = document.createElement('a');
+            link.href = post.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.textContent = 'Open on LinkedIn →';
+            row.appendChild(link);
+            article.appendChild(row);
+          }
+
+          grid.appendChild(article);
+        });
+
+        section.hidden = false;
+        tagReveals();
+      })
+      .catch(function () {});
+  })();
+
   // ---- Smooth in-page anchor scroll -----------------------------------
   if (!reduced) {
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {

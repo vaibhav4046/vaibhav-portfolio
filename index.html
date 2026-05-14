@@ -173,6 +173,8 @@
             Node.js, Postgres + pgvector, Redis and BullMQ on the back; and OpenAI, Gemini,
             LangChain and MCP servers when the product needs intelligence. Auth with Supabase
             (Google OAuth, magic link, PKCE), shipping on Vercel and GCP Cloud Run.
+            Recent builds include MedReviewAI for grounded medical literature review and ScholarAI
+            for in-browser research-paper analysis.
           </p>
           <p>
             I default to written specifications before code, runbooks alongside features, and
@@ -370,6 +372,54 @@
           </p>
         </article>
 
+        <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://medai-deploy.vercel.app" target="_blank" rel="noopener" aria-label="MedReviewAI live demo">
+            <img class="project-thumb" src="img/medai.jpg" alt="MedReviewAI dashboard screenshot for medical paper analysis" loading="lazy" width="1440" height="810" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">Featured · Medical AI · RAG</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/MedReviewAI" target="_blank" rel="noopener" aria-label="MedReviewAI on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>MedReviewAI — grounded medical paper analyzer</h3>
+          <p>AI-powered medical literature review platform that searches 13 free academic sources,
+            extracts PICO fields, and keeps generated claims tied to verbatim source evidence.
+            Built with Groq Llama 3.3 70B, Clerk JWT auth and Neon Postgres on Vercel as part of
+            an 8-person student team.</p>
+          <ul class="tags">
+            <li>TypeScript</li><li>Groq Llama 3.3 70B</li><li>PICO extraction</li>
+            <li>Source grounding</li><li>Clerk JWT</li><li>Neon Postgres</li><li>Vercel</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://medai-deploy.vercel.app" target="_blank" rel="noopener">Live demo →</a>
+            <a href="https://github.com/vaibhav4046/MedReviewAI" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener" aria-label="ScholarAI Chrome extension on GitHub">
+            <img class="project-thumb" src="img/scholarai.jpg" alt="ScholarAI Chrome extension interface for research-paper analysis" loading="lazy" width="1440" height="810" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">Featured · Research AI · Chrome Extension</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener" aria-label="ScholarAI on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>ScholarAI — research-paper analysis extension</h3>
+          <p>Chrome extension that turns research papers into interactive AI sessions. It summarizes
+            methodology, extracts key claims, supports Q&amp;A over the paper, and helps researchers
+            evaluate credibility faster without replacing human judgment.</p>
+          <ul class="tags">
+            <li>JavaScript</li><li>Chrome Extension</li><li>Gemini API</li>
+            <li>Paper summarization</li><li>Bias detection</li><li>Research UX</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
         <article class="card project">
           <a class="project-thumb-link" href="https://mcp-hub-registry.vercel.app" target="_blank" rel="noopener" aria-label="MCP Marketplace live demo">
             <img class="project-thumb" src="img/mcp.jpg" alt="MCP Marketplace — registry of 800+ Model Context Protocol servers" loading="lazy" width="1440" height="810" />
@@ -396,6 +446,14 @@
         </article>
 
       </div>
+    </section>
+
+    <!-- LinkedIn activity: hidden until API env vars are configured -->
+    <section id="linkedin-activity" class="section linkedin-activity" hidden>
+      <p class="section-eyebrow">LinkedIn</p>
+      <h2 class="section-title">Recent posts.</h2>
+      <p class="section-lede">Synced from LinkedIn after OAuth credentials are configured.</p>
+      <div id="linkedin-posts" class="grid linkedin-post-grid" aria-live="polite"></div>
     </section>
 
     <!-- Research / Publications -->
