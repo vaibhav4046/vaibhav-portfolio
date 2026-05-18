@@ -104,6 +104,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
+      <a href="#achievements">Achievements</a>
       <a href="#research">Research</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -308,6 +309,31 @@
       <div class="grid">
 
         <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://qyntra-app.vercel.app" target="_blank" rel="noopener" aria-label="Qyntra live demo">
+            <img class="project-thumb" src="img/qyntra.png" alt="Qyntra — Personal Knowledge OS dashboard with 3D galaxy view of ingested files." loading="lazy" width="1568" height="746" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">Featured · Wikithon '26 Finalist · Personal Knowledge OS</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener" aria-label="Qyntra on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>Qyntra — Personal Knowledge OS</h3>
+          <p>Wikithon '26 finalist. A private Wikipedia compiled from your own files. Connect Notion, Google Drive, Gmail, GitHub or a desktop folder; Qyntra ingests every supported file (markdown, PDF, DOCX, code, email bodies, Notion blocks, READMEs) into one searchable corpus on Supabase. Ask a question and Groq Llama 3.3 70B answers with numbered citations back to the exact file it pulled from — no hallucination, every claim clickable. A react-three-fiber 3D galaxy lays out every file as a star, clustered by type, with bezier knowledge-graph edges. WEB mode falls back to live DuckDuckGo search; DEEP mode reframes the query as a three-step research pass. Custom Groq API key support, ember-themed scrollbar, sticky chat input, and a Contra-inspired Q-soldier logo. Built solo in about a day with OpenCode Go and Claude Opus 4.7 between exam revision sessions.</p>
+          <ul class="tags">
+            <li>Next.js 16</li><li>React 19</li><li>TypeScript strict</li><li>Tailwind v4</li>
+            <li>Auth.js v5 (Google/Notion/GitHub + magic link)</li><li>Supabase + RLS</li>
+            <li>Groq Llama 3.3 70B</li><li>react-three-fiber</li><li>DuckDuckGo web search</li>
+            <li>Vercel</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Live demo →</a>
+            <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source →</a>
+            <a href="https://www.aivalley.io/hackathons/wikithon-build-your-own-wikipedia-with-hydradb/projects" target="_blank" rel="noopener">Wikithon finalists →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
           <a class="project-thumb-link" href="https://github.com/vaibhav4046/apex" target="_blank" rel="noopener" aria-label="apex on GitHub">
             <img class="project-thumb" src="img/apex.png" alt="apex — autonomous job application engine. Apply to 100s of jobs while you sleep." loading="lazy" width="1920" height="1005" />
           </a>
@@ -451,6 +477,47 @@
           </p>
         </article>
 
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="section">
+      <p class="section-eyebrow">Achievements</p>
+      <h2 class="section-title">Wins worth noting.</h2>
+      <p class="section-lede">Public recognitions and competitions where my work made a measurable mark.</p>
+
+      <div class="grid">
+        <article class="card project project-featured">
+          <div class="project-head">
+            <span class="badge badge-featured">May 2026 · Hackathon · Finalist</span>
+          </div>
+          <h3>Wikithon '26 Finalist · AIValley · HydraDB</h3>
+          <p>Selected as a finalist out of the global Wikithon '26 cohort run by AIValley and HydraDB. My entry, <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Qyntra</a>, was built solo in about a day between exam revision sessions: a private Wikipedia compiled from a user's own Notion, Drive, Gmail, GitHub and desktop files with grounded LLM Q&amp;A, a 3D galaxy knowledge graph, and live web search fallback. Recognised for end-to-end execution, citation grounding, and the breadth of source connectors shipped in a single sprint.</p>
+          <ul class="tags">
+            <li>Wikithon '26</li><li>AIValley</li><li>HydraDB</li><li>Finalist</li><li>Solo build</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://www.aivalley.io/hackathons/wikithon-build-your-own-wikipedia-with-hydradb/projects" target="_blank" rel="noopener">Finalists list →</a>
+            <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Project demo →</a>
+            <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
+        <article class="card project">
+          <div class="project-head">
+            <span class="badge">May 2026 · Research · Preprint</span>
+          </div>
+          <h3>NEXUS Research Paper · DOI 10.5281/zenodo.20059414</h3>
+          <p>Authored an open-access preprint on closing the residual ~50 ms latency gap between cloud gaming and local wired console play. The system combines on-controller transformer inference, a direct 6 GHz Wi-Fi link with OFDMA priority scheduling, and a cloud-side speculative renderer with bounded mispredict recovery. Indexed on Zenodo with a Crossref DOI and mirrored on ResearchGate.</p>
+          <ul class="tags">
+            <li>Zenodo DOI</li><li>ResearchGate</li><li>Edge AI</li><li>Cloud gaming</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="/NEXUS_Research_Paper.pdf" target="_blank" rel="noopener" download="NEXUS_Research_Paper.pdf">Read the PDF →</a>
+            <a href="https://doi.org/10.5281/zenodo.20059414" target="_blank" rel="noopener">DOI · Zenodo →</a>
+            <a href="https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming" target="_blank" rel="noopener">ResearchGate →</a>
+          </p>
+        </article>
       </div>
     </section>
 
