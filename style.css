@@ -109,7 +109,12 @@ p { margin: 0 0 1em; }
   padding-right: var(--pad-x);
 }
 
-.section { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(72px, 9vw, 120px); }
+/* Adjacent section combines top of next + bottom of current — keep asymmetric so
+   the joint reads as a single rhythm, not a double gap. */
+.section { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(28px, 4vw, 48px); }
+/* Last section gets the breathing room above the footer. */
+.section:last-of-type { padding-bottom: clamp(56px, 7vw, 96px); }
+/* Anchor scroll lands content below the sticky topbar, not under it. */
 section[id] { scroll-margin-top: 96px; }
 
 /* -- Top bar --------------------------------------------------------------- */
