@@ -109,7 +109,8 @@ p { margin: 0 0 1em; }
   padding-right: var(--pad-x);
 }
 
-.section { padding-top: clamp(64px, 9vw, 120px); padding-bottom: clamp(32px, 6vw, 60px); }
+.section { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(72px, 9vw, 120px); }
+section[id] { scroll-margin-top: 96px; }
 
 /* -- Top bar --------------------------------------------------------------- */
 .topbar {
