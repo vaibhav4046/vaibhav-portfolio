@@ -3025,3 +3025,12 @@ canvas {
   font-size: 0.7em;
   margin-right: 4px;
 }
+
+/* ===== Final spacing override (high specificity beats earlier duplicate rules) ===== */
+section.hero,
+section.hero.hero-hermes {
+  padding-bottom: clamp(16px, 2vw, 28px) !important;
+}
+main section.section[id="about"] {
+  padding-top: clamp(32px, 4vw, 56px) !important;
+}
