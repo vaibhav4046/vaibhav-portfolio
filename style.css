@@ -3034,3 +3034,21 @@ section.hero.hero-hermes {
 main section.section[id="about"] {
   padding-top: clamp(32px, 4vw, 56px) !important;
 }
+
+/* ===== Topbar declutter (tighter gaps, smaller caps, all 7 links fit) ===== */
+@media (min-width: 1100px) {
+  .nav { gap: 14px; }
+  .nav a {
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    padding: 4px 1px;
+  }
+}
+@media (max-width: 1099px) and (min-width: 721px) {
+  .nav { gap: 10px; }
+  .nav a {
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    padding: 4px 1px;
+  }
+}
