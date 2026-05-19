@@ -3052,3 +3052,32 @@ main section.section[id="about"] {
     padding: 4px 1px;
   }
 }
+
+/* ===== Topbar responsive overhaul ===== */
+.topbar {
+  gap: 16px;
+}
+.nav {
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 18px;
+  min-width: 0;
+}
+.topbar-cta {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@media (max-width: 1280px) {
+  .nav { gap: 14px; }
+  .nav a { font-size: 12px; letter-spacing: 0.02em; padding: 4px 1px; }
+  .topbar-cta { padding: 8px 14px !important; font-size: 12px !important; }
+}
+@media (max-width: 1080px) {
+  .nav { gap: 10px; }
+  .nav a { font-size: 11px; }
+}
+@media (max-width: 960px) and (min-width: 721px) {
+  .topbar .brand-text { display: none; }
+  .nav { gap: 8px; }
+  .nav a { font-size: 10.5px; }
+}
