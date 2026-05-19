@@ -1174,7 +1174,7 @@ main { overflow: clip; }
   gap: 18px 42px;
   align-items: start;
   padding-top: clamp(42px, 6vw, 78px);
-  padding-bottom: clamp(44px, 6vw, 78px);
+  padding-bottom: clamp(20px, 3vw, 40px);
 }
 .hero::before {
   content: '';
@@ -1710,7 +1710,8 @@ main { overflow: clip; }
 }
 
 .section {
-  padding-top: clamp(56px, 8vw, 96px);
+  /* Tighter rhythm — see line 114 */
+  padding-top: clamp(48px, 6vw, 80px);
 }
 
 .section::before {
