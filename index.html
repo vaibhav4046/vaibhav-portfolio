@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Vaibhav Lalwani — AI engineer · Production LLM systems · Liverpool</title>
   <meta name="description" content="AI engineer working on production language-model systems. MSc Advanced Data Science & AI at the University of Liverpool. Background spans full-stack and applied ML. Interested in retrieval, evaluation, agent reliability. Open to AI/ML engineering roles, UK + remote." />
-  <meta name="keywords" content="Vaibhav Lalwani, AI engineer, full-stack engineer, Liverpool, Next.js, React, TypeScript, LangChain, RAG, LLM, Cogniloop, MCP, OpenAI, Claude, Groq, prompt engineering, MSc AI, hire" />
+  <meta name="keywords" content="Vaibhav Lalwani, AI engineer, full-stack engineer, Liverpool, Next.js, React, TypeScript, LangChain, RAG, LLM, DelOS, Qyntra, Cogniloop, MCP, multi-agent orchestration, HydraDB, xterm.js, browser OS, OpenAI, Claude, Groq, prompt engineering, MSc AI, hire" />
   <meta name="author" content="Vaibhav Lalwani" />
   <meta name="theme-color" content="#070707" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
@@ -26,7 +26,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Vaibhav Lalwani — Full-Stack & AI Engineer" />
-  <meta name="twitter:description" content="Liverpool engineer. Next.js · Python · LLMs. Builder of Cogniloop, MCP Marketplace, MedReviewAI." />
+  <meta name="twitter:description" content="Liverpool engineer. Next.js · Python · LLMs. Builder of DelOS, Qyntra, Cogniloop, MCP Marketplace, MedReviewAI." />
   <meta name="twitter:image" content="https://vaibhavlalwani.vercel.app/og.png" />
 
   <!-- Icons -->
@@ -77,7 +77,7 @@
         "name": "Christ University, Bengaluru"
       }
     ],
-    "knowsAbout": ["Next.js", "React", "TypeScript", "Python", "FastAPI", "LangChain", "OpenAI API", "Claude API", "Gemini API", "RAG", "MCP", "Postgres", "pgvector", "Vercel", "Tailwind CSS"],
+    "knowsAbout": ["Next.js", "React", "TypeScript", "Python", "FastAPI", "LangChain", "OpenAI API", "Claude API", "Gemini API", "Groq", "HydraDB graph + vector memory", "Multi-agent orchestration", "xterm.js", "Chrome MV3 extensions", "Whisper STT", "ElevenLabs TTS", "RAG", "MCP", "Postgres", "pgvector", "Vercel", "Tailwind CSS"],
     "sameAs": [
       "https://github.com/vaibhav4046",
       "https://linkedin.com/in/vaibhav-lalwani"
@@ -333,6 +333,31 @@
         </article>
 
         <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://delrio.vercel.app" target="_blank" rel="noopener" aria-label="DelOS live demo">
+            <img class="project-thumb" src="img/delos.png" alt="DelOS — browser-OS with multi-agent orchestration, xterm Agent Fleet, force-directed memory graph and HydraDB-backed knowledge layer." loading="lazy" width="1440" height="810" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">Featured · Agents Under Pressure '26 · Browser-OS for multi-agent work</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener" aria-label="DelOS on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>DelOS — agents that flow under pressure</h3>
+          <p>Agents Under Pressure '26 hackathon entry. A browser-OS where multi-agent orchestration is wired in by default — Memory, Tools, Recovery and Adaptation as first-class primitives. Agents build the apps live. Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace (the serverless answer to git worktrees). A 6-provider LLM cascade (Groq + Mistral + Gemini + NIM + Cerebras + Bytez + OpenRouter) keeps the OS responsive when any single provider rate-limits. Memory Browser renders a force-directed knowledge graph over HydraDB graph+vector storage with a 3-tier write-guard. SSE streams every phase — plan, tool calls, recoveries, usage — into the terminal so you watch the agent think. 79 endpoints, 14/14 regression pass, 0 console errors. Built solo across a 48-hour sprint.</p>
+          <ul class="tags">
+            <li>Next.js 16</li><li>React 19</li><li>TypeScript strict</li><li>HydraDB graph+vector</li>
+            <li>xterm.js</li><li>SSE streaming</li><li>Tenant subnamespace isolation</li>
+            <li>6-provider LLM cascade</li><li>Whisper STT + ElevenLabs TTS</li>
+            <li>Chrome MV3 extension</li><li>Vercel</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Live demo →</a>
+            <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source →</a>
+            <a href="https://www.aivalley.io/hackathons/agents-under-pressure-build-your-own-os/projects" target="_blank" rel="noopener">Hackathon projects →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
           <a class="project-thumb-link" href="https://cogniloop-vaibhav4046s-projects.vercel.app" target="_blank" rel="noopener" aria-label="Cogniloop live demo">
             <img class="project-thumb" src="img/cogniloop.jpg" alt="Cogniloop landing page screenshot showing 'The AI tutor that refuses to give you the answer'" loading="lazy" width="1440" height="810" />
           </a>
@@ -456,6 +481,22 @@
             <a href="https://www.aivalley.io/hackathons/wikithon-build-your-own-wikipedia-with-hydradb/projects" target="_blank" rel="noopener">Finalists list →</a>
             <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Project demo →</a>
             <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
+          <div class="project-head">
+            <span class="badge badge-featured">May 2026 · Hackathon · Agents Under Pressure '26</span>
+          </div>
+          <h3>Agents Under Pressure '26 · AIValley · HydraDB · DelOS</h3>
+          <p>Built <a href="https://delrio.vercel.app" target="_blank" rel="noopener">DelOS</a> solo across a 48-hour sprint for the AIValley × HydraDB Agents Under Pressure hackathon — a browser-OS where Memory, Tools, Recovery and Adaptation are first-class primitives. Real xterm.js terminal Agent Fleet driving parallel agents on isolated HydraDB tenant subnamespaces, 6-provider LLM cascade for transparent fault-injection, force-directed memory graph over graph+vector storage, 79 endpoints with 14/14 regression pass and 62/62 brutal probe pass live. Recognised for ambitious end-to-end execution under hackathon pressure.</p>
+          <ul class="tags">
+            <li>Agents Under Pressure '26</li><li>AIValley</li><li>HydraDB</li><li>Solo build</li><li>48h sprint</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://www.aivalley.io/hackathons/agents-under-pressure-build-your-own-os/projects" target="_blank" rel="noopener">Hackathon projects →</a>
+            <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Project demo →</a>
+            <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source →</a>
           </p>
         </article>
 
