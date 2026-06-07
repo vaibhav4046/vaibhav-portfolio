@@ -482,6 +482,28 @@
           </p>
         </article>
 
+        <article class="card project">
+          <a class="project-thumb-link" href="https://film-theory-vault.vercel.app" target="_blank" rel="noopener" aria-label="The Film Theory Vault live demo">
+            <img class="project-thumb" src="img/film-theory-vault.png" alt="The Film Theory Vault — cinematic OBSESSION hero page with a search-any-movie engine and AI-written fan theories." loading="lazy" width="1280" height="720" />
+          </a>
+          <div class="project-head">
+            <span class="badge">Just for fun · AI · Movies</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/film-theory-vault" target="_blank" rel="noopener" aria-label="The Film Theory Vault on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>The Film Theory Vault</h3>
+          <p>A side project I built mostly on my phone the evening after watching the horror film <em>Obsession</em>. Search any movie and the whole page regenerates in a cinematic style: real TMDB poster, cast and trailers, with the site auto-theming to the film's own colours (Inception turns red, The Matrix turns green) via client-side canvas extraction. An LLM (Groq gpt-oss-120b) reads each film and writes scene-anchored fan theories you can vote on, behind an airtight spoiler gate that serves the ending from a separate noindex endpoint. One static HTML file plus a few Vercel serverless functions — per-movie SSR, generated Movie JSON-LD and a per-request nonce CSP. Just for fun.</p>
+          <ul class="tags">
+            <li>Vanilla JS</li><li>Vercel serverless</li><li>TMDB API</li><li>Groq · gpt-oss-120b</li>
+            <li>Canvas colour extraction</li><li>Per-movie SSR + JSON-LD</li><li>Nonce CSP</li><li>Built with Claude Code</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://film-theory-vault.vercel.app" target="_blank" rel="noopener">Live demo →</a>
+            <a href="https://github.com/vaibhav4046/film-theory-vault" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
       </div>
     </section>
 
