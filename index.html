@@ -355,6 +355,30 @@
         </article>
 
         <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://recall-ops.vercel.app" target="_blank" rel="noopener" aria-label="RecallOps Cortex live demo">
+            <img class="project-thumb" src="img/recallops.png" alt="RecallOps Cortex, a recall-containment command center: live openFDA recall, a Fivetran and BigQuery blast radius, Gemini-drafted actions, a human approval gate, and a tamper-evident audit chain." loading="lazy" width="1440" height="810" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">Featured · Google Cloud Rapid Agent Hackathon · Fivetran track</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/RecallOps" target="_blank" rel="noopener" aria-label="RecallOps Cortex on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>RecallOps Cortex</h3>
+          <p>My entry for the Google Cloud Rapid Agent Hackathon (Fivetran track). It pulls a real openFDA Class I food recall, then scopes it across Fivetran-synced BigQuery operational data into a live blast radius: affected locations, lot codes, inventory units, units already sold, in-transit shipments, and the consented customer notification list. Gemini then drafts six containment actions (stop-sale, shelf-pull, supplier-hold, customer-notice, replacement-PO, compliance-report), each one citing the evidence it used. Nothing executes on its own. A human approves every action, and each approval is written to an append-only sha256 hash-chain audit log that a verifier can prove is intact. FastAPI on Cloud Run behind a 14-route command center, with honest live vs fallback badging on every integration so nothing shows a green light unless it is real.</p>
+          <ul class="tags">
+            <li>FastAPI · Cloud Run</li><li>Gemini 3</li><li>BigQuery</li><li>Fivetran MCP</li>
+            <li>openFDA (live)</li><li>OpenTelemetry</li><li>sha256 audit chain</li>
+            <li>Human-in-the-loop approval</li><li>React command center</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://recall-ops.vercel.app" target="_blank" rel="noopener">Live demo →</a>
+            <a href="https://github.com/vaibhav4046/RecallOps" target="_blank" rel="noopener">Source →</a>
+            <a href="https://github.com/vaibhav4046/RecallOps/blob/main/docs/RecallOps-Cortex-Whitepaper.pdf" target="_blank" rel="noopener">Whitepaper →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
           <a class="project-thumb-link" href="https://qyntra-app.vercel.app" target="_blank" rel="noopener" aria-label="Qyntra live demo">
             <img class="project-thumb" src="img/qyntra.png" alt="Qyntra — Personal Knowledge OS dashboard with 3D galaxy view of ingested files." loading="lazy" width="1568" height="746" />
           </a>
