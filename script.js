@@ -1,6 +1,8 @@
-/* Vaibhav Lalwani — Portfolio: theme toggle + sticky border + footer year */
+/* Vaibhav Lalwani — Portfolio: theme, scroll state, reveals, micro-interactions */
 (function () {
   'use strict';
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---- Theme ------------------------------------------------------------
   var STORAGE_KEY = 'vl-theme';
@@ -15,8 +17,11 @@
   function applyTheme(theme) {
     if (themes.indexOf(theme) === -1) theme = 'dark';
     root.setAttribute('data-theme', theme);
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', themeColors[theme] || themeColors.dark);
+    // Update every theme-color meta (there is one per color-scheme media query)
+    var metas = document.querySelectorAll('meta[name="theme-color"]');
+    for (var i = 0; i < metas.length; i++) {
+      metas[i].setAttribute('content', themeColors[theme] || themeColors.dark);
+    }
     if (btn) {
       btn.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
       btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
@@ -66,7 +71,7 @@
     window.addEventListener('scroll', setStuck, { passive: true });
   }
 
-  // ---- Reading progress + active navigation ----------------------------
+  // ---- Reading progress + active navigation + back-to-top --------------
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
   var sections = navLinks
     .map(function (link) {
@@ -74,11 +79,13 @@
       return id ? document.querySelector(id) : null;
     })
     .filter(Boolean);
+  var toTop = document.getElementById('back-to-top');
 
   function updateScrollState() {
     var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     var pct = Math.min(1, Math.max(0, window.scrollY / max));
     if (progress) progress.style.setProperty('--scroll-progress', pct.toFixed(4));
+    if (toTop) toTop.classList.toggle('is-visible', window.scrollY > 640);
 
     var active = sections[0];
     var offset = (topbar ? topbar.offsetHeight : 72) + 80;
@@ -106,24 +113,51 @@
   window.addEventListener('scroll', requestScrollState, { passive: true });
   window.addEventListener('resize', requestScrollState);
 
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+
   // ---- Footer year ------------------------------------------------------
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Resume button is now a direct PDF download via <a download>; no JS needed.
+  // ---- Hero stat count-up ----------------------------------------------
+  // Animates the numeric prefix of each hero stat (e.g. "20+" -> 0..20+).
+  (function statCountUp() {
+    var stats = document.querySelectorAll('.hero-stats dt');
+    if (!stats.length || reduced) return;
+    stats.forEach(function (dt) {
+      var raw = dt.textContent.trim();
+      var m = raw.match(/^(\d+)(.*)$/);
+      if (!m) return;
+      var target = parseInt(m[1], 10);
+      var suffix = m[2] || '';
+      var start = null;
+      var DURATION = 1100;
+      function tick(t) {
+        if (start === null) start = t;
+        var p = Math.min(1, (t - start) / DURATION);
+        var eased = 1 - Math.pow(1 - p, 3);
+        dt.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else dt.textContent = raw;
+      }
+      requestAnimationFrame(tick);
+    });
+  })();
 
   // ---- Scroll reveal ----------------------------------------------------
   // Adds .is-in to anything tagged [data-reveal] when it enters the viewport.
   // Honors prefers-reduced-motion: instantly reveals everything.
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function tagReveals() {
+    // .foot p deliberately excluded: it sits inside the observer's bottom
+    // dead zone at max scroll, so it would never reveal.
     var sels = [
-      '.hero-title', '.hero .lede', '.hero-cta',
-      '.section-title', '.section-eyebrow',
-      '.hero-signals li', '.hero-facts .fact',
-      '.card', '.timeline-item', '.skill-col', '.principle',
-      '.contact-card', '.foot p'
+      '.section-title', '.section-eyebrow', '.section-lede',
+      '.card', '.timeline-item', '.skill-col',
+      '.contact-card'
     ];
     var nodes = document.querySelectorAll(sels.join(','));
     for (var i = 0; i < nodes.length; i++) {
@@ -135,6 +169,13 @@
     for (var j = 0; j < projects.length; j++) {
       projects[j].style.setProperty('--reveal-delay', (j % 4 * 60) + 'ms');
     }
+    // Stagger skill chips inside each column.
+    document.querySelectorAll('.skill-col').forEach(function (col) {
+      var chips = col.querySelectorAll('.chiplist li');
+      for (var k = 0; k < chips.length; k++) {
+        chips[k].style.setProperty('--chip-delay', (k * 36) + 'ms');
+      }
+    });
   }
   tagReveals();
 
@@ -153,9 +194,9 @@
   }
 
   // ---- Pointer-tracked card glow ---------------------------------------
-  // Subtle radial highlight that follows cursor. Skipped under reduced motion.
+  // Radial highlight that follows the cursor (CSS reads --mx/--my).
   if (!reduced && window.matchMedia('(hover: hover)').matches) {
-    var cards = document.querySelectorAll('.project, .contact-card');
+    var cards = document.querySelectorAll('.project, .contact-card, .cert-card');
     cards.forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
         var r = card.getBoundingClientRect();
@@ -203,11 +244,16 @@
     a.addEventListener('click', function () {
       if (!navigator.clipboard) return;
       var email = (a.getAttribute('href') || '').replace(/^mailto:/, '').split('?')[0];
-      try { navigator.clipboard.writeText(email); toast('Email copied · ' + email); } catch (_) {}
+      navigator.clipboard.writeText(email).then(
+        function () { toast('Email copied · ' + email); },
+        function () {}
+      );
     });
   });
 
   // ---- Hero figurine (Hermes-style pixelated glitch canvas) -----------
+  // rAF loop only runs while the figurine is on screen; reduced motion
+  // renders a single static frame.
   (function heroFigurine() {
     var cvs = document.getElementById('figurine-canvas');
     var img = document.querySelector('.fig-src');
@@ -222,6 +268,11 @@
     octx.imageSmoothingEnabled = false;
 
     var baseData = null;
+    var visible = true;
+    var rafId = 0;
+    var lastBurst = 0;
+    var glitchUntil = 0;
+    var slices = [];
 
     function buildBase() {
       try {
@@ -230,7 +281,7 @@
         var id = octx.getImageData(0, 0, LOW, LOW);
         var d = id.data;
         for (var i = 0; i < d.length; i += 4) {
-          // Slight desaturation toward accent
+          // Monochrome with slight contrast lift
           var lum = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
           lum = Math.max(0, Math.min(255, (lum - 128) * 1.18 + 128));
           d[i] = d[i + 1] = d[i + 2] = lum;
@@ -239,257 +290,106 @@
       } catch (e) { baseData = null; }
     }
 
-    function loop() {
-      if (!baseData) { requestAnimationFrame(loop); return; }
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var lastBurst = 0;
-      var glitchUntil = 0;
-      var slices = [];
-
-      function frame(t) {
-        var work = octx.createImageData(LOW, LOW);
-        work.data.set(baseData.data);
-
-        // Spawn glitch burst
-        if (!reduced && t - lastBurst > 380 + Math.random() * 720) {
-          lastBurst = t;
-          glitchUntil = t + 80 + Math.random() * 140;
-          slices = [];
-          var n = 1 + Math.floor(Math.random() * 3);
-          for (var s = 0; s < n; s++) {
-            slices.push({
-              y: Math.floor(Math.random() * LOW),
-              h: 2 + Math.floor(Math.random() * 5),
-              dx: Math.floor((Math.random() - 0.5) * 14)
-            });
-          }
-        }
-
-        // Apply slice shifts
-        if (t < glitchUntil) {
-          for (var k = 0; k < slices.length; k++) {
-            var sl = slices[k];
-            for (var y = sl.y; y < Math.min(sl.y + sl.h, LOW); y++) {
-              var srcRow = baseData.data.subarray(y * LOW * 4, (y + 1) * LOW * 4);
-              var dstStart = y * LOW * 4;
-              for (var x = 0; x < LOW; x++) {
-                var sx = (x - sl.dx + LOW) % LOW;
-                work.data[dstStart + x * 4]     = srcRow[sx * 4];
-                work.data[dstStart + x * 4 + 1] = srcRow[sx * 4 + 1];
-                work.data[dstStart + x * 4 + 2] = srcRow[sx * 4 + 2];
-                work.data[dstStart + x * 4 + 3] = srcRow[sx * 4 + 3];
-              }
-            }
-          }
-        }
-
-        // Per-frame noise + scanline darken (subtle)
-        if (!reduced) {
-          var dd = work.data;
-          for (var p = 0; p < dd.length; p += 4) {
-            var n2 = (Math.random() - 0.5) * 12;
-            dd[p]     = Math.max(0, Math.min(255, dd[p] + n2));
-            dd[p + 1] = Math.max(0, Math.min(255, dd[p + 1] + n2));
-            dd[p + 2] = Math.max(0, Math.min(255, dd[p + 2] + n2));
-          }
-          for (var yy = 1; yy < LOW; yy += 2) {
-            var rowStart = yy * LOW * 4;
-            for (var xx = 0; xx < LOW; xx++) {
-              dd[rowStart + xx * 4]     *= 0.82;
-              dd[rowStart + xx * 4 + 1] *= 0.82;
-              dd[rowStart + xx * 4 + 2] *= 0.82;
-            }
-          }
-        }
-
-        octx.putImageData(work, 0, 0);
-        ctx.clearRect(0, 0, cvs.width, cvs.height);
-        ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
-
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
+    function drawStatic() {
+      if (!baseData) return;
+      octx.putImageData(baseData, 0, 0);
+      ctx.clearRect(0, 0, cvs.width, cvs.height);
+      ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
     }
 
-    function init() { buildBase(); loop(); }
-    if (img.complete && img.naturalWidth > 0) init();
-    else img.addEventListener('load', init);
-  })();
+    function frame(t) {
+      if (!visible) { rafId = 0; return; }
+      var work = octx.createImageData(LOW, LOW);
+      work.data.set(baseData.data);
 
-  // ---- Hero dot-portrait — edge-only halftone, interactive cursor -----
-  (function heroDots() {
-    var cvs = document.getElementById('hero-glitch');
-    var img = document.querySelector('.hero-art-src');
-    if (!cvs || !img) return;
-    // Skip when canvas is display:none (current Hermes hero replaces art layer)
-    if (getComputedStyle(cvs).display === 'none') return;
-    var heroArt = cvs.closest('.hero-art');
-    if (heroArt && getComputedStyle(heroArt).display === 'none') return;
-    var ctx = cvs.getContext('2d', { willReadFrequently: false });
-
-    function accentColor() {
-      var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-      return v || '#cc785c';
-    }
-
-    var GRID = 140;          // edge detection resolution
-    var DISPLAY = 480;
-    var STEP = DISPLAY / GRID;
-
-    var off = document.createElement('canvas');
-    off.width = GRID; off.height = GRID;
-    var octx = off.getContext('2d', { willReadFrequently: true });
-    octx.imageSmoothingEnabled = true;
-
-    var particles = [];
-    var mouse = { x: -9999, y: -9999, active: false };
-
-    function buildParticles() {
-      try {
-        octx.clearRect(0, 0, GRID, GRID);
-        octx.drawImage(img, 0, 0, GRID, GRID);
-      } catch (e) { return false; }
-      var imgData = octx.getImageData(0, 0, GRID, GRID).data;
-      var lum = new Float32Array(GRID * GRID);
-      for (var i = 0, p = 0; i < imgData.length; i += 4, p++) {
-        lum[p] = imgData[i] * 0.299 + imgData[i + 1] * 0.587 + imgData[i + 2] * 0.114;
-      }
-
-      // 3x3 box blur (single pass) to smooth jpeg noise
-      var sm = new Float32Array(GRID * GRID);
-      for (var yy = 0; yy < GRID; yy++) {
-        for (var xx = 0; xx < GRID; xx++) {
-          var s = 0, c = 0;
-          for (var oy = -1; oy <= 1; oy++) {
-            for (var ox = -1; ox <= 1; ox++) {
-              var nx = xx + ox, ny = yy + oy;
-              if (nx < 0 || nx >= GRID || ny < 0 || ny >= GRID) continue;
-              s += lum[ny * GRID + nx];
-              c++;
-            }
-          }
-          sm[yy * GRID + xx] = s / c;
-        }
-      }
-
-      particles = [];
-      // Dark-pixel halftone: only pixels below 170 luminance, density scaled by darkness
-      for (var y = 0; y < GRID; y++) {
-        for (var x = 0; x < GRID; x++) {
-          var lv = sm[y * GRID + x];
-          if (lv > 175) continue;
-          var dark = (175 - lv) / 175;
-          // Sparser overall: edges (high local contrast) keep most dots, interior decimated
-          var prob = 0.18 + dark * 0.45;
-          if (Math.random() > prob) continue;
-          var r = 0.7 + dark * 1.7;
-          var alpha = 0.6 + dark * 0.4;
-          var jx = (Math.random() - 0.5) * 0.5;
-          var jy = (Math.random() - 0.5) * 0.5;
-          var cx = (x + 0.5 + jx) * STEP;
-          var cy = (y + 0.5 + jy) * STEP;
-          particles.push({
-            tx: cx, ty: cy,
-            x: cx + (Math.random() - 0.5) * DISPLAY * 1.4,
-            y: cy + (Math.random() - 0.5) * DISPLAY * 1.4,
-            vx: 0, vy: 0,
-            r: r,
-            a: alpha,
-            phase: Math.random() * Math.PI * 2
+      // Spawn glitch burst
+      if (t - lastBurst > 380 + Math.random() * 720) {
+        lastBurst = t;
+        glitchUntil = t + 80 + Math.random() * 140;
+        slices = [];
+        var n = 1 + Math.floor(Math.random() * 3);
+        for (var s = 0; s < n; s++) {
+          slices.push({
+            y: Math.floor(Math.random() * LOW),
+            h: 2 + Math.floor(Math.random() * 5),
+            dx: Math.floor((Math.random() - 0.5) * 14)
           });
         }
       }
-      return true;
-    }
 
-    function bindCursor() {
-      function update(e) {
-        var r = cvs.getBoundingClientRect();
-        var scaleX = DISPLAY / r.width;
-        var scaleY = DISPLAY / r.height;
-        mouse.x = (e.clientX - r.left) * scaleX;
-        mouse.y = (e.clientY - r.top) * scaleY;
-        mouse.active = true;
-      }
-      function leave() { mouse.active = false; mouse.x = -9999; mouse.y = -9999; }
-      cvs.addEventListener('pointermove', update);
-      cvs.addEventListener('pointerleave', leave);
-      cvs.addEventListener('pointerdown', function (e) {
-        update(e);
-        // ripple: push particles outward
-        for (var k = 0; k < particles.length; k++) {
-          var p = particles[k];
-          var dx = p.x - mouse.x;
-          var dy = p.y - mouse.y;
-          var d = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (d < 200) {
-            var force = (1 - d / 200) * 12;
-            p.vx += (dx / d) * force;
-            p.vy += (dy / d) * force;
-          }
-        }
-      });
-    }
-
-    function startLoop() {
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var ease = 0.12;
-      var REPEL_R = 70;     // cursor influence radius (canvas px)
-      var REPEL_F = 28;     // strength
-
-      function frame(t) {
-        ctx.clearRect(0, 0, DISPLAY, DISPLAY);
-        ctx.fillStyle = accentColor();
-
-        for (var k = 0; k < particles.length; k++) {
-          var p = particles[k];
-
-          // Cursor repel
-          if (mouse.active) {
-            var dx = p.x - mouse.x;
-            var dy = p.y - mouse.y;
-            var d2 = dx * dx + dy * dy;
-            if (d2 < REPEL_R * REPEL_R) {
-              var d = Math.sqrt(d2) || 1;
-              var force = (1 - d / REPEL_R) * REPEL_F;
-              p.vx += (dx / d) * force * 0.08;
-              p.vy += (dy / d) * force * 0.08;
+      // Apply slice shifts
+      if (t < glitchUntil) {
+        for (var k = 0; k < slices.length; k++) {
+          var sl = slices[k];
+          for (var y = sl.y; y < Math.min(sl.y + sl.h, LOW); y++) {
+            var srcRow = baseData.data.subarray(y * LOW * 4, (y + 1) * LOW * 4);
+            var dstStart = y * LOW * 4;
+            for (var x = 0; x < LOW; x++) {
+              var sx = (x - sl.dx + LOW) % LOW;
+              work.data[dstStart + x * 4]     = srcRow[sx * 4];
+              work.data[dstStart + x * 4 + 1] = srcRow[sx * 4 + 1];
+              work.data[dstStart + x * 4 + 2] = srcRow[sx * 4 + 2];
+              work.data[dstStart + x * 4 + 3] = srcRow[sx * 4 + 3];
             }
           }
-
-          // Velocity decay
-          p.vx *= 0.86;
-          p.vy *= 0.86;
-          p.x += p.vx;
-          p.y += p.vy;
-
-          // Spring to target
-          p.x += (p.tx - p.x) * ease;
-          p.y += (p.ty - p.y) * ease;
-
-          // Pulse
-          var pulse = reduced ? 1 : 1 + Math.sin(t * 0.002 + p.phase) * 0.18;
-          var r = p.r * pulse;
-
-          ctx.globalAlpha = p.a;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-          ctx.fill();
         }
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(frame);
       }
-      requestAnimationFrame(frame);
+
+      // Per-frame noise + scanline darken (subtle)
+      var dd = work.data;
+      for (var p = 0; p < dd.length; p += 4) {
+        var n2 = (Math.random() - 0.5) * 12;
+        dd[p]     = Math.max(0, Math.min(255, dd[p] + n2));
+        dd[p + 1] = Math.max(0, Math.min(255, dd[p + 1] + n2));
+        dd[p + 2] = Math.max(0, Math.min(255, dd[p + 2] + n2));
+      }
+      for (var yy = 1; yy < LOW; yy += 2) {
+        var rowStart = yy * LOW * 4;
+        for (var xx = 0; xx < LOW; xx++) {
+          dd[rowStart + xx * 4]     *= 0.82;
+          dd[rowStart + xx * 4 + 1] *= 0.82;
+          dd[rowStart + xx * 4 + 2] *= 0.82;
+        }
+      }
+
+      octx.putImageData(work, 0, 0);
+      ctx.clearRect(0, 0, cvs.width, cvs.height);
+      ctx.drawImage(off, 0, 0, cvs.width, cvs.height);
+
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function start() {
+      if (!baseData || rafId) return;
+      if (reduced) { drawStatic(); return; }
+      rafId = requestAnimationFrame(frame);
+    }
+    function stop() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
     }
 
     function init() {
-      if (!buildParticles()) return;
-      bindCursor();
-      startLoop();
+      buildBase();
+      if (!baseData) return;
+      if (reduced) { drawStatic(); return; }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          if (visible) start();
+          else stop();
+        }, { threshold: 0 });
+        io.observe(cvs);
+      } else {
+        start();
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop();
+        else if (visible) start();
+      });
     }
 
     if (img.complete && img.naturalWidth > 0) init();
-    else { img.addEventListener('load', init); }
+    else img.addEventListener('load', init);
   })();
 
   // ---- LinkedIn activity sync -----------------------------------------

@@ -1813,8 +1813,7 @@ main { overflow: clip; }
   }
 }
 
-/* Section number gutter removed for minimal feel */
-.section .section-eyebrow::before { content: none !important; }
+/* Section eyebrow renders as block; accent dot added in the final polish layer */
 .section .section-eyebrow { display: block; }
 
 /* -- Toast ---------------------------------------------------------------- */
@@ -3080,4 +3079,201 @@ main section.section[id="about"] {
   .topbar .brand-text { display: none; }
   .nav { gap: 8px; }
   .nav a { font-size: 10.5px; }
+}
+
+/* ==========================================================================
+   Sleek pass — cursor glow, shine sweeps, staggered chips, back-to-top
+   ========================================================================== */
+
+/* -- Cursor-tracked card glow (JS feeds --mx / --my) ----------------------- */
+.card.project::before {
+  background: radial-gradient(
+    480px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in srgb, var(--accent) 13%, transparent),
+    transparent 62%
+  );
+}
+.contact-card,
+.cert-card {
+  position: relative;
+  overflow: hidden;
+}
+.contact-card::before,
+.cert-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 60%
+  );
+  transition: opacity var(--t-med) var(--ease);
+}
+@media (hover: hover) {
+  .contact-card:hover::before,
+  .cert-card:hover::before { opacity: 1; }
+}
+.contact-card > *,
+.cert-card > * { position: relative; z-index: 1; }
+
+/* -- Thumbnail shine sweep on hover ---------------------------------------- */
+.project-thumb-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: translateX(-130%) skewX(-18deg);
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 58%
+  );
+}
+@media (hover: hover) {
+  .project:hover .project-thumb-link::before {
+    animation: thumbShine 860ms var(--ease);
+  }
+}
+@keyframes thumbShine {
+  to { transform: translateX(130%) skewX(-18deg); }
+}
+
+/* -- Primary button shine sweep -------------------------------------------- */
+.btn-primary,
+.topbar-cta {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after,
+.topbar-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translateX(-130%) skewX(-20deg);
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+}
+@media (hover: hover) {
+  .btn-primary:hover::after,
+  .topbar-cta:hover::after {
+    animation: thumbShine 760ms var(--ease);
+  }
+}
+
+/* -- Skill chips: staggered rise inside revealed column ---------------------
+   Gated on [data-reveal] (added by JS) so chips stay visible without JS. */
+.skill-col[data-reveal] .chiplist li {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 460ms var(--ease) var(--chip-delay, 0ms),
+    transform 460ms var(--ease) var(--chip-delay, 0ms),
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    background var(--t-fast) var(--ease);
+}
+.skill-col[data-reveal].is-in .chiplist li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -- Timeline: date warms up when row reveals ------------------------------- */
+.timeline-item .t-date {
+  transition: color 600ms var(--ease) 180ms;
+}
+.timeline-item.is-in .t-date { color: var(--accent); }
+
+/* -- Figurine: slow breathing glow ------------------------------------------ */
+.hero-figurine {
+  animation: figJitter 6s steps(60) infinite, figGlow 7s var(--ease) infinite alternate;
+}
+@keyframes figGlow {
+  from {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+      0 0 0 4px color-mix(in srgb, var(--accent) 8%, transparent),
+      0 24px 60px -28px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  to {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+      0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent),
+      0 24px 70px -24px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+}
+
+/* -- Back-to-top ------------------------------------------------------------ */
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 36px -18px color-mix(in srgb, var(--accent) 50%, transparent);
+  transition:
+    opacity var(--t-med) var(--ease),
+    transform var(--t-med) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@media (hover: hover) {
+  .back-to-top:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+@media (max-width: 640px) {
+  .back-to-top { right: 14px; bottom: 14px; width: 40px; height: 40px; }
+}
+
+/* -- Section divider line draws in on reveal -------------------------------- */
+.section::before {
+  max-width: 0;
+  transition: max-width 900ms var(--ease) 80ms;
+}
+.section:has(.section-title.is-in)::before { max-width: 160px; }
+@supports not (selector(:has(*))) {
+  .section::before { max-width: 160px; }
+}
+
+/* -- Reduced motion: kill every effect in this layer ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .project-thumb-link::before,
+  .btn-primary::after,
+  .topbar-cta::after { display: none; }
+  .skill-col .chiplist li { opacity: 1; transform: none; transition: none; }
+  .timeline-item .t-date { transition: none; }
+  .hero-figurine { animation: none; }
+  .back-to-top { transition: none; transform: none; }
+  .section::before { max-width: 160px; transition: none; }
 }
