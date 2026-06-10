@@ -3,3 +3,4 @@ node_modules
 package-lock.json
 .claude/
 docs/_verify-*
+scripts/auto-deploy.log
