@@ -3266,6 +3266,27 @@ main section.section[id="about"] {
   .section::before { max-width: 160px; }
 }
 
+/* -- Hero eyebrow profile links (GitHub / LinkedIn) -------------------------- */
+.hero-eyebrow .eyebrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.hero-eyebrow .eyebrow-link svg {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+@media (hover: hover) {
+  .hero-eyebrow .eyebrow-link:hover {
+    color: var(--accent-soft);
+    border-bottom-color: var(--accent);
+  }
+}
+
 /* -- Reduced motion: kill every effect in this layer ------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .project-thumb-link::before,
