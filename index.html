@@ -312,6 +312,28 @@
       <div class="grid">
 
         <article class="card project project-featured">
+          <a class="project-thumb-link" href="https://hydrasentry.vercel.app" target="_blank" rel="noopener" aria-label="HydraSentry live demo">
+            <img class="project-thumb" src="img/hydrasentry.png" alt="HydraSentry live console: a poisoned memory makes an AI refund agent auto-approve a payment, then the firewall blocks it and a signed Memory Integrity Certificate is issued." loading="lazy" width="1600" height="900" />
+          </a>
+          <div class="project-head">
+            <span class="badge badge-featured">🏆 HydraDB Build Blitz Winner · Graph-native agent-memory security</span>
+            <a class="project-link" href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener" aria-label="HydraSentry on GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
+            </a>
+          </div>
+          <h3>HydraSentry, memory-integrity layer for AI agents</h3>
+          <p>Graph-native security for agents that run on persistent memory. A single poisoned memory in a vector store or RAG index can silently override an agent's policy on every future run, and prompt firewalls cannot see it because the poison is in what the agent <em>retrieves</em>, not the prompt. HydraSentry replays the agent on clean versus poisoned context, scores the behaviour diff, traces the exact taint path through the real HydraDB <code>query_paths</code> graph, blocks the unsafe action via an <strong>MCP firewall before the agent acts</strong>, and seals each incident into a signed, offline-verifiable <strong>Memory Integrity Certificate</strong>. Multi-tenant on Supabase Postgres, semantic paraphrase detection via embeddings, and a self-verifying <strong>OWASP Agentic Top 10</strong> map. Live with no login.</p>
+          <ul class="tags">
+            <li>HydraDB (query_paths)</li><li>MCP firewall (stdio)</li><li>Gemini embeddings</li><li>FastAPI</li>
+            <li>Next.js 16</li><li>Supabase Postgres</li><li>OWASP ASI Top-10</li><li>Memory Integrity Certificate</li>
+          </ul>
+          <p class="project-link-row">
+            <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Live →</a>
+            <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">Source →</a>
+          </p>
+        </article>
+
+        <article class="card project project-featured">
           <a class="project-thumb-link" href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener" aria-label="Kodro on GitHub">
             <img class="project-thumb" src="img/kodro.png" alt="Kodro studio: a code editor on the left, the City world with traffic and a pedestrian crossing and the robot in the middle, and live telemetry on the right." loading="lazy" width="1440" height="900" />
           </a>
