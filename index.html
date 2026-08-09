@@ -1,944 +1,525 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Vaibhav Lalwani — AI engineer · Production LLM systems · Liverpool</title>
-  <meta name="description" content="AI engineer working on production language-model systems. MSc Advanced Data Science & AI at the University of Liverpool. Background spans full-stack and applied ML. Interested in retrieval, evaluation, agent reliability. Open to AI/ML engineering roles, UK + remote." />
-  <meta name="keywords" content="Vaibhav Lalwani, AI engineer, full-stack engineer, Liverpool, Next.js, React, TypeScript, LangChain, RAG, LLM, DelOS, Qyntra, Cogniloop, MCP, multi-agent orchestration, HydraDB, xterm.js, browser OS, OpenAI, Claude, Groq, prompt engineering, MSc AI, hire" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaibhav Lalwani · AI engineer · production LLM systems · Liverpool</title>
+  <meta name="description" content="Vaibhav Lalwani · AI engineer who ships production LLM systems and full-stack apps. 20+ apps shipped, hackathon wins, one preprint. Open to work, based in Liverpool UK." />
   <meta name="author" content="Vaibhav Lalwani" />
-  <meta name="theme-color" content="#070707" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://vaibhavlalwani.vercel.app/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Vaibhav Lalwani — AI engineer · Production LLM systems" />
-  <meta property="og:description" content="MSc Advanced Data Science & AI at the University of Liverpool. Working on retrieval, evaluation and agent reliability. Open to AI/ML engineering roles." />
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vaibhav Lalwani · AI engineer" />
+  <meta property="og:description" content="Ships production LLM systems and full-stack apps. 20+ shipped, hackathon wins, one preprint. Open to work." />
   <meta property="og:url" content="https://vaibhavlalwani.vercel.app/" />
-  <meta property="og:image" content="https://vaibhavlalwani.vercel.app/og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Vaibhav Lalwani — Full-Stack & AI Engineer" />
-  <meta property="og:locale" content="en_GB" />
-
-  <!-- Twitter -->
+  <meta property="og:image" content="https://vaibhavlalwani.vercel.app/img/queueproof.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vaibhav Lalwani — Full-Stack & AI Engineer" />
-  <meta name="twitter:description" content="Liverpool engineer. Next.js · Python · LLMs. Builder of DelOS, Qyntra, Cogniloop, MCP Marketplace, MedReviewAI." />
-  <meta name="twitter:image" content="https://vaibhavlalwani.vercel.app/og.png" />
 
-  <!-- Icons -->
-  <link rel="icon" type="image/jpeg" href="/img/profile.jpg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Performance: preconnect + DNS prefetch -->
+  <link rel="icon" href="/img/profile.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://github.com" />
-  <link rel="preload" as="image" href="/img/figurine.jpg" fetchpriority="high" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
 
-  <!-- Critical CSS preload -->
-  <link rel="preload" href="style.css" as="style" />
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Fonts (font-display swap baked in via &display=swap) -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- Sitemap reference -->
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
-  <!-- Structured data (Person + ProfessionalService) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Vaibhav Lalwani",
-    "url": "https://vaibhavlalwani.vercel.app/",
-    "image": "https://vaibhavlalwani.vercel.app/og.png",
-    "jobTitle": "Full-Stack & AI Engineer",
+    "jobTitle": "AI Engineer",
     "email": "mailto:vaibhavlalwani26969@gmail.com",
     "telephone": "+44-7544-537860",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Liverpool",
-      "addressCountry": "UK"
-    },
+    "url": "https://vaibhavlalwani.vercel.app/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Liverpool", "addressCountry": "GB" },
     "alumniOf": [
-      {
-        "@type": "CollegeOrUniversity",
-        "name": "University of Liverpool",
-        "url": "https://www.liverpool.ac.uk/"
-      },
-      {
-        "@type": "CollegeOrUniversity",
-        "name": "Christ University, Bengaluru"
-      }
+      { "@type": "CollegeOrUniversity", "name": "University of Liverpool" },
+      { "@type": "CollegeOrUniversity", "name": "Christ University" }
     ],
-    "knowsAbout": ["Next.js", "React", "TypeScript", "Python", "FastAPI", "LangChain", "OpenAI API", "Claude API", "Gemini API", "Groq", "HydraDB graph + vector memory", "Multi-agent orchestration", "xterm.js", "Chrome MV3 extensions", "Whisper STT", "ElevenLabs TTS", "RAG", "MCP", "Postgres", "pgvector", "Vercel", "Tailwind CSS"],
-    "sameAs": [
-      "https://github.com/vaibhav4046",
-      "https://linkedin.com/in/vaibhav-lalwani"
-    ],
-    "affiliation": {
-      "@type": "Organization",
-      "name": "University of Liverpool"
-    }
+    "knowsAbout": ["Large Language Models", "AI Agents", "Full-Stack Engineering", "Retrieval-Augmented Generation", "TypeScript", "Python"],
+    "sameAs": ["https://github.com/vaibhav4046", "https://www.linkedin.com/in/vaibhav-lalwani"]
   }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#work">Skip to work</a>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-  <a class="skip-link" href="#top">Skip to content</a>
-  <div class="scroll-progress" aria-hidden="true"></div>
-
-  <!-- Top bar -->
+  <!-- ===== Top bar ===== -->
   <header class="topbar">
-    <a href="#top" class="brand" aria-label="Home">
-      <img class="brand-mark brand-photo" src="/img/profile.jpg" alt="" width="36" height="36" loading="eager" decoding="async" />
-      <span class="brand-text">Vaibhav Lalwani</span>
+    <a class="brand" href="/" aria-label="Vaibhav Lalwani · home">
+      <img class="brand-mark" src="/img/profile.jpg" alt="" width="30" height="30" />
+      <span class="brand-text">Vaibhav&nbsp;Lalwani</span>
+      <span class="brand-index">/ VL·26</span>
     </a>
     <nav class="nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
       <a href="#work">Work</a>
-      <a href="#achievements">Wins</a>
+      <a href="#experience">Experience</a>
+      <a href="#recognition">Recognition</a>
       <a href="#research">Research</a>
-      <a href="#skills">Stack</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a class="topbar-cta" href="mailto:vaibhavlalwani26969@gmail.com?subject=Role%20enquiry">
-      Get in touch
-    </a>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
-      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"/>
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-      </svg>
-      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
-      </svg>
+    <a class="nav-min mono" href="#contact">Contact</a>
+    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener">Résumé</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">
+      <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
     </button>
   </header>
 
-  <main id="top" tabindex="-1">
+  <main id="main">
+    <!-- ===== Hero ===== -->
+    <section class="hero wrap" aria-labelledby="hero-heading">
+      <div class="hero-grid">
+        <div class="hero-lead">
+          <p class="hero-eyebrow">
+            <span class="live">Open to work</span>
+            <span class="dot">/</span> Liverpool, UK
+            <span class="dot">/</span> MSc AI
+            <span class="dot">/</span>
+            <a class="eyebrow-link" href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="eyebrow-link" href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </p>
+          <h1 class="hero-title" id="hero-heading">
+            <span class="line"><span>AI engineer.</span></span>
+            <span class="line"><span class="thin">Ships production</span></span>
+            <span class="line"><span>LLM <span class="mark">systems.</span></span></span>
+          </h1>
+          <p class="hero-sub">Twenty-plus shipped apps, autonomous agents, and retrieval systems, built end to end, from model plumbing to the pixels.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#work"><span>View work</span> <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn" href="mailto:vaibhavlalwani26969@gmail.com"><span>Email me</span></a>
+            <a class="btn" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener"><span>Résumé ↗</span></a>
+          </div>
+          <p class="hero-meta-line">Remote · Hybrid · On-site · Contract · Part-time</p>
+        </div>
 
-    <!-- Hero -->
-    <section class="hero hero-hermes">
-      <p class="hero-eyebrow"><span>OPEN TO WORK</span> · <span>LIVERPOOL, UK</span> · <span>MSc AI</span> ·
-        <a class="eyebrow-link" href="https://github.com/vaibhav4046" target="_blank" rel="noopener" aria-label="GitHub profile">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>GITHUB</a> ·
-        <a class="eyebrow-link" href="https://linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>LINKEDIN</a></p>
-      <h1 class="hero-title">
-        AI ENGINEER.<br />
-        SHIPS PRODUCTION LLM SYSTEMS.
-      </h1>
-      <p class="hero-sub">
-        I build reliable AI products across research, healthcare, education and agent workflows,
-        from model integration to typed front ends, data stores, deployment and QA.
-      </p>
-
-      <div class="hero-figurine" aria-hidden="true">
-        <canvas id="figurine-canvas" width="360" height="360"></canvas>
-        <span class="fig-frame fig-tl"></span>
-        <span class="fig-frame fig-tr"></span>
-        <span class="fig-frame fig-bl"></span>
-        <span class="fig-frame fig-br"></span>
-        <span class="fig-label">VL_AGENT.v3</span>
-        <img class="fig-src" src="/img/figurine.jpg" alt="" crossorigin="anonymous" />
+        <div class="hero-plate" data-scrub>
+          <div class="plate-inner">
+            <canvas id="figurine-canvas" width="720" height="720" role="img" aria-label="Halftone portrait of Vaibhav Lalwani"></canvas>
+            <span class="plate-reg tl" aria-hidden="true"></span>
+            <span class="plate-reg tr" aria-hidden="true"></span>
+            <span class="plate-reg bl" aria-hidden="true"></span>
+            <span class="plate-reg br" aria-hidden="true"></span>
+          </div>
+          <p class="plate-label"><b>VL_AGENT</b>.v3 · Liverpool 53.4°N</p>
+          <img class="fig-src" id="figurine-src" src="/img/figurine.jpg" alt="" width="360" height="360" crossorigin="anonymous" />
+        </div>
       </div>
 
-      <dl class="hero-stats" aria-label="At a glance">
-        <div><dt>20+</dt><dd>shipped</dd></div>
-        <div><dt>4</dt><dd>flagship OSS</dd></div>
-        <div><dt>1</dt><dd>preprint</dd></div>
-        <div><dt>2yr</dt><dd>production AI</dd></div>
+      <dl class="hero-stats">
+        <div><dt>20+</dt><dd>Apps shipped</dd></div>
+        <div><dt>6</dt><dd>Flagship OSS</dd></div>
+        <div><dt>2×</dt><dd>HydraDB security</dd></div>
+        <div><dt>1</dt><dd>Research preprint</dd></div>
       </dl>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="#work">View work</a>
-        <a class="btn btn-ghost btn-lg" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" download="Vaibhav_Lalwani_Resume.pdf">Resume</a>
-        <a class="btn btn-ghost btn-lg" href="mailto:vaibhavlalwani26969@gmail.com?subject=Hiring%20enquiry">Email</a>
-      </div>
-
-      <p class="hero-meta-line">REMOTE · HYBRID · ON-SITE · CONTRACT · PT</p>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <p class="section-eyebrow">About</p>
-      <h2 class="section-title">A short version.</h2>
-      <div class="about-grid">
-        <div class="about-prose">
-          <p>
-            Full-stack engineer with two years of applied experience pairing production
-            React/TypeScript front-ends with Python AI services in real shipping products. I
-            write code that other people maintain, document the workflows so non-engineers can run
-            them, and use AI tooling daily as part of the work rather than as a side project.
-          </p>
-          <p>
-            Day-to-day I work in Next.js 15, React 19, TypeScript and Tailwind on the front; FastAPI,
-            Node.js, Postgres + pgvector, Redis and BullMQ on the back; and OpenAI, Gemini,
-            LangChain and MCP servers when the product needs intelligence. Auth with Supabase
-            (Google OAuth, magic link, PKCE), shipping on Vercel and GCP Cloud Run.
-            Recent builds include MedReviewAI for grounded medical literature review and ScholarAI
-            for in-browser research-paper analysis.
-          </p>
-          <p>
-            I default to written specifications before code, runbooks alongside features, and
-            reviews that move the codebase forward — easier to work in than I found it.
-          </p>
-        </div>
-        <aside class="card about-card">
-          <h3>At a glance</h3>
-          <dl>
-            <dt>Based in</dt><dd>Liverpool, UK</dd>
-            <dt>Studying</dt><dd>MSc Advanced Data Science &amp; AI · University of Liverpool</dd>
-            <dt>Availability</dt><dd>Open to part-time and contract roles · 20–40 hr/wk</dd>
-            <dt>Work style</dt><dd>Remote · hybrid · Liverpool on-site</dd>
-            <dt>Reach</dt><dd>vaibhavlalwani26969@gmail.com</dd>
-          </dl>
-        </aside>
+    <!-- ===== Selected work ===== -->
+    <section class="section wrap" id="work" aria-labelledby="work-heading">
+      <div class="section-head">
+        <span class="section-index"><b>01</b> / Selected work</span>
+        <h2 class="section-title" id="work-heading">Six builds that <span class="em">ship</span>.</h2>
+        <p class="section-lede">Production systems and flagship open source. Every one is live, documented, and running the whole stack.</p>
+      </div>
+
+      <div class="work-list">
+        <!-- 01 QueueProof -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>01</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/queueproof" aria-label="QueueProof · case study">
+              <img src="/img/queueproof.png" alt="QueueProof workspace: a cross-source question answered with numbered claim citations back to their source records" width="1440" height="900" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag">HydraDB × Connectors</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Cross-source retrieval · Cited answers</span>
+            <h3><a href="/work/queueproof">QueueProof</a></h3>
+            <p>An evidence-backed cross-source retrieval workspace. Ask one question across many sources and every claim in the answer carries a numbered citation back to the record it came from. Built for the HydraDB × Connectors hackathon.</p>
+            <ul class="tags"><li>HydraDB</li><li>Retrieval</li><li>Citations</li><li>Vercel</li></ul>
+            <p class="link-row">
+              <a href="/work/queueproof">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://queueproof.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/queueproof" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 02 HydraSentry -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>02</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/hydrasentry" aria-label="HydraSentry · case study">
+              <img src="/img/hydrasentry.png" alt="HydraSentry: a memory-integrity firewall catching a poisoned memory before an agent acts on it" width="3200" height="1800" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag fig-win">★ Build Blitz · Winner</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Context integrity · Knowledge graph</span>
+            <h3><a href="/work/hydrasentry">HydraSentry <span class="work-kicker">/ Constellan</span></a></h3>
+            <p>A memory-integrity layer for AI agents. When a poisoned memory tries to make a refund agent auto-approve a payment, the firewall catches it and issues a signed Memory Integrity Certificate. Winner of the HydraDB Build Blitz.</p>
+            <ul class="tags"><li>HydraDB</li><li>Agent security</li><li>Groq</li><li>FastAPI</li><li>Vercel</li></ul>
+            <p class="link-row">
+              <a href="/work/hydrasentry">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 03 Kodro -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>03</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/kodro" aria-label="Kodro · case study">
+              <img src="/img/kodro.png" alt="Kodro: an offline robot design and simulation studio with a live city world" width="1280" height="800" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag">Offline · Simulation</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Offline · Robotics simulation</span>
+            <h3><a href="/work/kodro">Kodro</a></h3>
+            <p>An offline robot design and simulation studio. Build a robot, drop it into a live city world with traffic and pedestrians, script its behaviour in a built-in code editor, and watch telemetry stream back, all running locally, no cloud.</p>
+            <ul class="tags"><li>Simulation</li><li>Python</li><li>Robotics</li><li>Local-first</li></ul>
+            <p class="link-row">
+              <a href="/work/kodro">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 04 DRIP -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>04</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/drip" aria-label="DRIP · case study">
+              <img src="/img/drip.png" alt="DRIP: an AI sneaker stylist with a For-You feed and live resale prices" width="1440" height="810" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag">Multi-agent · Commerce</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Multi-agent · Consumer product</span>
+            <h3><a href="/work/drip">DRIP</a></h3>
+            <p>An AI sneaker stylist. A For-You feed, shoe pages with live StockX resale prices and buy links, and a multi-agent stylist chat that reasons about fit and taste instead of just returning search results.</p>
+            <ul class="tags"><li>React</li><li>Multi-agent</li><li>StockX API</li><li>TypeScript</li></ul>
+            <p class="link-row">
+              <a href="/work/drip">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://drip-two-rho.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/drip-ai-sneaker-stylist" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 05 Qyntra -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>05</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/qyntra" aria-label="Qyntra · case study">
+              <img src="/img/qyntra.png" alt="Qyntra: a personal knowledge OS with a 3D galaxy view of your files" width="1568" height="974" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag fig-win">★ Wikithon · Finalist</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Personal knowledge OS · Retrieval</span>
+            <h3><a href="/work/qyntra">Qyntra</a></h3>
+            <p>A personal knowledge OS. Ingest your files, explore them as a 3D galaxy, and ask questions answered straight from your own material. Built solo and taken to the Wikithon '26 finals.</p>
+            <ul class="tags"><li>RAG</li><li>Next.js</li><li>3D</li><li>Vercel</li></ul>
+            <p class="link-row">
+              <a href="/work/qyntra">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+
+        <!-- 06 DelOS -->
+        <article class="work-row reveal">
+          <div class="work-num"><b>06</b> / 2026</div>
+          <figure class="work-figure">
+            <a href="/work/delos" aria-label="DelOS · case study">
+              <img src="/img/delos.png" alt="DelOS: a browser-OS coordinating a fleet of agents under load" width="2880" height="1800" loading="lazy" decoding="async" />
+            </a>
+            <span class="fig-tag fig-win">★ Agents Under Pressure '26</span>
+          </figure>
+          <div class="work-body">
+            <span class="work-kicker">Multi-agent · Orchestration</span>
+            <h3><a href="/work/delos">DelOS</a></h3>
+            <p>A browser-OS where multiple agents flow under pressure: an xterm agent fleet, a force-directed memory graph, and a HydraDB-backed knowledge layer, coordinated so agents don't collide under load. Entered into Agents Under Pressure '26.</p>
+            <ul class="tags"><li>Multi-agent</li><li>HydraDB</li><li>Orchestration</li><li>Vercel</li></ul>
+            <p class="link-row">
+              <a href="/work/delos">Case study <span aria-hidden="true">→</span></a>
+              <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-foot">
+        <span class="count">Showing 6 of 20+ projects</span>
+        <a class="btn" href="/work"><span>Full archive</span> <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
 
-    <!-- How I work -->
+    <!-- ===== Experience ===== -->
+    <section class="section wrap" id="experience" aria-labelledby="exp-heading">
+      <div class="section-head">
+        <span class="section-index"><b>02</b> / Experience</span>
+        <h2 class="section-title" id="exp-heading">Where I've <span class="em">shipped</span>.</h2>
+      </div>
 
-    <!-- Experience -->
-    <section id="experience" class="section">
-      <p class="section-eyebrow">Experience</p>
-      <h2 class="section-title">Where I've shipped.</h2>
-
-      <ol class="timeline">
-
-        <li class="timeline-item">
-          <div class="timeline-meta">
-            <span class="t-date">Apr 2026 – May 2026</span>
-            <span class="t-loc">Remote, UK</span>
-          </div>
-          <div class="timeline-body">
-            <h3>AI Engineer (Full-Stack) · <span class="company">Meta Solution Technologies</span></h3>
-            <ul class="bullet-list">
-              <li>Built an AI-guided admissions platform on Next.js 15 +
-                React 19 + TypeScript + Tailwind, talking to a Python LLM service over a typed
-                REST API. Chat-style guidance flow runs on OpenAI with structured outputs and a
-                Postgres + pgvector knowledge store.</li>
-              <li>Wrote auth end-to-end (Google OAuth, magic-link, PKCE) on Supabase, plus a
-                BullMQ + Redis job queue that drives async generation, document checks and
-                email triggers.</li>
-              <li>Shipped 10-language i18n and a dual-theme CSS layer so non-engineering
-                teammates could roll out copy and translation updates without involving me.
-                Used Claude Code daily for refactors and review.</li>
-            </ul>
-            <ul class="tags">
-              <li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>Tailwind</li>
-              <li>Python</li><li>OpenAI</li><li>Postgres</li><li>pgvector</li>
-              <li>Supabase</li><li>BullMQ</li><li>Redis</li>
-            </ul>
-          </div>
-        </li>
-
-        <li class="timeline-item">
-          <div class="timeline-meta">
-            <span class="t-date">Jan 2026 – Apr 2026</span>
+      <div class="timeline">
+        <div class="t-item reveal">
+          <div class="t-meta">
+            <span class="t-date">Apr – May 2026</span>
             <span class="t-loc">Remote</span>
           </div>
-          <div class="timeline-body">
-            <h3>Software Engineer (Part-time) · <span class="company">Recruit Pilot — Chris Hines (Recruitment-Tech)</span></h3>
+          <div class="t-body">
+            <h3>AI Engineer, Full-Stack · <span class="company">Meta Solution Technologies</span></h3>
             <ul class="bullet-list">
-              <li>Built React + TypeScript UI features against a REST API for a recruitment-tech
-                product. Took part in code review and weekly sprint cadence alongside more
-                senior engineers.</li>
-            </ul>
-            <ul class="tags">
-              <li>React</li><li>TypeScript</li><li>REST APIs</li><li>Code review</li>
+              <li>Built full-stack features on Next.js 15, React 19, TypeScript and Tailwind over a Python LLM back end.</li>
+              <li>Shipped structured-output LLM pipelines with OpenAI, backed by Postgres and pgvector for retrieval.</li>
+              <li>Wired Supabase auth (OAuth, magic-link, PKCE) and a BullMQ + Redis job queue for background work.</li>
+              <li>Delivered a 10-language i18n layer and used AI-assisted coding tools daily for refactors and review.</li>
             </ul>
           </div>
-        </li>
+        </div>
 
-        <li class="timeline-item">
-          <div class="timeline-meta">
+        <div class="t-item reveal">
+          <div class="t-meta">
+            <span class="t-date">Jan – Apr 2026</span>
+            <span class="t-loc">Part-time · Remote</span>
+          </div>
+          <div class="t-body">
+            <h3>Software Engineer · <span class="company">Recruit Pilot</span></h3>
+            <ul class="bullet-list">
+              <li>Part-time engineering under Chris Hines: features, fixes, and product work on a live codebase.</li>
+              <li>Worked across the stack against real deadlines and real users.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="t-item reveal">
+          <div class="t-meta">
             <span class="t-date">May 2024 – Jan 2026</span>
-            <span class="t-loc">Remote</span>
+            <span class="t-loc">Self-employed</span>
           </div>
-          <div class="timeline-body">
-            <h3>AI Engineer (Freelance) · <span class="company">Self-Employed</span></h3>
+          <div class="t-body">
+            <h3>AI Engineer, Freelance · <span class="company">Self-Employed</span></h3>
             <ul class="bullet-list">
-              <li>Shipped <strong>20+ AI-powered apps</strong> for paying clients across SaaS,
-                e-commerce and consulting — most had a React or Next.js front end on top of a
-                Python service running Claude or OpenAI APIs with structured outputs and a RAG
-                retrieval layer.</li>
-              <li>Built five longer-running AI agents (lead-gen, customer support, data
-                processing). Each project ended with a README, a short walkthrough video and a
-                written hand-off doc so the client team could run the workflow without me.</li>
-            </ul>
-            <ul class="tags">
-              <li>Python</li><li>Next.js</li><li>React</li><li>Claude</li>
-              <li>OpenAI</li><li>LangChain</li><li>RAG</li><li>FastAPI</li>
+              <li>Shipped 20+ applications and 5 autonomous agents end to end, from prototype to deploy.</li>
+              <li>Integrated OpenAI, Claude and other model APIs into production products on tight timelines.</li>
+              <li>Owned the whole stack: data, model plumbing, back end, front end, and ship.</li>
             </ul>
           </div>
-        </li>
+        </div>
 
-        <li class="timeline-item">
-          <div class="timeline-meta">
-            <span class="t-date">Mar 2025 – May 2025</span>
-            <span class="t-loc">Remote</span>
+        <div class="t-item reveal">
+          <div class="t-meta">
+            <span class="t-date">Mar – May 2025</span>
+            <span class="t-loc">Internship</span>
           </div>
-          <div class="timeline-body">
-            <h3>Front-End Developer Intern · <span class="company">Unified Mentor — EdTech / Mentoring Platform</span></h3>
+          <div class="t-body">
+            <h3>Front-End Intern · <span class="company">Unified Mentor</span></h3>
             <ul class="bullet-list">
-              <li>Built React UI features on a learner-facing app serving thousands of users —
-                components for lessons, progression and learner dashboards, integrated against
-                a REST API. Code review, agile delivery, shared QA cycles.</li>
-            </ul>
-            <ul class="tags">
-              <li>React</li><li>JavaScript</li><li>REST APIs</li><li>Agile</li>
+              <li>Built responsive, accessible interfaces and shipped production front-end work.</li>
             </ul>
           </div>
-        </li>
-
-      </ol>
-    </section>
-
-    <!-- Featured Work -->
-    <section id="work" class="section">
-      <p class="section-eyebrow">Selected work</p>
-      <h2 class="section-title">Things I've built and maintain.</h2>
-      <p class="section-lede">A small, public set of systems I designed end-to-end — front end,
-        backend, model layer, deployment. Each thumbnail links to the running version.</p>
-
-      <div class="grid">
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://queueproof.vercel.app" target="_blank" rel="noopener" aria-label="QueueProof live demo">
-            <img class="project-thumb" src="img/queueproof.png" alt="QueueProof workspace: a cross-source question answered with numbered claim citations back to their original records." loading="lazy" width="1440" height="900" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · HydraDB x Connectors Hackathon · Evidence-backed retrieval</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/queueproof" target="_blank" rel="noopener" aria-label="QueueProof on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>QueueProof, an evidence-backed cross-source retrieval workspace</h3>
-          <p>Ask one plain-language question across GitHub, Linear, Slack, Gmail and documents, and get a concise answer whose every claim opens to the original source record it came from. QueueProof retrieves through HydraDB's cross-source evidence layer, verifies connectors against attributable records rather than saved credentials, and merges evidence without collapsing distinct entities. A degraded connector or a source contradiction stays visible instead of being smoothed over, and the same read contract compiles into a deterministic priority queue and is exposed through MCP for AI clients. Writes stay behind an explicit approval boundary and only count as executed once a provider response ID is stored.</p>
-          <ul class="tags">
-            <li>Next.js 16</li><li>React 19</li><li>HydraDB</li><li>Claim-level citations</li>
-            <li>MCP</li><li>Connector receipts</li><li>Approval-gated writes</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://queueproof.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/queueproof" target="_blank" rel="noopener">Source →</a>
-            <a href="https://queueproof.vercel.app/method" target="_blank" rel="noopener">Method →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://hydrasentry.vercel.app" target="_blank" rel="noopener" aria-label="HydraSentry live demo">
-            <img class="project-thumb" src="img/hydrasentry.png" alt="HydraSentry live console: a poisoned memory makes an AI refund agent auto-approve a payment, then the firewall blocks it and a signed Memory Integrity Certificate is issued." loading="lazy" width="1600" height="900" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">🏆 HydraDB Build Blitz Winner · Graph-native agent-memory security</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener" aria-label="HydraSentry on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>HydraSentry, memory-integrity layer for AI agents</h3>
-          <p>Graph-native security for agents that run on persistent memory. A single poisoned memory in a vector store or RAG index can silently override an agent's policy on every future run, and prompt firewalls cannot see it because the poison is in what the agent <em>retrieves</em>, not the prompt. HydraSentry replays the agent on clean versus poisoned context, scores the behaviour diff, traces the exact taint path through the real HydraDB <code>query_paths</code> graph, blocks the unsafe action via an <strong>MCP firewall before the agent acts</strong>, and seals each incident into a signed, offline-verifiable <strong>Memory Integrity Certificate</strong>. Multi-tenant on Supabase Postgres, semantic paraphrase detection via embeddings, and a self-verifying <strong>OWASP Agentic Top 10</strong> map. Live with no login.</p>
-          <ul class="tags">
-            <li>HydraDB (query_paths)</li><li>MCP firewall (stdio)</li><li>Gemini embeddings</li><li>FastAPI</li>
-            <li>Next.js 16</li><li>Supabase Postgres</li><li>OWASP ASI Top-10</li><li>Memory Integrity Certificate</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Live →</a>
-            <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener" aria-label="Kodro on GitHub">
-            <img class="project-thumb" src="img/kodro.png" alt="Kodro studio: a code editor on the left, the City world with traffic and a pedestrian crossing and the robot in the middle, and live telemetry on the right." loading="lazy" width="1440" height="900" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Offline robot design and simulation · Three.js · Self-refining</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener" aria-label="Kodro on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Kodro, offline robot design and simulation studio</h3>
-          <p>A desktop studio for the loop <strong>design a robot, program it, watch it work</strong>, running entirely offline with no account and no cloud. You assemble a custom robot in the <strong>Robot Lab</strong> (board, sensors, actuators, chassis) and Kodro derives its mass, speed and runtime. You program it three ways: a <strong>Python subset interpreter</strong>, a blocks editor that compiles to the same Python, or an optional <strong>local</strong> AI assistant (Ollama, with a deterministic rule-based fallback). Then it validates the behaviour in a 3D world chosen to fit it: a self-driving car gets the <strong>City</strong> with looping one-way traffic, pedestrians and a crossing; a home or arm robot gets a furnished Room; a rover gets planetary terrain. Movement reads per type, with weight transfer, banking and suspension rather than sliding props. A localStorage memory layer reflects on each run and keeps saved skills, so the studio refines from your own verified work (system level, no model retraining). Built with vendored React and Three.js, pre-compiled to a single offline bundle. Verified: <strong>21 of 21</strong> interpreter QA and <strong>851</strong> engine tests at ~86% coverage.</p>
-          <ul class="tags">
-            <li>Three.js (WebGL)</li><li>React</li><li>Python-subset interpreter</li><li>Ollama (optional, local)</li>
-            <li>pymunk physics</li><li>Self-refinement (localStorage)</li><li>Offline / no cloud</li>
-            <li>PyInstaller .exe</li><li>MSc COMP702</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://github.com/vaibhav4046/mnemosyne/releases/latest" target="_blank" rel="noopener" aria-label="Own Wiki download">
-            <img class="project-thumb" src="img/own-wiki.png" alt="Own Wiki home screen — Ask your vault: chat answered from your own notes and files, with RAG and memory." loading="lazy" width="1440" height="860" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Local-first desktop AI · Ollama · Electron</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/mnemosyne" target="_blank" rel="noopener" aria-label="Own Wiki on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Own Wiki — local-first knowledge OS</h3>
-          <p>A desktop second brain that turns your notes, documents and conversations into a private, searchable, self-organising knowledge base — powered entirely by a <strong>local</strong> LLM, no cloud or API key required. RAG chat answers from your own vault with inline citations; a 3D <strong>knowledge galaxy</strong> (react-force-graph + three.js, with bloom) lets you fly through how everything connects; a <strong>multi-agent swarm</strong> researches a topic in parallel and synthesises one cited wiki page; and it <strong>auto-indexes your Desktop / Documents / Downloads</strong> so you can ask about a file with zero manual import. Long-term memory extracts atomic facts after each chat. Embeddings live in a custom <strong>int8-quantised vector store</strong> (~4× smaller on disk, &lt;1% cosine error, zero native deps). Ships as one portable Windows <code>.exe</code>; optional Groq / Gemini / OpenRouter fallback for heavier models. Hardened end-to-end — SSRF guard, CSRF, MCP command allowlist, path-traversal checks, strict CSP.</p>
-          <ul class="tags">
-            <li>Electron</li><li>Next.js 16</li><li>React 19</li><li>Ollama (llama3.2 · nomic-embed)</li>
-            <li>RAG</li><li>int8 quantized vectors</li><li>three.js / force-graph</li>
-            <li>Multi-agent swarm</li><li>Zustand</li><li>Windows .exe</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://github.com/vaibhav4046/mnemosyne/releases/latest" target="_blank" rel="noopener">Download (.exe) →</a>
-            <a href="https://github.com/vaibhav4046/mnemosyne" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://drip-two-rho.vercel.app" target="_blank" rel="noopener" aria-label="DRIP live demo">
-            <img class="project-thumb" src="img/drip.png" alt="DRIP — AI sneaker stylist: For You feed, a shoe detail with live StockX resale price and buy link, and the multi-agent AI stylist chat." loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Multi-agent AI · Live StockX data · Installable PWA</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/drip-ai-sneaker-stylist" target="_blank" rel="noopener" aria-label="DRIP on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>DRIP — AI Sneaker Stylist</h3>
-          <p>An AI styling companion that builds outfits around your sneaker collection — "Nike SNKRS meets a personal stylist." A multi-agent LLM stylist (a Stylist agent drafts, a Critic agent refines) gives honest, weather- and material-aware advice: it will tell you <em>not</em> to wear suede in the rain instead of hyping every pick. Live StockX resale prices, buy links and product images stream in per shoe via KicksDB, and search hits the entire real catalog — not a static list. A camera scanner extracts dominant colours with k-means and auto-captures when you hold a shoe steady, then an AI writes the fit verdict. Underneath: a real content-based recommendation engine (taste vectors + MMR diversity), a weather-aware outfit engine grounded in colour theory, a live community feed (Reddit + YouTube + sneaker news), a saved-fit lookbook, voice stylist, multi-currency shop and an honest hype score. Fully functional with zero API keys; keys progressively light up live AI and data. Installable PWA, mobile-first.</p>
-          <ul class="tags">
-            <li>React 19</li><li>Vite 8</li><li>Tailwind v4</li><li>Zustand</li>
-            <li>Multi-agent LLM (NVIDIA · OpenRouter · HuggingFace)</li><li>KicksDB / StockX</li>
-            <li>Reddit · YouTube APIs</li><li>Canvas k-means CV</li><li>Web Speech / Audio</li>
-            <li>Vercel serverless</li><li>PWA</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://drip-two-rho.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/drip-ai-sneaker-stylist" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://continuity-six.vercel.app" target="_blank" rel="noopener" aria-label="Continuity live demo">
-            <img class="project-thumb" src="img/continuity.png" alt="Continuity, a self-evolving memory agent on HydraDB: it remembers across sessions, supersedes itself on contradiction, warns you when recalled context changes the safe answer, closes your open loops, and proves every HydraDB write and query in a live execution log." loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Agents You Love Hackathon · Best Use of Memory</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/continuity" target="_blank" rel="noopener" aria-label="Continuity on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Continuity</h3>
-          <p>Most AI agents have amnesia: close the tab or switch tools and you start over. Continuity is a personal memory agent that behaves like a person's memory. It reinforces what you use, lets what you ignore decay, rewrites itself when you contradict yourself, and closes your open loops before you ask. HydraDB is the primary memory layer: every fact is a real write and every recall a real query, so your context survives a reload and a new session with nothing in localStorage. Tell it a doctor wants to prescribe amoxicillin and it recalls your stored penicillin allergy and warns you, the answer changing because of what it remembered. A live knowledge graph and an open-loop tracker are reconstructed from HydraDB, the agent drafts a context-aware follow-up that you approve before it sends, and an execution-log dock traces every write and query with request IDs and latency. One memory across three surfaces: a web app, an MCP server so the same memory follows you between Claude Code, Codex, Cursor and Gemini CLI, and a 24/7 daemon that drafts your follow-ups.</p>
-          <ul class="tags">
-            <li>HydraDB primary memory</li><li>Cross-session recall</li><li>Contradiction supersede</li>
-            <li>MCP server</li><li>24/7 daemon</li><li>React · Vite</li>
-            <li>Groq · Nebius LLM</li><li>Execution-log proof</li><li>Human-in-the-loop approval</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://continuity-six.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/continuity" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://recoup-agent-681822930558.us-central1.run.app" target="_blank" rel="noopener" aria-label="Recoup live demo">
-            <img class="project-thumb" src="img/recoup.png" alt="Recoup, an AI money-recovery agent: it scans your real Gmail, grounds every claim in consumer-protection law via MongoDB Atlas vector search, drafts the claim, walks the vendor cancellation portal with a real browser, and stops at a human approval gate." loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Google Cloud Rapid Agent Hackathon · MongoDB track</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/recoup" target="_blank" rel="noopener" aria-label="Recoup on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Recoup</h3>
-          <p>Budgeting apps show you where your money went. Recoup gets it back. One Google sign-in scans your real Gmail receipts read-only and lands you in a command center with your actual subscriptions already on screen, in their real currencies, no bank login anywhere. Then a fleet of agents goes to work: it scans your money surface, grounds every claim in real consumer-protection law through MongoDB Atlas Vector Search, drafts each claim with Gemini 3 through the Google Agent Development Kit, runs an independent verifier that flags what you might not qualify for instead of hiding it, and then stops dead at a human approval gate. One approval and the execution agent takes over: a real headless Chromium driven by Playwright walks the vendor cancellation portal and streams a live screenshot back into the card, honest about the login wall where your own final click belongs. A Sentinel watches your drains on a schedule and asks before it acts. It also searches twenty thousand real California State Controller unclaimed-property records worth 37.8 million dollars, claimable on the official state site. Every step writes to a tamper-evident sha256 hash chain. The model never invents a number, and nothing acts without you.</p>
-          <ul class="tags">
-            <li>Gemini 3 · Google ADK</li><li>MongoDB Atlas Vector Search</li><li>MongoDB MCP server</li>
-            <li>Playwright browser automation</li><li>FastAPI · Cloud Run</li><li>Gmail read-only</li>
-            <li>sha256 audit chain</li><li>Human-in-the-loop approval</li><li>Installable PWA</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://recoup-agent-681822930558.us-central1.run.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/recoup" target="_blank" rel="noopener">Source →</a>
-            <a href="https://www.loom.com/share/2ac5ffa761cb452ca807d8cb33df0592" target="_blank" rel="noopener">Walkthrough →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://recall-ops.vercel.app" target="_blank" rel="noopener" aria-label="RecallOps Cortex live demo">
-            <img class="project-thumb" src="img/recallops.png" alt="RecallOps Cortex, a recall-containment command center: live openFDA recall, a Fivetran and BigQuery blast radius, Gemini-drafted actions, a human approval gate, and a tamper-evident audit chain." loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Google Cloud Rapid Agent Hackathon · Fivetran track</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/RecallOps" target="_blank" rel="noopener" aria-label="RecallOps Cortex on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>RecallOps Cortex</h3>
-          <p>My entry for the Google Cloud Rapid Agent Hackathon (Fivetran track). It pulls a real openFDA Class I food recall, then scopes it across Fivetran-synced BigQuery operational data into a live blast radius: affected locations, lot codes, inventory units, units already sold, in-transit shipments, and the consented customer notification list. Gemini then drafts six containment actions (stop-sale, shelf-pull, supplier-hold, customer-notice, replacement-PO, compliance-report), each one citing the evidence it used. Nothing executes on its own. A human approves every action, and each approval is written to an append-only sha256 hash-chain audit log that a verifier can prove is intact. FastAPI on Cloud Run behind a 14-route command center, with honest live vs fallback badging on every integration so nothing shows a green light unless it is real.</p>
-          <ul class="tags">
-            <li>FastAPI · Cloud Run</li><li>Gemini 3</li><li>BigQuery</li><li>Fivetran MCP</li>
-            <li>openFDA (live)</li><li>OpenTelemetry</li><li>sha256 audit chain</li>
-            <li>Human-in-the-loop approval</li><li>React command center</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://recall-ops.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/RecallOps" target="_blank" rel="noopener">Source →</a>
-            <a href="https://github.com/vaibhav4046/RecallOps/blob/main/docs/RecallOps-Cortex-Whitepaper.pdf" target="_blank" rel="noopener">Whitepaper →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://qyntra-app.vercel.app" target="_blank" rel="noopener" aria-label="Qyntra live demo">
-            <img class="project-thumb" src="img/qyntra.png" alt="Qyntra — Personal Knowledge OS dashboard with 3D galaxy view of ingested files." loading="lazy" width="1568" height="746" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Wikithon '26 Finalist · Personal Knowledge OS</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener" aria-label="Qyntra on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Qyntra — Personal Knowledge OS</h3>
-          <p>Wikithon '26 finalist. A private Wikipedia compiled from your own files. Connect Notion, Google Drive, Gmail, GitHub or a desktop folder; Qyntra ingests every supported file (markdown, PDF, DOCX, code, email bodies, Notion blocks, READMEs) into one searchable corpus on Supabase. Ask a question and Groq Llama 3.3 70B answers with numbered citations back to the exact file it pulled from — no hallucination, every claim clickable. A react-three-fiber 3D galaxy lays out every file as a star, clustered by type, with bezier knowledge-graph edges. WEB mode falls back to live DuckDuckGo search; DEEP mode reframes the query as a three-step research pass. Custom Groq API key support, ember-themed scrollbar, sticky chat input, and a Contra-inspired Q-soldier logo. Built solo in about a day with OpenCode Go and Claude Opus 4.7 between exam revision sessions.</p>
-          <ul class="tags">
-            <li>Next.js 16</li><li>React 19</li><li>TypeScript strict</li><li>Tailwind v4</li>
-            <li>Auth.js v5 (Google/Notion/GitHub + magic link)</li><li>Supabase + RLS</li>
-            <li>Groq Llama 3.3 70B</li><li>react-three-fiber</li><li>DuckDuckGo web search</li>
-            <li>Vercel</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source →</a>
-            <a href="https://www.aivalley.io/hackathons/wikithon-build-your-own-wikipedia-with-hydradb/projects" target="_blank" rel="noopener">Wikithon finalists →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://delrio.vercel.app" target="_blank" rel="noopener" aria-label="DelOS live demo">
-            <img class="project-thumb" src="img/delos.png" alt="DelOS — browser-OS with multi-agent orchestration, xterm Agent Fleet, force-directed memory graph and HydraDB-backed knowledge layer." loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Agents Under Pressure '26 · Browser-OS for multi-agent work</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener" aria-label="DelOS on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>DelOS — agents that flow under pressure</h3>
-          <p>Agents Under Pressure '26 hackathon entry. A browser-OS where multi-agent orchestration is wired in by default — Memory, Tools, Recovery and Adaptation as first-class primitives. Agents build the apps live. Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace (the serverless answer to git worktrees). A 6-provider LLM cascade (Groq + Mistral + Gemini + NIM + Cerebras + Bytez + OpenRouter) keeps the OS responsive when any single provider rate-limits. Memory Browser renders a force-directed knowledge graph over HydraDB graph+vector storage with a 3-tier write-guard. SSE streams every phase — plan, tool calls, recoveries, usage — into the terminal so you watch the agent think. 79 endpoints, 14/14 regression pass, 0 console errors. Built solo across a 48-hour sprint.</p>
-          <ul class="tags">
-            <li>Next.js 16</li><li>React 19</li><li>TypeScript strict</li><li>HydraDB graph+vector</li>
-            <li>xterm.js</li><li>SSE streaming</li><li>Tenant subnamespace isolation</li>
-            <li>6-provider LLM cascade</li><li>Whisper STT + ElevenLabs TTS</li>
-            <li>Chrome MV3 extension</li><li>Vercel</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source →</a>
-            <a href="https://www.aivalley.io/hackathons/agents-under-pressure-build-your-own-os/projects" target="_blank" rel="noopener">Hackathon projects →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://cogniloop-vaibhav4046s-projects.vercel.app" target="_blank" rel="noopener" aria-label="Cogniloop live demo">
-            <img class="project-thumb" src="img/cogniloop.jpg" alt="Cogniloop landing page screenshot showing 'The AI tutor that refuses to give you the answer'" loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · AI · EdTech</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/cogniloop" target="_blank" rel="noopener" aria-label="Cogniloop on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>Cogniloop — Socratic study system</h3>
-          <p>Locked-prompt evaluator that grades free-form student answers against a rubric, returns
-            a 0–3 score with a short explanation, and tracks concept mastery across sessions
-            (weak → shaky → solid → mastered). Single-prompt design — no agent loop, no retrieval —
-            keeps median latency under one second on Groq Llama 3.3 70B with a Pollinations
-            fallback for cost. Edge runtime, strict-typed Next.js 16, KaTeX rendering for
-            mathematical answers.</p>
-          <ul class="tags">
-            <li>Next.js 16</li><li>React 19</li><li>TypeScript strict</li><li>Tailwind v4</li>
-            <li>Edge runtime</li><li>Groq Llama 3.3 70B</li><li>Pollinations fallback</li>
-            <li>KaTeX</li><li>Web Speech API</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://cogniloop-vaibhav4046s-projects.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/cogniloop" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://medai-deploy.vercel.app" target="_blank" rel="noopener" aria-label="MedReviewAI live demo">
-            <img class="project-thumb" src="img/medai.jpg" alt="MedReviewAI dashboard screenshot for medical paper analysis" loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Medical AI · RAG</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/MedReviewAI" target="_blank" rel="noopener" aria-label="MedReviewAI on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>MedReviewAI — grounded medical paper analyzer</h3>
-          <p>AI-powered medical literature review platform that searches 13 free academic sources,
-            extracts PICO fields, and keeps generated claims tied to verbatim source evidence.
-            Built with Groq Llama 3.3 70B, Clerk JWT auth and Neon Postgres on Vercel as part of
-            an 8-person student team.</p>
-          <ul class="tags">
-            <li>TypeScript</li><li>Groq Llama 3.3 70B</li><li>PICO extraction</li>
-            <li>Source grounding</li><li>Clerk JWT</li><li>Neon Postgres</li><li>Vercel</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://medai-deploy.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/MedReviewAI" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <a class="project-thumb-link" href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener" aria-label="ScholarAI Chrome extension on GitHub">
-            <img class="project-thumb" src="img/scholarai.jpg" alt="ScholarAI Chrome extension interface for research-paper analysis" loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge badge-featured">Featured · Research AI · Chrome Extension</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener" aria-label="ScholarAI on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>ScholarAI — research-paper analysis extension</h3>
-          <p>Chrome extension that turns research papers into interactive AI sessions. It summarizes
-            methodology, extracts key claims, supports Q&amp;A over the paper, and helps researchers
-            evaluate credibility faster without replacing human judgment.</p>
-          <ul class="tags">
-            <li>JavaScript</li><li>Chrome Extension</li><li>Gemini API</li>
-            <li>Paper summarization</li><li>Bias detection</li><li>Research UX</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project">
-          <a class="project-thumb-link" href="https://mcp-hub-registry.vercel.app" target="_blank" rel="noopener" aria-label="MCP Marketplace live demo">
-            <img class="project-thumb" src="img/mcp.jpg" alt="MCP Marketplace — registry of 800+ Model Context Protocol servers" loading="lazy" width="1440" height="810" />
-          </a>
-          <div class="project-head">
-            <span class="badge">MCP · Registry</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/mcp-marketplace" target="_blank" rel="noopener" aria-label="MCP Marketplace on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>MCP Marketplace</h3>
-          <p>A searchable registry of Model Context Protocol servers — the emerging plug-in
-            standard for agent toolchains. Pulls from Glama and the official MCP repository on a
-            daily schedule, normalises tool schemas, and renders one-line install snippets for
-            Claude Desktop, Cursor and Claude Code. Built on Next.js 15 RSC with MIT-licensed
-            source.</p>
-          <ul class="tags">
-            <li>Next.js 15</li><li>TypeScript</li><li>MCP</li><li>Vercel</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://mcp-hub-registry.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/mcp-marketplace" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project">
-          <a class="project-thumb-link" href="https://film-theory-vault.vercel.app" target="_blank" rel="noopener" aria-label="The Film Theory Vault live demo">
-            <img class="project-thumb" src="img/film-theory-vault.png" alt="The Film Theory Vault — cinematic OBSESSION hero page with a search-any-movie engine and AI-written fan theories." loading="lazy" width="1280" height="720" />
-          </a>
-          <div class="project-head">
-            <span class="badge">Just for fun · AI · Movies</span>
-            <a class="project-link" href="https://github.com/vaibhav4046/film-theory-vault" target="_blank" rel="noopener" aria-label="The Film Theory Vault on GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3"/><path d="M15 22v-4a4 4 0 0 0-1-3c3 0 6-2 6-6 0-1.5-.5-3-1.5-4 .5-1.5 0-3-.5-4 0 0-1.5 0-3 1.5C13 1 11 1 9 1.5 7.5 0 6 0 6 0c-.5 1-.5 2.5 0 4-1 1-1.5 2.5-1.5 4 0 4 3 6 6 6-1 .9-1 1.9-1 3v4"/></svg>
-            </a>
-          </div>
-          <h3>The Film Theory Vault</h3>
-          <p>A side project I built mostly on my phone the evening after watching the horror film <em>Obsession</em>. Search any movie and the whole page regenerates in a cinematic style: real TMDB poster, cast and trailers, with the site auto-theming to the film's own colours (Inception turns red, The Matrix turns green) via client-side canvas extraction. An LLM (Groq gpt-oss-120b) reads each film and writes scene-anchored fan theories you can vote on, behind an airtight spoiler gate that serves the ending from a separate noindex endpoint. One static HTML file plus a few Vercel serverless functions — per-movie SSR, generated Movie JSON-LD and a per-request nonce CSP. Just for fun.</p>
-          <ul class="tags">
-            <li>Vanilla JS</li><li>Vercel serverless</li><li>TMDB API</li><li>Groq · gpt-oss-120b</li>
-            <li>Canvas colour extraction</li><li>Per-movie SSR + JSON-LD</li><li>Nonce CSP</li><li>Built with Claude Code</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://film-theory-vault.vercel.app" target="_blank" rel="noopener">Live demo →</a>
-            <a href="https://github.com/vaibhav4046/film-theory-vault" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
+        </div>
       </div>
     </section>
 
-    <!-- Achievements -->
-    <section id="achievements" class="section">
-      <p class="section-eyebrow">Achievements</p>
-      <h2 class="section-title">Wins worth noting.</h2>
-      <p class="section-lede">Public recognitions and competitions where my work made a measurable mark.</p>
+    <!-- ===== Recognition ===== -->
+    <section class="section wrap" id="recognition" aria-labelledby="rec-heading">
+      <div class="section-head">
+        <span class="section-index"><b>03</b> / Recognition</span>
+        <h2 class="section-title" id="rec-heading">Wins &amp; <span class="em">security work</span>.</h2>
+      </div>
 
       <div class="grid">
-        <article class="card project project-featured">
-          <div class="project-head">
-            <span class="badge badge-featured">Jun 2026 · HydraDB Build Blitz · Winner</span>
+        <!-- Hack HydraDB 2x -->
+        <div class="sec-block reveal">
+          <div class="sec-top">
+            <div class="sec-x" aria-hidden="true">2<sup>×</sup></div>
+            <div class="sec-lead">
+              <h3>Hack HydraDB · two authorised security rounds</h3>
+              <p>Two separate authorised engagements against HydraDB. One placed top 3 in a competitive hack; the second was a structured owned-tenant assessment. Reported through coordinated disclosure; sensitive specifics withheld.</p>
+            </div>
           </div>
-          <h3>HydraDB Build Blitz · Winner</h3>
-          <p>Won HydraDB's Build Blitz with <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">HydraSentry</a>, a graph-native memory-integrity layer for AI agents, judged on a live demo and an architecture deep-dive across a two-night build. It replays an agent on clean versus poisoned context, traces the exact taint path through the real HydraDB <code>query_paths</code> graph, blocks the unsafe action via an MCP firewall before the agent acts, and seals each incident into a signed, offline-verifiable Memory Integrity Certificate. Shipped live, multi-tenant, with no login.</p>
-          <ul class="tags">
-            <li>HydraDB</li><li>MCP firewall</li><li>Memory Integrity Certificate</li><li>Live demo</li><li>Winner</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Live →</a>
-            <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
+          <div class="sec-rounds">
+            <div class="sec-round">
+              <p class="r-tag"><span>Round 01 · Hackathon</span> <b>Top 3 of 20+</b></p>
+              <h4>Hack HydraDB</h4>
+              <p>Found an authentication / credential-handling weakness reachable without proper authorisation. Placed in the top 3 of a field of 20-plus.</p>
+              <p class="withheld">Technical specifics, payloads, and affected endpoints withheld under responsible disclosure.</p>
+            </div>
+            <div class="sec-round">
+              <p class="r-tag"><span>Round 02 · Bug bash</span> <b>6 defects</b></p>
+              <h4>Hack HydraDB · July</h4>
+              <p>Authorised read-only assessment of an owned tenant. Filed 6 reproducible defects across reliability, input validation, and API-contract correctness. Tenant isolation held throughout, with no data exposure; the core security proved sound.</p>
+              <p class="withheld">Defect detail shared privately with the maintainers.</p>
+            </div>
+          </div>
+        </div>
 
-        <article class="card project project-featured">
-          <div class="project-head">
-            <span class="badge badge-featured">Jun 2026 · Security Hackathon · Top 3 of 20+</span>
-          </div>
-          <h3>Hack HydraDB · Security Research · Top 3 Submission</h3>
-          <p>Placed in the top three of 20+ submissions in HydraDB's authorised security hackathon, judged on real-world impact, reproducibility, and how directly each issue touched core isolation and data-privacy guarantees. My report surfaced an authentication and credential-handling weakness in the platform — a flaw by which protected secrets could be reached without proper authorisation. Submitted through coordinated, responsible disclosure and acknowledged by the maintainers as driving fixes on their side. Technical specifics, payloads, and affected endpoints are withheld under responsible disclosure.</p>
-          <ul class="tags">
-            <li>Security research</li><li>Responsible disclosure</li><li>HydraDB</li><li>Top 3 of 20+</li><li>Auth &amp; credential security</li>
-          </ul>
-          <p class="project-link-row">
-            <span class="muted">Full technical write-up withheld under coordinated disclosure.</span>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <div class="project-head">
-            <span class="badge badge-featured">May 2026 · Hackathon · Finalist</span>
-          </div>
-          <h3>Wikithon '26 Finalist · AIValley · HydraDB</h3>
-          <p>Selected as a finalist out of the global Wikithon '26 cohort run by AIValley and HydraDB. My entry, <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Qyntra</a>, was built solo in about a day between exam revision sessions: a private Wikipedia compiled from a user's own Notion, Drive, Gmail, GitHub and desktop files with grounded LLM Q&amp;A, a 3D galaxy knowledge graph, and live web search fallback. Recognised for end-to-end execution, citation grounding, and the breadth of source connectors shipped in a single sprint.</p>
-          <ul class="tags">
-            <li>Wikithon '26</li><li>AIValley</li><li>HydraDB</li><li>Finalist</li><li>Solo build</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://www.aivalley.io/hackathons/wikithon-build-your-own-wikipedia-with-hydradb/projects" target="_blank" rel="noopener">Finalists list →</a>
-            <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Project demo →</a>
-            <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project project-featured">
-          <div class="project-head">
-            <span class="badge badge-featured">May 2026 · Hackathon · Agents Under Pressure '26</span>
-          </div>
-          <h3>Agents Under Pressure '26 · AIValley · HydraDB · DelOS</h3>
-          <p>Built <a href="https://delrio.vercel.app" target="_blank" rel="noopener">DelOS</a> solo across a 48-hour sprint for the AIValley × HydraDB Agents Under Pressure hackathon — a browser-OS where Memory, Tools, Recovery and Adaptation are first-class primitives. Real xterm.js terminal Agent Fleet driving parallel agents on isolated HydraDB tenant subnamespaces, 6-provider LLM cascade for transparent fault-injection, force-directed memory graph over graph+vector storage, 79 endpoints with 14/14 regression pass and 62/62 brutal probe pass live. Recognised for ambitious end-to-end execution under hackathon pressure.</p>
-          <ul class="tags">
-            <li>Agents Under Pressure '26</li><li>AIValley</li><li>HydraDB</li><li>Solo build</li><li>48h sprint</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="https://www.aivalley.io/hackathons/agents-under-pressure-build-your-own-os/projects" target="_blank" rel="noopener">Hackathon projects →</a>
-            <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Project demo →</a>
-            <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source →</a>
-          </p>
-        </article>
-
-        <article class="card project">
-          <div class="project-head">
-            <span class="badge">May 2026 · Research · Preprint</span>
-          </div>
-          <h3>NEXUS Research Paper · DOI 10.5281/zenodo.20059414</h3>
-          <p>Authored an open-access preprint on closing the residual ~50 ms latency gap between cloud gaming and local wired console play. The system combines on-controller transformer inference, a direct 6 GHz Wi-Fi link with OFDMA priority scheduling, and a cloud-side speculative renderer with bounded mispredict recovery. Indexed on Zenodo with a Crossref DOI and mirrored on ResearchGate.</p>
-          <ul class="tags">
-            <li>Zenodo DOI</li><li>ResearchGate</li><li>Edge AI</li><li>Cloud gaming</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="/NEXUS_Research_Paper.pdf" target="_blank" rel="noopener" download="NEXUS_Research_Paper.pdf">Read the PDF →</a>
-            <a href="https://doi.org/10.5281/zenodo.20059414" target="_blank" rel="noopener">DOI · Zenodo →</a>
-            <a href="https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming" target="_blank" rel="noopener">ResearchGate →</a>
-          </p>
-        </article>
+        <!-- Other wins -->
+        <div class="card span-4 reveal">
+          <span class="card-badge">★ Winner · 2026</span>
+          <h3>HydraDB Build Blitz</h3>
+          <p class="muted">Won the Build Blitz with <strong>HydraSentry</strong>, a graph-native context-integrity harness on HydraDB.</p>
+          <a class="card-link" href="/work/hydrasentry">See the build →</a>
+        </div>
+        <div class="card span-4 reveal">
+          <span class="card-badge">Finalist · 2026</span>
+          <h3>Wikithon '26</h3>
+          <p class="muted">Reached the finals with <strong>Qyntra</strong>, a self-organising wiki, built solo in roughly a day.</p>
+          <a class="card-link" href="/work/qyntra">See the build →</a>
+        </div>
+        <div class="card span-4 reveal">
+          <span class="card-badge">Entry · 2026</span>
+          <h3>Agents Under Pressure '26</h3>
+          <p class="muted">Entered <strong>DelOS</strong>, a delegation operating layer for coordinating multiple agents under load.</p>
+          <a class="card-link" href="/work/delos">See the build →</a>
+        </div>
       </div>
     </section>
 
-    <!-- LinkedIn activity: hidden until API env vars are configured -->
-    <section id="linkedin-activity" class="section linkedin-activity" hidden>
-      <p class="section-eyebrow">LinkedIn</p>
-      <h2 class="section-title">Recent posts.</h2>
-      <p class="section-lede">Synced from LinkedIn after OAuth credentials are configured.</p>
-      <div id="linkedin-posts" class="grid linkedin-post-grid" aria-live="polite"></div>
-    </section>
-
-    <!-- Research / Publications -->
-    <section id="research" class="section">
-      <p class="section-eyebrow">Research</p>
-      <h2 class="section-title">Publications.</h2>
-      <p class="section-lede">Preprints and papers I've authored. Each links to the open-access PDF, ResearchGate record, and DOI record.</p>
-
+    <!-- ===== Research ===== -->
+    <section class="section wrap" id="research" aria-labelledby="res-heading">
+      <div class="section-head">
+        <span class="section-index"><b>04</b> / Research</span>
+        <h2 class="section-title" id="res-heading">Written <span class="em">down</span>.</h2>
+      </div>
       <div class="grid">
-        <article class="card project project-featured">
-          <div class="project-head">
-            <span class="badge badge-featured">Preprint · May 2026 · Cloud Gaming · Edge AI</span>
-            <a class="project-link" href="https://doi.org/10.5281/zenodo.20059414" target="_blank" rel="noopener" aria-label="DOI record on Zenodo">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg>
-            </a>
-          </div>
-          <h3>NEXUS: On-Controller Transformer Inference and Speculative Edge Execution for Console-Wired Latency Parity in Cloud Gaming</h3>
-          <p>A system that closes the residual ~50 ms latency gap between cloud gaming and local wired console play by combining three mechanisms: a 3–8M-parameter distilled decoder-only transformer running on the controller (producing a semantically compressed input stream and a probabilistic short-horizon prediction of player intent), a direct 6 GHz Wi-Fi link with OFDMA priority scheduling that bypasses the host's USB/Bluetooth stack, and a cloud-side speculation engine that renders one round-trip ahead with a state-machine recovery protocol bounding the visual cost of mispredictions to one to two frames.</p>
-          <ul class="tags">
-            <li>Edge AI</li><li>Transformer inference</li><li>Cloud gaming</li>
-            <li>Wi-Fi 6E / OFDMA</li><li>Speculative execution</li><li>Latency engineering</li>
-          </ul>
-          <p class="project-link-row">
-            <a href="/NEXUS_Research_Paper.pdf" target="_blank" rel="noopener" download="NEXUS_Research_Paper.pdf">Read the PDF →</a>
-            <a href="https://doi.org/10.5281/zenodo.20059414" target="_blank" rel="noopener">DOI · Zenodo →</a>
-            <a href="https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming" target="_blank" rel="noopener">ResearchGate →</a>
+        <div class="card span-12 reveal">
+          <span class="card-badge">Preprint · Zenodo</span>
+          <h3>NEXUS</h3>
+          <p>A research preprint archived with a citable DOI. Full paper and figures available as a PDF, with a mirror on ResearchGate.</p>
+          <p class="mono muted">DOI 10.5281/zenodo.20059414</p>
+          <p class="link-row">
+            <a href="/NEXUS_Research_Paper.pdf" target="_blank" rel="noopener">Read the PDF <span class="icon-ext" aria-hidden="true">↗</span></a>
+            <a href="https://doi.org/10.5281/zenodo.20059414" target="_blank" rel="noopener">DOI <span class="icon-ext" aria-hidden="true">↗</span></a>
+            <a href="https://www.researchgate.net/publication/404525159" target="_blank" rel="noopener">ResearchGate <span class="icon-ext" aria-hidden="true">↗</span></a>
           </p>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <p class="section-eyebrow">Skills</p>
-      <h2 class="section-title">Tools I reach for.</h2>
-
+    <!-- ===== Stack ===== -->
+    <section class="section wrap" id="stack" aria-labelledby="stack-heading">
+      <div class="section-head">
+        <span class="section-index"><b>05</b> / Stack</span>
+        <h2 class="section-title" id="stack-heading">What I <span class="em">build with</span>.</h2>
+      </div>
       <div class="skills">
-
-        <div class="skill-col">
-          <h4>Languages</h4>
-          <ul class="chiplist">
-            <li>Python</li><li>TypeScript</li><li>JavaScript (ES6+)</li>
-            <li>SQL</li><li>HTML</li><li>CSS</li>
-          </ul>
+        <div class="skill-col reveal">
+          <h4>AI &amp; LLM</h4>
+          <ul class="chiplist"><li>OpenAI API</li><li>Claude API</li><li>Groq</li><li>RAG / retrieval</li><li>Agents &amp; tools</li><li>QLoRA fine-tuning</li><li>Structured outputs</li></ul>
         </div>
-
-        <div class="skill-col">
+        <div class="skill-col reveal">
           <h4>Frontend</h4>
-          <ul class="chiplist">
-            <li>React 19</li><li>Next.js 15</li><li>Tailwind CSS</li>
-            <li>Vite</li><li>REST + GraphQL clients</li><li>Accessibility basics</li>
-          </ul>
+          <ul class="chiplist"><li>React 19</li><li>Next.js 15</li><li>TypeScript</li><li>Tailwind</li><li>Vite</li><li>HTML / CSS</li></ul>
         </div>
-
-        <div class="skill-col">
-          <h4>Backend &amp; Data</h4>
-          <ul class="chiplist">
-            <li>FastAPI</li><li>Node.js / Express</li><li>Postgres</li>
-            <li>Supabase</li><li>Redis</li><li>BullMQ</li>
-            <li>pgvector</li><li>Vector search</li>
-          </ul>
+        <div class="skill-col reveal">
+          <h4>Backend</h4>
+          <ul class="chiplist"><li>Python</li><li>FastAPI</li><li>Node.js</li><li>BullMQ + Redis</li><li>REST APIs</li></ul>
         </div>
-
-        <div class="skill-col">
-          <h4>AI / LLM</h4>
-          <ul class="chiplist">
-            <li>Claude API</li><li>OpenAI API</li><li>Gemini API</li>
-            <li>LangChain</li><li>RAG pipelines</li><li>Prompt engineering</li>
-            <li>LangSmith</li><li>Whisper STT</li><li>MCP servers</li>
-          </ul>
+        <div class="skill-col reveal">
+          <h4>Data</h4>
+          <ul class="chiplist"><li>Postgres</li><li>pgvector</li><li>Supabase</li><li>HydraDB</li><li>MongoDB</li><li>Vector search</li></ul>
         </div>
-
-        <div class="skill-col">
-          <h4>DevOps &amp; Tooling</h4>
-          <ul class="chiplist">
-            <li>Docker</li><li>Git</li><li>GitHub Actions</li>
-            <li>Vercel</li><li>GCP Cloud Run</li><li>AWS</li>
-            <li>Sentry</li><li>PostHog</li>
-            <li>Jest / Vitest</li><li>Playwright</li>
-          </ul>
+        <div class="skill-col reveal">
+          <h4>Ship</h4>
+          <ul class="chiplist"><li>Vercel</li><li>Cloud Run</li><li>Docker</li><li>Git / GitHub</li><li>OAuth / PKCE</li><li>i18n</li></ul>
         </div>
-
       </div>
     </section>
 
-    <!-- Education + Certifications -->
-    <section id="education" class="section">
-      <p class="section-eyebrow">Education + Certifications</p>
-      <h2 class="section-title">Academic base, verified AI credentials.</h2>
-      <div class="grid two">
-
-        <div class="card">
-          <h3>MSc Advanced Data Science &amp; Artificial Intelligence</h3>
-          <p class="muted">University of Liverpool, United Kingdom · Jan 2026 – Jan 2027</p>
-        </div>
-
-        <div class="card">
-          <h3>Bachelor of Computer Applications (BCA)</h3>
-          <p class="muted">Christ University, Bengaluru, India · 2022 – 2025 · CGPA 8.7 / 10</p>
-        </div>
-
+    <!-- ===== Education ===== -->
+    <section class="section wrap" id="education" aria-labelledby="edu-heading">
+      <div class="section-head">
+        <span class="section-index"><b>06</b> / Education</span>
+        <h2 class="section-title" id="edu-heading">Credentials.</h2>
       </div>
-      <div class="cert-grid" aria-label="Verified certifications from LinkedIn profile">
-        <article class="card cert-card">
-          <span class="badge">Microsoft</span>
-          <h3>Artificial Intelligence on Microsoft Azure</h3>
-          <p>Issued Nov 2025 · Credential ID VYN3SU1H9I3Z</p>
-        </article>
-        <article class="card cert-card">
-          <span class="badge">Microsoft</span>
-          <h3>Microsoft Azure Machine Learning</h3>
-          <p>Issued Nov 2025 · Credential ID H4BG7UI694TN</p>
-        </article>
-        <article class="card cert-card">
-          <span class="badge">Microsoft</span>
-          <h3>Natural Language Processing in Microsoft Azure</h3>
-          <p>Issued Nov 2025 · Credential ID 2W2FIN6EVBSL</p>
-        </article>
-        <article class="card cert-card">
-          <span class="badge">Microsoft</span>
-          <h3>Computer Vision in Microsoft Azure</h3>
-          <p>Issued Nov 2025 · Credential ID OO1BFMY72ZDB</p>
-        </article>
-        <article class="card cert-card">
-          <span class="badge">Google</span>
-          <h3>Introduction to AI</h3>
-          <p>Issued Nov 2025 · Credential ID ZDO3B89P0WKZ</p>
-        </article>
+      <div class="grid">
+        <div class="card span-6 reveal">
+          <span class="card-badge">Jan 2026 – Jan 2027</span>
+          <h3>MSc Advanced Data Science &amp; AI</h3>
+          <p class="muted">University of Liverpool, UK</p>
+        </div>
+        <div class="card span-6 reveal">
+          <span class="card-badge">2022 – 2025</span>
+          <h3>BCA · Computer Applications</h3>
+          <p class="muted">Christ University · CGPA 8.7 / 10</p>
+        </div>
+      </div>
+      <div class="cert-grid">
+        <div class="card cert-card reveal"><h3>Microsoft Azure AI Fundamentals</h3><p>VYN3SU1H9I3Z · Nov 2025</p></div>
+        <div class="card cert-card reveal"><h3>Microsoft Azure Data Fundamentals</h3><p>H4BG7UI694TN · Nov 2025</p></div>
+        <div class="card cert-card reveal"><h3>Microsoft Azure Fundamentals</h3><p>2W2FIN6EVBSL · Nov 2025</p></div>
+        <div class="card cert-card reveal"><h3>Microsoft Azure AI Engineer</h3><p>OO1BFMY72ZDB · Nov 2025</p></div>
+        <div class="card cert-card reveal"><h3>Google · Foundations</h3><p>ZDO3B89P0WKZ · Nov 2025</p></div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section section-contact">
-      <p class="section-eyebrow">Contact</p>
-      <h2 class="section-title">Channels.</h2>
-      <p class="section-lede">Liverpool, UK based. Open to part-time and contract roles.
-        Replies within a working day.</p>
+    <!-- ===== Contact ===== -->
+    <section class="section section-contact wrap" id="contact" aria-labelledby="contact-heading">
+      <div class="section-head">
+        <span class="section-index"><b>07</b> / Contact</span>
+        <h2 class="section-title" id="contact-heading">Hiring, or want to build something? <span class="em">Reach me.</span></h2>
+        <p class="section-lede">Open to full-time, contract, and part-time: remote, hybrid, or on-site. Fastest reply is email or LinkedIn.</p>
+      </div>
       <div class="contact-grid">
-        <a class="contact-card" href="mailto:vaibhavlalwani26969@gmail.com">
-          <span class="muted">Email</span>
-          <span class="contact-value">vaibhavlalwani26969@gmail.com</span>
+        <a class="contact-card reveal" href="mailto:vaibhavlalwani26969@gmail.com">
+          <span class="c-label">Email</span>
+          <span class="c-value">vaibhavlalwani26969@gmail.com</span>
+          <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-card" href="tel:+447544537860">
-          <span class="muted">Phone</span>
-          <span class="contact-value">+44 7544 537 860</span>
+        <a class="contact-card reveal" href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">
+          <span class="c-label">LinkedIn</span>
+          <span class="c-value">in/vaibhav-lalwani</span>
+          <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-card" href="https://github.com/vaibhav4046" target="_blank" rel="noopener">
-          <span class="muted">GitHub</span>
-          <span class="contact-value">github.com/vaibhav4046</span>
+        <a class="contact-card reveal" href="https://github.com/vaibhav4046" target="_blank" rel="noopener">
+          <span class="c-label">GitHub</span>
+          <span class="c-value">github.com/vaibhav4046</span>
+          <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-card" href="https://linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">
-          <span class="muted">LinkedIn</span>
-          <span class="contact-value">linkedin.com/in/vaibhav-lalwani</span>
+        <a class="contact-card reveal" href="tel:+447544537860">
+          <span class="c-label">Phone</span>
+          <span class="c-value">+44 7544 537 860</span>
+          <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
       </div>
     </section>
-
   </main>
 
+  <!-- ===== Footer ===== -->
   <footer class="foot">
-    <div class="foot-row">
-      <p>© <span id="year"></span> Vaibhav Lalwani · Built with Next.js, Vercel, and a lot of late nights in Liverpool.</p>
-      <nav aria-label="Footer">
-        <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:vaibhavlalwani26969@gmail.com">Email</a>
-      </nav>
+    <div class="foot-inner">
+      <div class="foot-brand">Vaibhav <span class="mark">Lalwani.</span></div>
+      <div class="foot-meta">
+        <nav aria-label="Footer">
+          <a href="#work">Work</a>
+          <a href="/work">Archive</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+          <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+        <p class="foot-note">Open to work · Liverpool, UK · <span id="year">2026</span></p>
+      </div>
     </div>
-    <p class="muted">No analytics · No tracking · Hand-tuned for first-paint.</p>
+    <div class="foot-legal">
+      <p>Hand-built with plain HTML, CSS and JavaScript. No framework, no tracker.</p>
+      <p>© <span id="year-2">2026</span> Vaibhav Lalwani</p>
+    </div>
   </footer>
 
-  <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
 
-  <script src="script.js" defer></script>
+  <script src="/script.js" defer></script>
 </body>
 </html>
