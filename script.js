@@ -159,6 +159,116 @@
     });
   }
 
+  /* ---------- Ambient beams background (site-wide) ----------
+     Vanilla port of the "beams background" idea, adapted to the
+     Swiss system: monochrome ink beams with a rare accent-red one,
+     drifting slowly upward at -35deg. Blur comes from CSS on the
+     canvas element (GPU-composited once), never ctx.filter per
+     frame. Reduced motion gets a single static frame. */
+  function initBeams() {
+    var canvas = document.createElement("canvas");
+    canvas.className = "bg-beams";
+    canvas.setAttribute("aria-hidden", "true");
+    document.body.insertBefore(canvas, document.body.firstChild);
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    var W = 0, H = 0, beams = [], raf = 0;
+    var inkRgb = [22, 21, 15], accRgb = [217, 46, 32];
+
+    function hexToRgb(hex) {
+      var m = /^#?([0-9a-f]{6})$/i.exec((hex || "").trim());
+      if (!m) return null;
+      var n = parseInt(m[1], 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+
+    function readColors() {
+      try {
+        var cs = getComputedStyle(root);
+        inkRgb = hexToRgb(cs.getPropertyValue("--ink")) || inkRgb;
+        accRgb = hexToRgb(cs.getPropertyValue("--accent")) || accRgb;
+      } catch (e) {}
+    }
+
+    function makeBeam(i, n, anywhere) {
+      var col = i % 3;
+      var spacing = W / 3;
+      return {
+        x: col * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.7,
+        y: anywhere ? Math.random() * (H + 400) - 200 : H + 120,
+        w: 70 + Math.random() * 110,
+        len: H * 1.6,
+        angle: ((-35 + Math.random() * 10) * Math.PI) / 180,
+        speed: 0.25 + Math.random() * 0.35,
+        alpha: 0.05 + Math.random() * 0.06,
+        accent: i % 5 === 0,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.008 + Math.random() * 0.012,
+      };
+    }
+
+    function size() {
+      W = window.innerWidth || 1280;
+      H = window.innerHeight || 800;
+      canvas.width = W;
+      canvas.height = H;
+      var n = clamp(Math.round(W / 110), 8, 16);
+      beams = [];
+      for (var i = 0; i < n; i++) beams.push(makeBeam(i, n, true));
+    }
+
+    function drawBeam(b) {
+      var rgb = b.accent ? accRgb : inkRgb;
+      var a = b.alpha * (0.8 + Math.sin(b.pulse) * 0.2);
+      var base = rgb[0] + "," + rgb[1] + "," + rgb[2];
+      ctx.save();
+      ctx.translate(b.x, b.y);
+      ctx.rotate(b.angle);
+      var g = ctx.createLinearGradient(0, 0, 0, b.len);
+      g.addColorStop(0, "rgba(" + base + ",0)");
+      g.addColorStop(0.2, "rgba(" + base + "," + (a * 0.6).toFixed(4) + ")");
+      g.addColorStop(0.5, "rgba(" + base + "," + a.toFixed(4) + ")");
+      g.addColorStop(0.8, "rgba(" + base + "," + (a * 0.6).toFixed(4) + ")");
+      g.addColorStop(1, "rgba(" + base + ",0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(-b.w / 2, 0, b.w, b.len);
+      ctx.restore();
+    }
+
+    function drawFrame() {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < beams.length; i++) drawBeam(beams[i]);
+    }
+
+    function tick() {
+      for (var i = 0; i < beams.length; i++) {
+        var b = beams[i];
+        b.y -= b.speed;
+        b.pulse += b.pulseSpeed;
+        if (b.y + b.len < -100) beams[i] = makeBeam(i, beams.length, false);
+      }
+      drawFrame();
+      raf = requestAnimationFrame(tick);
+    }
+
+    readColors();
+    size();
+
+    if (reduce) { drawFrame(); }
+    else { raf = requestAnimationFrame(tick); }
+
+    window.addEventListener("resize", function () {
+      size();
+      if (reduce) drawFrame();
+    }, { passive: true });
+
+    window.addEventListener("vl:themechange", function () {
+      readColors();
+      if (reduce) drawFrame();
+    });
+  }
+
   /* ---------- Halftone hero canvas (scroll-scrub) ---------- */
   function initHalftone() {
     var canvas = document.getElementById("figurine-canvas");
@@ -278,6 +388,7 @@
     try { initReveals(); } catch (e) { revealAll($all(".reveal, .reveal-line")); }
     try { initSpy(); } catch (e) {}
     try { initMagnetic(); } catch (e) {}
+    try { initBeams(); } catch (e) {}
     try { initHalftone(); } catch (e) {}
   }
 

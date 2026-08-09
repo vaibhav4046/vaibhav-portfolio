@@ -75,12 +75,14 @@
 
 /* ---- Base ----------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--paper); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--paper);
+  /* paper lives on <html>; body stays transparent so the fixed
+     .bg-beams canvas (z-index:-1) can sit between them */
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-body);
@@ -99,6 +101,19 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 li { list-style: none; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* ---- Ambient beams layer (site-wide, behind everything) ------------------- */
+.bg-beams {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(30px);
+  opacity: 0.5;
+}
+:root[data-theme="dark"] .bg-beams { opacity: 0.75; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
