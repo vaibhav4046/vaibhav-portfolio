@@ -87,6 +87,7 @@ button { font: inherit; }
   transition: top .2s var(--ease);
 }
 .skip-link:focus { top: 1rem; }
+main[tabindex="-1"]:focus { outline: none; }
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
 .mono { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
 .muted { color: var(--muted); }
@@ -361,7 +362,7 @@ button { font: inherit; }
 .withheld { margin-top: .7rem; color: var(--faint) !important; font-size: .78rem !important; }
 .skills { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--rule); border-radius: 20px; background: var(--rule); }
 .skill-col { min-width: 0; padding: 1.2rem; background: var(--surface); }
-.skill-col h4 { margin-bottom: 1rem; color: var(--accent); font: 700 .66rem/1.2 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
+.skill-col h3 { margin-bottom: 1rem; color: var(--accent); font: 700 .66rem/1.2 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
 .chiplist { display: grid; gap: .42rem; }
 .chiplist li { color: var(--ink-soft); font-size: .87rem; }
 .cert-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1rem; }
@@ -537,6 +538,10 @@ button { font: inherit; }
   .feature-list li { grid-template-columns: 1fr; gap: .35rem; }
   .pager { grid-template-columns: 1fr; }
   .pager .next { text-align: left; }
+}
+
+@media (max-width: 360px) {
+  .detail-title { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(2.8rem, 14vw, 4rem); letter-spacing: -.06em; }
 }
 
 @media (prefers-reduced-motion: reduce) {

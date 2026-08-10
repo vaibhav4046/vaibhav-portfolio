@@ -26,11 +26,11 @@ pdfmetrics.registerFontFamily("DejaVu", normal="DejaVu", bold="DejaVu-Bold", ita
 styles = getSampleStyleSheet()
 name_style = ParagraphStyle("Name", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=21, leading=23, textColor=INK, spaceAfter=2)
 role_style = ParagraphStyle("Role", parent=styles["Normal"], fontName="DejaVu", fontSize=10, leading=12, textColor=MUTED, spaceAfter=5)
-contact_style = ParagraphStyle("Contact", parent=styles["Normal"], fontName="DejaVu", fontSize=8, leading=10, textColor=MUTED, linkColor=LINK, spaceAfter=5)
-availability_style = ParagraphStyle("Availability", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8, leading=10, textColor=INK, borderColor=RULE, borderWidth=.6, borderPadding=(4, 6, 4, 6), spaceAfter=5)
-section_style = ParagraphStyle("Section", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=7.8, leading=9.5, textColor=ACCENT, tracking=1.1, spaceBefore=6, spaceAfter=3.5)
-body_style = ParagraphStyle("Body", parent=styles["Normal"], fontName="DejaVu", fontSize=8.35, leading=10.4, textColor=INK, alignment=TA_LEFT, spaceAfter=3, linkColor=LINK)
-small_style = ParagraphStyle("Small", parent=body_style, fontSize=7.9, leading=9.8)
+contact_style = ParagraphStyle("Contact", parent=styles["Normal"], fontName="DejaVu", fontSize=8.3, leading=10.4, textColor=MUTED, linkColor=LINK, spaceAfter=5)
+availability_style = ParagraphStyle("Availability", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8.3, leading=10.4, textColor=INK, borderColor=RULE, borderWidth=.6, borderPadding=(4, 6, 4, 6), spaceAfter=5)
+section_style = ParagraphStyle("Section", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8.2, leading=10, textColor=ACCENT, tracking=1.1, spaceBefore=6, spaceAfter=3.5)
+body_style = ParagraphStyle("Body", parent=styles["Normal"], fontName="DejaVu", fontSize=9.1, leading=11.2, textColor=INK, alignment=TA_LEFT, spaceAfter=3, linkColor=LINK)
+small_style = ParagraphStyle("Small", parent=body_style, fontSize=8.5, leading=10.4)
 label_style = ParagraphStyle("Label", parent=small_style, fontName="DejaVu-Bold", textColor=MUTED)
 
 
@@ -143,8 +143,8 @@ for name, description, url in projects:
 story.extend([
     section("Research & education"),
     Paragraph(
-        "<b>NEXUS</b> (2026), research preprint on on-controller transformer inference and speculative edge execution. "
-        "<a href='https://doi.org/10.5281/zenodo.20059414'>DOI 10.5281/zenodo.20059414</a>",
+        "<b>NEXUS</b> (2026), corrected v2 position paper on on-controller transformer inference and speculative edge execution; architecture and analytical model, without prototype or gameplay-corpus results. "
+        "<a href='https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming'>Corrected v2</a>",
         small_style,
     ),
 ])
