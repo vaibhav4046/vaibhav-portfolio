@@ -1,400 +1,397 @@
-/* ============================================================
-   Vaibhav Lalwani — portfolio motion layer
-   CSP-safe: external file, individual .style props only.
-   Never uses .style.cssText or setAttribute('style', ...).
-   Every module is isolated; one failure never blanks the page.
-   ============================================================ */
+/* Vaibhav Lalwani — interaction and procedural 3D layer */
 (function () {
   "use strict";
 
   var root = document.documentElement;
-  var reduce = false;
-  try {
-    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  } catch (e) {}
+  root.setAttribute("data-theme", "dark");
 
-  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
-  function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+  var reduceMotion = false;
+  try { reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (error) {}
 
-  /* ---------- Theme toggle (persisted) ---------- */
-  function initTheme() {
-    var stored = null;
-    try { stored = localStorage.getItem("vl-theme"); } catch (e) {}
-    if (stored === "light" || stored === "dark") {
-      root.setAttribute("data-theme", stored);
-    }
-    var btn = document.getElementById("theme-toggle");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      var cur = root.getAttribute("data-theme");
-      if (cur !== "light" && cur !== "dark") {
-        var prefersDark = false;
-        try { prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches; } catch (e) {}
-        cur = prefersDark ? "dark" : "light";
-      }
-      var next = cur === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("vl-theme", next); } catch (e) {}
-      try { window.dispatchEvent(new CustomEvent("vl:themechange")); } catch (e) {}
-    });
-  }
+  function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+  function all(selector, context) { return Array.prototype.slice.call((context || document).querySelectorAll(selector)); }
 
-  /* ---------- Year fill ---------- */
   function initYear() {
-    var y = String(new Date().getFullYear());
-    $all("#year, #year-2").forEach(function (el) { el.textContent = y; });
+    var year = String(new Date().getFullYear());
+    all("#year, #year-2").forEach(function (element) { element.textContent = year; });
   }
 
-  /* ---------- Scroll progress bar ---------- */
   function initProgress() {
     var bar = document.getElementById("scroll-progress");
     if (!bar) return;
-    var raf = 0;
+    var frame = 0;
     function update() {
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - window.innerHeight;
-      var p = max > 0 ? window.scrollY / max : 0;
-      bar.style.transform = "scaleX(" + clamp(p, 0, 1).toFixed(4) + ")";
-      raf = 0;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? clamp(window.scrollY / max, 0, 1) : 0).toFixed(4) + ")";
+      frame = 0;
     }
-    window.addEventListener("scroll", function () {
-      if (!raf) raf = requestAnimationFrame(update);
-    }, { passive: true });
-    window.addEventListener("resize", function () {
-      if (!raf) raf = requestAnimationFrame(update);
-    }, { passive: true });
+    function requestUpdate() { if (!frame) frame = window.requestAnimationFrame(update); }
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
     update();
   }
 
-  /* ---------- Back to top ---------- */
   function initBackToTop() {
-    var btn = document.getElementById("back-to-top");
-    if (!btn) return;
-    var raf = 0;
+    var button = document.getElementById("back-to-top");
+    if (!button) return;
+    var frame = 0;
     function update() {
-      if (window.scrollY > window.innerHeight * 0.9) btn.classList.add("show");
-      else btn.classList.remove("show");
-      raf = 0;
+      button.classList.toggle("show", window.scrollY > window.innerHeight * 0.9);
+      frame = 0;
     }
     window.addEventListener("scroll", function () {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!frame) frame = window.requestAnimationFrame(update);
     }, { passive: true });
-    btn.addEventListener("click", function () {
-      try { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); }
-      catch (e) { window.scrollTo(0, 0); }
+    button.addEventListener("click", function () {
+      window.scrollTo(0, 0);
     });
     update();
   }
 
-  /* ---------- Reveal on scroll (hardened) ---------- */
-  function revealAll(items) {
-    items.forEach(function (el) { el.classList.add("is-in"); });
-  }
   function initReveals() {
-    var items = $all(".reveal, .reveal-line");
+    var items = all(".reveal");
     if (!items.length) return;
-    if (reduce || !("IntersectionObserver" in window)) { revealAll(items); return; }
-    // stagger index among reveal siblings
-    items.forEach(function (el) {
-      var i = 0, p = el.previousElementSibling;
-      while (p) {
-        if (p.classList && (p.classList.contains("reveal") || p.classList.contains("reveal-line"))) i++;
-        p = p.previousElementSibling;
-      }
-      el.style.setProperty("--i", String(Math.min(i, 6)));
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      items.forEach(function (item) { item.classList.add("is-in"); });
+      return;
+    }
+    items.forEach(function (item, index) {
+      item.classList.add("will-reveal");
+      item.style.setProperty("--i", String(index % 4));
     });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-in");
-          io.unobserve(e.target);
-        }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
+    items.forEach(function (item) { observer.observe(item); });
   }
 
-  /* ---------- Scrollspy (nav active) ---------- */
-  function initSpy() {
-    var links = $all('.nav a[href^="#"]');
+  function initScrollSpy() {
+    var links = all('.nav a[href^="#"], .mobile-nav a[href^="#"]');
     if (!links.length || !("IntersectionObserver" in window)) return;
-    var map = [];
-    links.forEach(function (a) {
-      var id = a.getAttribute("href").slice(1);
-      var sec = id ? document.getElementById(id) : null;
-      if (sec) map.push({ sec: sec, link: a });
-    });
-    if (!map.length) return;
-    function activate(link) {
-      links.forEach(function (l) { l.classList.remove("is-active"); });
-      if (link) link.classList.add("is-active");
+    var targets = links.map(function (link) {
+      var target = document.querySelector(link.getAttribute("href"));
+      return target ? { link: link, target: target } : null;
+    }).filter(Boolean);
+    if (!targets.length) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (link) {
+          link.classList.remove("is-active");
+          link.removeAttribute("aria-current");
+        });
+        targets.filter(function (item) { return item.target === entry.target; }).forEach(function (match) {
+          match.link.classList.add("is-active");
+          match.link.setAttribute("aria-current", "location");
+        });
+      });
+    }, { rootMargin: "-38% 0px -56% 0px", threshold: 0 });
+    targets.forEach(function (item) { observer.observe(item.target); });
+  }
+
+  function initMobileMenu() {
+    var button = document.getElementById("menu-toggle");
+    var menu = document.getElementById("mobile-nav");
+    if (!button || !menu) return;
+    function setOpen(open) {
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.hidden = !open;
+      document.body.classList.toggle("menu-open", open);
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        for (var i = 0; i < map.length; i++) {
-          if (map[i].sec === e.target) { activate(map[i].link); break; }
+    button.addEventListener("click", function () {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+    menu.addEventListener("click", function (event) {
+      if (event.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 820) setOpen(false);
+    }, { passive: true });
+  }
+
+  function initAnchorNavigation() {
+    var runningFrame = 0;
+    all('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        var selector = link.getAttribute("href");
+        if (!selector || selector === "#") return;
+        var target = document.querySelector(selector);
+        if (!target) return;
+        event.preventDefault();
+        if (runningFrame) window.cancelAnimationFrame(runningFrame);
+        var start = window.scrollY;
+        var header = document.querySelector(".topbar");
+        var offset = header ? header.offsetHeight + 10 : 0;
+        var end = Math.max(0, target.getBoundingClientRect().top + start - offset);
+        var distance = end - start;
+        if (reduceMotion || Math.abs(distance) < 80) {
+          window.scrollTo(0, end);
+          try { history.pushState(null, "", selector); } catch (error) {}
+          return;
         }
+        var duration = clamp(Math.abs(distance) * .16, 280, 520);
+        var began = performance.now();
+        function step(now) {
+          var progress = clamp((now - began) / duration, 0, 1);
+          var eased = 1 - Math.pow(1 - progress, 4);
+          window.scrollTo(0, start + distance * eased);
+          if (progress < 1) runningFrame = window.requestAnimationFrame(step);
+          else {
+            runningFrame = 0;
+            try { history.pushState(null, "", selector); } catch (error) {}
+          }
+        }
+        runningFrame = window.requestAnimationFrame(step);
       });
-    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
-    map.forEach(function (m) { io.observe(m.sec); });
-  }
-
-  /* ---------- Magnetic buttons ---------- */
-  function initMagnetic() {
-    if (reduce) return;
-    var hoverable = false;
-    try { hoverable = window.matchMedia("(hover: hover)").matches; } catch (e) {}
-    if (!hoverable) return;
-    $all(".btn").forEach(function (btn) {
-      btn.addEventListener("pointermove", function (ev) {
-        var r = btn.getBoundingClientRect();
-        var mx = ev.clientX - (r.left + r.width / 2);
-        var my = ev.clientY - (r.top + r.height / 2);
-        btn.style.transform = "translate(" + (mx * 0.18).toFixed(1) + "px," + (my * 0.3).toFixed(1) + "px)";
-      });
-      btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
     });
   }
 
-  /* ---------- Ambient beams background (site-wide) ----------
-     Vanilla port of the "beams background" idea, adapted to the
-     Swiss system: monochrome ink beams with a rare accent-red one,
-     drifting slowly upward at -35deg. Blur comes from CSS on the
-     canvas element (GPU-composited once), never ctx.filter per
-     frame. Reduced motion gets a single static frame. */
-  function initBeams() {
-    var canvas = document.createElement("canvas");
-    canvas.className = "bg-beams";
-    canvas.setAttribute("aria-hidden", "true");
-    document.body.insertBefore(canvas, document.body.firstChild);
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  /* A tiny, dependency-free 3D renderer. The scene is decorative, while all
+     meaning and navigation stay in semantic HTML. It pauses offscreen and in
+     hidden tabs, caps pixel density, and becomes a static frame for reduced
+     motion or data-saver users. */
+  function initSystemCore() {
+    var canvas = document.getElementById("system-canvas");
+    var stage = document.getElementById("hero-stage");
+    if (!canvas || !stage || !canvas.getContext) return;
+    var context = canvas.getContext("2d", { alpha: true });
+    if (!context) return;
 
-    var W = 0, H = 0, beams = [], raf = 0;
-    var inkRgb = [22, 21, 15], accRgb = [217, 46, 32];
+    var saveData = false;
+    try { saveData = Boolean(navigator.connection && navigator.connection.saveData); } catch (error) {}
+    var staticMode = reduceMotion || saveData;
+    var mobile = window.matchMedia ? window.matchMedia("(max-width: 600px)").matches : window.innerWidth < 600;
+    var pointCount = mobile ? 92 : 168;
+    var points = [];
+    var edges = [];
+    var width = 1;
+    var height = 1;
+    var dpr = 1;
+    var active = true;
+    var frame = 0;
+    var lastFrame = 0;
+    var pointerX = 0;
+    var pointerY = 0;
+    var targetX = 0;
+    var targetY = 0;
 
-    function hexToRgb(hex) {
-      var m = /^#?([0-9a-f]{6})$/i.exec((hex || "").trim());
-      if (!m) return null;
-      var n = parseInt(m[1], 16);
-      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    var golden = Math.PI * (3 - Math.sqrt(5));
+    for (var index = 0; index < pointCount; index += 1) {
+      var y = 1 - (index / Math.max(1, pointCount - 1)) * 2;
+      var radius = Math.sqrt(Math.max(0, 1 - y * y));
+      var angle = golden * index;
+      points.push({
+        x: Math.cos(angle) * radius,
+        y: y,
+        z: Math.sin(angle) * radius,
+        accent: index % 13 === 0 || index % 29 === 0
+      });
     }
 
-    function readColors() {
-      try {
-        var cs = getComputedStyle(root);
-        inkRgb = hexToRgb(cs.getPropertyValue("--ink")) || inkRgb;
-        accRgb = hexToRgb(cs.getPropertyValue("--accent")) || accRgb;
-      } catch (e) {}
+    points.forEach(function (point, pointIndex) {
+      var distances = [];
+      for (var otherIndex = pointIndex + 1; otherIndex < points.length; otherIndex += 1) {
+        var other = points[otherIndex];
+        var dx = point.x - other.x;
+        var dy = point.y - other.y;
+        var dz = point.z - other.z;
+        var distance = dx * dx + dy * dy + dz * dz;
+        if (distance < 0.16) distances.push({ index: otherIndex, distance: distance });
+      }
+      distances.sort(function (a, b) { return a.distance - b.distance; });
+      distances.slice(0, mobile ? 1 : 2).forEach(function (candidate) {
+        edges.push([pointIndex, candidate.index]);
+      });
+    });
+
+    function resize() {
+      var rect = stage.getBoundingClientRect();
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.5);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(staticMode ? 4.2 : performance.now() * 0.001);
     }
 
-    function makeBeam(i, n, anywhere) {
-      var col = i % 3;
-      var spacing = W / 3;
+    function rotate(point, rx, ry, rz) {
+      var x = point.x;
+      var y = point.y;
+      var z = point.z;
+      var cosX = Math.cos(rx), sinX = Math.sin(rx);
+      var y1 = y * cosX - z * sinX;
+      var z1 = y * sinX + z * cosX;
+      var cosY = Math.cos(ry), sinY = Math.sin(ry);
+      var x2 = x * cosY + z1 * sinY;
+      var z2 = -x * sinY + z1 * cosY;
+      var cosZ = Math.cos(rz), sinZ = Math.sin(rz);
+      return { x: x2 * cosZ - y1 * sinZ, y: x2 * sinZ + y1 * cosZ, z: z2 };
+    }
+
+    function project(point, scale) {
+      var perspective = 2.95 / (3.65 - point.z);
       return {
-        x: col * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.7,
-        y: anywhere ? Math.random() * (H + 400) - 200 : H + 120,
-        w: 70 + Math.random() * 110,
-        len: H * 1.6,
-        angle: ((-35 + Math.random() * 10) * Math.PI) / 180,
-        speed: 0.25 + Math.random() * 0.35,
-        alpha: 0.05 + Math.random() * 0.06,
-        accent: i % 5 === 0,
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.008 + Math.random() * 0.012,
+        x: width * 0.5 + point.x * scale * perspective,
+        y: height * 0.47 + point.y * scale * perspective,
+        z: point.z,
+        perspective: perspective
       };
     }
 
-    function size() {
-      W = window.innerWidth || 1280;
-      H = window.innerHeight || 800;
-      canvas.width = W;
-      canvas.height = H;
-      var n = clamp(Math.round(W / 110), 8, 16);
-      beams = [];
-      for (var i = 0; i < n; i++) beams.push(makeBeam(i, n, true));
-    }
-
-    function drawBeam(b) {
-      var rgb = b.accent ? accRgb : inkRgb;
-      var a = b.alpha * (0.8 + Math.sin(b.pulse) * 0.2);
-      var base = rgb[0] + "," + rgb[1] + "," + rgb[2];
-      ctx.save();
-      ctx.translate(b.x, b.y);
-      ctx.rotate(b.angle);
-      var g = ctx.createLinearGradient(0, 0, 0, b.len);
-      g.addColorStop(0, "rgba(" + base + ",0)");
-      g.addColorStop(0.2, "rgba(" + base + "," + (a * 0.6).toFixed(4) + ")");
-      g.addColorStop(0.5, "rgba(" + base + "," + a.toFixed(4) + ")");
-      g.addColorStop(0.8, "rgba(" + base + "," + (a * 0.6).toFixed(4) + ")");
-      g.addColorStop(1, "rgba(" + base + ",0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(-b.w / 2, 0, b.w, b.len);
-      ctx.restore();
-    }
-
-    function drawFrame() {
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < beams.length; i++) drawBeam(beams[i]);
-    }
-
-    function tick() {
-      for (var i = 0; i < beams.length; i++) {
-        var b = beams[i];
-        b.y -= b.speed;
-        b.pulse += b.pulseSpeed;
-        if (b.y + b.len < -100) beams[i] = makeBeam(i, beams.length, false);
+    function drawOrbit(scale, rotationX, rotationY, phase, alpha) {
+      var previous = null;
+      context.beginPath();
+      for (var step = 0; step <= 100; step += 1) {
+        var theta = (step / 100) * Math.PI * 2 + phase;
+        var base = { x: Math.cos(theta) * 1.25, y: Math.sin(theta) * .7, z: 0 };
+        var rotated = rotate(base, rotationX, rotationY, .18);
+        var projected = project(rotated, scale);
+        if (!previous) context.moveTo(projected.x, projected.y);
+        else context.lineTo(projected.x, projected.y);
+        previous = projected;
       }
-      drawFrame();
-      raf = requestAnimationFrame(tick);
+      context.strokeStyle = "rgba(255,106,26," + alpha + ")";
+      context.lineWidth = 1;
+      context.stroke();
     }
 
-    readColors();
-    size();
+    function draw(time) {
+      context.clearRect(0, 0, width, height);
+      var scale = Math.min(width, height) * (mobile ? .34 : .36);
+      var rotationX = -.18 + pointerY * .18 + Math.sin(time * .38) * .025;
+      var rotationY = time * .17 + pointerX * .32;
+      var rotationZ = Math.sin(time * .21) * .09;
 
-    if (reduce) { drawFrame(); }
-    else { raf = requestAnimationFrame(tick); }
+      var glow = context.createRadialGradient(width * .5, height * .47, 0, width * .5, height * .47, scale * .88);
+      glow.addColorStop(0, "rgba(255,106,26,.15)");
+      glow.addColorStop(.28, "rgba(255,106,26,.05)");
+      glow.addColorStop(1, "rgba(255,106,26,0)");
+      context.fillStyle = glow;
+      context.fillRect(0, 0, width, height);
 
-    window.addEventListener("resize", function () {
-      size();
-      if (reduce) drawFrame();
-    }, { passive: true });
+      drawOrbit(scale, .62, rotationY * .55, time * .05, .28);
+      drawOrbit(scale, -1.02, rotationY * .35 + 1.3, -time * .04, .17);
+      if (!mobile) drawOrbit(scale, .12, rotationY * .28 - .8, time * .03, .12);
 
-    window.addEventListener("vl:themechange", function () {
-      readColors();
-      if (reduce) drawFrame();
-    });
-  }
-
-  /* ---------- Halftone hero canvas (scroll-scrub) ---------- */
-  function initHalftone() {
-    var canvas = document.getElementById("figurine-canvas");
-    var src = document.getElementById("figurine-src");
-    if (!canvas || !src || !canvas.getContext) return;
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    var off = document.createElement("canvas");
-    var octx = off.getContext("2d", { willReadFrequently: true }) || off.getContext("2d");
-    if (!octx) return;
-
-    var W = canvas.width, H = canvas.height;
-    var hero = document.querySelector(".hero");
-    var inkColor = "#16150f", accentColor = "#d92e20";
-    var ready = false, raf = 0, lastP = -1;
-
-    function readColors() {
-      try {
-        var cs = getComputedStyle(root);
-        var ink = (cs.getPropertyValue("--ink") || "").trim();
-        var acc = (cs.getPropertyValue("--accent") || "").trim();
-        if (ink) inkColor = ink;
-        if (acc) accentColor = acc;
-      } catch (e) {}
-    }
-
-    function progress() {
-      if (!hero) return 0;
-      var h = hero.offsetHeight || window.innerHeight || 1;
-      return clamp(window.scrollY / (h * 0.82), 0, 1);
-    }
-
-    function draw(p) {
-      var cell = lerp(16, 6.5, p); // coarse -> fine as you scroll in
-      var gw = Math.max(2, Math.round(W / cell));
-      var gh = Math.max(2, Math.round(H / cell));
-      off.width = gw; off.height = gh;
-
-      var ir = (src.naturalWidth && src.naturalHeight) ? src.naturalWidth / src.naturalHeight : 1;
-      var cr = gw / gh, dw, dh, dx, dy;
-      if (ir > cr) { dh = gh; dw = gh * ir; dx = (gw - dw) / 2; dy = 0; }
-      else { dw = gw; dh = gw / ir; dx = 0; dy = (gh - dh) / 2; }
-
-      octx.clearRect(0, 0, gw, gh);
-      try { octx.drawImage(src, dx, dy, dw, dh); } catch (e) { return; }
-
-      var data;
-      try { data = octx.getImageData(0, 0, gw, gh).data; } catch (e) { return; }
-
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = inkColor;
-      var cw = W / gw, ch = H / gh;
-      var maxR = Math.min(cw, ch) * 0.62;
-      for (var y = 0; y < gh; y++) {
-        for (var x = 0; x < gw; x++) {
-          var i = (y * gw + x) * 4;
-          if (data[i + 3] < 8) continue;
-          var lum = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
-          var r = (1 - lum) * maxR;
-          if (r < 0.35) continue;
-          ctx.beginPath();
-          ctx.arc((x + 0.5) * cw, (y + 0.5) * ch, r, 0, 6.2831853);
-          ctx.fill();
-        }
-      }
-      // accent scan sweep, fades as it resolves
-      var alpha = 0.45 * (1 - p);
-      if (alpha > 0.02) {
-        ctx.fillStyle = accentColor;
-        ctx.globalAlpha = alpha;
-        ctx.fillRect(0, p * H - 1, W, 2);
-        ctx.globalAlpha = 1;
-      }
-      lastP = p;
-    }
-
-    function onScroll() {
-      if (reduce) return;
-      if (raf) return;
-      raf = requestAnimationFrame(function () {
-        var p = progress();
-        if (Math.abs(p - lastP) > 0.006) draw(p);
-        raf = 0;
+      var projected = points.map(function (point) {
+        return project(rotate(point, rotationX, rotationY, rotationZ), scale);
       });
+
+      context.lineWidth = .72;
+      edges.forEach(function (edge) {
+        var first = projected[edge[0]];
+        var second = projected[edge[1]];
+        var depth = clamp((first.z + second.z + 2) / 4, 0, 1);
+        context.strokeStyle = "rgba(210,210,205," + (.035 + depth * .12).toFixed(3) + ")";
+        context.beginPath();
+        context.moveTo(first.x, first.y);
+        context.lineTo(second.x, second.y);
+        context.stroke();
+      });
+
+      projected.map(function (point, pointIndex) {
+        return { point: point, data: points[pointIndex] };
+      }).sort(function (a, b) { return a.point.z - b.point.z; }).forEach(function (item) {
+        var depth = clamp((item.point.z + 1) / 2, 0, 1);
+        var radius = (item.data.accent ? 2.1 : 1.05) * (.55 + item.point.perspective) * (mobile ? .8 : 1);
+        context.beginPath();
+        context.arc(item.point.x, item.point.y, radius, 0, Math.PI * 2);
+        context.fillStyle = item.data.accent
+          ? "rgba(255,106,26," + (.5 + depth * .5).toFixed(3) + ")"
+          : "rgba(247,247,245," + (.16 + depth * .58).toFixed(3) + ")";
+        context.fill();
+      });
+
+      var coreRadius = Math.max(18, scale * .12);
+      var core = context.createRadialGradient(width * .5 - coreRadius * .25, height * .47 - coreRadius * .3, 2, width * .5, height * .47, coreRadius);
+      core.addColorStop(0, "#ffd2b8");
+      core.addColorStop(.2, "#ff812e");
+      core.addColorStop(.62, "#ff5a00");
+      core.addColorStop(1, "rgba(255,90,0,0)");
+      context.fillStyle = core;
+      context.beginPath();
+      context.arc(width * .5, height * .47, coreRadius, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    function tick(now) {
+      frame = 0;
+      if (!active || document.hidden || staticMode) return;
+      var minFrame = mobile ? 33 : 16;
+      if (now - lastFrame >= minFrame) {
+        pointerX += (targetX - pointerX) * .055;
+        pointerY += (targetY - pointerY) * .055;
+        draw(now * .001);
+        lastFrame = now;
+      }
+      frame = window.requestAnimationFrame(tick);
     }
 
     function start() {
-      ready = true;
-      readColors();
-      if (reduce) { draw(0.55); return; }
-      draw(progress());
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", function () {
-        if (!raf) raf = requestAnimationFrame(function () { draw(progress()); raf = 0; });
-      }, { passive: true });
+      if (!frame && active && !document.hidden && !staticMode) frame = window.requestAnimationFrame(tick);
     }
 
-    window.addEventListener("vl:themechange", function () {
-      if (!ready) return;
-      readColors();
-      draw(lastP < 0 ? (reduce ? 0.55 : progress()) : lastP);
-    });
+    stage.addEventListener("pointermove", function (event) {
+      if (reduceMotion) return;
+      var rect = stage.getBoundingClientRect();
+      targetX = clamp(((event.clientX - rect.left) / rect.width - .5) * 2, -1, 1);
+      targetY = clamp(((event.clientY - rect.top) / rect.height - .5) * 2, -1, 1);
+      stage.style.setProperty("--ry", (targetX * 3.2).toFixed(2) + "deg");
+      stage.style.setProperty("--rx", (-targetY * 2.5).toFixed(2) + "deg");
+    }, { passive: true });
+    stage.addEventListener("pointerleave", function () {
+      targetX = 0;
+      targetY = 0;
+      stage.style.setProperty("--ry", "0deg");
+      stage.style.setProperty("--rx", "0deg");
+    }, { passive: true });
 
-    if (src.complete && src.naturalWidth) start();
-    else {
-      src.addEventListener("load", start, { once: true });
-      src.addEventListener("error", function () { /* leave canvas blank; layout holds */ }, { once: true });
+    if ("IntersectionObserver" in window) {
+      var visibilityObserver = new IntersectionObserver(function (entries) {
+        active = Boolean(entries[0] && entries[0].isIntersecting);
+        if (active) start();
+        else if (frame) { window.cancelAnimationFrame(frame); frame = 0; }
+      }, { rootMargin: "100px", threshold: .01 });
+      visibilityObserver.observe(stage);
     }
+    document.addEventListener("visibilitychange", start);
+    if ("ResizeObserver" in window) new ResizeObserver(resize).observe(stage);
+    else window.addEventListener("resize", resize, { passive: true });
+
+    resize();
+    start();
+    window.__portfolioDiagnostics = {
+      scene: "procedural-projected-3d",
+      reducedMotion: reduceMotion,
+      dataSaver: saveData,
+      pointCount: pointCount
+    };
   }
 
-  /* ---------- Boot ---------- */
   function boot() {
-    try { initTheme(); } catch (e) {}
-    try { initYear(); } catch (e) {}
-    try { initProgress(); } catch (e) {}
-    try { initBackToTop(); } catch (e) {}
-    try { initReveals(); } catch (e) { revealAll($all(".reveal, .reveal-line")); }
-    try { initSpy(); } catch (e) {}
-    try { initMagnetic(); } catch (e) {}
-    try { initBeams(); } catch (e) {}
-    try { initHalftone(); } catch (e) {}
+    try { initYear(); } catch (error) {}
+    try { initProgress(); } catch (error) {}
+    try { initBackToTop(); } catch (error) {}
+    try { initReveals(); } catch (error) { all(".reveal").forEach(function (item) { item.classList.add("is-in"); }); }
+    try { initScrollSpy(); } catch (error) {}
+    try { initMobileMenu(); } catch (error) {}
+    try { initAnchorNavigation(); } catch (error) {}
+    try { initSystemCore(); } catch (error) {}
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
-  } else {
-    boot();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
 })();

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kodro · Vaibhav Lalwani</title>
   <meta name="description" content="An offline studio for the whole loop: design a robot, program it, and watch it work in a live 3D world. No account, no cloud." />
   <meta name="author" content="Vaibhav Lalwani" />
+  <meta name="theme-color" content="#080808" />
   <link rel="canonical" href="https://vaibhavlalwani.vercel.app/work/kodro" />
 
   <meta property="og:type" content="website" />
@@ -15,10 +16,8 @@
   <meta property="og:image" content="https://vaibhavlalwani.vercel.app/img/kodro.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href="/img/profile.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
 
   <script type="application/ld+json">
@@ -41,21 +40,25 @@
     <a class="brand" href="/" aria-label="Vaibhav Lalwani · home">
       <img class="brand-mark" src="/img/profile.jpg" alt="" width="30" height="30" />
       <span class="brand-text">Vaibhav&nbsp;Lalwani</span>
-      <span class="brand-index">/ VL·26</span>
+      <span class="brand-index">/ SYSTEMS·26</span>
     </a>
     <nav class="nav" aria-label="Primary">
-      <a href="/work">Work</a>
+      <a class="is-active" aria-current="page" href="/work">Work</a>
       <a href="/#experience">Experience</a>
-      <a href="/#recognition">Recognition</a>
-      <a href="/#research">Research</a>
+      <a href="/#about">About</a>
       <a href="/#contact">Contact</a>
     </nav>
-    <a class="nav-min mono" href="/#contact">Contact</a>
-    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener">Résumé</a>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">
-      <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-      <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">Résumé</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span>Menu</span><i aria-hidden="true"></i>
     </button>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+      <a class="is-active" aria-current="page" href="/work"><span>01</span> Work</a>
+      <a href="/#experience"><span>02</span> Experience</a>
+      <a href="/#about"><span>03</span> About</a>
+      <a href="/#contact"><span>04</span> Contact</a>
+      <a href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener"><span>PDF</span> Résumé</a>
+    </nav>
   </header>
 
   <main id="main">
@@ -75,7 +78,10 @@
         <a class="btn btn-primary" href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener"><span>Source →</span></a>
       </div>
       <figure class="detail-figure">
-        <img src="/img/kodro.png" alt="Kodro studio: a code editor on the left, the City world with traffic and a pedestrian crossing and the robot in the middle, and live telemetry on the right." width="1440" height="810" loading="eager" decoding="async" />
+        <picture>
+          <source srcset="/img/kodro.webp" type="image/webp" />
+          <img src="/img/kodro.png" alt="Kodro studio: a code editor on the left, the City world with traffic and a pedestrian crossing and the robot in the middle, and live telemetry on the right." width="1440" height="810" loading="eager" decoding="async" />
+        </picture>
       </figure>
     </header>
 
@@ -124,6 +130,7 @@
         <nav aria-label="Footer">
           <a href="/#work">Work</a>
           <a href="/work">Archive</a>
+          <a href="/#about">About</a>
           <a href="/#experience">Experience</a>
           <a href="/#contact">Contact</a>
           <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub</a>

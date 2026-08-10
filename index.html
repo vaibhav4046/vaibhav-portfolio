@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaibhav Lalwani · AI engineer · production LLM systems · Liverpool</title>
-  <meta name="description" content="Vaibhav Lalwani · AI engineer who ships production LLM systems and full-stack apps. 20+ apps shipped, hackathon wins, one preprint. Open to work, based in Liverpool UK." />
+  <title>Vaibhav Lalwani — AI Systems Engineer</title>
+  <meta name="description" content="Vaibhav Lalwani is an AI systems engineer in Liverpool building production LLM applications, retrieval systems and AI agents. Explore selected work, case studies and source code." />
   <meta name="author" content="Vaibhav Lalwani" />
+  <meta name="theme-color" content="#080808" />
   <link rel="canonical" href="https://vaibhavlalwani.vercel.app/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vaibhav Lalwani · AI engineer" />
-  <meta property="og:description" content="Ships production LLM systems and full-stack apps. 20+ shipped, hackathon wins, one preprint. Open to work." />
+  <meta property="og:title" content="Vaibhav Lalwani — AI Systems Engineer" />
+  <meta property="og:description" content="Production LLM applications, retrieval systems and AI agents — designed, built and shipped end to end." />
   <meta property="og:url" content="https://vaibhavlalwani.vercel.app/" />
-  <meta property="og:image" content="https://vaibhavlalwani.vercel.app/img/queueproof.png" />
+  <meta property="og:image" content="https://vaibhavlalwani.vercel.app/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href="/img/profile.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
 
   <script type="application/ld+json">
@@ -26,16 +25,15 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Vaibhav Lalwani",
-    "jobTitle": "AI Engineer",
+    "jobTitle": "AI Systems Engineer",
     "email": "mailto:vaibhavlalwani26969@gmail.com",
-    "telephone": "+44-7544-537860",
     "url": "https://vaibhavlalwani.vercel.app/",
     "address": { "@type": "PostalAddress", "addressLocality": "Liverpool", "addressCountry": "GB" },
     "alumniOf": [
       { "@type": "CollegeOrUniversity", "name": "University of Liverpool" },
       { "@type": "CollegeOrUniversity", "name": "Christ University" }
     ],
-    "knowsAbout": ["Large Language Models", "AI Agents", "Full-Stack Engineering", "Retrieval-Augmented Generation", "TypeScript", "Python"],
+    "knowsAbout": ["Large Language Models", "AI Agents", "LLM Evaluation", "Retrieval-Augmented Generation", "Full-Stack Engineering", "TypeScript", "Python"],
     "sameAs": ["https://github.com/vaibhav4046", "https://www.linkedin.com/in/vaibhav-lalwani"]
   }
   </script>
@@ -49,21 +47,25 @@
     <a class="brand" href="/" aria-label="Vaibhav Lalwani · home">
       <img class="brand-mark" src="/img/profile.jpg" alt="" width="30" height="30" />
       <span class="brand-text">Vaibhav&nbsp;Lalwani</span>
-      <span class="brand-index">/ VL·26</span>
+      <span class="brand-index">/ SYSTEMS·26</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
-      <a href="#recognition">Recognition</a>
-      <a href="#research">Research</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="nav-min mono" href="#contact">Contact</a>
-    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener">Résumé</a>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">
-      <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-      <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">Résumé</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span>Menu</span><i aria-hidden="true"></i>
     </button>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+      <a href="#work"><span>01</span> Work</a>
+      <a href="#experience"><span>02</span> Experience</a>
+      <a href="#about"><span>03</span> About</a>
+      <a href="#contact"><span>04</span> Contact</a>
+      <a href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener"><span>PDF</span> Résumé</a>
+    </nav>
   </header>
 
   <main id="main">
@@ -72,45 +74,52 @@
       <div class="hero-grid">
         <div class="hero-lead">
           <p class="hero-eyebrow">
-            <span class="live">Open to work</span>
+            <span class="live">Available for selected roles</span>
             <span class="dot">/</span> Liverpool, UK
-            <span class="dot">/</span> MSc AI
-            <span class="dot">/</span>
-            <a class="eyebrow-link" href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub ↗</a>
-            <a class="eyebrow-link" href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <span class="dot">/</span> MSc Data Science &amp; AI
           </p>
           <h1 class="hero-title" id="hero-heading">
-            <span class="line"><span>AI engineer.</span></span>
-            <span class="line"><span class="thin">Ships production</span></span>
-            <span class="line"><span>LLM <span class="mark">systems.</span></span></span>
+            <span class="line"><span>AI systems</span></span>
+            <span class="line"><span>that hold up</span></span>
+            <span class="line"><span>in the <span class="mark">real world.</span></span></span>
           </h1>
-          <p class="hero-sub">Twenty-plus shipped apps, autonomous agents, and retrieval systems, built end to end, from model plumbing to the pixels.</p>
+          <p class="hero-sub">I design and ship production LLM applications, retrieval pipelines and agent products, end to end — from evaluation and backend architecture to interfaces people can trust.</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#work"><span>View work</span> <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn" href="mailto:vaibhavlalwani26969@gmail.com"><span>Email me</span></a>
-            <a class="btn" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener"><span>Résumé ↗</span></a>
+            <a class="btn btn-primary" href="#work"><span>Explore selected work</span> <span class="arrow" aria-hidden="true">↘</span></a>
+            <a class="btn" href="mailto:vaibhavlalwani26969@gmail.com"><span>Start a conversation</span> <span aria-hidden="true">↗</span></a>
           </div>
-          <p class="hero-meta-line">Remote · Hybrid · On-site · Contract · Part-time</p>
+          <div class="hero-links" aria-label="Professional links">
+            <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
-        <div class="hero-plate" data-scrub>
-          <div class="plate-inner">
-            <canvas id="figurine-canvas" width="720" height="720" role="img" aria-label="Halftone portrait of Vaibhav Lalwani"></canvas>
-            <span class="plate-reg tl" aria-hidden="true"></span>
-            <span class="plate-reg tr" aria-hidden="true"></span>
-            <span class="plate-reg bl" aria-hidden="true"></span>
-            <span class="plate-reg br" aria-hidden="true"></span>
+        <div class="hero-stage" id="hero-stage">
+          <canvas id="system-canvas" width="760" height="760" aria-hidden="true"></canvas>
+          <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-topline mono"><span>VL / AI SYSTEMS</span><span>2026.08</span></div>
+          <div class="stage-orbit-label mono" aria-hidden="true">RAG · AGENTS · EVALS · FULL-STACK</div>
+          <div class="identity-card">
+            <img src="/img/profile.jpg" width="112" height="112" alt="Vaibhav Lalwani" />
+            <div>
+              <strong>Vaibhav Lalwani</strong>
+              <span>AI Systems Engineer</span>
+            </div>
+            <i aria-hidden="true"></i>
           </div>
-          <p class="plate-label"><b>VL_AGENT</b>.v3 · Liverpool 53.4°N</p>
-          <img class="fig-src" id="figurine-src" src="/img/figurine.jpg" alt="" width="360" height="360" crossorigin="anonymous" />
+          <div class="stage-status mono">
+            <span><i aria-hidden="true"></i> Shipping now</span>
+            <b>20+ builds</b>
+          </div>
         </div>
       </div>
 
       <dl class="hero-stats">
-        <div><dt>20+</dt><dd>Apps shipped</dd></div>
-        <div><dt>6</dt><dd>Flagship OSS</dd></div>
-        <div><dt>2×</dt><dd>HydraDB security</dd></div>
-        <div><dt>1</dt><dd>Research preprint</dd></div>
+        <div><dt>20+</dt><dd>Products &amp; experiments shipped</dd></div>
+        <div><dt>Winner</dt><dd>HydraDB Build Blitz · 2026</dd></div>
+        <div><dt>Finalist</dt><dd>Wikithon · 2026</dd></div>
+        <div><dt>1</dt><dd>Archived research preprint</dd></div>
       </dl>
     </section>
 
@@ -118,153 +127,117 @@
     <section class="section wrap" id="work" aria-labelledby="work-heading">
       <div class="section-head">
         <span class="section-index"><b>01</b> / Selected work</span>
-        <h2 class="section-title" id="work-heading">Six builds that <span class="em">ship</span>.</h2>
-        <p class="section-lede">Production systems and flagship open source. Every one is live, documented, and running the whole stack.</p>
+        <h2 class="section-title" id="work-heading">Proof, not <span class="em">prototypes.</span></h2>
+        <p class="section-lede">Three systems that show how I think: grounded answers, safer agent memory, and knowledge interfaces that make complex data usable.</p>
       </div>
 
       <div class="work-list">
-        <!-- 01 QueueProof -->
-        <article class="work-row reveal">
-          <div class="work-num"><b>01</b> / 2026</div>
+        <article class="work-row work-featured reveal">
+          <div class="work-num"><b>01</b> / RETRIEVAL</div>
           <figure class="work-figure">
             <a href="/work/queueproof" aria-label="QueueProof · case study">
-              <img src="/img/queueproof.png" alt="QueueProof workspace: a cross-source question answered with numbered claim citations back to their source records" width="1440" height="900" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="/img/queueproof.webp" type="image/webp" />
+                <img src="/img/queueproof.png" alt="QueueProof workspace: a cross-source question answered with numbered claim citations back to their source records" width="1440" height="900" loading="lazy" decoding="async" />
+              </picture>
             </a>
-            <span class="fig-tag">HydraDB × Connectors</span>
+            <span class="fig-tag">Evidence at claim level</span>
           </figure>
           <div class="work-body">
-            <span class="work-kicker">Cross-source retrieval · Cited answers</span>
+            <span class="work-kicker">HydraDB × Connectors · 2026</span>
             <h3><a href="/work/queueproof">QueueProof</a></h3>
-            <p>An evidence-backed cross-source retrieval workspace. Ask one question across many sources and every claim in the answer carries a numbered citation back to the record it came from. Built for the HydraDB × Connectors hackathon.</p>
+            <p>An evidence-backed workspace for asking one question across multiple work sources. Every supported claim opens back to the exact record behind it, so the answer is inspectable instead of merely confident.</p>
+            <div class="proof-point"><span>Core decision</span><strong>Make provenance part of the answer, not a separate audit screen.</strong></div>
             <ul class="tags"><li>HydraDB</li><li>Retrieval</li><li>Citations</li><li>Vercel</li></ul>
             <p class="link-row">
-              <a href="/work/queueproof">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://queueproof.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
-              <a href="https://github.com/vaibhav4046/queueproof" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="/work/queueproof">Read case study <span aria-hidden="true">→</span></a>
+              <a href="https://queueproof.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/queueproof" target="_blank" rel="noopener">View source <span class="icon-ext" aria-hidden="true">↗</span></a>
             </p>
           </div>
         </article>
 
-        <!-- 02 HydraSentry -->
         <article class="work-row reveal">
-          <div class="work-num"><b>02</b> / 2026</div>
+          <div class="work-num"><b>02</b> / SAFETY</div>
           <figure class="work-figure">
             <a href="/work/hydrasentry" aria-label="HydraSentry · case study">
-              <img src="/img/hydrasentry.png" alt="HydraSentry: a memory-integrity firewall catching a poisoned memory before an agent acts on it" width="3200" height="1800" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="/img/hydrasentry.webp" type="image/webp" />
+                <img src="/img/hydrasentry.png" alt="HydraSentry: a memory-integrity firewall catching a poisoned memory before an agent acts on it" width="3200" height="1800" loading="lazy" decoding="async" />
+              </picture>
             </a>
-            <span class="fig-tag fig-win">★ Build Blitz · Winner</span>
+            <span class="fig-tag fig-win">Winner · Build Blitz</span>
           </figure>
           <div class="work-body">
-            <span class="work-kicker">Context integrity · Knowledge graph</span>
-            <h3><a href="/work/hydrasentry">HydraSentry <span class="work-kicker">/ Constellan</span></a></h3>
-            <p>A memory-integrity layer for AI agents. When a poisoned memory tries to make a refund agent auto-approve a payment, the firewall catches it and issues a signed Memory Integrity Certificate. Winner of the HydraDB Build Blitz.</p>
+            <span class="work-kicker">Agent memory integrity · 2026</span>
+            <h3><a href="/work/hydrasentry">HydraSentry</a></h3>
+            <p>A memory-integrity layer that checks retrieved context before an agent acts. It surfaces suspicious provenance, blocks unsafe execution and produces a signed integrity certificate for review.</p>
+            <div class="proof-point"><span>Outcome</span><strong>HydraDB Build Blitz winner, built as a solo end-to-end system.</strong></div>
             <ul class="tags"><li>HydraDB</li><li>Agent security</li><li>Groq</li><li>FastAPI</li><li>Vercel</li></ul>
             <p class="link-row">
-              <a href="/work/hydrasentry">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
-              <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="/work/hydrasentry">Read case study <span aria-hidden="true">→</span></a>
+              <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/hydrasentry" target="_blank" rel="noopener">View source <span class="icon-ext" aria-hidden="true">↗</span></a>
             </p>
           </div>
         </article>
 
-        <!-- 03 Kodro -->
         <article class="work-row reveal">
-          <div class="work-num"><b>03</b> / 2026</div>
-          <figure class="work-figure">
-            <a href="/work/kodro" aria-label="Kodro · case study">
-              <img src="/img/kodro.png" alt="Kodro: an offline robot design and simulation studio with a live city world" width="1280" height="800" loading="lazy" decoding="async" />
-            </a>
-            <span class="fig-tag">Offline · Simulation</span>
-          </figure>
-          <div class="work-body">
-            <span class="work-kicker">Offline · Robotics simulation</span>
-            <h3><a href="/work/kodro">Kodro</a></h3>
-            <p>An offline robot design and simulation studio. Build a robot, drop it into a live city world with traffic and pedestrians, script its behaviour in a built-in code editor, and watch telemetry stream back, all running locally, no cloud.</p>
-            <ul class="tags"><li>Simulation</li><li>Python</li><li>Robotics</li><li>Local-first</li></ul>
-            <p class="link-row">
-              <a href="/work/kodro">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://github.com/vaibhav4046/robolearn" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
-            </p>
-          </div>
-        </article>
-
-        <!-- 04 DRIP -->
-        <article class="work-row reveal">
-          <div class="work-num"><b>04</b> / 2026</div>
-          <figure class="work-figure">
-            <a href="/work/drip" aria-label="DRIP · case study">
-              <img src="/img/drip.png" alt="DRIP: an AI sneaker stylist with a For-You feed and live resale prices" width="1440" height="810" loading="lazy" decoding="async" />
-            </a>
-            <span class="fig-tag">Multi-agent · Commerce</span>
-          </figure>
-          <div class="work-body">
-            <span class="work-kicker">Multi-agent · Consumer product</span>
-            <h3><a href="/work/drip">DRIP</a></h3>
-            <p>An AI sneaker stylist. A For-You feed, shoe pages with live StockX resale prices and buy links, and a multi-agent stylist chat that reasons about fit and taste instead of just returning search results.</p>
-            <ul class="tags"><li>React</li><li>Multi-agent</li><li>StockX API</li><li>TypeScript</li></ul>
-            <p class="link-row">
-              <a href="/work/drip">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://drip-two-rho.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
-              <a href="https://github.com/vaibhav4046/drip-ai-sneaker-stylist" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
-            </p>
-          </div>
-        </article>
-
-        <!-- 05 Qyntra -->
-        <article class="work-row reveal">
-          <div class="work-num"><b>05</b> / 2026</div>
+          <div class="work-num"><b>03</b> / KNOWLEDGE</div>
           <figure class="work-figure">
             <a href="/work/qyntra" aria-label="Qyntra · case study">
-              <img src="/img/qyntra.png" alt="Qyntra: a personal knowledge OS with a 3D galaxy view of your files" width="1568" height="974" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="/img/qyntra.webp" type="image/webp" />
+                <img src="/img/qyntra.png" alt="Qyntra: a personal knowledge workspace with a 3D galaxy view of connected files" width="1568" height="974" loading="lazy" decoding="async" />
+              </picture>
             </a>
-            <span class="fig-tag fig-win">★ Wikithon · Finalist</span>
+            <span class="fig-tag fig-win">Finalist · Wikithon</span>
           </figure>
           <div class="work-body">
-            <span class="work-kicker">Personal knowledge OS · Retrieval</span>
+            <span class="work-kicker">Personal knowledge system · 2026</span>
             <h3><a href="/work/qyntra">Qyntra</a></h3>
-            <p>A personal knowledge OS. Ingest your files, explore them as a 3D galaxy, and ask questions answered straight from your own material. Built solo and taken to the Wikithon '26 finals.</p>
+            <p>A personal knowledge system that turns uploaded material into grounded answers and a navigable 3D relationship map. It makes the source landscape visible instead of hiding retrieval behind a chat box.</p>
+            <div class="proof-point"><span>Outcome</span><strong>Wikithon 2026 finalist, designed and built solo.</strong></div>
             <ul class="tags"><li>RAG</li><li>Next.js</li><li>3D</li><li>Vercel</li></ul>
             <p class="link-row">
-              <a href="/work/qyntra">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
-              <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
-            </p>
-          </div>
-        </article>
-
-        <!-- 06 DelOS -->
-        <article class="work-row reveal">
-          <div class="work-num"><b>06</b> / 2026</div>
-          <figure class="work-figure">
-            <a href="/work/delos" aria-label="DelOS · case study">
-              <img src="/img/delos.png" alt="DelOS: a browser-OS coordinating a fleet of agents under load" width="2880" height="1800" loading="lazy" decoding="async" />
-            </a>
-            <span class="fig-tag fig-win">★ Agents Under Pressure '26</span>
-          </figure>
-          <div class="work-body">
-            <span class="work-kicker">Multi-agent · Orchestration</span>
-            <h3><a href="/work/delos">DelOS</a></h3>
-            <p>A browser-OS where multiple agents flow under pressure: an xterm agent fleet, a force-directed memory graph, and a HydraDB-backed knowledge layer, coordinated so agents don't collide under load. Entered into Agents Under Pressure '26.</p>
-            <ul class="tags"><li>Multi-agent</li><li>HydraDB</li><li>Orchestration</li><li>Vercel</li></ul>
-            <p class="link-row">
-              <a href="/work/delos">Case study <span aria-hidden="true">→</span></a>
-              <a href="https://delrio.vercel.app" target="_blank" rel="noopener">Live <span class="icon-ext" aria-hidden="true">↗</span></a>
-              <a href="https://github.com/vaibhav4046/delos" target="_blank" rel="noopener">Source <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="/work/qyntra">Read case study <span aria-hidden="true">→</span></a>
+              <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
+              <a href="https://github.com/vaibhav4046/qyntra-app" target="_blank" rel="noopener">View source <span class="icon-ext" aria-hidden="true">↗</span></a>
             </p>
           </div>
         </article>
       </div>
 
       <div class="section-foot">
-        <span class="count">Showing 6 of 20+ projects</span>
-        <a class="btn" href="/work"><span>Full archive</span> <span class="arrow" aria-hidden="true">→</span></a>
+        <span class="count">Selected for depth. The archive contains 15 documented builds.</span>
+        <a class="btn" href="/work"><span>Explore the full archive</span> <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section wrap" id="about" aria-labelledby="about-heading">
+      <div class="section-head">
+        <span class="section-index"><b>02</b> / About</span>
+        <h2 class="section-title" id="about-heading">Where models meet <span class="em">systems.</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p class="about-lead">I am an AI systems engineer and MSc Advanced Data Science &amp; AI student at the University of Liverpool.</p>
+          <p>I work across the full product path: retrieval and evaluation, model orchestration, APIs, data, deployment and the interface that exposes the evidence. The goal is not an impressive prompt. It is a system that behaves clearly when the input is messy, a dependency fails or a user asks “why?”</p>
+          <p>I am currently open to UK part-time AI/software roles and internships, plus graduate opportunities from 2027.</p>
+        </div>
+        <ol class="principles reveal" aria-label="Engineering principles">
+          <li><span>01</span><div><strong>Ground the answer</strong><p>Trace outputs to sources, evaluations or observable system state.</p></div></li>
+          <li><span>02</span><div><strong>Design the failure path</strong><p>Make fallbacks, limits and uncertainty visible before they become incidents.</p></div></li>
+          <li><span>03</span><div><strong>Ship the whole experience</strong><p>Architecture and interface are one product, not two separate demos.</p></div></li>
+        </ol>
       </div>
     </section>
 
     <!-- ===== Experience ===== -->
     <section class="section wrap" id="experience" aria-labelledby="exp-heading">
       <div class="section-head">
-        <span class="section-index"><b>02</b> / Experience</span>
+        <span class="section-index"><b>03</b> / Experience</span>
         <h2 class="section-title" id="exp-heading">Where I've <span class="em">shipped</span>.</h2>
       </div>
 
@@ -332,7 +305,7 @@
     <!-- ===== Recognition ===== -->
     <section class="section wrap" id="recognition" aria-labelledby="rec-heading">
       <div class="section-head">
-        <span class="section-index"><b>03</b> / Recognition</span>
+        <span class="section-index"><b>04</b> / Recognition</span>
         <h2 class="section-title" id="rec-heading">Wins &amp; <span class="em">security work</span>.</h2>
       </div>
 
@@ -387,7 +360,7 @@
     <!-- ===== Research ===== -->
     <section class="section wrap" id="research" aria-labelledby="res-heading">
       <div class="section-head">
-        <span class="section-index"><b>04</b> / Research</span>
+        <span class="section-index"><b>05</b> / Research</span>
         <h2 class="section-title" id="res-heading">Written <span class="em">down</span>.</h2>
       </div>
       <div class="grid">
@@ -408,7 +381,7 @@
     <!-- ===== Stack ===== -->
     <section class="section wrap" id="stack" aria-labelledby="stack-heading">
       <div class="section-head">
-        <span class="section-index"><b>05</b> / Stack</span>
+        <span class="section-index"><b>06</b> / Stack</span>
         <h2 class="section-title" id="stack-heading">What I <span class="em">build with</span>.</h2>
       </div>
       <div class="skills">
@@ -438,7 +411,7 @@
     <!-- ===== Education ===== -->
     <section class="section wrap" id="education" aria-labelledby="edu-heading">
       <div class="section-head">
-        <span class="section-index"><b>06</b> / Education</span>
+        <span class="section-index"><b>07</b> / Education</span>
         <h2 class="section-title" id="edu-heading">Credentials.</h2>
       </div>
       <div class="grid">
@@ -450,7 +423,7 @@
         <div class="card span-6 reveal">
           <span class="card-badge">2022 – 2025</span>
           <h3>BCA · Computer Applications</h3>
-          <p class="muted">Christ University · CGPA 8.7 / 10</p>
+          <p class="muted">Christ University, Bengaluru</p>
         </div>
       </div>
       <div class="cert-grid">
@@ -465,9 +438,9 @@
     <!-- ===== Contact ===== -->
     <section class="section section-contact wrap" id="contact" aria-labelledby="contact-heading">
       <div class="section-head">
-        <span class="section-index"><b>07</b> / Contact</span>
-        <h2 class="section-title" id="contact-heading">Hiring, or want to build something? <span class="em">Reach me.</span></h2>
-        <p class="section-lede">Open to full-time, contract, and part-time: remote, hybrid, or on-site. Fastest reply is email or LinkedIn.</p>
+        <span class="section-index"><b>08</b> / Contact</span>
+        <h2 class="section-title" id="contact-heading">Have a hard AI problem? <span class="em">Let's talk.</span></h2>
+        <p class="section-lede">Open to UK part-time AI/software roles and internships, plus graduate opportunities from 2027. Fastest reply is email or LinkedIn.</p>
       </div>
       <div class="contact-grid">
         <a class="contact-card reveal" href="mailto:vaibhavlalwani26969@gmail.com">
@@ -485,9 +458,9 @@
           <span class="c-value">github.com/vaibhav4046</span>
           <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-card reveal" href="tel:+447544537860">
-          <span class="c-label">Phone</span>
-          <span class="c-value">+44 7544 537 860</span>
+        <a class="contact-card reveal" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">
+          <span class="c-label">Résumé</span>
+          <span class="c-value">View credentials &amp; experience</span>
           <span class="c-arrow" aria-hidden="true">↗</span>
         </a>
       </div>
@@ -502,6 +475,7 @@
         <nav aria-label="Footer">
           <a href="#work">Work</a>
           <a href="/work">Archive</a>
+          <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
           <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub</a>

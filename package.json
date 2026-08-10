@@ -1,6 +1,12 @@
 {
   "private": true,
   "type": "commonjs",
+  "scripts": {
+    "generate": "node scripts/build-pages.cjs",
+    "resume": "node scripts/build-resume.mjs",
+    "audit": "node scripts/site-audit.mjs && node --check script.js && node --check api/linkedin-posts.js",
+    "test": "npm run audit"
+  },
   "engines": {
     "node": "22.x"
   }
