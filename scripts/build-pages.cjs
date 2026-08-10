@@ -344,14 +344,14 @@ const DETAILS = {
       ]},
       { h: "Real data underneath", em: "Real data", p: [
         "Live StockX resale prices, buy links and product images stream in per shoe through KicksDB, and search hits the entire real catalog rather than a static list. A camera scanner extracts dominant colours with k-means and auto-captures when you hold a shoe steady, then an AI writes the fit verdict.",
-        "Under the surface it runs a content-based recommendation engine with taste vectors and MMR diversity, a weather-aware outfit engine grounded in colour theory, a live community feed, a saved-fit lookbook, a voice stylist and a multi-currency shop. It is fully functional with zero API keys, and adding keys progressively lights up live AI and data. It installs as a mobile-first PWA.",
+        "Under the surface it runs a content-based recommendation engine with taste vectors and MMR diversity, a weather-aware outfit engine grounded in colour theory, a community feed, a saved-fit lookbook, a voice stylist and a multi-currency shop. The core browsing and deterministic styling flow works key-free; provider keys enable live AI and market data. It installs as a mobile-first PWA.",
       ]},
     ],
     features: [
       ["Stylist and Critic", "One agent drafts the look, a second refines it into honest, wearable advice."],
       ["Live resale prices", "StockX prices, buy links and images stream per shoe through KicksDB."],
       ["Camera colour scan", "k-means extracts a shoe's colours and auto-captures, then the AI writes a verdict."],
-      ["Runs key-free", "Everything works with zero API keys; keys light up the live AI and data."],
+      ["Key-free core", "Core browsing and deterministic styling work without keys; provider keys enable live AI and market data."],
     ],
     prev: { slug: "kodro", name: "Kodro" },
     next: { slug: "qyntra", name: "Qyntra" },
@@ -383,7 +383,7 @@ const DETAILS = {
         "Qyntra is a private Wikipedia compiled from your own files. Connect Notion, Google Drive, Gmail, GitHub or a desktop folder, and it ingests every supported file, from markdown and PDF to DOCX, code, email bodies, Notion blocks and READMEs, into one searchable corpus on Supabase.",
       ]},
       { h: "Ask, and see the source", em: "see the source", p: [
-        "Ask a question and Groq Llama 3.3 70B answers with numbered citations back to the exact file it pulled from, so there is no hallucination and every claim is clickable. A react-three-fiber 3D galaxy lays out every file as a star, clustered by type, with bezier knowledge-graph edges between them.",
+        "Ask a question and Groq Llama 3.3 70B answers with numbered citations back to the exact file it pulled from, so each claim can be inspected against its source. A react-three-fiber 3D galaxy lays out every file as a star, clustered by type, with bezier knowledge-graph edges between them.",
         "WEB mode falls back to live DuckDuckGo search, and DEEP mode reframes the query as a three-step research pass. It was built solo in about a day between exam revision sessions, and took a place in the Wikithon '26 finals.",
       ]},
     ],
