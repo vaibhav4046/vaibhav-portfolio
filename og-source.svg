@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff812e" stop-opacity=".9"/>
+      <stop offset=".3" stop-color="#ff5a00" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#ff5a00" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#ffffff" stroke-opacity=".05"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#080808"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="42" y="42" width="1116" height="546" rx="30" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+  <circle cx="935" cy="300" r="230" fill="url(#glow)"/>
+  <g fill="none" stroke="#ff6a1a">
+    <ellipse cx="935" cy="300" rx="184" ry="82" stroke-opacity=".42"/>
+    <ellipse cx="935" cy="300" rx="184" ry="82" stroke-opacity=".26" transform="rotate(58 935 300)"/>
+    <ellipse cx="935" cy="300" rx="184" ry="82" stroke-opacity=".18" transform="rotate(-50 935 300)"/>
+  </g>
+  <g fill="#f7f7f5">
+    <circle cx="803" cy="218" r="4" fill="#ff6a1a"/>
+    <circle cx="1061" cy="223" r="3" opacity=".7"/>
+    <circle cx="1050" cy="379" r="4" fill="#ff6a1a"/>
+    <circle cx="827" cy="402" r="3" opacity=".7"/>
+    <circle cx="935" cy="300" r="32" fill="#ff6a1a"/>
+    <circle cx="924" cy="289" r="9" fill="#ffd2b8"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="82" y="105" fill="#ff6a1a" font-size="18" font-weight="700" letter-spacing="3">VAIBHAV LALWANI / AI SYSTEMS ENGINEER</text>
+    <text x="82" y="210" fill="#f7f7f5" font-size="72" font-weight="700" letter-spacing="-4">AI systems that</text>
+    <text x="82" y="292" fill="#f7f7f5" font-size="72" font-weight="700" letter-spacing="-4">hold up in the</text>
+    <text x="82" y="374" fill="#ff6a1a" font-size="72" font-weight="700" letter-spacing="-4">real world.</text>
+    <text x="82" y="452" fill="#b4b4ae" font-size="25">Production LLM applications, retrieval systems and AI agents.</text>
+    <text x="82" y="540" fill="#85857f" font-size="15" font-weight="700" letter-spacing="2">LIVERPOOL, UK  ·  LLM APPS  ·  RAG  ·  AGENTS  ·  EVALUATION</text>
+  </g>
+</svg>

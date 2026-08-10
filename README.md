@@ -1,92 +1,76 @@
-# Vaibhav Lalwani — Portfolio
+# Vaibhav Lalwani — AI Systems Engineer
 
 <p align="center">
-  <a href="https://vaibhavlalwani.vercel.app"><img src="docs/screenshots/hero.png" alt="Personal portfolio - Vaibhav Lalwani" width="100%" /></a>
+  <a href="https://vaibhavlalwani.vercel.app">
+    <img src="og.png" alt="Vaibhav Lalwani — AI systems that hold up in the real world" width="100%" />
+  </a>
 </p>
 
-Static, hand-coded portfolio site. No build step. The repository root is the single deployment source for Vercel.
+<p align="center">
+  <a href="https://vaibhavlalwani.vercel.app"><strong>Live portfolio</strong></a>
+  · <a href="https://vaibhavlalwani.vercel.app/work">Work archive</a>
+  · <a href="https://www.linkedin.com/in/vaibhav-lalwani">LinkedIn</a>
+  · <a href="https://github.com/vaibhav4046">GitHub</a>
+</p>
 
-## Files
+A fast, proof-first portfolio for production LLM applications, retrieval systems and AI agents. The site is hand-built with semantic HTML, modern CSS and dependency-free JavaScript, then deployed from `main` to Vercel.
 
-- `index.html` — content
-- `style.css` — design tokens + layout
-- `script.js` — theme toggle, sticky bar, footer year
-- `api/linkedin-posts.js` — optional LinkedIn post sync endpoint for Vercel
-- `vercel.json` — static routing and cache policy for Vercel
+## What makes it different
+
+- **One purposeful 3D scene:** a procedural AI systems core rendered with projected 3D geometry, pointer depth and no runtime library.
+- **Proof over project grids:** three flagship systems lead with the problem, engineering decision, outcome, live product and source.
+- **Readable by default:** high-contrast black, warm white, grey and orange; restrained motion; visible focus; semantic headings.
+- **Progressive enhancement:** the portfolio content remains usable if JavaScript, animation or the canvas is unavailable.
+- **Mobile-aware:** accessible navigation, compact layouts, capped canvas density and a 30 fps mobile render budget.
+- **No framework or tracker:** no client framework, analytics SDK or third-party font request on the critical path.
+
+## Site map
+
+- `/` — positioning, selected work, about, experience, recognition, research, capabilities, education and contact
+- `/work` — complete work archive
+- `/work/{project}` — six detailed case studies
+- `/Vaibhav_Lalwani_Resume.pdf` — résumé
+
+## Architecture
+
+| File | Responsibility |
+|---|---|
+| `index.html` | Homepage content and structured metadata |
+| `style.css` | Design tokens, responsive layout, accessibility and motion |
+| `script.js` | Navigation, reveal logic and procedural 3D renderer |
+| `scripts/build-pages.cjs` | Canonical archive and case-study data/templates |
+| `scripts/site-audit.mjs` | Static route, metadata, asset and link-integrity checks |
+| `work.html`, `work/*.html` | Generated archive and case-study output |
+| `vercel.json` | Clean URLs, security headers and cache policy |
 
 ## Run locally
 
-Open `index.html` in your browser. That's it.
-
-For a dev server (auto-reload):
-```
-cd portfolio
-python -m http.server 8000
-# then open http://localhost:8000
+```bash
+python3 -m http.server 4173
 ```
 
-## Deploy
+Open `http://localhost:4173`.
 
-### GitHub Pages
-1. Push folder to a public repo named `portfolio` (or any).
-2. Settings → Pages → Source: `main` branch, root.
-3. Live at `https://<your-handle>.github.io/portfolio/`.
+## Generate and verify
 
-### Vercel
-1. Connect GitHub repository `vaibhav4046/vaibhav-portfolio`.
-2. Production branch: `main`.
-3. Framework preset: `Other`.
-4. Root directory: repository root (`.`).
-5. Build command: empty.
-6. Output directory: `.`.
+```bash
+npm run generate
+npm test
+```
 
-### Netlify
-1. Drag the folder into netlify.com app drop zone.
-2. Live in seconds.
+The audit checks all eight HTML pages, internal routes and assets, heading structure, canonical metadata, image alternatives, external-link safety, syntax and accidental theme/font regressions.
 
-### Cloudflare Pages
-1. Connect repo → build command empty → output dir `/`.
-2. Done.
+## Performance contract
 
-## Custom domain
+- Core content is normal HTML; the canvas is decorative.
+- Device pixel ratio is capped at `1.5` (`1.25` on small screens).
+- Animation pauses offscreen and when the tab is hidden.
+- Reduced-motion and data-saver users receive a static frame.
+- Project screenshots use WebP with PNG fallbacks.
+- Target Core Web Vitals: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1.
 
-Point an A or CNAME record to your host. Update `<meta property="og:*">` in `index.html` if you set up social previews.
+## Deployment
 
-## Edit content
+Vercel is connected to `vaibhav4046/vaibhav-portfolio` with Framework Preset **Other**, repository root as the output, and `main` as the production branch. A push to `main` updates [vaibhavlalwani.vercel.app](https://vaibhavlalwani.vercel.app).
 
-- Swap in your real GitHub URL where `https://github.com/vaibhav4046` appears.
-- Update the experience timeline dates, employers, bullets.
-- Add or remove project cards inside the `<section id="work">` block.
-- Update contact links at bottom.
-
-## Theming
-
-- Default: dark.
-- User preference saved to localStorage.
-- Falls back to `prefers-color-scheme` if no preference saved.
-- Tweak colours under the `:root` and `[data-theme="dark"]` blocks in `style.css`.
-
-## LinkedIn post sync
-
-The LinkedIn section is hidden until OAuth credentials are configured in Vercel.
-
-Required environment variables:
-
-- `LINKEDIN_ACCESS_TOKEN` — member OAuth token with the approved post-read permission.
-- `LINKEDIN_AUTHOR_URN` — LinkedIn member URN, for example `urn:li:person:<id>`.
-- `LINKEDIN_API_VERSION` — optional, defaults to `202602`.
-
-After setting env vars, redeploy. The portfolio calls `/api/linkedin-posts` and renders the latest returned posts.
-
-## Accessibility
-
-- Semantic HTML, single h1, clear heading hierarchy.
-- High-contrast text in both modes.
-- Reduced-motion respected.
-- All interactive elements keyboard-reachable.
-
-## Performance
-
-- 3 files, ~25 KB total before fonts.
-- Google Fonts preconnected; everything else inline.
-- No JavaScript framework. No tracking.
+This README and social preview are intentionally designed to make the repository useful when pinned on the GitHub profile. Pinning itself is GitHub profile metadata and must be done from **Profile → Customize your pins**.

@@ -1,9 +1,9 @@
 /* ============================================================
-   Build the Swiss-editorial subpages from one data source:
+   Build the portfolio subpages from one data source:
      - /work.html          (full archive, newest first)
      - /work/<slug>.html   (6 per-project case studies)
    CSP-safe output: no inline styles, no inline scripts.
-   Only /style.css + /script.js + Google Fonts + JSON-LD.
+   Only self-hosted /style.css + /script.js + JSON-LD.
    Prose is truthful, pulled from the live committed portfolio.
    No em-dashes anywhere (user writing-style rule): use commas,
    colons, en-dash for ranges, and the middot separator.
@@ -22,13 +22,14 @@ function head(opts) {
   const canonical = SITE + opts.canonical;
   const ogImage = SITE + (opts.ogImage || "/og.png");
   return `<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${opts.title}</title>
   <meta name="description" content="${opts.desc}" />
   <meta name="author" content="Vaibhav Lalwani" />
+  <meta name="theme-color" content="#080808" />
   <link rel="canonical" href="${canonical}" />
 
   <meta property="og:type" content="website" />
@@ -38,10 +39,8 @@ function head(opts) {
   <meta property="og:image" content="${ogImage}" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href="/img/profile.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
 ${opts.extraLD ? "\n  " + opts.extraLD + "\n" : ""}</head>
 <body>
@@ -52,21 +51,25 @@ ${opts.extraLD ? "\n  " + opts.extraLD + "\n" : ""}</head>
     <a class="brand" href="/" aria-label="Vaibhav Lalwani · home">
       <img class="brand-mark" src="/img/profile.jpg" alt="" width="30" height="30" />
       <span class="brand-text">Vaibhav&nbsp;Lalwani</span>
-      <span class="brand-index">/ VL·26</span>
+      <span class="brand-index">/ SYSTEMS·26</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="/work">Work</a>
+      <a href="/#about">About</a>
       <a href="/#experience">Experience</a>
-      <a href="/#recognition">Recognition</a>
-      <a href="/#research">Research</a>
       <a href="/#contact">Contact</a>
     </nav>
-    <a class="nav-min mono" href="/#contact">Contact</a>
-    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-05c" target="_blank" rel="noopener">Résumé</a>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">
-      <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-      <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">Résumé</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span>Menu</span><i aria-hidden="true"></i>
     </button>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+      <a href="/work"><span>01</span> Work</a>
+      <a href="/#about"><span>02</span> About</a>
+      <a href="/#experience"><span>03</span> Experience</a>
+      <a href="/#contact"><span>04</span> Contact</a>
+      <a href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener"><span>PDF</span> Résumé</a>
+    </nav>
   </header>
 `;
 }
@@ -80,6 +83,7 @@ function foot() {
         <nav aria-label="Footer">
           <a href="/#work">Work</a>
           <a href="/work">Archive</a>
+          <a href="/#about">About</a>
           <a href="/#experience">Experience</a>
           <a href="/#contact">Contact</a>
           <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener">GitHub</a>
@@ -152,7 +156,7 @@ const ARCHIVE = [
   {
     num: "07", name: "Recoup", tag: "Agents · Fintech",
     desc: "An AI money-recovery agent. Scans real Gmail receipts, grounds every claim in consumer-protection law, and stops at a human approval gate before it acts.",
-    live: "https://recoup-agent-681822930558.us-central1.run.app", source: "https://github.com/vaibhav4046/recoup",
+    source: "https://github.com/vaibhav4046/recoup",
   },
   {
     num: "08", name: "RecallOps Cortex", tag: "Agents · SRE",
@@ -478,7 +482,7 @@ function buildArchive() {
     <section class="section wrap" aria-labelledby="archive-heading">
       <div class="section-head">
         <span class="section-index"><b>&#8734;</b> / Archive</span>
-        <h2 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h2>
+        <h1 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h1>
         <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Six have a full case study; the rest link straight to the live app and the source.</p>
       </div>
 
@@ -555,6 +559,7 @@ function renderPager(d) {
 }
 
 function buildDetail(slug, d) {
+  var webp = d.img.replace(/\.png$/i, ".webp");
   var ld = `<script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -594,7 +599,10 @@ function buildDetail(slug, d) {
 ${renderCta(d.cta)}
       </div>
       <figure class="detail-figure">
-        <img src="${d.img}" alt="${d.imgAlt}" width="1440" height="810" loading="eager" decoding="async" />
+        <picture>
+          <source srcset="${webp}" type="image/webp" />
+          <img src="${d.img}" alt="${d.imgAlt}" width="1440" height="810" loading="eager" decoding="async" />
+        </picture>
       </figure>
     </header>
 
@@ -632,7 +640,7 @@ function write(rel, content) {
 }
 
 function main() {
-  console.log("Building Swiss subpages...");
+  console.log("Building portfolio subpages...");
   var bad = 0;
   bad += write("work.html", buildArchive());
   Object.keys(DETAILS).forEach(function (slug) {
