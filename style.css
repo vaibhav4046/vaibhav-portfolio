@@ -87,6 +87,7 @@ button { font: inherit; }
   transition: top .2s var(--ease);
 }
 .skip-link:focus { top: 1rem; }
+main[tabindex="-1"]:focus { outline: none; }
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
 .mono { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
 .muted { color: var(--muted); }

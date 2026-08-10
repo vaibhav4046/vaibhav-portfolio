@@ -208,6 +208,8 @@ const DETAILS = {
     title: "QueueProof",
     sub: "Ask one plain-language question across every source you own and get an answer where each claim opens back to the record it came from.",
     img: "/img/queueproof.png",
+    imgWidth: 1440,
+    imgHeight: 900,
     imgAlt: "QueueProof workspace: a cross-source question answered with numbered claim citations back to their original source records.",
     cta: [
       { label: "Live demo →", href: "https://queueproof.vercel.app", primary: true },
@@ -246,6 +248,8 @@ const DETAILS = {
     title: "HydraSentry",
     sub: "A memory-integrity firewall for AI agents. When a poisoned memory tries to make an agent act, it catches it and seals a signed certificate.",
     img: "/img/hydrasentry.png",
+    imgWidth: 3200,
+    imgHeight: 1800,
     imgAlt: "HydraSentry live console: a poisoned memory makes an AI refund agent auto-approve a payment, then the firewall blocks it and a signed Memory Integrity Certificate is issued.",
     cta: [
       { label: "Live demo →", href: "https://hydrasentry.vercel.app", primary: true },
@@ -283,6 +287,8 @@ const DETAILS = {
     title: "Kodro",
     sub: "An offline studio for the whole loop: design a robot, program it, and watch it work in a live 3D world. No account, no cloud.",
     img: "/img/kodro.png",
+    imgWidth: 1280,
+    imgHeight: 800,
     imgAlt: "Kodro studio: a code editor on the left, the City world with traffic and a pedestrian crossing and the robot in the middle, and live telemetry on the right.",
     cta: [
       { label: "Source →", href: "https://github.com/vaibhav4046/robolearn", primary: true },
@@ -319,6 +325,8 @@ const DETAILS = {
     title: "DRIP",
     sub: "An AI sneaker stylist that reasons about fit and taste instead of just returning search results, with live resale prices per shoe.",
     img: "/img/drip.png",
+    imgWidth: 1440,
+    imgHeight: 810,
     imgAlt: "DRIP AI sneaker stylist: a For You feed, a shoe detail with live StockX resale price and buy link, and the multi-agent AI stylist chat.",
     cta: [
       { label: "Live demo →", href: "https://drip-two-rho.vercel.app", primary: true },
@@ -355,6 +363,8 @@ const DETAILS = {
     title: "Qyntra",
     sub: "A private Wikipedia compiled from your own files. Ask a question and it answers straight from your material, every claim clickable.",
     img: "/img/qyntra.png",
+    imgWidth: 1568,
+    imgHeight: 974,
     imgAlt: "Qyntra Personal Knowledge OS dashboard with a 3D galaxy view of ingested files.",
     cta: [
       { label: "Live demo →", href: "https://qyntra-app.vercel.app", primary: true },
@@ -393,6 +403,8 @@ const DETAILS = {
     title: "DelOS",
     sub: "A browser-OS where multi-agent orchestration is wired in by default, so agents keep flowing instead of colliding under load.",
     img: "/img/delos.png",
+    imgWidth: 2880,
+    imgHeight: 1800,
     imgAlt: "DelOS browser-OS with multi-agent orchestration, an xterm Agent Fleet, a force-directed memory graph and a HydraDB-backed knowledge layer.",
     cta: [
       { label: "Live demo →", href: "https://delrio.vercel.app", primary: true },
@@ -411,13 +423,13 @@ const DETAILS = {
         "DelOS is a browser-OS where multi-agent orchestration is a default, not a feature bolted on later. Memory, Tools, Recovery and Adaptation are first-class primitives, and agents build the apps live in front of you.",
       ]},
       { h: "Agents that flow under load", em: "flow under load", p: [
-        "Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace, which is the serverless answer to git worktrees. A six-provider LLM cascade across Groq, Mistral, Gemini, NIM, Cerebras, Bytez and OpenRouter keeps the OS responsive when any single provider rate-limits.",
+        "Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace, which is the serverless answer to git worktrees. A seven-provider LLM cascade across Groq, Mistral, Gemini, NIM, Cerebras, Bytez and OpenRouter keeps the OS responsive when any single provider rate-limits.",
         "A Memory Browser renders a force-directed knowledge graph over HydraDB graph and vector storage with a three-tier write-guard, and SSE streams every phase, from plan to tool calls to recoveries to usage, into the terminal so you watch the agent think. It was built solo across a 48-hour sprint, with 79 endpoints and a clean regression pass.",
       ]},
     ],
     features: [
       ["Agent Fleet", "Parallel agents in real xterm.js panes, each on its own isolated HydraDB tenant."],
-      ["Six-provider cascade", "The OS stays responsive by falling across seven providers when one rate-limits."],
+      ["Seven-provider cascade", "The OS stays responsive by falling across seven providers when one rate-limits."],
       ["Memory Browser", "A force-directed graph over HydraDB graph and vector storage, write-guarded."],
       ["Watch it think", "SSE streams plan, tool calls, recoveries and usage straight into the terminal."],
     ],
@@ -472,7 +484,7 @@ function buildArchive() {
   });
 
   page += `
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span class="sep">/</span>
@@ -582,7 +594,7 @@ function buildDetail(slug, d) {
   });
 
   page += `
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumb wrap" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span class="sep">/</span>
@@ -601,7 +613,7 @@ ${renderCta(d.cta)}
       <figure class="detail-figure">
         <picture>
           <source srcset="${webp}" type="image/webp" />
-          <img src="${d.img}" alt="${d.imgAlt}" width="1440" height="810" loading="eager" decoding="async" />
+          <img src="${d.img}" alt="${d.imgAlt}" width="${d.imgWidth}" height="${d.imgHeight}" loading="eager" decoding="async" />
         </picture>
       </figure>
     </header>

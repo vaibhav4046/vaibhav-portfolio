@@ -61,7 +61,7 @@
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumb wrap" aria-label="Breadcrumb">
       <a href="/">Home</a>
       <span class="sep">/</span>
@@ -82,7 +82,7 @@
       <figure class="detail-figure">
         <picture>
           <source srcset="/img/delos.webp" type="image/webp" />
-          <img src="/img/delos.png" alt="DelOS browser-OS with multi-agent orchestration, an xterm Agent Fleet, a force-directed memory graph and a HydraDB-backed knowledge layer." width="1440" height="810" loading="eager" decoding="async" />
+          <img src="/img/delos.png" alt="DelOS browser-OS with multi-agent orchestration, an xterm Agent Fleet, a force-directed memory graph and a HydraDB-backed knowledge layer." width="2880" height="1800" loading="eager" decoding="async" />
         </picture>
       </figure>
     </header>
@@ -100,12 +100,12 @@
         <h2>The <span class="em">idea</span></h2>
         <p>DelOS is a browser-OS where multi-agent orchestration is a default, not a feature bolted on later. Memory, Tools, Recovery and Adaptation are first-class primitives, and agents build the apps live in front of you.</p>
         <h2>Agents that <span class="em">flow under load</span></h2>
-        <p>Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace, which is the serverless answer to git worktrees. A six-provider LLM cascade across Groq, Mistral, Gemini, NIM, Cerebras, Bytez and OpenRouter keeps the OS responsive when any single provider rate-limits.</p>
+        <p>Real xterm.js terminal panes drive an Agent Fleet of parallel agents, each on an isolated HydraDB tenant subnamespace, which is the serverless answer to git worktrees. A seven-provider LLM cascade across Groq, Mistral, Gemini, NIM, Cerebras, Bytez and OpenRouter keeps the OS responsive when any single provider rate-limits.</p>
         <p>A Memory Browser renders a force-directed knowledge graph over HydraDB graph and vector storage with a three-tier write-guard, and SSE streams every phase, from plan to tool calls to recoveries to usage, into the terminal so you watch the agent think. It was built solo across a 48-hour sprint, with 79 endpoints and a clean regression pass.</p>
         <h2>Highlights</h2>
         <ul class="feature-list">
           <li><b>Agent Fleet</b><span>Parallel agents in real xterm.js panes, each on its own isolated HydraDB tenant.</span></li>
-          <li><b>Six-provider cascade</b><span>The OS stays responsive by falling across seven providers when one rate-limits.</span></li>
+          <li><b>Seven-provider cascade</b><span>The OS stays responsive by falling across seven providers when one rate-limits.</span></li>
           <li><b>Memory Browser</b><span>A force-directed graph over HydraDB graph and vector storage, write-guarded.</span></li>
           <li><b>Watch it think</b><span>SSE streams plan, tool calls, recoveries and usage straight into the terminal.</span></li>
         </ul>

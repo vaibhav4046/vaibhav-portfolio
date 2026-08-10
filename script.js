@@ -121,7 +121,20 @@
 
   function initAnchorNavigation() {
     var runningFrame = 0;
-    all('a[href^="#"]').forEach(function (link) {
+    function finishNavigation(target, selector) {
+      try { history.pushState(null, "", selector); } catch (error) {}
+
+      var addedTabIndex = !target.hasAttribute("tabindex");
+      if (addedTabIndex) target.setAttribute("tabindex", "-1");
+      try { target.focus({ preventScroll: true }); }
+      catch (error) { target.focus(); }
+      if (addedTabIndex) {
+        target.addEventListener("blur", function () {
+          target.removeAttribute("tabindex");
+        }, { once: true });
+      }
+    }
+    all('a[href^="#"]:not(.skip-link)').forEach(function (link) {
       link.addEventListener("click", function (event) {
         var selector = link.getAttribute("href");
         if (!selector || selector === "#") return;
@@ -136,7 +149,7 @@
         var distance = end - start;
         if (reduceMotion || Math.abs(distance) < 80) {
           window.scrollTo(0, end);
-          try { history.pushState(null, "", selector); } catch (error) {}
+          finishNavigation(target, selector);
           return;
         }
         var duration = clamp(Math.abs(distance) * .16, 280, 520);
@@ -148,7 +161,7 @@
           if (progress < 1) runningFrame = window.requestAnimationFrame(step);
           else {
             runningFrame = 0;
-            try { history.pushState(null, "", selector); } catch (error) {}
+            finishNavigation(target, selector);
           }
         }
         runningFrame = window.requestAnimationFrame(step);
