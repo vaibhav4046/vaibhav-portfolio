@@ -70,7 +70,7 @@
   }
 
   function initScrollSpy() {
-    var links = all('.nav a[href^="#"]');
+    var links = all('.nav a[href^="#"], .mobile-nav a[href^="#"]');
     if (!links.length || !("IntersectionObserver" in window)) return;
     var targets = links.map(function (link) {
       var target = document.querySelector(link.getAttribute("href"));
@@ -84,11 +84,10 @@
           link.classList.remove("is-active");
           link.removeAttribute("aria-current");
         });
-        var match = targets.find(function (item) { return item.target === entry.target; });
-        if (match) {
+        targets.filter(function (item) { return item.target === entry.target; }).forEach(function (match) {
           match.link.classList.add("is-active");
           match.link.setAttribute("aria-current", "location");
-        }
+        });
       });
     }, { rootMargin: "-38% 0px -56% 0px", threshold: 0 });
     targets.forEach(function (item) { observer.observe(item.target); });
