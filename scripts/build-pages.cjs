@@ -465,7 +465,7 @@ function buildArchive() {
   var page = head({
     title: "Work archive · Vaibhav Lalwani",
     ogTitle: "Work archive · Vaibhav Lalwani",
-    desc: "Everything Vaibhav Lalwani has shipped: production LLM systems, autonomous agents, retrieval and full-stack apps, newest first, all live and documented.",
+    desc: "Everything Vaibhav Lalwani has shipped: production LLM systems, autonomous agents, retrieval and full-stack apps, with live demos or reproducible repositories.",
     canonical: "/work",
     ogImage: "/og.png",
     extraLD: ld,
@@ -483,7 +483,7 @@ function buildArchive() {
       <div class="section-head">
         <span class="section-index"><b>&#8734;</b> / Archive</span>
         <h1 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h1>
-        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Six have a full case study; the rest link straight to the live app and the source.</p>
+        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Six have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
       <div class="archive-index">
