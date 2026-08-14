@@ -199,7 +199,8 @@ main[tabindex="-1"]:focus { outline: none; }
 .hero-eyebrow .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px rgba(255,106,26,.1), 0 0 18px rgba(255,106,26,.7); }
 .hero-eyebrow .dot { color: var(--accent); }
 .hero-title { max-width: 11ch; font-size: clamp(3.3rem, 7.2vw, 7.7rem); font-weight: 780; line-height: .91; letter-spacing: -.062em; }
-.hero-title .line { display: block; overflow: hidden; padding-bottom: .05em; }
+/* The mask box carries extra room for descenders, pulled back so line rhythm is unchanged. */
+.hero-title .line { display: block; overflow: hidden; padding-bottom: .36em; margin-bottom: -.31em; }
 .hero-title .line > span { display: block; }
 .hero-title .mark, .mark, .em { color: var(--accent); }
 .hero-title .thin { font-weight: 350; }
@@ -257,7 +258,7 @@ main[tabindex="-1"]:focus { outline: none; }
 .stage-grid { position: absolute; inset: 0; opacity: .18; background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(circle at center, #000 10%, transparent 72%); pointer-events: none; }
 .stage-topline { position: absolute; top: 1.2rem; right: 1.25rem; left: 1.25rem; display: flex; justify-content: space-between; color: var(--faint); }
 .stage-topline span:first-child { color: var(--accent); }
-.stage-orbit-label { position: absolute; top: 12%; right: -8.5rem; color: rgba(255,255,255,.34); transform: rotate(90deg); transform-origin: center; }
+.stage-orbit-label { position: absolute; top: 3.4rem; right: .95rem; color: rgba(255,255,255,.34); writing-mode: vertical-rl; }
 .identity-card { position: absolute; left: 1.15rem; bottom: 1.15rem; display: grid; grid-template-columns: 52px 1fr 8px; align-items: center; gap: .78rem; min-width: min(290px, calc(100% - 2.3rem)); padding: .72rem .85rem; border: 1px solid var(--rule-strong); border-radius: 16px; background: rgba(11,11,11,.75); box-shadow: 0 18px 45px rgba(0,0,0,.34); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transform: translateZ(40px); }
 .identity-card img { width: 52px; height: 52px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255,106,26,.45); }
 .identity-card div { display: flex; flex-direction: column; min-width: 0; }
@@ -361,7 +362,7 @@ main[tabindex="-1"]:focus { outline: none; }
 .r-tag b { color: var(--accent); }
 .withheld { margin-top: .7rem; color: var(--faint) !important; font-size: .78rem !important; }
 .skills { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--rule); border-radius: 20px; background: var(--rule); }
-.skill-col { min-width: 0; padding: 1.2rem; background: var(--surface); }
+.skill-col { min-width: 0; padding: 1.2rem 1.2rem 1.45rem; background: var(--surface); }
 .skill-col h3 { margin-bottom: 1rem; color: var(--accent); font: 700 .66rem/1.2 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
 .chiplist { display: grid; gap: .42rem; }
 .chiplist li { color: var(--ink-soft); font-size: .87rem; }
@@ -441,7 +442,7 @@ main[tabindex="-1"]:focus { outline: none; }
 .p-name { font-size: 1.1rem; font-weight: 700; }
 
 /* Motion */
-@keyframes heroLine { from { opacity: 0; transform: translateY(105%); } to { opacity: 1; transform: none; } }
+@keyframes heroLine { from { opacity: 0; transform: translateY(148%); } to { opacity: 1; transform: none; } }
 @keyframes heroFade { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .hero-title .line > span { animation: heroLine .9s var(--ease) both; }
 .hero-title .line:nth-child(2) > span { animation-delay: .08s; }
@@ -503,10 +504,13 @@ main[tabindex="-1"]:focus { outline: none; }
 @media (max-width: 560px) {
   :root { --pad: 1rem; --section-y: 4.5rem; }
   body::before { background-size: 48px 48px; }
-  .topbar { padding-inline: .8rem; }
-  .brand-text { max-width: 70px; overflow: hidden; white-space: nowrap; }
+  .topbar { gap: .6rem; padding-inline: .85rem; }
+  .brand { gap: .5rem; min-height: 44px; }
+  .brand-mark { width: 30px; height: 30px; box-shadow: 0 0 0 3px rgba(255,106,26,.08); }
+  .brand-text { font-size: .85rem; white-space: nowrap; }
   .nav a { font-size: .6rem; }
-  .topbar-cta { min-height: 44px; padding: .55rem .62rem; font-size: .58rem; }
+  /* Résumé lives in the mobile menu at this width, so the pill is redundant. */
+  .topbar-cta { display: none; }
   .hero-title { font-size: clamp(3rem, 15.6vw, 4.8rem); letter-spacing: -.065em; }
   .hero-cta { flex-direction: column; }
   .hero-cta .btn { width: 100%; }
@@ -527,7 +531,18 @@ main[tabindex="-1"]:focus { outline: none; }
   .section-foot .btn { width: 100%; }
   .sec-top { grid-template-columns: 1fr; }
   .skills, .cert-grid { grid-template-columns: 1fr; }
+  .skill-col { padding: 1.05rem 1rem 1.2rem; }
+  /* One column of stacked lines runs ~2000px tall on a phone; wrap them into chips instead. */
+  .chiplist { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chiplist li { padding: .34rem .6rem; border: 1px solid var(--rule); border-radius: 999px; font-size: .78rem; }
   .contact-grid { grid-template-columns: 1fr; }
+  /* Short words like HOME are only ~26px wide, so the hit area is padded out and the gap trimmed to match. */
+  .card-link, .foot-meta nav a, .breadcrumb a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: .5rem; }
+  .card-link { margin-inline: -.5rem; }
+  .foot-meta nav { gap: .2rem .4rem; margin-left: -.5rem; }
+  .breadcrumb { gap: 0; margin-left: -.5rem; padding-top: 1.4rem; }
+  .breadcrumb .here { padding-left: .5rem; }
+  .back-to-top { right: .9rem; bottom: .9rem; }
   .foot-legal { flex-direction: column; }
   .archive-row { grid-template-columns: 28px 1fr; }
   .a-desc, .a-links { grid-column: 2; }
