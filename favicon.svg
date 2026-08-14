@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VL">
-  <rect width="64" height="64" rx="16" fill="#080808"/>
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#ff6a1a" stroke-width="2"/>
-  <path d="M13 18l10 29 10-29M39 18v29h13" fill="none" stroke="#f7f7f5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="52" cy="13" r="4" fill="#ff6a1a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Vaibhav Lalwani">
+  <defs>
+    <linearGradient id="vl-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1e1e"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#vl-tile)"/>
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="#ff6a1a" stroke-opacity=".6" stroke-width="2.5"/>
+  <path d="M7 18h9l5.5 19L27 18h9L26 46h-9z" fill="#f7f7f5"/>
+  <path d="M40 18h9v19h8v9H40z" fill="#ff6a1a"/>
 </svg>
