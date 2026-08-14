@@ -123,8 +123,8 @@ function linkRow(links) {
    ============================================================ */
 const ARCHIVE = [
   {
-    num: "01", name: "QueueProof", slug: "queueproof", tag: "Retrieval · 2026",
-    desc: "Evidence-backed cross-source retrieval. Ask one question across your tools and every claim in the answer opens back to the record it came from.",
+    num: "01", name: "QueueProof", slug: "queueproof", tag: "Retrieval · Winner",
+    desc: "Evidence-backed cross-source retrieval. Ask one question across your tools and every claim in the answer opens back to the record it came from. HydraDB × Connectors Hackathon winner.",
     live: "https://queueproof.vercel.app", source: "https://github.com/vaibhav4046/queueproof",
   },
   {
@@ -204,7 +204,7 @@ const ARCHIVE = [
 const DETAILS = {
   queueproof: {
     name: "QueueProof",
-    kicker: "HydraDB × Connectors Hackathon · Evidence-backed retrieval",
+    kicker: "HydraDB × Connectors Hackathon · Winner",
     title: "QueueProof",
     sub: "Ask one plain-language question across every source you own and get an answer where each claim opens back to the record it came from.",
     img: "/img/queueproof.png",
@@ -219,7 +219,7 @@ const DETAILS = {
     meta: [
       ["Role", "Solo build"],
       ["Year", "2026"],
-      ["Context", "HydraDB × Connectors Hackathon"],
+      ["Recognition", "HydraDB × Connectors Hackathon, Winner"],
       ["Stack", "Next.js 16 · React 19 · HydraDB · MCP"],
       ["Status", "Live, no login"],
     ],

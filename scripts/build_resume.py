@@ -1,3 +1,4 @@
+import importlib.util
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -19,8 +20,25 @@ RULE = colors.HexColor("#d9d9d6")
 ACCENT = colors.HexColor("#d94f00")
 LINK = colors.HexColor("#9f3a00")
 
-pdfmetrics.registerFont(TTFont("DejaVu", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
-pdfmetrics.registerFont(TTFont("DejaVu-Bold", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"))
+def font_dirs() -> list[Path]:
+    """DejaVu lives in system fonts on Linux and inside matplotlib's data dir elsewhere."""
+    dirs = [Path("/usr/share/fonts/truetype/dejavu")]
+    spec = importlib.util.find_spec("matplotlib")
+    if spec is not None and spec.origin:
+        dirs.append(Path(spec.origin).parent / "mpl-data" / "fonts" / "ttf")
+    return dirs
+
+
+def font_path(filename: str) -> str:
+    for directory in font_dirs():
+        candidate = directory / filename
+        if candidate.is_file():
+            return str(candidate)
+    raise FileNotFoundError(f"DejaVu font not found: {filename}")
+
+
+pdfmetrics.registerFont(TTFont("DejaVu", font_path("DejaVuSans.ttf")))
+pdfmetrics.registerFont(TTFont("DejaVu-Bold", font_path("DejaVuSans-Bold.ttf")))
 pdfmetrics.registerFontFamily("DejaVu", normal="DejaVu", bold="DejaVu-Bold", italic="DejaVu", boldItalic="DejaVu-Bold")
 
 styles = getSampleStyleSheet()
@@ -134,7 +152,7 @@ story.extend(role_row(
 story.append(section("Selected work"))
 projects = [
     ("HydraSentry", "HydraDB Build Blitz winner. Agent-memory integrity layer that checks provenance, blocks unsafe context and emits a signed review certificate.", "https://github.com/vaibhav4046/hydrasentry"),
-    ("QueueProof", "Cross-source retrieval workspace with claim-level citations and inspectable evidence across connected work sources.", "https://github.com/vaibhav4046/queueproof"),
+    ("QueueProof", "HydraDB Connectors Hackathon winner. Cross-source retrieval workspace with claim-level citations and inspectable evidence across connected work sources.", "https://github.com/vaibhav4046/queueproof"),
     ("Qyntra", "Wikithon 2026 finalist. Personal knowledge system combining grounded answers with a navigable 3D relationship map.", "https://github.com/vaibhav4046/qyntra-app"),
 ]
 for name, description, url in projects:
