@@ -171,78 +171,83 @@ function linkRow(links) {
    ============================================================ */
 const ARCHIVE = [
   {
-    num: "01", name: "QueueProof", slug: "queueproof", tag: "Retrieval · Winner",
+    num: "01", name: "Leverage", slug: "leverage", tag: "Agents · Buildathon",
+    desc: "An intelligence resource manager. Your best model keeps the plan, an auction hires cheaper models per task, a checkpoint survives every worker failure, and the repository's own tests decide what counts. RocketRide × SCU Buildathon entry.",
+    live: "https://useleverage.vercel.app", source: "https://github.com/vaibhav4046/leverage",
+  },
+  {
+    num: "02", name: "QueueProof", slug: "queueproof", tag: "Retrieval · Winner",
     desc: "Evidence-backed cross-source retrieval. Ask one question across your tools and every claim in the answer opens back to the record it came from. HydraDB × Connectors Hackathon winner.",
     live: "https://queueproof.vercel.app", source: "https://github.com/vaibhav4046/queueproof",
   },
   {
-    num: "02", name: "HydraSentry", slug: "hydrasentry", tag: "Agent security · Winner",
+    num: "03", name: "HydraSentry", slug: "hydrasentry", tag: "Agent security · Winner",
     desc: "A memory-integrity firewall for AI agents. Catches a poisoned memory before the agent acts and seals a signed certificate. HydraDB Build Blitz winner.",
     live: "https://hydrasentry.vercel.app", source: "https://github.com/vaibhav4046/hydrasentry",
   },
   {
-    num: "03", name: "Kodro", slug: "kodro", tag: "Simulation · MSc",
+    num: "04", name: "Kodro", slug: "kodro", tag: "Simulation · MSc",
     desc: "An offline robot design and simulation studio. Build a robot, program it, and watch it work in a live 3D world, all local with no cloud.",
     source: "https://github.com/vaibhav4046/robolearn",
   },
   {
-    num: "04", name: "Own Wiki", tag: "Local-first AI",
+    num: "05", name: "Own Wiki", tag: "Local-first AI",
     desc: "A desktop second brain powered by a local LLM. RAG chat over your own files, a 3D knowledge galaxy, and a multi-agent research swarm, zero cloud.",
     live: "https://github.com/vaibhav4046/mnemosyne/releases/latest", liveLabel: "Download",
     source: "https://github.com/vaibhav4046/mnemosyne",
   },
   {
-    num: "05", name: "DRIP", slug: "drip", tag: "Multi-agent · Commerce",
+    num: "06", name: "DRIP", slug: "drip", tag: "Multi-agent · Commerce",
     desc: "An AI sneaker stylist. Multi-agent styling that reasons about fit and taste, with live StockX resale prices and buy links per shoe.",
     live: "https://drip-two-rho.vercel.app", source: "https://github.com/vaibhav4046/drip-ai-sneaker-stylist",
   },
   {
-    num: "06", name: "Continuity", tag: "Memory agent",
+    num: "07", name: "Continuity", tag: "Memory agent",
     desc: "A self-evolving memory agent on HydraDB. Remembers across sessions, supersedes itself on contradiction, and warns you when recalled context changes the safe answer.",
     live: "https://continuity-six.vercel.app", source: "https://github.com/vaibhav4046/continuity",
   },
   {
-    num: "07", name: "Recoup", tag: "Agents · Fintech",
+    num: "08", name: "Recoup", tag: "Agents · Fintech",
     desc: "An AI money-recovery agent. Scans real Gmail receipts, grounds every claim in consumer-protection law, and stops at a human approval gate before it acts.",
     source: "https://github.com/vaibhav4046/recoup",
   },
   {
-    num: "08", name: "RecallOps Cortex", tag: "Agents · SRE",
+    num: "09", name: "RecallOps Cortex", tag: "Agents · SRE",
     desc: "A recall-containment command center. A live openFDA recall scoped across BigQuery into a blast radius, with drafted actions behind an audit chain.",
     live: "https://recall-ops.vercel.app", source: "https://github.com/vaibhav4046/RecallOps",
   },
   {
-    num: "09", name: "Qyntra", slug: "qyntra", tag: "Retrieval · Finalist",
+    num: "10", name: "Qyntra", slug: "qyntra", tag: "Retrieval · Finalist",
     desc: "A personal knowledge OS. Ingest your files, explore them as a 3D galaxy, and ask questions answered from your own material. Wikithon '26 finalist.",
     live: "https://qyntra-app.vercel.app", source: "https://github.com/vaibhav4046/qyntra-app",
   },
   {
-    num: "10", name: "DelOS", slug: "delos", tag: "Multi-agent · OS",
+    num: "11", name: "DelOS", slug: "delos", tag: "Multi-agent · OS",
     desc: "A browser-OS where agents flow under pressure. An xterm agent fleet on isolated HydraDB tenants, coordinated so agents don't collide under load.",
     live: "https://delrio.vercel.app", source: "https://github.com/vaibhav4046/delos",
   },
   {
-    num: "11", name: "Cogniloop", tag: "AI · EdTech",
+    num: "12", name: "Cogniloop", tag: "AI · EdTech",
     desc: "A Socratic study system. Grades free-form answers against a rubric and tracks concept mastery, sub-second on Groq Llama 3.3 70B.",
     live: "https://cogniloop-vaibhav4046s-projects.vercel.app", source: "https://github.com/vaibhav4046/cogniloop",
   },
   {
-    num: "12", name: "MedReviewAI", tag: "Medical AI · RAG",
+    num: "13", name: "MedReviewAI", tag: "Medical AI · RAG",
     desc: "A grounded medical paper analyzer. Searches 13 academic sources, extracts PICO fields, and keeps generated claims tied to verbatim source evidence.",
     live: "https://medai-deploy.vercel.app", source: "https://github.com/vaibhav4046/MedReviewAI",
   },
   {
-    num: "13", name: "ScholarAI", tag: "Research · Extension",
+    num: "14", name: "ScholarAI", tag: "Research · Extension",
     desc: "A Chrome extension that turns research papers into interactive AI sessions with summaries, extracted claims, and Q&A over the paper.",
     source: "https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension",
   },
   {
-    num: "14", name: "MCP Marketplace", tag: "MCP · Registry",
+    num: "15", name: "MCP Marketplace", tag: "MCP · Registry",
     desc: "A searchable registry of Model Context Protocol servers with one-line install snippets for Claude Desktop, Cursor and Claude Code, synced daily.",
     live: "https://mcp-hub-registry.vercel.app", source: "https://github.com/vaibhav4046/mcp-marketplace",
   },
   {
-    num: "15", name: "The Film Theory Vault", tag: "Web · Just for fun",
+    num: "16", name: "The Film Theory Vault", tag: "Web · Just for fun",
     desc: "Search any movie and the page regenerates in a cinematic style, auto-themed to the film's colours, with AI-written fan theories behind a spoiler gate.",
     live: "https://film-theory-vault.vercel.app", source: "https://github.com/vaibhav4046/film-theory-vault",
   },
@@ -250,6 +255,46 @@ const ARCHIVE = [
 
 /* ---------- detail-page content (the 6 case studies) ---------- */
 const DETAILS = {
+  leverage: {
+    name: "Leverage",
+    kicker: "RocketRide × SCU Buildathon · 2026",
+    title: "Leverage",
+    sub: "The intelligence resource manager under the model you already pay for. Cheaper models do the work, a checkpoint survives every failure, and the repository's own tests decide what counts.",
+    img: "/img/leverage.png",
+    imgWidth: 1440,
+    imgHeight: 900,
+    imgAlt: "Leverage Mission Control: a five-task billing SaaS mission completed by five hired workers in 41.6 seconds, every task green, paid spend zero.",
+    cta: [
+      { label: "Live site →", href: "https://useleverage.vercel.app", primary: true },
+      { label: "Source →", href: "https://github.com/vaibhav4046/leverage" },
+      { label: "Technical report →", href: "https://github.com/vaibhav4046/leverage/blob/master/docs/TECHNICAL_REPORT.md" },
+    ],
+    meta: [
+      ["Role", "Solo build"],
+      ["Year", "2026"],
+      ["Recognition", "RocketRide × SCU Buildathon entry"],
+      ["Stack", "Next.js 16 · TypeScript · MCP · RocketRide pipelines"],
+      ["Status", "Live, 97 tests green"],
+    ],
+    prose: [
+      { h: "The problem", em: "problem", p: [
+        "Shipping with a frontier model in the loop means paying frontier prices for boilerplate, and losing the whole thread when a rate limit lands. The expensive model is asked to do everything, including the fortieth test, and when it fails mid-task the next attempt starts from zero.",
+      ]},
+      { h: "How it works", em: "works", p: [
+        "Leverage sits under the model you already pay for and turns a repository plus a goal into a task graph, each task held to the tests that define it. An auction scores every model it can reach, local runtime, free routes or a subscription seat, on task fit, verified history and cost, then hires the winner for that one task.",
+        "When a worker hits a limit or fails a test, Leverage writes down what it understood, decisions, files touched, checks already passing, what is left, and hands that checkpoint to a replacement. Nothing counts until the suite is green. Every hire, handoff and proof is on the console, and the same control plane is exposed over MCP to Claude, Codex or Cursor.",
+      ]},
+    ],
+    features: [
+      ["Tests as the boss", "A task is finished when the test runner says so, then the whole suite runs once more and a proof pack is written."],
+      ["Per-task auction", "Local, free and subscription models compete on fit, verified success and cost; a zero budget removes paid routes before the auction starts."],
+      ["Cognitive handoff", "A failed worker leaves a compact checkpoint, 76 to 91 percent smaller than its context, and the replacement resumes instead of restarting."],
+      ["Receipts on screen", "Five modules of a billing SaaS by five workers in 41.6 seconds, whole suite green, paid inference zero, all of it in the execution log."],
+    ],
+    prev: null,
+    next: { slug: "queueproof", name: "QueueProof" },
+  },
+
   queueproof: {
     name: "QueueProof",
     kicker: "HydraDB × Connectors Hackathon · Winner",
@@ -286,7 +331,7 @@ const DETAILS = {
       ["Deterministic queue", "The read contract compiles into a repeatable priority queue and an MCP surface."],
       ["Approval-gated writes", "Nothing is written until you approve it, and a write only counts once its response ID is stored."],
     ],
-    prev: null,
+    prev: { slug: "leverage", name: "Leverage" },
     next: { slug: "hydrasentry", name: "HydraSentry" },
   },
 
@@ -543,7 +588,7 @@ function buildArchive() {
       <div class="section-head">
         <span class="section-index"><b>&#8734;</b> / Archive</span>
         <h1 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h1>
-        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Six have a full case study; the rest link to the strongest available demo, release or repository.</p>
+        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Seven have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
       <div class="archive-index">
