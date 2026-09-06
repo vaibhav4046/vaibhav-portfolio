@@ -176,78 +176,163 @@ const ARCHIVE = [
     live: "https://useleverage.vercel.app", source: "https://github.com/vaibhav4046/leverage",
   },
   {
-    num: "02", name: "QueueProof", slug: "queueproof", tag: "Retrieval · Winner",
+    num: "02", name: "Cherry", tag: "Agents · WebMCP",
+    desc: "The user-owned apprenticeship, memory, mission and verification layer for AI agents: skills a person can inspect, receipts a person can verify. WebMCP Challenge 2026 entry.",
+    live: "https://cherry-wine.vercel.app", source: "https://github.com/vaibhav4046/cherry",
+  },
+  {
+    num: "03", name: "Atkin", tag: "Documents · Buildathon",
+    desc: "The document decision desk. Screening, evidence extraction with quote verification and clean exports for anyone facing a stack of documents and a deadline. RocketRide × SCU Buildathon entry.",
+    live: "https://atkin-app.vercel.app", source: "https://github.com/vaibhav4046/atkin",
+  },
+  {
+    num: "04", name: "XACT", tag: "Evals · Release gate",
+    desc: "Prove the fix. Turns one bad AI response into a regression test that never fails twice: a complaint-to-regression release gate for AI agents, built on RocketRide.",
+    live: "https://vaibhav4046.github.io/xact/", source: "https://github.com/vaibhav4046/xact",
+  },
+  {
+    num: "05", name: "Lacuna", slug: "lacuna", tag: "Agent memory · HydraDB",
+    desc: "Temporal, provenance-first memory for AI agents on HydraDB. What is true now, what changed, which sources disagree and where the evidence is, over web, CLI, API and seven read-only MCP tools. Hack Hydra 2026, Track 3.",
+    live: "https://lacuna-five.vercel.app", source: "https://github.com/vaibhav4046/lacuna",
+  },
+  {
+    num: "06", name: "QueueProof", slug: "queueproof", tag: "Retrieval · Winner",
     desc: "Evidence-backed cross-source retrieval. Ask one question across your tools and every claim in the answer opens back to the record it came from. HydraDB × Connectors Hackathon winner.",
     live: "https://queueproof.vercel.app", source: "https://github.com/vaibhav4046/queueproof",
   },
   {
-    num: "03", name: "HydraSentry", slug: "hydrasentry", tag: "Agent security · Winner",
+    num: "07", name: "skillister", tag: "Developer tools · Agents",
+    desc: "Find, route and install agent skills across any agent CLI. One index of about 1,200 skills serving five hosts, with an audit that says what a skill actually does.",
+    live: "https://skillister.vercel.app", source: "https://github.com/vaibhav4046/skillister",
+  },
+  {
+    num: "08", name: "FinalTab", tag: "Fintech · Onchain",
+    desc: "Receipt to verified on-chain settlement. Groq vision reads the receipt, a deterministic money engine splits it, and an EIP-3009 batch settlement is executed and chain-verified on Base Sepolia.",
+    live: "https://finaltab.vercel.app", source: "https://github.com/vaibhav4046/finaltab",
+  },
+  {
+    num: "09", name: "BhashaFix", tag: "i18n · Verification",
+    desc: "Open-source localisation release engine: real browser evidence, bounded repair and identical-test verification across web, CLI, MCP and CI.",
+    live: "https://bhashafix.vercel.app", source: "https://github.com/vaibhav4046/bhashafix",
+  },
+  {
+    num: "10", name: "Firebreak", tag: "Data · SRE agent",
+    desc: "A data-incident SRE agent on DataHub. Finds the blast radius of a bad dataset, drafts the fix and keeps the receipts for the review.",
+    live: "https://datahub-firebreak.vercel.app", source: "https://github.com/vaibhav4046/firebreak",
+  },
+  {
+    num: "11", name: "Veritas", tag: "Integrity · Agents",
+    desc: "An integrity agent for agent outputs: SHA-256 digests and Ed25519 attestations anyone can verify. NANDA hackathon entry.",
+    live: "https://veritas-attest.vercel.app", source: "https://github.com/vaibhav4046/veritas",
+  },
+  {
+    num: "12", name: "HydraSentry", slug: "hydrasentry", tag: "Agent security · Winner",
     desc: "A memory-integrity firewall for AI agents. Catches a poisoned memory before the agent acts and seals a signed certificate. HydraDB Build Blitz winner.",
     live: "https://hydrasentry.vercel.app", source: "https://github.com/vaibhav4046/hydrasentry",
   },
   {
-    num: "04", name: "Kodro", slug: "kodro", tag: "Simulation · MSc",
+    num: "13", name: "Kodro", slug: "kodro", tag: "Simulation · MSc",
     desc: "An offline robot design and simulation studio. Build a robot, program it, and watch it work in a live 3D world, all local with no cloud.",
-    source: "https://github.com/vaibhav4046/robolearn",
+    live: "https://vaibhav4046.github.io/kodro/", source: "https://github.com/vaibhav4046/kodro",
   },
   {
-    num: "05", name: "Own Wiki", tag: "Local-first AI",
+    num: "14", name: "Own Wiki", tag: "Local-first AI",
     desc: "A desktop second brain powered by a local LLM. RAG chat over your own files, a 3D knowledge galaxy, and a multi-agent research swarm, zero cloud.",
     live: "https://github.com/vaibhav4046/mnemosyne/releases/latest", liveLabel: "Download",
     source: "https://github.com/vaibhav4046/mnemosyne",
   },
   {
-    num: "06", name: "DRIP", slug: "drip", tag: "Multi-agent · Commerce",
+    num: "15", name: "DRIP", slug: "drip", tag: "Multi-agent · Commerce",
     desc: "An AI sneaker stylist. Multi-agent styling that reasons about fit and taste, with live StockX resale prices and buy links per shoe.",
     live: "https://drip-two-rho.vercel.app", source: "https://github.com/vaibhav4046/drip-ai-sneaker-stylist",
   },
   {
-    num: "07", name: "Continuity", tag: "Memory agent",
+    num: "16", name: "Continuity", tag: "Memory agent",
     desc: "A self-evolving memory agent on HydraDB. Remembers across sessions, supersedes itself on contradiction, and warns you when recalled context changes the safe answer.",
     live: "https://continuity-six.vercel.app", source: "https://github.com/vaibhav4046/continuity",
   },
   {
-    num: "08", name: "Recoup", tag: "Agents · Fintech",
+    num: "17", name: "Recoup", tag: "Agents · Fintech",
     desc: "An AI money-recovery agent. Scans real Gmail receipts, grounds every claim in consumer-protection law, and stops at a human approval gate before it acts.",
     source: "https://github.com/vaibhav4046/recoup",
   },
   {
-    num: "09", name: "RecallOps Cortex", tag: "Agents · SRE",
+    num: "18", name: "Keystone", tag: "Code review · Graph",
+    desc: "Governed change review on the GitLab Orbit code knowledge graph: deterministic blast radius, precedent at the moment of decision and a tamper-evident audit ledger. GitLab Transcend Hackathon entry.",
+    source: "https://github.com/vaibhav4046/keystone",
+  },
+  {
+    num: "19", name: "PitchCraft", tag: "Agents · Trust and safety",
+    desc: "An agent that flags ticket-resale scams. Gemini and Google ADK grounded in MongoDB Atlas Vector Search and the MongoDB MCP server. Google Cloud Rapid Agent Hackathon, MongoDB track.",
+    live: "https://frontend-nu-ochre-z41mw3z0l5.vercel.app", source: "https://github.com/vaibhav4046/PitchCraft-Agent",
+  },
+  {
+    num: "20", name: "RecallOps Cortex", tag: "Agents · SRE",
     desc: "A recall-containment command center. A live openFDA recall scoped across BigQuery into a blast radius, with drafted actions behind an audit chain.",
     live: "https://recall-ops.vercel.app", source: "https://github.com/vaibhav4046/RecallOps",
   },
   {
-    num: "10", name: "Qyntra", slug: "qyntra", tag: "Retrieval · Finalist",
+    num: "21", name: "CIVICTAS", tag: "Multi-agent · Civic",
+    desc: "A multi-agent civic decision copilot. Gemini and Groq providers with a mock mode so the demo runs offline. USAII Global AI Hackathon 2026 entry.",
+    live: "https://civictas.vercel.app", source: "https://github.com/vaibhav4046/CAVICTUS",
+  },
+  {
+    num: "22", name: "Praxon", tag: "Agents · Platform",
+    desc: "Open-source AI agent platform: a multi-LLM router over free providers, MCP-native, local-first, deployable on Vercel and Supabase.",
+    live: "https://praxon-hazel.vercel.app", source: "https://github.com/vaibhav4046/praxon",
+  },
+  {
+    num: "23", name: "Satonic", tag: "Sales · Chatbot",
+    desc: "Open-source AI lead-generation chatbot, a free alternative to Apollo.",
+    source: "https://github.com/vaibhav4046/satonic",
+  },
+  {
+    num: "24", name: "RecallOS", tag: "Memory · Productivity",
+    desc: "An AI memory and execution system for the things you keep saving and never use. Stop saving, start building.",
+    live: "https://recallos-nine.vercel.app", source: "https://github.com/vaibhav4046/recallos",
+  },
+  {
+    num: "25", name: "ReleaseRail", tag: "Content · MCP",
+    desc: "An AI content engine with an MCP surface: 27 tools, resume tokens and 138 tests. AI Content Engine Hacks entry.",
+    live: "https://releaserail.vercel.app",
+  },
+  {
+    num: "26", name: "GLASSBOX", tag: "Dashboard · LLM ops",
+    desc: "A live dashboard of AI conversations, built as a working product for a full-stack exercise. Simulated data by default, or bring your own Groq or OpenRouter key.",
+    live: "https://glassbox-gules.vercel.app",
+  },
+  {
+    num: "27", name: "Qyntra", slug: "qyntra", tag: "Retrieval · Finalist",
     desc: "A personal knowledge OS. Ingest your files, explore them as a 3D galaxy, and ask questions answered from your own material. Wikithon '26 finalist.",
     live: "https://qyntra-app.vercel.app", source: "https://github.com/vaibhav4046/qyntra-app",
   },
   {
-    num: "11", name: "DelOS", slug: "delos", tag: "Multi-agent · OS",
+    num: "28", name: "DelOS", slug: "delos", tag: "Multi-agent · OS",
     desc: "A browser-OS where agents flow under pressure. An xterm agent fleet on isolated HydraDB tenants, coordinated so agents don't collide under load.",
     live: "https://delrio.vercel.app", source: "https://github.com/vaibhav4046/delos",
   },
   {
-    num: "12", name: "Cogniloop", tag: "AI · EdTech",
+    num: "29", name: "Cogniloop", tag: "AI · EdTech",
     desc: "A Socratic study system. Grades free-form answers against a rubric and tracks concept mastery, sub-second on Groq Llama 3.3 70B.",
     live: "https://cogniloop-vaibhav4046s-projects.vercel.app", source: "https://github.com/vaibhav4046/cogniloop",
   },
   {
-    num: "13", name: "MedReviewAI", tag: "Medical AI · RAG",
+    num: "30", name: "MedReviewAI", tag: "Medical AI · RAG",
     desc: "A grounded medical paper analyzer. Searches 13 academic sources, extracts PICO fields, and keeps generated claims tied to verbatim source evidence.",
     live: "https://medai-deploy.vercel.app", source: "https://github.com/vaibhav4046/MedReviewAI",
   },
   {
-    num: "14", name: "ScholarAI", tag: "Research · Extension",
+    num: "31", name: "ScholarAI", tag: "Research · Extension",
     desc: "A Chrome extension that turns research papers into interactive AI sessions with summaries, extracted claims, and Q&A over the paper.",
     source: "https://github.com/vaibhav4046/Scholar.AI-Chrome-Extension",
   },
   {
-    num: "15", name: "MCP Marketplace", tag: "MCP · Registry",
+    num: "32", name: "MCP Marketplace", tag: "MCP · Registry",
     desc: "A searchable registry of Model Context Protocol servers with one-line install snippets for Claude Desktop, Cursor and Claude Code, synced daily.",
     live: "https://mcp-hub-registry.vercel.app", source: "https://github.com/vaibhav4046/mcp-marketplace",
   },
   {
-    num: "16", name: "The Film Theory Vault", tag: "Web · Just for fun",
+    num: "33", name: "The Film Theory Vault", tag: "Web · Just for fun",
     desc: "Search any movie and the page regenerates in a cinematic style, auto-themed to the film's colours, with AI-written fan theories behind a spoiler gate.",
     live: "https://film-theory-vault.vercel.app", source: "https://github.com/vaibhav4046/film-theory-vault",
   },
@@ -292,6 +377,46 @@ const DETAILS = {
       ["Receipts on screen", "Five modules of a billing SaaS by five workers in 41.6 seconds, whole suite green, paid inference zero, all of it in the execution log."],
     ],
     prev: null,
+    next: { slug: "lacuna", name: "Lacuna" },
+  },
+
+  lacuna: {
+    name: "Lacuna",
+    kicker: "Hack Hydra 2026 · Track 3, memory and context retrieval",
+    title: "Lacuna",
+    sub: "Temporal, provenance-first memory for AI agents. It remembers what changed, preserves what was true, exposes disagreements and refuses to invent an answer when the evidence is missing.",
+    img: "/img/lacuna.png",
+    imgWidth: 1200,
+    imgHeight: 630,
+    imgAlt: "Lacuna: memory fragments reorganising into current facts, superseded facts, contradictions and evidence on a HydraDB graph.",
+    cta: [
+      { label: "Live workspace →", href: "https://lacuna-five.vercel.app", primary: true },
+      { label: "Source →", href: "https://github.com/vaibhav4046/lacuna" },
+      { label: "Evidence index →", href: "https://github.com/vaibhav4046/lacuna/blob/main/docs/EVIDENCE_INDEX.md" },
+    ],
+    meta: [
+      ["Role", "Solo build"],
+      ["Year", "2026"],
+      ["Recognition", "Hack Hydra 2026 entry, Track 3"],
+      ["Stack", "HydraDB · TypeScript · Node.js · MCP · Vitest"],
+      ["Status", "Live, 1,393 unit tests, 30 of 30 live gates"],
+    ],
+    prose: [
+      { h: "The problem", em: "problem", p: [
+        "Long-running agents fail when memory goes stale, contradicts itself or loses the evidence it came from. A model can reason correctly from a premise that stopped being true months ago, and four agents that each keep their own memory slowly become four versions of reality.",
+      ]},
+      { h: "How it works", em: "works", p: [
+        "Lacuna is an evidence-bearing memory layer on HydraDB. Every claim stays tied to the sentence it came from; a correction is linked to what it replaced instead of overwriting it; sources that disagree are shown as a disagreement; and when the evidence is missing, the answer says so.",
+        "Ask in plain English and it returns the current answer, its source, its timeline and any conflicts. The same shared memory is exposed through the web workspace, a CLI, an API and seven public read-only MCP tools, so a compatible AI client gets a focused evidence pack instead of the whole history. The final release carried 453 graph nodes and 682 relationships with no orphan edge, a 64-question evaluation that answered identically over MCP stdio, MCP over HTTP and the CLI, and a verified product film.",
+      ]},
+    ],
+    features: [
+      ["Temporal claims", "New information links to what it superseded; the history stays queryable."],
+      ["Exact provenance", "Every answer opens to the sentence it was drawn from."],
+      ["Contradictions surfaced", "Sources that disagree are shown as a disagreement, never averaged away."],
+      ["Abstention", "No evidence, no answer: the system says what was never stated."],
+    ],
+    prev: { slug: "leverage", name: "Leverage" },
     next: { slug: "queueproof", name: "QueueProof" },
   },
 
@@ -331,7 +456,7 @@ const DETAILS = {
       ["Deterministic queue", "The read contract compiles into a repeatable priority queue and an MCP surface."],
       ["Approval-gated writes", "Nothing is written until you approve it, and a write only counts once its response ID is stored."],
     ],
-    prev: { slug: "leverage", name: "Leverage" },
+    prev: { slug: "lacuna", name: "Lacuna" },
     next: { slug: "hydrasentry", name: "HydraSentry" },
   },
 
@@ -588,7 +713,7 @@ function buildArchive() {
       <div class="section-head">
         <span class="section-index"><b>&#8734;</b> / Archive</span>
         <h1 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h1>
-        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Seven have a full case study; the rest link to the strongest available demo, release or repository.</p>
+        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Eight have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
       <div class="archive-index">
