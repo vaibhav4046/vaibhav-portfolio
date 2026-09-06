@@ -343,6 +343,8 @@
     function tick(now) {
       frame = 0;
       if (!active || document.hidden || staticMode) return;
+      // Once the WebGL black hole has taken the stage, the 2D orbit stops drawing.
+      if (root.hasAttribute("data-gargantua")) return;
       var minFrame = mobile ? 33 : 16;
       if (now - lastFrame >= minFrame) {
         pointerX += (targetX - pointerX) * .055;

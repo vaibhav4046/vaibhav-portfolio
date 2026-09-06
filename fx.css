@@ -1,0 +1,63 @@
+/* Motion and WebGL layer. Loaded after style.css; CSP-safe: no inline styles anywhere. */
+
+/* ===== Brand marks on chips and tags (real marks, see scripts/build-brands.cjs) ===== */
+.chip-ico { width: .95em; height: .95em; margin-right: .45em; flex: none; opacity: .82; transition: opacity .25s ease, color .25s ease; }
+.chiplist li.has-mark, .tags li.has-mark { display: inline-flex; align-items: center; }
+.tags li .chip-ico { width: .95em; height: .95em; margin-right: .38em; }
+.has-mark:hover .chip-ico { opacity: 1; color: var(--accent); }
+
+/* ===== Gargantua in the hero stage ===== */
+#gargantua-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.hero-stage.has-gargantua #gargantua-canvas { opacity: 1; }
+.hero-stage.has-gargantua::before { display: none; }
+.hero-stage.has-gargantua { background: #030303; }
+.hero-stage.has-gargantua .stage-grid { opacity: .06; }
+.hero-stage.has-gargantua #system-canvas { display: none; }
+.hero-stage.has-gargantua .stage-orbit-label { color: rgba(255,255,255,.5); }
+
+/* ===== Interlude: the wave rises with the scroll ===== */
+.interlude { position: relative; height: 260vh; margin-top: var(--section-y); border-top: 1px solid var(--rule); }
+.interlude-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; background: #050505; }
+#wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.interlude-copy { position: absolute; left: var(--pad); right: var(--pad); bottom: clamp(3rem, 9vh, 7rem); display: grid; gap: .9rem; pointer-events: none; }
+.interlude-title { max-width: 14ch; margin: 0; font-size: clamp(2.6rem, 7vw, 7.2rem); font-weight: 780; line-height: .94; letter-spacing: -.06em; }
+.interlude-title span { display: block; opacity: 0; transform: translateY(44px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.interlude.is-live .interlude-title span { opacity: 1; transform: none; }
+.interlude.is-live .interlude-title span:nth-child(2) { transition-delay: .14s; }
+.interlude-lede { max-width: 48ch; color: var(--ink-soft); font-size: clamp(1rem, .95rem + .4vw, 1.25rem); line-height: 1.5; opacity: 0; transform: translateY(20px); transition: opacity .9s var(--ease) .28s, transform .9s var(--ease) .28s; }
+.interlude.is-live .interlude-lede { opacity: 1; transform: none; }
+.interlude-meter { position: absolute; top: 1.3rem; right: var(--pad); display: flex; gap: .7rem; color: var(--faint); font: 650 .62rem/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+.interlude-meter b { min-width: 3.2ch; color: var(--accent); }
+.interlude-fallback { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.08), transparent 60%), #050505; }
+@media (max-width: 760px) { .interlude { height: 190vh; } }
+
+/* ===== Split-word title reveals ===== */
+.split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.split .w > span { display: inline-block; transform: translateY(112%); transition: transform .95s var(--ease); transition-delay: calc(var(--wi, 0) * 42ms); }
+.split.is-in .w > span { transform: none; }
+
+/* ===== Magnetic controls and figure tilt ===== */
+.magnetic { will-change: transform; transition: transform .38s var(--ease-out); }
+.work-figure { transform: perspective(900px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)) translateZ(0); transition: transform .35s var(--ease-out), border-color .3s ease; }
+.hero-stats dt { font-variant-numeric: tabular-nums; }
+
+/* ===== Cursor glow ===== */
+.cursor-glow { position: fixed; z-index: 1; top: 0; left: 0; width: 560px; height: 560px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255,106,26,.12), transparent 60%); transform: translate3d(calc(var(--mx, -2000px) - 280px), calc(var(--my, -2000px) - 280px), 0); mix-blend-mode: screen; opacity: 0; transition: opacity .8s ease; }
+.cursor-glow.is-on { opacity: 1; }
+
+/* ===== Intro veil and page transitions ===== */
+.intro-veil { position: fixed; inset: 0; z-index: 9999; background: var(--bg); transform-origin: 50% 0; animation: veil .95s var(--ease) .12s both; pointer-events: none; }
+@keyframes veil { to { transform: scaleY(0); } }
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: 260ms var(--ease-out) both vt-out; }
+::view-transition-new(root) { animation: 420ms var(--ease) both vt-in; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(14px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-veil, .cursor-glow { display: none; }
+  .split .w > span { transform: none; transition: none; }
+  .interlude-title span, .interlude-lede { opacity: 1; transform: none; transition: none; }
+  .magnetic, .work-figure { transition: none; transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

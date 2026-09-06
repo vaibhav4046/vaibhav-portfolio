@@ -20,6 +20,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/fx.css" />
 
   <script type="application/ld+json">
   {
@@ -40,6 +41,7 @@
   </script>
 </head>
 <body>
+  <div class="intro-veil" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
@@ -141,10 +143,11 @@
         </div>
 
         <div class="hero-stage" id="hero-stage">
+          <canvas id="gargantua-canvas" aria-hidden="true"></canvas>
           <canvas id="system-canvas" width="760" height="760" aria-hidden="true"></canvas>
           <div class="stage-grid" aria-hidden="true"></div>
           <div class="stage-topline mono"><span>VL / AI SYSTEMS</span><span>2026.08</span></div>
-          <div class="stage-orbit-label mono" aria-hidden="true">RAG · AGENTS · EVALS · FULL-STACK</div>
+          <div class="stage-orbit-label mono" aria-hidden="true">GARGANTUA · RAG · AGENTS · EVALS</div>
           <div class="identity-card">
             <img src="/img/profile.jpg" width="112" height="112" alt="Vaibhav Lalwani" />
             <div>
@@ -193,7 +196,7 @@
             <h3><a href="/work/leverage">Leverage</a></h3>
             <p>The intelligence resource manager under the model you already pay for. It turns a repository and a goal into a task graph, auctions each task to the cheapest model that can pass its tests, and hands a checkpoint to a replacement when a worker fails.</p>
             <div class="proof-point"><span>Outcome</span><strong>Five modules of a billing SaaS built by five hired workers in 41.6 seconds, whole suite green, paid inference zero.</strong></div>
-            <ul class="tags"><li>MCP</li><li>Multi-agent</li><li>TypeScript</li><li>RocketRide</li></ul>
+            <ul class="tags"><li>MCP</li><li>Multi-agent</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-typescript"/></svg>TypeScript</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-rocketride"/></svg>RocketRide</li></ul>
             <p class="link-row">
               <a href="/work/leverage">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://useleverage.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
@@ -217,7 +220,7 @@
             <h3><a href="/work/queueproof">QueueProof</a></h3>
             <p>An evidence-backed workspace for asking one question across multiple work sources. Every supported claim opens back to the exact record behind it, so the answer is inspectable instead of merely confident.</p>
             <div class="proof-point"><span>Outcome</span><strong>HydraDB × Connectors Hackathon winner. Provenance sits inside the answer, not on a separate audit screen.</strong></div>
-            <ul class="tags"><li>HydraDB</li><li>Retrieval</li><li>Citations</li><li>Vercel</li></ul>
+            <ul class="tags"><li>HydraDB</li><li>Retrieval</li><li>Citations</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li></ul>
             <p class="link-row">
               <a href="/work/queueproof">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://queueproof.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
@@ -242,7 +245,7 @@
             <h3><a href="/work/hydrasentry">HydraSentry</a></h3>
             <p>A memory-integrity layer that checks retrieved context before an agent acts. It surfaces suspicious provenance, blocks unsafe execution and produces a signed integrity certificate for review.</p>
             <div class="proof-point"><span>Outcome</span><strong>HydraDB Build Blitz winner, built as a solo end-to-end system.</strong></div>
-            <ul class="tags"><li>HydraDB</li><li>Agent security</li><li>Groq</li><li>FastAPI</li><li>Vercel</li></ul>
+            <ul class="tags"><li>HydraDB</li><li>Agent security</li><li>Groq</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-fastapi"/></svg>FastAPI</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li></ul>
             <p class="link-row">
               <a href="/work/hydrasentry">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://hydrasentry.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
@@ -267,7 +270,7 @@
             <h3><a href="/work/qyntra">Qyntra</a></h3>
             <p>A personal knowledge system that turns uploaded material into grounded answers and a navigable 3D relationship map. It makes the source landscape visible instead of hiding retrieval behind a chat box.</p>
             <div class="proof-point"><span>Outcome</span><strong>Wikithon 2026 finalist, designed and built solo.</strong></div>
-            <ul class="tags"><li>RAG</li><li>Next.js</li><li>3D</li><li>Vercel</li></ul>
+            <ul class="tags"><li>RAG</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nextdotjs"/></svg>Next.js</li><li>3D</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li></ul>
             <p class="link-row">
               <a href="/work/qyntra">Read case study <span aria-hidden="true">→</span></a>
               <a href="https://qyntra-app.vercel.app" target="_blank" rel="noopener">Open product <span class="icon-ext" aria-hidden="true">↗</span></a>
@@ -284,6 +287,19 @@
     </section>
 
     <!-- ===== About ===== -->
+    <!-- ===== Interlude: the wave ===== -->
+    <section class="interlude" id="depth" aria-label="Interlude">
+      <div class="interlude-sticky">
+        <canvas id="wave-canvas" aria-hidden="true"></canvas>
+        <div class="interlude-meter" aria-hidden="true"><span>Swell</span><b id="swell-meter">0%</b></div>
+        <div class="interlude-copy">
+          <span class="section-index"><b>//</b> / Under load</span>
+          <h2 class="interlude-title"><span>Built for the wave,</span><span>not the calm.</span></h2>
+          <p class="interlude-lede">Rate limits, bad data, a worker that dies mid-task. The systems I ship are designed for the moment the traffic turns, not the demo.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section wrap" id="about" aria-labelledby="about-heading">
       <div class="section-head">
         <span class="section-index"><b>02</b> / About</span>
@@ -461,23 +477,23 @@
       <div class="skills">
         <div class="skill-col reveal">
           <h3>AI &amp; LLM</h3>
-          <ul class="chiplist"><li>OpenAI API</li><li>Claude API</li><li>Groq</li><li>RAG / retrieval</li><li>Agents &amp; tools</li><li>QLoRA fine-tuning</li><li>Structured outputs</li></ul>
+          <ul class="chiplist"><li>OpenAI API</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-anthropic"/></svg>Claude API</li><li>Groq</li><li>RAG / retrieval</li><li>Agents &amp; tools</li><li>QLoRA fine-tuning</li><li>Structured outputs</li></ul>
         </div>
         <div class="skill-col reveal">
           <h3>Frontend</h3>
-          <ul class="chiplist"><li>React 19</li><li>Next.js 15</li><li>TypeScript</li><li>Tailwind</li><li>Vite</li><li>HTML / CSS</li></ul>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-react"/></svg>React 19</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nextdotjs"/></svg>Next.js 15</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-typescript"/></svg>TypeScript</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-tailwindcss"/></svg>Tailwind</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vite"/></svg>Vite</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-html5"/></svg>HTML / CSS</li></ul>
         </div>
         <div class="skill-col reveal">
           <h3>Backend</h3>
-          <ul class="chiplist"><li>Python</li><li>FastAPI</li><li>Node.js</li><li>BullMQ + Redis</li><li>REST APIs</li></ul>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-python"/></svg>Python</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-fastapi"/></svg>FastAPI</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nodedotjs"/></svg>Node.js</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-redis"/></svg>BullMQ + Redis</li><li>REST APIs</li></ul>
         </div>
         <div class="skill-col reveal">
           <h3>Data</h3>
-          <ul class="chiplist"><li>Postgres</li><li>pgvector</li><li>Supabase</li><li>HydraDB</li><li>MongoDB</li><li>Vector search</li></ul>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg>Postgres</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg>pgvector</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-supabase"/></svg>Supabase</li><li>HydraDB</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-mongodb"/></svg>MongoDB</li><li>Vector search</li></ul>
         </div>
         <div class="skill-col reveal">
           <h3>Ship</h3>
-          <ul class="chiplist"><li>Vercel</li><li>Cloud Run</li><li>Docker</li><li>Git / GitHub</li><li>OAuth / PKCE</li><li>i18n</li></ul>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-googlecloud"/></svg>Cloud Run</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-docker"/></svg>Docker</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-github"/></svg>Git / GitHub</li><li>OAuth / PKCE</li><li>i18n</li></ul>
         </div>
       </div>
     </section>
@@ -573,5 +589,6 @@
   </button>
 
   <script src="/script.js" defer></script>
+  <script src="/fx.js" defer></script>
 </body>
 </html>
