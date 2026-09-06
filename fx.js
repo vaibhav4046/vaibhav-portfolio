@@ -1,4 +1,6 @@
-/* Motion and WebGL layer: Gargantua in the hero, the wave interlude, split titles, magnetic controls, tilt, counters, cursor glow. CSP-safe. */
+/* Motion layer: the Gargantua dot canvas in the hero, the interlude swell, split
+   titles, magnetic controls, tilt, counters, cursor glow. 2D canvas only, no
+   library, no inline script: everything here is CSP-safe under script-src 'self'. */
 (function () {
   "use strict";
 
@@ -10,15 +12,11 @@
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
-  function hasWebGL() {
-    try { var c = document.createElement("canvas"); return Boolean(c.getContext("webgl2") || c.getContext("webgl")); } catch (error) { return false; }
-  }
-
   /* ---- Gargantua: the hero stage becomes a black hole ---------------------- */
   function initGargantua() {
     var canvas = document.getElementById("gargantua-canvas");
     var stage = document.getElementById("hero-stage");
-    if (!canvas || !stage || !hasWebGL()) return;
+    if (!canvas || !stage) return;
     import("/fx/gargantua.js").then(function (mod) {
       var scene = mod.mountGargantua(canvas, { reducedMotion: reduceMotion, accent: "#ff6a1a" });
       root.setAttribute("data-gargantua", "1");
@@ -57,9 +55,8 @@
     var canvas = document.getElementById("wave-canvas");
     if (!section || !canvas) return;
     var meter = document.getElementById("swell-meter");
-    if (!hasWebGL()) { section.classList.add("is-live"); canvas.classList.add("interlude-fallback"); return; }
     import("/fx/wave.js").then(function (mod) {
-      var wave = mod.mountWave(canvas, { reducedMotion: reduceMotion, tone: "ink" });
+      var wave = mod.mountWave(canvas, { reducedMotion: reduceMotion, accent: "#ff6a1a" });
       section.classList.add("is-live");
       if (reduceMotion) { wave.setProgress(0.6); if (meter) meter.textContent = "60%"; return; }
       var frame = 0;

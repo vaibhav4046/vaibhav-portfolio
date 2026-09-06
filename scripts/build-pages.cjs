@@ -659,29 +659,44 @@ const DETAILS = {
 /* ============================================================
    RENDERERS
    ============================================================ */
-function renderArchiveRow(p) {
+/* The cover file in img/cards/ is keyed by the case-study slug where there is
+   one, otherwise by the slugified project name. scripts/build-covers.py writes
+   exactly these names, so a missing cover fails the site audit rather than
+   shipping a hole in the grid. */
+function coverSlug(p) {
+  if (p.slug) return p.slug;
+  return p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function renderArchiveCard(p, index) {
   var nameHref = p.slug ? "/work/" + p.slug : (p.live || p.source);
-  var nameIsInternal = !!p.slug;
-  var nameLink = `<a href="${nameHref}"${nameIsInternal ? "" : ' target="_blank" rel="noopener"'}>${p.name}</a>`;
+  var external = p.slug ? "" : ' target="_blank" rel="noopener"';
 
   var links = [];
   if (p.slug) links.push({ label: "Case study", href: "/work/" + p.slug });
   if (p.live) links.push({ label: p.liveLabel || "Live", href: p.live });
   if (p.source) links.push({ label: "Source", href: p.source });
 
-  return `      <div class="archive-row reveal">
-        <span class="a-num">${p.num}</span>
-        <span class="a-name">${nameLink}</span>
-        <span class="a-desc">${p.desc}</span>
-        <span class="a-tag">${p.tag}</span>
-        <span class="a-links">
-          ${linkRow(links)}
-        </span>
-      </div>`;
+  // The cover sits beside the name and the description it illustrates, so it is
+  // decorative in context and announcing it again would only add noise.
+  return `        <article class="cat-card reveal${index === 0 ? " cat-lead" : ""}">
+          <div class="cat-media">
+            <img src="/img/cards/${coverSlug(p)}.webp" alt="" width="900" height="563" loading="lazy" decoding="async" />
+            <span class="cat-num">${p.num}</span>
+          </div>
+          <div class="cat-body">
+            <p class="cat-tag">${p.tag}</p>
+            <h2 class="cat-name"><a href="${nameHref}"${external}>${p.name}<span class="cat-go" aria-hidden="true">&#8599;</span></a></h2>
+            <p class="cat-desc">${p.desc}</p>
+            <p class="cat-links">
+              ${linkRow(links)}
+            </p>
+          </div>
+        </article>`;
 }
 
 function buildArchive() {
-  var rows = ARCHIVE.map(renderArchiveRow).join("\n");
+  var cards = ARCHIVE.map(renderArchiveCard).join("\n");
   var ld = `<script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -716,8 +731,8 @@ function buildArchive() {
         <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Eight have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
-      <div class="archive-index">
-${rows}
+      <div class="catalog" aria-label="Project catalogue">
+${cards}
       </div>
 
       <a class="btn" href="/#work"><span class="arrow" aria-hidden="true">←</span> <span>Back to selected work</span></a>

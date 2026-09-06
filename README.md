@@ -37,10 +37,14 @@ A fast, proof-first portfolio for production LLM applications, retrieval systems
 |---|---|
 | `index.html` | Homepage content and structured metadata |
 | `style.css` | Design tokens, responsive layout, accessibility and motion |
-| `script.js` | Navigation, reveal logic and procedural 3D renderer |
+| `script.js` | Navigation and the wavefront reveal that carries each section in |
+| `fx.js`, `fx.css` | Motion layer: mounts the canvases, split titles, magnetic controls |
+| `fx/gargantua.js` | The hero black hole, drawn as a live dot matrix on a 2D canvas |
+| `fx/wave.js` | The interlude swell, same dot lattice, driven by scroll position |
 | `scripts/build-pages.cjs` | Canonical archive and case-study data/templates |
+| `scripts/build-covers.py` | Archive card covers in `img/cards/` (screenshots plus generated dot-matrix art) |
 | `scripts/site-audit.mjs` | Static route, metadata, asset and link-integrity checks |
-| `work.html`, `work/*.html` | Generated archive and case-study output |
+| `work.html`, `work/*.html` | Generated archive catalogue and case-study output |
 | `vercel.json` | Clean URLs, security headers and cache policy |
 
 ## Run locally
@@ -54,6 +58,7 @@ Open `http://localhost:4173`.
 ## Generate and verify
 
 ```bash
+python scripts/build-covers.py   # only when a project or screenshot changes
 npm run generate
 npm test
 ```
