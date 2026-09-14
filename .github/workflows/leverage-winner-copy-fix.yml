@@ -1,0 +1,70 @@
+name: Final winner copy fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/leverage-winner-copy-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify stale copy exists before fix
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('work.html').read_text(encoding='utf-8')
+          assert 'RocketRide × SCU Buildathon entry.' in text
+          assert 'RocketRide × SCU Buildathon winner.' not in text
+          print('RED confirmed: archive still has stale entry copy')
+          PY
+
+      - name: Apply winner copy fix
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('work.html')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('<p class="cat-tag">Agents · Buildathon</p>', '<p class="cat-tag">Agents · Buildathon · Winner</p>', 1)
+          text = text.replace('RocketRide × SCU Buildathon entry.', 'RocketRide × SCU Buildathon winner.', 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Verify full portfolio contract
+        run: python scripts/test-portfolio-refresh.py
+
+      - name: Verify corrected archive copy
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('work.html').read_text(encoding='utf-8')
+          assert 'RocketRide × SCU Buildathon winner.' in text
+          assert 'RocketRide × SCU Buildathon entry.' not in text
+          assert 'Agents · Buildathon · Winner' in text
+          print('winner copy consistency: PASS')
+          PY
+
+      - name: Verify clean patch
+        run: git diff --check
+
+      - name: Commit final copy correction
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/leverage-winner-copy-fix.yml
+          git add work.html
+          git commit -m "fix: mark Leverage as buildathon winner in archive"
+          git push origin HEAD:main
