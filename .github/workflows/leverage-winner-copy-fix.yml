@@ -58,7 +58,7 @@ jobs:
           card = text[start:end]
           assert 'RocketRide × SCU Buildathon winner.' in card
           assert 'RocketRide × SCU Buildathon entry.' not in card
-          assert 'Agents · Buildathon · Winner' in card
+          assert '<p class="cat-tag">Agents · Buildathon · Winner</p>' in text
           print('Leverage winner copy consistency: PASS')
           PY
 
