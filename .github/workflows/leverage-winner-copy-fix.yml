@@ -18,15 +18,18 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Verify stale copy exists before fix
+      - name: Verify stale Leverage copy exists before fix
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           text = Path('work.html').read_text(encoding='utf-8')
-          assert 'RocketRide × SCU Buildathon entry.' in text
-          assert 'RocketRide × SCU Buildathon winner.' not in text
-          print('RED confirmed: archive still has stale entry copy')
+          start = text.index('<h2 class="cat-name"><a href="/work/leverage">')
+          end = text.index('<h2 class="cat-name">', start + 1)
+          card = text[start:end]
+          assert 'RocketRide × SCU Buildathon entry.' in card
+          assert 'RocketRide × SCU Buildathon winner.' not in card
+          print('RED confirmed: Leverage archive card has stale entry copy')
           PY
 
       - name: Apply winner copy fix
@@ -44,16 +47,19 @@ jobs:
       - name: Verify full portfolio contract
         run: python scripts/test-portfolio-refresh.py
 
-      - name: Verify corrected archive copy
+      - name: Verify corrected Leverage archive copy
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           text = Path('work.html').read_text(encoding='utf-8')
-          assert 'RocketRide × SCU Buildathon winner.' in text
-          assert 'RocketRide × SCU Buildathon entry.' not in text
-          assert 'Agents · Buildathon · Winner' in text
-          print('winner copy consistency: PASS')
+          start = text.index('<h2 class="cat-name"><a href="/work/leverage">')
+          end = text.index('<h2 class="cat-name">', start + 1)
+          card = text[start:end]
+          assert 'RocketRide × SCU Buildathon winner.' in card
+          assert 'RocketRide × SCU Buildathon entry.' not in card
+          assert 'Agents · Buildathon · Winner' in card
+          print('Leverage winner copy consistency: PASS')
           PY
 
       - name: Verify clean patch
