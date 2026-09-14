@@ -35,6 +35,15 @@ jobs:
       - name: Apply winner-only portfolio refresh
         run: python scripts/refresh-portfolio.py
 
+      - name: Normalize generated CSS EOF
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('style.css')
+          path.write_text(path.read_text(encoding='utf-8').rstrip() + '\n', encoding='utf-8')
+          PY
+
       - name: GREEN - verify portfolio contract
         run: python scripts/test-portfolio-refresh.py
 
