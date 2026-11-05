@@ -117,8 +117,22 @@
         <p class="section-lede">37 builds, newest first: production systems, hackathon entries and open source. 9 have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
+      <div class="cat-tools" id="cat-tools" role="search" hidden>
+        <label class="cat-search"><span class="sr-only">Search the 37 projects</span><input id="cat-q" type="search" placeholder="Search 37 projects" autocomplete="off" spellcheck="false" /></label>
+        <div class="cat-chips" role="group" aria-label="Filter projects by type">
+          <button type="button" class="chip" data-f="all" aria-pressed="true">All <i>37</i></button>
+          <button type="button" class="chip" data-f="wins" aria-pressed="false">Wins <i>4</i></button>
+          <button type="button" class="chip" data-f="voice" aria-pressed="false">Voice <i>1</i></button>
+          <button type="button" class="chip" data-f="agents" aria-pressed="false">Agents <i>18</i></button>
+          <button type="button" class="chip" data-f="memory" aria-pressed="false">Memory <i>9</i></button>
+          <button type="button" class="chip" data-f="tools" aria-pressed="false">Dev tools <i>10</i></button>
+          <button type="button" class="chip" data-f="apps" aria-pressed="false">Apps <i>13</i></button>
+        </div>
+        <p class="cat-status" id="cat-status" role="status" aria-live="polite"></p>
+      </div>
+      <p class="cat-empty" id="cat-empty" hidden>Nothing matches that. <button type="button" class="chip" id="cat-reset">Show all projects</button></p>
       <div class="catalog" aria-label="Project catalogue">
-        <article class="cat-card reveal cat-lead">
+        <article class="cat-card reveal cat-lead" data-groups="voice apps" data-search="stay voice ai assemblyai a voice companion for adults with adhd one small first step a wait through every pause and a message the moment a focus block ends even with the app closed submitted to assemblyai voice hackathon week ">
           <div class="cat-media" data-clip="/clips/stay.mp4">
             <img src="/clips/stay.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -137,7 +151,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents apps" data-search="avanti assistant groq a proactive ai assistant on next js and groq agent orchestration hybrid retrieval a semantic cache guardrailed text to sql evals and a daily brief on a schedule ">
           <div class="cat-media" data-clip="/clips/avanti.mp4">
             <img src="/clips/avanti.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -155,7 +169,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory" data-search="last light retrieval hackathon a browser local passage finder for remembered stories it returns exact quotes and source spans not answers and keeps nothing durable ai assisted hackathon prototype ">
           <div class="cat-media" data-clip="/clips/last-light.mp4">
             <img src="/clips/last-light.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -173,7 +187,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents tools" data-search="still agents gitlab duo supervised closed loop continuity for gitlab duo agent platform repairs when a journey breaks a plain route keeps people going and an agent s fix is trusted only once gitlab s own records back it ">
           <div class="cat-media" data-clip="/clips/still.mp4">
             <img src="/clips/still.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -191,7 +205,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="wins agents" data-search="leverage agents buildathon an intelligence resource manager your best model keeps the plan an auction hires cheaper models per task a checkpoint survives every worker failure and the repository s own tests decide what counts rocketride scu buildathon entry ">
           <div class="cat-media" data-clip="/clips/leverage.mp4">
             <img src="/clips/leverage.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -210,7 +224,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="cherry agents webmcp the user owned apprenticeship memory mission and verification layer for ai agents skills a person can inspect receipts a person can verify webmcp challenge 2026 entry ">
           <div class="cat-media" data-clip="/clips/cherry.mp4">
             <img src="/clips/cherry.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -228,7 +242,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory apps" data-search="atkin documents buildathon the document decision desk screening evidence extraction with quote verification and clean exports for anyone facing a stack of documents and a deadline rocketride scu buildathon entry ">
           <div class="cat-media" data-clip="/clips/atkin.mp4">
             <img src="/clips/atkin.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -246,7 +260,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools" data-search="xact evals release gate prove the fix turns one bad ai response into a regression test that never fails twice a complaint to regression release gate for ai agents built on rocketride ">
           <div class="cat-media" data-clip="/clips/xact.mp4">
             <img src="/clips/xact.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -264,7 +278,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory agents" data-search="lacuna agent memory hydradb temporal provenance first memory for ai agents on hydradb what is true now what changed which sources disagree and where the evidence is over web cli api and seven read only mcp tools hack hydra 2026 track 3 ">
           <div class="cat-media" data-clip="/clips/lacuna.mp4">
             <img src="/clips/lacuna.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -283,7 +297,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="wins memory" data-search="queueproof retrieval winner evidence backed cross source retrieval ask one question across your tools and every claim in the answer opens back to the record it came from hydradb connectors hackathon winner ">
           <div class="cat-media" data-clip="/clips/queueproof.mp4">
             <img src="/clips/queueproof.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -302,7 +316,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools agents" data-search="skillister developer tools agents find route and install agent skills across any agent cli one index of about 1 200 skills serving five hosts with an audit that says what a skill actually does ">
           <div class="cat-media" data-clip="/clips/skillister.mp4">
             <img src="/clips/skillister.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -320,7 +334,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="finaltab fintech onchain receipt to verified on chain settlement groq vision reads the receipt a deterministic money engine splits it and an eip 3009 batch settlement is executed and chain verified on base sepolia ">
           <div class="cat-media" data-clip="/clips/finaltab.mp4">
             <img src="/clips/finaltab.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -338,7 +352,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools" data-search="bhashafix i18n verification open source localisation release engine real browser evidence bounded repair and identical test verification across web cli mcp and ci ">
           <div class="cat-media" data-clip="/clips/bhashafix.mp4">
             <img src="/clips/bhashafix.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -356,7 +370,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents tools" data-search="firebreak data sre agent a data incident sre agent on datahub finds the blast radius of a bad dataset drafts the fix and keeps the receipts for the review ">
           <div class="cat-media" data-clip="/clips/firebreak.mp4">
             <img src="/clips/firebreak.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -374,7 +388,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="veritas integrity agents an integrity agent for agent outputs sha 256 digests and ed25519 attestations anyone can verify nanda hackathon entry ">
           <div class="cat-media" data-clip="/clips/veritas.mp4">
             <img src="/clips/veritas.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -392,7 +406,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="wins agents" data-search="hydrasentry agent security winner a memory integrity firewall for ai agents catches a poisoned memory before the agent acts and seals a signed certificate hydradb build blitz winner ">
           <div class="cat-media" data-clip="/clips/hydrasentry.mp4">
             <img src="/clips/hydrasentry.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -411,7 +425,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="kodro simulation msc an offline robot design and simulation studio build a robot program it and watch it work in a live 3d world all local with no cloud ">
           <div class="cat-media" data-clip="/clips/kodro.mp4">
             <img src="/clips/kodro.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -430,7 +444,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory apps" data-search="own wiki local first ai a desktop second brain powered by a local llm rag chat over your own files a 3d knowledge galaxy and a multi agent research swarm zero cloud ">
           <div class="cat-media" data-clip="/clips/own-wiki.mp4">
             <img src="/clips/own-wiki.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -448,7 +462,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents apps" data-search="drip multi agent commerce an ai sneaker stylist multi agent styling that reasons about fit and taste with live stockx resale prices and buy links per shoe ">
           <div class="cat-media" data-clip="/clips/drip.mp4">
             <img src="/clips/drip.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -467,7 +481,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory agents" data-search="continuity memory agent a self evolving memory agent on hydradb remembers across sessions supersedes itself on contradiction and warns you when recalled context changes the safe answer ">
           <div class="cat-media" data-clip="/clips/continuity.mp4">
             <img src="/clips/continuity.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -485,7 +499,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents apps" data-search="recoup agents fintech an ai money recovery agent scans real gmail receipts grounds every claim in consumer protection law and stops at a human approval gate before it acts ">
           <div class="cat-media" data-clip="/clips/recoup.mp4">
             <img src="/clips/recoup.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -502,7 +516,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools" data-search="keystone code review graph governed change review on the gitlab orbit code knowledge graph deterministic blast radius precedent at the moment of decision and a tamper evident audit ledger gitlab transcend hackathon entry ">
           <div class="cat-media" data-clip="/clips/keystone.mp4">
             <img src="/clips/keystone.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -520,7 +534,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="pitchcraft agents trust and safety an agent that flags ticket resale scams gemini and google adk grounded in mongodb atlas vector search and the mongodb mcp server google cloud rapid agent hackathon mongodb track ">
           <div class="cat-media" data-clip="/clips/pitchcraft.mp4">
             <img src="/clips/pitchcraft.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -538,7 +552,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="recallops cortex agents sre a recall containment command center a live openfda recall scoped across bigquery into a blast radius with drafted actions behind an audit chain ">
           <div class="cat-media" data-clip="/clips/recallops-cortex.mp4">
             <img src="/clips/recallops-cortex.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -555,7 +569,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="civictas multi agent civic a multi agent civic decision copilot gemini and groq providers with a mock mode so the demo runs offline usaii global ai hackathon 2026 entry ">
           <div class="cat-media" data-clip="/clips/civictas.mp4">
             <img src="/clips/civictas.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -573,7 +587,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents tools" data-search="praxon agents platform open source ai agent platform a multi llm router over free providers mcp native local first deployable on vercel and supabase ">
           <div class="cat-media" data-clip="/clips/praxon.mp4">
             <img src="/clips/praxon.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -591,7 +605,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="satonic sales chatbot open source ai lead generation chatbot a free alternative to apollo ">
           <div class="cat-media" data-clip="/clips/satonic.mp4">
             <img src="/clips/satonic.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -608,7 +622,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory" data-search="recallos memory productivity an ai memory and execution system for the things you keep saving and never use stop saving start building ">
           <div class="cat-media" data-clip="/clips/recallos.mp4">
             <img src="/clips/recallos.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -626,7 +640,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents tools" data-search="releaserail content mcp an ai content engine with an mcp surface 27 tools resume tokens and 138 tests ai content engine hacks entry ">
           <div class="cat-media" data-clip="/clips/releaserail.mp4">
             <img src="/clips/releaserail.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -643,7 +657,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools" data-search="glassbox dashboard llm ops a live dashboard of ai conversations built as a working product for a full stack exercise simulated data by default or bring your own groq or openrouter key ">
           <div class="cat-media" data-clip="/clips/glassbox.mp4">
             <img src="/clips/glassbox.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -660,7 +674,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="wins memory" data-search="qyntra retrieval finalist a personal knowledge os ingest your files explore them as a 3d galaxy and ask questions answered from your own material wikithon 26 finalist ">
           <div class="cat-media" data-clip="/clips/qyntra.mp4">
             <img src="/clips/qyntra.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -679,7 +693,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="agents" data-search="delos multi agent os a browser os where agents flow under pressure an xterm agent fleet on isolated hydradb tenants coordinated so agents don t collide under load ">
           <div class="cat-media" data-clip="/clips/delos.mp4">
             <img src="/clips/delos.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -698,7 +712,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="cogniloop ai edtech a socratic study system grades free form answers against a rubric and tracks concept mastery sub second on groq llama 3 3 70b ">
           <div class="cat-media" data-clip="/clips/cogniloop.mp4">
             <img src="/clips/cogniloop.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -716,7 +730,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="memory apps" data-search="medreviewai medical ai rag a grounded medical paper analyzer searches 13 academic sources extracts pico fields and keeps generated claims tied to verbatim source evidence ">
           <div class="cat-media" data-clip="/clips/medreviewai.mp4">
             <img src="/clips/medreviewai.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -734,7 +748,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="scholarai research extension a chrome extension that turns research papers into interactive ai sessions with summaries extracted claims and q a over the paper ">
           <div class="cat-media" data-clip="/clips/scholarai.mp4">
             <img src="/clips/scholarai.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -751,7 +765,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="tools" data-search="mcp marketplace mcp registry a searchable registry of model context protocol servers with one line install snippets for claude desktop cursor and claude code synced daily ">
           <div class="cat-media" data-clip="/clips/mcp-marketplace.mp4">
             <img src="/clips/mcp-marketplace.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>
@@ -769,7 +783,7 @@
             </p>
           </div>
         </article>
-        <article class="cat-card reveal">
+        <article class="cat-card reveal" data-groups="apps" data-search="the film theory vault web just for fun search any movie and the page regenerates in a cinematic style auto themed to the film s colours with ai written fan theories behind a spoiler gate ">
           <div class="cat-media" data-clip="/clips/the-film-theory-vault.mp4">
             <img src="/clips/the-film-theory-vault.webp" alt="" width="1280" height="800" loading="lazy" decoding="async" />
             <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="1280" height="800"></video>

@@ -270,6 +270,55 @@
     document.addEventListener("visibilitychange", function () { if (document.hidden && current) stop(current); });
   }
 
+
+  /* Archive filter and search. The bar ships hidden and appears only when this script runs, so with no script the full list is simply shown.
+     Typing narrows the list as you go; a chip narrows it by type; both together AND. The choice lives in the address (#agents, ?q=mcp) so it can be shared. */
+  function initArchiveFilter() {
+    var bar = document.getElementById("cat-tools");
+    var cards = all(".cat-card");
+    if (!bar || !cards.length) return;
+    bar.hidden = false;
+    var input = document.getElementById("cat-q");
+    var status = document.getElementById("cat-status");
+    var empty = document.getElementById("cat-empty");
+    var chips = all(".chip[data-f]", bar);
+    var active = "all";
+
+    function norm(text) { return String(text).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim(); }
+    function apply(fromUser) {
+      var words = norm(input.value).split(" ").filter(Boolean);
+      var shown = 0;
+      cards.forEach(function (card) {
+        var inGroup = active === "all" || (" " + card.getAttribute("data-groups") + " ").indexOf(" " + active + " ") >= 0;
+        var hay = card.getAttribute("data-search") || "";
+        var match = inGroup && words.every(function (w) { return hay.indexOf(w) >= 0; });
+        card.hidden = !match;
+        if (match) { shown += 1; card.classList.add("is-in"); }
+      });
+      chips.forEach(function (chip) { chip.setAttribute("aria-pressed", chip.getAttribute("data-f") === active ? "true" : "false"); });
+      status.textContent = shown === cards.length ? "All " + cards.length + " projects" : "Showing " + shown + " of " + cards.length;
+      empty.hidden = shown !== 0;
+      if (fromUser) {
+        try {
+          var q = input.value.trim();
+          history.replaceState(null, "", location.pathname + (q ? "?q=" + encodeURIComponent(q) : "") + (active !== "all" ? "#" + active : ""));
+        } catch (error) {}
+      }
+    }
+
+    chips.forEach(function (chip) { chip.addEventListener("click", function () { active = chip.getAttribute("data-f"); apply(true); }); });
+    input.addEventListener("input", function () { apply(true); });
+    document.getElementById("cat-reset").addEventListener("click", function () { active = "all"; input.value = ""; apply(true); input.focus(); });
+
+    try {
+      var fromHash = location.hash.replace("#", "");
+      if (chips.some(function (chip) { return chip.getAttribute("data-f") === fromHash; })) active = fromHash;
+      var fromQuery = new URLSearchParams(location.search).get("q");
+      if (fromQuery) input.value = fromQuery.slice(0, 60);
+    } catch (error) {}
+    apply(false);
+  }
+
   function boot() {
     try { initYear(); } catch (error) {}
     try { initProgress(); } catch (error) {}
@@ -279,6 +328,7 @@
     try { initMobileMenu(); } catch (error) {}
     try { initAnchorNavigation(); } catch (error) {}
     try { initClips(); } catch (error) {}
+    try { initArchiveFilter(); } catch (error) {}
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

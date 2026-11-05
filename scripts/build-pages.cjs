@@ -745,6 +745,44 @@ function clipLayers(slug, w, h, alt, eager) {
             ${CHIP}`;
 }
 
+/* Filter groups for the archive. A project can sit in several; the chips and counts are built from this one table. */
+const FILTERS = [
+  ["wins", "Wins"],
+  ["voice", "Voice"],
+  ["agents", "Agents"],
+  ["memory", "Memory"],
+  ["tools", "Dev tools"],
+  ["apps", "Apps"],
+];
+const GROUPS = {
+  "Stay": "voice apps", "Avanti": "agents apps", "Last Light": "memory", "STILL": "agents tools",
+  "Leverage": "wins agents", "Cherry": "agents", "Atkin": "memory apps", "XACT": "tools", "Lacuna": "memory agents",
+  "QueueProof": "wins memory", "skillister": "tools agents", "FinalTab": "apps", "BhashaFix": "tools",
+  "Firebreak": "agents tools", "Veritas": "agents", "HydraSentry": "wins agents", "Kodro": "apps",
+  "Own Wiki": "memory apps", "DRIP": "agents apps", "Continuity": "memory agents", "Recoup": "agents apps",
+  "Keystone": "tools", "PitchCraft": "agents", "RecallOps Cortex": "agents", "CIVICTAS": "agents",
+  "Praxon": "agents tools", "Satonic": "apps", "RecallOS": "memory", "ReleaseRail": "agents tools",
+  "GLASSBOX": "tools", "Qyntra": "wins memory", "DelOS": "agents", "Cogniloop": "apps",
+  "MedReviewAI": "memory apps", "ScholarAI": "apps", "MCP Marketplace": "tools", "The Film Theory Vault": "apps",
+};
+function groupsOf(p) { return GROUPS[p.name] || "apps"; }
+function searchText(p) { return (p.name + " " + p.tag + " " + p.desc).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " "); }
+function renderFilterBar() {
+  var chips = FILTERS.map(function (f) {
+    var n = ARCHIVE.filter(function (p) { return groupsOf(p).split(" ").indexOf(f[0]) >= 0; }).length;
+    return `<button type="button" class="chip" data-f="${f[0]}" aria-pressed="false">${f[1]} <i>${n}</i></button>`;
+  }).join("\n          ");
+  return `      <div class="cat-tools" id="cat-tools" role="search" hidden>
+        <label class="cat-search"><span class="sr-only">Search the ${ARCHIVE.length} projects</span><input id="cat-q" type="search" placeholder="Search ${ARCHIVE.length} projects" autocomplete="off" spellcheck="false" /></label>
+        <div class="cat-chips" role="group" aria-label="Filter projects by type">
+          <button type="button" class="chip" data-f="all" aria-pressed="true">All <i>${ARCHIVE.length}</i></button>
+          ${chips}
+        </div>
+        <p class="cat-status" id="cat-status" role="status" aria-live="polite"></p>
+      </div>
+      <p class="cat-empty" id="cat-empty" hidden>Nothing matches that. <button type="button" class="chip" id="cat-reset">Show all projects</button></p>`;
+}
+
 function renderArchiveCard(p, index) {
   var nameHref = p.slug ? "/work/" + p.slug : (p.live || p.source);
   var external = p.slug ? "" : ' target="_blank" rel="noopener"';
@@ -756,7 +794,7 @@ function renderArchiveCard(p, index) {
 
   // The cover sits beside the name and the description it illustrates, so it is
   // decorative in context and announcing it again would only add noise.
-  return `        <article class="cat-card reveal${index === 0 ? " cat-lead" : ""}">
+  return `        <article class="cat-card reveal${index === 0 ? " cat-lead" : ""}" data-groups="${groupsOf(p)}" data-search="${searchText(p)}">
           <div class="cat-media"${hasClip(coverSlug(p)) ? ' data-clip="/clips/' + coverSlug(p) + '.mp4"' : ""}>
             ${hasClip(coverSlug(p)) ? clipLayers(coverSlug(p), 1280, 800, "", false) : '<img src="/img/cards/' + coverSlug(p) + '.webp" alt="" width="900" height="563" loading="lazy" decoding="async" />'}
             <a class="cat-media-link" href="${nameHref}"${external} tabindex="-1" aria-hidden="true"></a>
@@ -809,6 +847,7 @@ function buildArchive() {
         <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. ${Object.keys(DETAILS).length} have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
+${renderFilterBar()}
       <div class="catalog" aria-label="Project catalogue">
 ${cards}
       </div>
