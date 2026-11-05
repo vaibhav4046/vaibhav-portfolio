@@ -272,11 +272,6 @@ const ARCHIVE = [
     live: "https://continuity-six.vercel.app", source: "https://github.com/vaibhav4046/continuity",
   },
   {
-    num: "17", name: "Recoup", tag: "Agents · Fintech",
-    desc: "An AI money-recovery agent. Scans real Gmail receipts, grounds every claim in consumer-protection law, and stops at a human approval gate before it acts.",
-    source: "https://github.com/vaibhav4046/recoup",
-  },
-  {
     num: "18", name: "Keystone", tag: "Code review · Graph",
     desc: "Governed change review on the GitLab Orbit code knowledge graph: deterministic blast radius, precedent at the moment of decision and a tamper-evident audit ledger. GitLab Transcend Hackathon entry.",
     live: "https://vaibhav4046.github.io/keystone/", source: "https://github.com/vaibhav4046/keystone",
@@ -759,7 +754,7 @@ const GROUPS = {
   "Leverage": "wins agents", "Cherry": "agents", "Atkin": "memory apps", "XACT": "tools", "Lacuna": "memory agents",
   "QueueProof": "wins memory", "skillister": "tools agents", "FinalTab": "apps", "BhashaFix": "tools",
   "Firebreak": "agents tools", "Veritas": "agents", "HydraSentry": "wins agents", "Kodro": "apps",
-  "Own Wiki": "memory apps", "DRIP": "agents apps", "Continuity": "memory agents", "Recoup": "agents apps",
+  "Own Wiki": "memory apps", "DRIP": "agents apps", "Continuity": "memory agents",
   "Keystone": "tools", "PitchCraft": "agents", "RecallOps Cortex": "agents", "CIVICTAS": "agents",
   "Praxon": "agents tools", "Satonic": "apps", "RecallOS": "memory", "ReleaseRail": "agents tools",
   "GLASSBOX": "tools", "Qyntra": "wins memory", "DelOS": "agents", "Cogniloop": "apps",

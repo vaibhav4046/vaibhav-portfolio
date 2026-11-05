@@ -40,7 +40,6 @@ FROM_SHOT = {
     "drip": "drip.png",
     "continuity": "continuity.png",
     "recallops-cortex": "recallops.png",
-    "recoup": "recoup.png",
     "own-wiki": "own-wiki.png",
     "cogniloop": "cogniloop.png",
     "medreviewai": "medai.png",
