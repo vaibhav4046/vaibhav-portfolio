@@ -171,6 +171,26 @@ function linkRow(links) {
    ============================================================ */
 const ARCHIVE = [
   {
+    num: "00", name: "Stay", slug: "stay", tag: "Voice AI · AssemblyAI",
+    desc: "A voice companion for adults with ADHD. One small first step, a wait through every pause, and a message the moment a focus block ends, even with the app closed. Submitted to AssemblyAI Voice Hackathon Week.",
+    live: "https://stay-two-swart.vercel.app", source: "https://github.com/vaibhav4046/stay",
+  },
+  {
+    num: "00", name: "Avanti", tag: "Assistant · Groq",
+    desc: "A proactive AI assistant on Next.js and Groq: agent orchestration, hybrid retrieval, a semantic cache, guardrailed text-to-SQL, evals and a daily brief on a schedule.",
+    live: "https://avanti-ebon.vercel.app", source: "https://github.com/vaibhav4046/avanti-ai",
+  },
+  {
+    num: "00", name: "Last Light", tag: "Retrieval · Hackathon",
+    desc: "A browser-local passage finder for remembered stories. It returns exact quotes and source spans, not answers, and keeps nothing durable. AI-assisted hackathon prototype.",
+    live: "https://last-light-eight.vercel.app", source: "https://github.com/vaibhav4046/last-light",
+  },
+  {
+    num: "00", name: "STILL", tag: "Agents · GitLab Duo",
+    desc: "Supervised closed-loop continuity for GitLab Duo Agent Platform repairs. When a journey breaks, a plain route keeps people going, and an agent's fix is trusted only once GitLab's own records back it.",
+    live: "https://still-continuity.vercel.app", source: "https://github.com/vaibhav4046/still",
+  },
+  {
     num: "01", name: "Leverage", slug: "leverage", tag: "Agents · Buildathon",
     desc: "An intelligence resource manager. Your best model keeps the plan, an auction hires cheaper models per task, a checkpoint survives every worker failure, and the repository's own tests decide what counts. RocketRide × SCU Buildathon entry.",
     live: "https://useleverage.vercel.app", source: "https://github.com/vaibhav4046/leverage",
@@ -339,7 +359,54 @@ const ARCHIVE = [
 ];
 
 /* ---------- detail-page content (the 6 case studies) ---------- */
+ARCHIVE.forEach(function (p, i) {
+  p.num = String(i + 1).padStart(2, "0");
+});
+
 const DETAILS = {
+  stay: {
+    name: "Stay",
+    kicker: "AssemblyAI Voice Hackathon Week · 2026",
+    title: "Stay",
+    sub: "A voice companion for adults with ADHD who keep putting things off. You say the thing you are avoiding, Stay gives you one small first step, waits through your pauses, and speaks first when the time is up.",
+    img: "/img/stay-app.webp",
+    imgWidth: 1600,
+    imgHeight: 1000,
+    imgAlt: "Stay's Today screen after typing that someone keeps putting off an email to their landlord: a card gives one first step, a 10-minute timer and a Make it smaller button.",
+    cta: [
+      { label: "Open Stay →", href: "https://stay-two-swart.vercel.app/app/today", primary: true },
+      { label: "Watch the film →", href: "https://youtu.be/a6J9K-XrTSQ" },
+      { label: "Source →", href: "https://github.com/vaibhav4046/stay" },
+    ],
+    meta: [
+      ["Role", "Solo build"],
+      ["Year", "2026"],
+      ["Recognition", "Submitted to AssemblyAI Voice Hackathon Week"],
+      ["Stack", "Next.js 15 · React 19 · TypeScript · AssemblyAI speech-to-text and text-to-speech · Groq · Web Push"],
+      ["Status", "Live, 1,774 unit tests, 268 browser tests, push path checked against the live site"],
+    ],
+    prose: [
+      { h: "The problem", em: "problem", p: [
+        "People with ADHD often know exactly what to do and still cannot start. A task list does not help with starting, and a voice assistant that answers everything does not either. The first step has to be small enough to begin, offered at the moment it is needed, by something that waits instead of interrupting.",
+      ]},
+      { h: "How it works", em: "works", p: [
+        "Stay listens in the browser with AssemblyAI streaming speech-to-text and answers in a voice from AssemblyAI text-to-speech. It waits through pauses and learns, on the device, how long this person usually pauses. It gives one small first step, starts a timer if asked, and when the time is up it speaks first and asks whether they started.",
+        "With the person's permission it also speaks first when the app is closed: at most two calm messages a day in their own morning and evening windows, and a ping at the moment a focus block ends. The sentence is written on the phone from the person's own list, so the server never sees what they are avoiding.",
+      ]},
+      { h: "What is not claimed", em: "claimed", p: [
+        "Every speech test so far used synthetic speakers, and no human voice has been tried in a real room yet. Stay is not a crisis service and gives no medication advice. It was submitted to the hackathon on 5 November 2026; no result is claimed.",
+      ]},
+    ],
+    features: [
+      ["Waits through pauses", "A turn that trails off is held open, and how long it is held is learned from whether this person picks the sentence up again."],
+      ["Speaks first", "When a focus block ends it asks whether you started, then what helped, one question at a time."],
+      ["Private by construction", "History, memory and the sentence of every check-in stay on the device. The server holds a notification address and a time zone."],
+      ["Checked against real services", "A real Chrome, the real push service and the real store, run against the live site, plus Safari's engine and Firefox smoke tests."],
+    ],
+    prev: null,
+    next: { slug: "leverage", name: "Leverage" },
+  },
+
   leverage: {
     name: "Leverage",
     kicker: "RocketRide × SCU Buildathon · 2026",
@@ -376,7 +443,7 @@ const DETAILS = {
       ["Cognitive handoff", "A failed worker leaves a compact checkpoint, 76 to 91 percent smaller than its context, and the replacement resumes instead of restarting."],
       ["Receipts on screen", "Five modules of a billing SaaS by five workers in 41.6 seconds, whole suite green, paid inference zero, all of it in the execution log."],
     ],
-    prev: null,
+    prev: { slug: "stay", name: "Stay" },
     next: { slug: "lacuna", name: "Lacuna" },
   },
 
@@ -728,7 +795,7 @@ function buildArchive() {
       <div class="section-head">
         <span class="section-index"><b>&#8734;</b> / Archive</span>
         <h1 class="section-title" id="archive-heading">Everything <span class="em">shipped</span>.</h1>
-        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. Eight have a full case study; the rest link to the strongest available demo, release or repository.</p>
+        <p class="section-lede">${ARCHIVE.length} builds, newest first: production systems, hackathon entries and open source. ${Object.keys(DETAILS).length} have a full case study; the rest link to the strongest available demo, release or repository.</p>
       </div>
 
       <div class="catalog" aria-label="Project catalogue">

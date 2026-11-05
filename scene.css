@@ -1,0 +1,99 @@
+/*
+  The Stay scene and the product pictures on the newest cards.
+
+  Stay is a pinned story: the screen stays put while three real screenshots and three short steps change as you scroll. It uses the browser's own
+  scroll-driven animation (no script). A browser without it, a small screen, or a visitor who asked for less motion gets the same content as a
+  plain stack: nothing is hidden and nothing waits for the scroll.
+*/
+
+.stay-scene { position: relative; border-top: 1px solid var(--rule); scroll-margin-top: 72px; }
+.stay-grid { display: grid; gap: clamp(2rem, 5vw, 4rem); padding-block: var(--section-y); }
+
+.stay-meta { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.stay-copy h2 { margin: 0.6rem 0 1rem; max-width: 20ch; font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.03; letter-spacing: -0.032em; text-wrap: balance; }
+.stay-lede { margin: 0; max-width: 46ch; color: var(--ink-soft); font-size: 1.08rem; }
+.stay-steps { display: grid; gap: 1.5rem; margin: 2.2rem 0 0; padding: 0; list-style: none; }
+.stay-step h3 { margin: 0 0 0.3rem; font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.01em; }
+.stay-step p { margin: 0; max-width: 46ch; color: var(--ink-soft); }
+.stay-after { padding-bottom: var(--section-y); }
+.stay-proof { margin: 0; max-width: 64ch; padding-left: 1rem; border-left: 2px solid var(--accent); color: var(--muted); font-size: 0.95rem; }
+.stay-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1.8rem 0 0; }
+
+.stay-stage { display: grid; gap: 1.2rem; }
+.stay-shot { margin: 0; overflow: hidden; border: 1px solid var(--rule-strong); border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
+.stay-shot img { display: block; width: 100%; height: auto; }
+.stay-shot figcaption { padding: 0.65rem 1rem 0.8rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.88rem; }
+.stay-shot-phone { max-width: 19rem; justify-self: start; }
+
+/* pictures on the newest cards */
+.latest-shot { margin: 0 0 1.3rem; overflow: hidden; border: 1px solid var(--rule); border-radius: 0.7rem; background: var(--surface); }
+.latest-shot img { display: block; width: 100%; height: auto; }
+
+/* the trophy that replaced an emoji: drawn, so it takes the page's colour and looks the same everywhere */
+.win-chip svg { width: 1.05em; height: 1.05em; margin-right: 0.4em; vertical-align: -0.16em; flex: none; }
+
+/* ------------------------------------------------------------------ the pinned story: wide screens, scroll-driven animation, motion welcome */
+@media (min-width: 960px) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .stay-scene { view-timeline: --stay block; }
+      .stay-track { height: 330vh; }
+      .stay-pin { position: sticky; top: 0; display: flex; align-items: center; height: 100vh; padding-top: 4.5rem; overflow: clip; }
+      .stay-grid { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); align-items: center; width: 100%; padding-block: 0; }
+
+      /* the three steps take turns in one place */
+      .stay-steps { gap: 0; margin-top: 1.8rem; }
+      .stay-step { grid-area: 1 / 1; opacity: 0; animation: stay-step linear both; animation-timeline: --stay; }
+      .stay-step:nth-child(1) { animation-range: cover 24% cover 43%; }
+      .stay-step:nth-child(2) { animation-range: cover 44% cover 61%; }
+      .stay-step:nth-child(3) { animation-name: stay-step-last; animation-range: cover 63% cover 78%; }
+      .stay-steps { min-height: 9rem; }
+      .stay-actions { margin-top: 1.4rem; }
+
+      /* the screenshots share one stage; each arrives, then steps back for the next */
+      .stay-stage { position: relative; display: grid; align-items: center; aspect-ratio: 16 / 10; }
+      .stay-shot { grid-area: 1 / 1; animation-timeline: --stay; animation-timing-function: linear; animation-fill-mode: both; animation-range: cover 12% cover 78%; }
+      .stay-shot figcaption { display: none; }
+      .stay-shot-1 { animation-name: stay-shot-1; }
+      .stay-shot-2 { animation-name: stay-shot-2; }
+      .stay-shot-phone { grid-area: 1 / 1; align-self: end; justify-self: end; width: 34%; max-width: none; animation-name: stay-shot-3; }
+    }
+  }
+}
+
+@keyframes stay-step {
+  0% { opacity: 0; translate: 0 26px; }
+  18%, 82% { opacity: 1; translate: 0 0; }
+  100% { opacity: 0; translate: 0 -26px; }
+}
+@keyframes stay-step-last {
+  0% { opacity: 0; translate: 0 26px; }
+  24%, 100% { opacity: 1; translate: 0 0; }
+}
+@keyframes stay-shot-1 {
+  0% { opacity: 0; scale: 0.88; translate: 0 8%; }
+  20% { opacity: 1; scale: 1; translate: 0 0; }
+  46% { opacity: 1; scale: 1; translate: 0 0; }
+  60%, 100% { opacity: 0; scale: 0.88; translate: -9% 0; }
+}
+@keyframes stay-shot-2 {
+  0%, 38% { opacity: 0; scale: 0.94; translate: 7% 7%; }
+  52% { opacity: 1; scale: 1; translate: 0 0; }
+  74% { opacity: 1; scale: 1; translate: 0 0; }
+  88%, 100% { opacity: 0.28; scale: 0.9; translate: -5% -3%; }
+}
+@keyframes stay-shot-3 {
+  0%, 68% { opacity: 0; scale: 0.94; translate: 22% 0; }
+  84%, 100% { opacity: 1; scale: 1; translate: 6% 8%; }
+}
+
+/* cards: a picture rises into place as its card comes up the screen (only with scroll-driven animation, and only when motion is welcome) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .latest-shot { animation: shot-rise linear both; animation-timeline: view(); animation-range: entry 4% cover 30%; }
+  }
+}
+@keyframes shot-rise {
+  from { opacity: 0.25; scale: 0.94; translate: 0 34px; }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}

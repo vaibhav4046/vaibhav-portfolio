@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stay · Vaibhav Lalwani</title>
+  <meta name="description" content="A voice companion for adults with ADHD who keep putting things off. You say the thing you are avoiding, Stay gives you one small first step, waits through your pauses, and speaks first when the time is up." />
+  <meta name="author" content="Vaibhav Lalwani" />
+  <meta name="theme-color" content="#080808" />
+  <link rel="canonical" href="https://vaibhavlalwani.vercel.app/work/stay" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Stay · case study" />
+  <meta property="og:description" content="A voice companion for adults with ADHD who keep putting things off. You say the thing you are avoiding, Stay gives you one small first step, waits through your pauses, and speaks first when the time is up." />
+  <meta property="og:url" content="https://vaibhavlalwani.vercel.app/work/stay" />
+  <meta property="og:image" content="https://vaibhavlalwani.vercel.app/img/stay-app.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vaibhavlalwani.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://vaibhavlalwani.vercel.app/work" },
+      { "@type": "ListItem", "position": 3, "name": "Stay", "item": "https://vaibhavlalwani.vercel.app/work/stay" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="vl-tile" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#1e1e1e" />
+        <stop offset="1" stop-color="#070707" />
+      </linearGradient>
+      <symbol id="i-logo" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="15" fill="url(#vl-tile)" />
+        <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="#ff6a1a" stroke-opacity=".6" stroke-width="2.5" />
+        <path d="M7 18h9l5.5 19L27 18h9L26 46h-9z" fill="#f7f7f5" />
+        <path d="M40 18h9v19h8v9H40z" fill="#ff6a1a" />
+      </symbol>
+      <symbol id="i-github" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.75" y="4.75" width="18.5" height="14.5" rx="2.6" />
+          <path d="m3.6 7.4 7.2 5.14a2.05 2.05 0 0 0 2.4 0L20.4 7.4" />
+        </g>
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13.9 2.75H7.5A2.25 2.25 0 0 0 5.25 5v14A2.25 2.25 0 0 0 7.5 21.25h9A2.25 2.25 0 0 0 18.75 19V7.6z" />
+          <path d="M13.75 2.9V7.6h4.7M8.6 13.2h6.8M8.6 16.7h4.6" />
+        </g>
+      </symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.25" />
+          <path d="M2.9 12h18.2" />
+          <path d="M12 2.75c2.45 2.7 3.7 6 3.7 9.25s-1.25 6.55-3.7 9.25c-2.45-2.7-3.7-6-3.7-9.25S9.55 5.45 12 2.75Z" />
+        </g>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M7.6 16.4 16.4 7.6M9 7.6h7.4V15" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Vaibhav Lalwani · home">
+      <svg class="brand-mark" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true"><use href="#i-logo" /></svg>
+      <span class="brand-text">Vaibhav&nbsp;Lalwani</span>
+      <span class="brand-index">/ SYSTEMS·26</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="is-active" aria-current="page" href="/work">Work</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <a class="topbar-cta" href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener">Résumé</a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span>Menu</span><i aria-hidden="true"></i>
+    </button>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+      <a class="is-active" aria-current="page" href="/work"><span>01</span> Work</a>
+      <a href="/#experience"><span>02</span> Experience</a>
+      <a href="/#about"><span>03</span> About</a>
+      <a href="/#contact"><span>04</span> Contact</a>
+      <a href="/Vaibhav_Lalwani_Resume.pdf?v=2026-08" target="_blank" rel="noopener"><span>PDF</span> Résumé</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <nav class="breadcrumb wrap" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <a href="/work">Work</a>
+      <span class="sep">/</span>
+      <span class="here">Stay</span>
+    </nav>
+
+    <header class="detail-hero wrap">
+      <p class="detail-kicker">AssemblyAI Voice Hackathon Week · 2026</p>
+      <h1 class="detail-title">Stay</h1>
+      <p class="detail-sub">A voice companion for adults with ADHD who keep putting things off. You say the thing you are avoiding, Stay gives you one small first step, waits through your pauses, and speaks first when the time is up.</p>
+      <div class="detail-cta">
+        <a class="btn btn-primary" href="https://stay-two-swart.vercel.app/app/today" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-globe" /></svg> <span>Open Stay →</span></a>
+        <a class="btn" href="https://youtu.be/a6J9K-XrTSQ" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-globe" /></svg> <span>Watch the film →</span></a>
+        <a class="btn" href="https://github.com/vaibhav4046/stay" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github" /></svg> <span>Source →</span></a>
+      </div>
+      <figure class="detail-figure">
+        <picture>
+          <source srcset="/img/stay-app.webp" type="image/webp" />
+          <img src="/img/stay-app.webp" alt="Stay's Today screen after typing that someone keeps putting off an email to their landlord: a card gives one first step, a 10-minute timer and a Make it smaller button." width="1600" height="1000" loading="eager" decoding="async" />
+        </picture>
+      </figure>
+    </header>
+
+    <section class="section wrap">
+      <div class="detail-grid">
+        <aside class="detail-aside">
+        <dl class="meta-block"><dt>Role</dt><dd>Solo build</dd></dl>
+        <dl class="meta-block"><dt>Year</dt><dd>2026</dd></dl>
+        <dl class="meta-block"><dt>Recognition</dt><dd>Submitted to AssemblyAI Voice Hackathon Week</dd></dl>
+        <dl class="meta-block"><dt>Stack</dt><dd>Next.js 15 · React 19 · TypeScript · AssemblyAI speech-to-text and text-to-speech · Groq · Web Push</dd></dl>
+        <dl class="meta-block"><dt>Status</dt><dd>Live, 1,774 unit tests, 268 browser tests, push path checked against the live site</dd></dl>
+        </aside>
+        <div class="prose">
+        <h2>The <span class="em">problem</span></h2>
+        <p>People with ADHD often know exactly what to do and still cannot start. A task list does not help with starting, and a voice assistant that answers everything does not either. The first step has to be small enough to begin, offered at the moment it is needed, by something that waits instead of interrupting.</p>
+        <h2>How it <span class="em">works</span></h2>
+        <p>Stay listens in the browser with AssemblyAI streaming speech-to-text and answers in a voice from AssemblyAI text-to-speech. It waits through pauses and learns, on the device, how long this person usually pauses. It gives one small first step, starts a timer if asked, and when the time is up it speaks first and asks whether they started.</p>
+        <p>With the person's permission it also speaks first when the app is closed: at most two calm messages a day in their own morning and evening windows, and a ping at the moment a focus block ends. The sentence is written on the phone from the person's own list, so the server never sees what they are avoiding.</p>
+        <h2>What is not <span class="em">claimed</span></h2>
+        <p>Every speech test so far used synthetic speakers, and no human voice has been tried in a real room yet. Stay is not a crisis service and gives no medication advice. It was submitted to the hackathon on 5 November 2026; no result is claimed.</p>
+        <h2>Highlights</h2>
+        <ul class="feature-list">
+          <li><b>Waits through pauses</b><span>A turn that trails off is held open, and how long it is held is learned from whether this person picks the sentence up again.</span></li>
+          <li><b>Speaks first</b><span>When a focus block ends it asks whether you started, then what helped, one question at a time.</span></li>
+          <li><b>Private by construction</b><span>History, memory and the sentence of every check-in stay on the device. The server holds a notification address and a time zone.</span></li>
+          <li><b>Checked against real services</b><span>A real Chrome, the real push service and the real store, run against the live site, plus Safari's engine and Firefox smoke tests.</span></li>
+        </ul>
+        </div>
+      </div>
+    </section>
+
+  <nav class="pager wrap" aria-label="More work">
+    <a href="/work">
+      <span class="p-dir">Index</span>
+      <span class="p-name">All work</span>
+    </a>
+    <a class="next" href="/work/leverage">
+      <span class="p-dir">Next</span>
+      <span class="p-name">Leverage</span>
+    </a>
+  </nav>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <div class="foot-brand">Vaibhav <span class="mark">Lalwani.</span></div>
+      <div class="foot-meta">
+        <nav aria-label="Footer">
+          <a href="/#work">Work</a>
+          <a href="/work">Archive</a>
+          <a href="/#about">About</a>
+          <a href="/#experience">Experience</a>
+          <a href="/#contact">Contact</a>
+          <a href="https://github.com/vaibhav4046" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github" /></svg> GitHub</a>
+          <a href="https://www.linkedin.com/in/vaibhav-lalwani" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-linkedin" /></svg> LinkedIn</a>
+        </nav>
+        <p class="foot-note">Open to work · Liverpool, UK · <span id="year">2026</span></p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>Hand-built with plain HTML, CSS and JavaScript. No framework, no tracker.</p>
+      <p>© <span id="year-2">2026</span> Vaibhav Lalwani</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>

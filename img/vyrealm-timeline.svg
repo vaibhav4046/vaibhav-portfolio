@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 875" width="1400" height="875" role="img" aria-labelledby="t d">
+  <title id="t">VYREALM editor, drawn as a diagram</title>
+  <desc id="d">A video editor window with a preview, a video track of three clips, a caption track and an audio waveform, with a playhead partway through.</desc>
+  <defs>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#161616"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient>
+    <linearGradient id="clip" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a30"/><stop offset="1" stop-color="#d9480a"/></linearGradient>
+    <linearGradient id="clip2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3a36"/><stop offset="1" stop-color="#242422"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#ff6a1a" stop-opacity=".35"/><stop offset="1" stop-color="#ff6a1a" stop-opacity="0"/></radialGradient>
+    <clipPath id="round"><rect x="60" y="60" width="1280" height="755" rx="22"/></clipPath>
+  </defs>
+  <rect width="1400" height="875" fill="#080808"/>
+  <g clip-path="url(#round)">
+    <rect x="60" y="60" width="1280" height="755" fill="url(#win)"/>
+    <!-- title bar -->
+    <rect x="60" y="60" width="1280" height="54" fill="#101010"/>
+    <circle cx="94" cy="87" r="7" fill="#3b3b38"/><circle cx="120" cy="87" r="7" fill="#3b3b38"/><circle cx="146" cy="87" r="7" fill="#3b3b38"/>
+    <text x="700" y="94" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="17" fill="#a2a29c">Product launch, cut 3</text>
+    <rect x="1196" y="72" width="120" height="30" rx="15" fill="#ff6a1a"/>
+    <text x="1256" y="93" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="600" fill="#090909">Export</text>
+    <!-- preview -->
+    <rect x="96" y="140" width="700" height="394" rx="12" fill="#050505" stroke="#2a2a28"/>
+    <ellipse cx="446" cy="337" rx="250" ry="150" fill="url(#glow)"/>
+    <circle cx="446" cy="337" r="46" fill="none" stroke="#f7f7f5" stroke-opacity=".85" stroke-width="3"/>
+    <path d="M435 316v42l36-21z" fill="#f7f7f5" fill-opacity=".9"/>
+    <rect x="236" y="470" width="420" height="40" rx="8" fill="#000" fill-opacity=".62"/>
+    <text x="446" y="497" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="20" fill="#f7f7f5">Captions stay on this machine.</text>
+    <!-- inspector -->
+    <rect x="828" y="140" width="476" height="394" rx="12" fill="#0e0e0e" stroke="#2a2a28"/>
+    <text x="854" y="178" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#f7f7f5">Clip</text>
+    <g font-family="Inter, system-ui, sans-serif" font-size="15" fill="#a2a29c">
+      <text x="854" y="214">Trim</text><text x="1278" y="214" text-anchor="end" fill="#f7f7f5">00:04.2 to 00:11.8</text>
+      <text x="854" y="248">Speed</text><text x="1278" y="248" text-anchor="end" fill="#f7f7f5">1.0x</text>
+      <text x="854" y="282">Narration</text><text x="1278" y="282" text-anchor="end" fill="#f7f7f5">Local voice</text>
+      <text x="854" y="316">Captions</text><text x="1278" y="316" text-anchor="end" fill="#f7f7f5">Burned in</text>
+    </g>
+    <rect x="854" y="352" width="424" height="1" fill="#2a2a28"/>
+    <text x="854" y="388" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#f7f7f5">Export</text>
+    <rect x="854" y="406" width="424" height="14" rx="7" fill="#242422"/><rect x="854" y="406" width="268" height="14" rx="7" fill="#ff6a1a"/>
+    <text x="854" y="452" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#a2a29c">Rendering 1080p on this machine</text>
+    <!-- timeline -->
+    <rect x="96" y="562" width="1208" height="226" rx="12" fill="#0b0b0b" stroke="#2a2a28"/>
+    <g stroke="#242422" stroke-width="1"><path d="M200 574v200M360 574v200M520 574v200M680 574v200M840 574v200M1000 574v200M1160 574v200"/></g>
+    <g font-family="Inter, system-ui, sans-serif" font-size="13" fill="#7c7c76"><text x="200" y="592" text-anchor="middle">0:00</text><text x="520" y="592" text-anchor="middle">0:10</text><text x="840" y="592" text-anchor="middle">0:20</text><text x="1160" y="592" text-anchor="middle">0:30</text></g>
+    <g font-family="Inter, system-ui, sans-serif" font-size="14" fill="#a2a29c"><text x="112" y="636">Video</text><text x="112" y="692">Captions</text><text x="112" y="748">Audio</text></g>
+    <!-- video track -->
+    <rect x="200" y="612" width="300" height="36" rx="8" fill="url(#clip)"/>
+    <rect x="508" y="612" width="204" height="36" rx="8" fill="url(#clip2)" stroke="#555"/>
+    <rect x="720" y="612" width="332" height="36" rx="8" fill="url(#clip)"/>
+    <!-- caption track -->
+    <g fill="#f7f7f5" fill-opacity=".92"><rect x="216" y="672" width="120" height="30" rx="7"/><rect x="344" y="672" width="170" height="30" rx="7"/><rect x="560" y="672" width="140" height="30" rx="7"/><rect x="756" y="672" width="190" height="30" rx="7"/><rect x="954" y="672" width="94" height="30" rx="7"/></g>
+    <!-- waveform -->
+    <g fill="#ff6a1a" fill-opacity=".75"><path d="M200 748h4v-10h-4zM208 748h4v-24h-4zM216 748h4v-14h-4zM224 748h4v-30h-4zM232 748h4v-18h-4zM240 748h4v-34h-4zM248 748h4v-12h-4zM256 748h4v-26h-4zM264 748h4v-16h-4zM272 748h4v-32h-4zM280 748h4v-20h-4zM288 748h4v-8h-4zM296 748h4v-28h-4zM304 748h4v-22h-4zM312 748h4v-34h-4zM320 748h4v-14h-4zM328 748h4v-26h-4zM336 748h4v-10h-4zM344 748h4v-30h-4zM352 748h4v-18h-4zM360 748h4v-24h-4zM368 748h4v-12h-4zM376 748h4v-32h-4zM384 748h4v-20h-4zM392 748h4v-28h-4zM400 748h4v-8h-4zM408 748h4v-26h-4zM416 748h4v-16h-4zM424 748h4v-34h-4zM432 748h4v-22h-4zM440 748h4v-12h-4zM448 748h4v-30h-4zM456 748h4v-18h-4zM464 748h4v-24h-4zM472 748h4v-10h-4zM480 748h4v-28h-4zM488 748h4v-14h-4zM496 748h4v-32h-4z"/></g>
+    <g fill="#ff6a1a" fill-opacity=".45"><path d="M512 748h4v-18h-4zM520 748h4v-28h-4zM528 748h4v-12h-4zM536 748h4v-32h-4zM544 748h4v-20h-4zM552 748h4v-26h-4zM560 748h4v-10h-4zM568 748h4v-30h-4zM576 748h4v-16h-4zM584 748h4v-24h-4zM592 748h4v-34h-4zM600 748h4v-14h-4zM608 748h4v-28h-4zM616 748h4v-20h-4zM624 748h4v-8h-4zM632 748h4v-30h-4zM640 748h4v-18h-4zM648 748h4v-26h-4zM656 748h4v-12h-4zM664 748h4v-32h-4zM672 748h4v-22h-4zM680 748h4v-16h-4zM688 748h4v-28h-4zM696 748h4v-10h-4zM720 748h4v-24h-4zM728 748h4v-14h-4zM736 748h4v-30h-4zM744 748h4v-20h-4zM752 748h4v-8h-4zM760 748h4v-28h-4zM768 748h4v-18h-4zM776 748h4v-34h-4zM784 748h4v-12h-4zM792 748h4v-26h-4zM800 748h4v-16h-4zM808 748h4v-32h-4zM816 748h4v-22h-4zM824 748h4v-10h-4zM832 748h4v-30h-4zM840 748h4v-18h-4zM848 748h4v-24h-4zM856 748h4v-12h-4zM864 748h4v-28h-4zM872 748h4v-8h-4zM880 748h4v-26h-4zM888 748h4v-16h-4zM896 748h4v-32h-4zM904 748h4v-20h-4zM912 748h4v-14h-4zM920 748h4v-30h-4zM928 748h4v-10h-4zM936 748h4v-24h-4zM944 748h4v-18h-4zM952 748h4v-28h-4zM960 748h4v-12h-4zM968 748h4v-32h-4zM976 748h4v-22h-4zM984 748h4v-8h-4zM992 748h4v-26h-4zM1000 748h4v-16h-4zM1008 748h4v-30h-4zM1016 748h4v-12h-4zM1024 748h4v-24h-4zM1032 748h4v-18h-4zM1040 748h4v-10h-4z"/></g>
+    <!-- playhead -->
+    <path d="M620 596v186" stroke="#f7f7f5" stroke-width="2"/><path d="M610 582h20l-10 14z" fill="#f7f7f5"/>
+  </g>
+  <rect x="60.5" y="60.5" width="1279" height="754" rx="21.5" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+</svg>

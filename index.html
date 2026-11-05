@@ -21,6 +21,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/fx.css" />
+  <link rel="stylesheet" href="/scene.css" />
 
   <script type="application/ld+json">
   {
@@ -53,6 +54,13 @@
         <stop offset="0" stop-color="#1e1e1e" />
         <stop offset="1" stop-color="#070707" />
       </linearGradient>
+      <symbol id="i-trophy" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7.5 4h9v5.2a4.5 4.5 0 0 1-9 0z" />
+          <path d="M7.5 5.5H4.6c0 3 1.3 4.6 3.4 5M16.5 5.5h2.9c0 3-1.3 4.6-3.4 5" />
+          <path d="M12 13.7V17M8.6 20h6.8M9.8 17h4.4" />
+        </g>
+      </symbol>
       <symbol id="i-logo" viewBox="0 0 64 64">
         <rect width="64" height="64" rx="15" fill="url(#vl-tile)" />
         <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="#ff6a1a" stroke-opacity=".6" stroke-width="2.5" />
@@ -165,6 +173,57 @@
     </section>
 
 
+    <!-- ===== Stay: a pinned product story (scene.css) ===== -->
+    <section class="stay-scene" id="stay" aria-labelledby="stay-heading">
+      <div class="stay-track">
+        <div class="stay-pin">
+          <div class="wrap stay-grid">
+            <div class="stay-copy">
+              <p class="stay-meta">Submitted to AssemblyAI Voice Hackathon Week, November 2026</p>
+              <h2 id="stay-heading">Stay helps people with ADHD start what they keep avoiding.</h2>
+              <p class="stay-lede">You say the thing you are putting off. Stay gives you one small first step, waits through your pauses, and speaks first when the time is up.</p>
+              <ul class="stay-steps">
+                <li class="stay-step">
+                  <h3>Say it badly.</h3>
+                  <p>Talk or type. Stay waits through the ums, the restarts and the half sentences, and learns on your device how long you usually pause.</p>
+                </li>
+                <li class="stay-step">
+                  <h3>Get one small step.</h3>
+                  <p>A first move you can begin in under two minutes, a timer if you ask for one, and a spoken question when it ends: did you start?</p>
+                </li>
+                <li class="stay-step">
+                  <h3>It checks in, even when the app is closed.</h3>
+                  <p>Two calm messages a day at most, and a ping the moment a focus block ends. Your phone writes the sentence from your own list, so the server never sees what you avoid.</p>
+                </li>
+              </ul>
+              <p class="stay-actions">
+                <a class="btn btn-primary" href="https://youtu.be/a6J9K-XrTSQ" target="_blank" rel="noopener">Watch the 3-minute film <span aria-hidden="true">↗</span></a>
+                <a class="btn" href="https://stay-two-swart.vercel.app" target="_blank" rel="noopener">Open Stay <span aria-hidden="true">↗</span></a>
+                <a class="btn" href="/work/stay">Case study</a>
+              </p>
+            </div>
+            <div class="stay-stage">
+              <figure class="stay-shot stay-shot-1">
+                <img src="/img/stay-landing.webp" width="1600" height="865" alt="Stay's home page: a foldable device showing a short conversation about doom-scrolling, beside the line Start the thing you've been avoiding." loading="lazy" decoding="async" />
+                <figcaption>The home page, with a recorded test call in the foldable.</figcaption>
+              </figure>
+              <figure class="stay-shot stay-shot-2">
+                <img src="/img/stay-app.webp" width="1600" height="1000" alt="Stay's Today screen after typing that someone keeps putting off an email to their landlord: the orb has become an envelope, and a card gives one first step with a 10-minute timer and a Make it smaller button." loading="lazy" decoding="async" />
+                <figcaption>Stay's reply to a task: one first step, a timer, and a way to make it smaller.</figcaption>
+              </figure>
+              <figure class="stay-shot stay-shot-phone">
+                <img src="/img/stay-checkin.webp" width="640" height="1385" alt="Stay on a phone showing a From Stay card with a blue unread dot: Your block is done. How did email the landlord go? Tap to tell me." loading="lazy" decoding="async" />
+                <figcaption>A check-in that arrived while the app was closed.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap stay-after">
+        <p class="stay-proof">Built on AssemblyAI streaming speech-to-text and text-to-speech. 1,774 unit tests, 268 browser tests, and a real-browser check of the push path against the live site. Every speech test so far used synthetic speakers: no human voice has been tried in a real room yet.</p>
+      </div>
+    </section>
+
     <!-- ===== Latest wins & systems ===== -->
     <section class="section wrap latest-section" id="latest" aria-labelledby="latest-heading">
       <div class="section-head latest-head">
@@ -177,7 +236,7 @@
         <article class="latest-hero reveal">
           <div class="latest-hero-copy">
             <div class="latest-meta">
-              <span class="win-chip">🏆 SharedOS Hackathon · Judges’ Pick</span>
+              <span class="win-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trophy" /></svg>SharedOS Hackathon · Judges’ Pick</span>
               <span class="latest-year">2026</span>
             </div>
             <p class="latest-overline">Newest flagship · Agent commerce</p>
@@ -203,6 +262,7 @@
         </article>
 
         <article class="latest-card reveal">
+          <figure class="latest-shot"><img src="/img/vyrealm-timeline.svg" width="1400" height="875" alt="A diagram of the VYREALM editor, drawn for this page rather than captured: a preview, a video track, a caption track and an audio waveform with a playhead." loading="lazy" decoding="async" /></figure>
           <div class="latest-card-top"><span class="latest-card-index">02</span><span class="latest-card-state">LOCAL-FIRST</span></div>
           <h3>VYREALM</h3>
           <p>A Windows creator studio that turns footage and ideas into editable video projects. Timeline edits, captions, narration, local media and real exports stay on the machine, with optional MCP and model workflows layered on top.</p>
@@ -211,6 +271,7 @@
         </article>
 
         <article class="latest-card reveal">
+          <figure class="latest-shot"><img src="/img/reqkeeper.webp" width="1400" height="875" alt="ReqKeeper's page: 719 of 719 tests passing, no duplicate payments across a 50-worker race, and a pipeline view from ReqKeeper through a call-data gate to KeeperHub." loading="lazy" decoding="async" /></figure>
           <div class="latest-card-top"><span class="latest-card-index">03</span><span class="latest-card-state">PAYMENT SAFETY</span></div>
           <h3>ReqKeeper</h3>
           <p>Exactly-once settlement for Request Network obligations through KeeperHub. Retries are allowed; duplicate money movement is not. The proof includes independent processes racing the same obligation and live Sepolia settlement evidence.</p>
@@ -219,6 +280,7 @@
         </article>
 
         <article class="latest-card latest-card-wide reveal">
+          <figure class="latest-shot"><img src="/img/viva.webp" width="1400" height="875" alt="VIVA's page: Upload your lecture notes, get examined on them out loud, beside a sample oral exam with the examiner's question and a source-checked answer." loading="lazy" decoding="async" /></figure>
           <div class="latest-card-top"><span class="latest-card-index">04</span><span class="latest-card-state">VOICE AI</span></div>
           <h3>VIVA</h3>
           <p>Study out loud. VIVA transcribes what a learner says, identifies the gap, grounds the correction in source material and brings the weak concept back for active recall. Built for AssemblyAI Voice Hackathon Week.</p>
@@ -362,7 +424,7 @@
       </div>
 
       <div class="section-foot">
-        <span class="count">Selected for depth. The archive contains 15 documented builds.</span>
+        <span class="count">Selected for depth. The archive contains 37 documented builds.</span>
         <a class="btn" href="/work"><span>Explore the full archive</span> <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
