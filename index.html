@@ -37,7 +37,7 @@
       { "@type": "CollegeOrUniversity", "name": "University of Liverpool" },
       { "@type": "CollegeOrUniversity", "name": "Christ University" }
     ],
-    "knowsAbout": ["Large Language Models", "AI Agents", "LLM Evaluation", "Retrieval-Augmented Generation", "Full-Stack Engineering", "TypeScript", "Python"],
+    "knowsAbout": ["Large Language Models", "AI Agents", "Model Context Protocol", "LLM Evaluation", "Retrieval-Augmented Generation", "Forward-Deployed Engineering", "Full-Stack Engineering", "TypeScript", "Python", "Rust", "Go"],
     "sameAs": ["https://github.com/vaibhav4046", "https://www.linkedin.com/in/vaibhav-lalwani"]
   }
   </script>
@@ -447,7 +447,7 @@
         <div class="about-copy reveal">
           <p class="about-lead">I am an AI systems engineer and MSc Advanced Data Science &amp; AI student at the University of Liverpool.</p>
           <p>I work across the full product path: retrieval and evaluation, model orchestration, APIs, data, deployment and the interface that exposes the evidence. The goal is not an impressive prompt. It is a system that behaves clearly when the input is messy, a dependency fails or a user asks “why?”</p>
-          <p>I am currently open to UK part-time AI/software roles and internships, plus graduate opportunities from 2027.</p>
+          <p>I am currently open to UK part-time roles and internships in applied AI, ML engineering and forward-deployed engineering, plus graduate opportunities from 2027.</p>
         </div>
         <ol class="principles reveal" aria-label="Engineering principles">
           <li><span>01</span><div><strong>Ground the answer</strong><p>Trace outputs to sources, evaluations or observable system state.</p></div></li>
@@ -630,27 +630,48 @@
       <div class="section-head">
         <span class="section-index"><b>06</b> / Stack</span>
         <h2 class="section-title" id="stack-heading">What I <span class="em">build with</span>.</h2>
+        <p class="section-lede">Every line is something I have shipped, and each group says where.</p>
       </div>
       <div class="skills">
         <div class="skill-col reveal">
-          <h3>AI &amp; LLM</h3>
-          <ul class="chiplist"><li>OpenAI API</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-anthropic"/></svg>Claude API</li><li>Groq</li><li>RAG / retrieval</li><li>Agents &amp; tools</li><li>QLoRA fine-tuning</li><li>Structured outputs</li></ul>
+          <h3>Models and speech</h3>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-anthropic"/></svg>Claude API</li><li>OpenAI API</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-googlegemini"/></svg>Gemini and Google ADK</li><li>Groq</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nvidia"/></svg>NVIDIA NIM</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-ollama"/></svg>Ollama, local models</li><li>AssemblyAI streaming speech</li><li>QLoRA fine-tuning</li></ul>
+          <p class="skill-proof">Shipped in Stay, Avanti, PitchCraft, Cogniloop, Own Wiki and Satonic.</p>
         </div>
         <div class="skill-col reveal">
-          <h3>Frontend</h3>
-          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-react"/></svg>React 19</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nextdotjs"/></svg>Next.js 15</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-typescript"/></svg>TypeScript</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-tailwindcss"/></svg>Tailwind</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vite"/></svg>Vite</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-html5"/></svg>HTML / CSS</li></ul>
+          <h3>Agents and MCP</h3>
+          <ul class="chiplist"><li>MCP servers and clients</li><li>WebMCP</li><li>Multi-agent orchestration</li><li>Tool use, structured outputs</li><li>Human approval gates</li><li>Agent memory on HydraDB</li></ul>
+          <p class="skill-proof">Shipped in Leverage, Lacuna, Cherry, ReleaseRail and Dolphin Tank.</p>
         </div>
         <div class="skill-col reveal">
-          <h3>Backend</h3>
-          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-python"/></svg>Python</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-fastapi"/></svg>FastAPI</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nodedotjs"/></svg>Node.js</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-redis"/></svg>BullMQ + Redis</li><li>REST APIs</li></ul>
+          <h3>Retrieval and memory</h3>
+          <ul class="chiplist"><li>Hybrid search, rank fusion</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg>pgvector</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-mongodb"/></svg>Atlas Vector Search</li><li>Reranking and citations</li><li>Semantic caching</li><li>Guarded text-to-SQL</li></ul>
+          <p class="skill-proof">Shipped in QueueProof, Avanti, PitchCraft and Lacuna.</p>
         </div>
         <div class="skill-col reveal">
-          <h3>Data</h3>
-          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg>Postgres</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg>pgvector</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-supabase"/></svg>Supabase</li><li>HydraDB</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-mongodb"/></svg>MongoDB</li><li>Vector search</li></ul>
+          <h3>Evals and reliability</h3>
+          <ul class="chiplist"><li>Eval sets, regression gates</li><li>LangSmith traces</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-sentry"/></svg>Sentry</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-posthog"/></svg>PostHog</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vitest"/></svg>Vitest</li><li>Playwright</li><li>Agent recovery benchmarks</li></ul>
+          <p class="skill-proof">XACT, Backstop and EdgeBench. Stay ships with 1,774 unit and 268 browser tests.</p>
         </div>
         <div class="skill-col reveal">
-          <h3>Ship</h3>
-          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-googlecloud"/></svg>Cloud Run</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-docker"/></svg>Docker</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-github"/></svg>Git / GitHub</li><li>OAuth / PKCE</li><li>i18n</li></ul>
+          <h3>Languages</h3>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-typescript"/></svg><span class="chip-text">TypeScript<small>most of my code</small></span></li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-python"/></svg><span class="chip-text">Python<small>agents, evals, simulation</small></span></li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-rust"/></svg><span class="chip-text">Rust<small>STILL core service, ATKIN desktop backend</small></span></li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-go"/></svg><span class="chip-text">Go<small>Dolphin Tank, four staged services</small></span></li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-postgresql"/></svg><span class="chip-text">SQL<small>Postgres and PL/pgSQL</small></span></li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-solidity"/></svg><span class="chip-text">Solidity<small>FinalTab settlement</small></span></li></ul>
+          <p class="skill-proof">Counted from my public repositories.</p>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Frontend and realtime</h3>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-react"/></svg>React 19</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nextdotjs"/></svg>Next.js 15</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-tailwindcss"/></svg>Tailwind</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vite"/></svg>Vite</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-threedotjs"/></svg>Three.js</li><li>WebSockets, live speech</li><li>Web Push, service workers</li><li>Scroll-driven CSS</li></ul>
+          <p class="skill-proof">Shipped in Stay, Qyntra, Kodro and this site.</p>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Backend and infrastructure</h3>
+          <ul class="chiplist"><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-fastapi"/></svg>FastAPI</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-nodedotjs"/></svg>Node.js</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-redis"/></svg>BullMQ and Redis</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-supabase"/></svg>Postgres and Supabase</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-tauri"/></svg>Tauri</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-docker"/></svg>Docker</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-googlecloud"/></svg>Cloud Run</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-vercel"/></svg>Vercel</li><li class="has-mark"><svg class="chip-ico" aria-hidden="true"><use href="/img/brands.svg#b-githubactions"/></svg>GitHub Actions</li></ul>
+          <p class="skill-proof">Shipped in ATKIN, STILL, Stay, Meta Solution Technologies work and client projects.</p>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Customer delivery</h3>
+          <ul class="chiplist"><li>Scoping with the client team</li><li>Fit into their existing workflow</li><li>Eval set agreed before rollout</li><li>Runbook, walkthrough video, hand-off</li><li>Privacy and security by design</li><li>Authorised security testing</li></ul>
+          <p class="skill-proof">20+ clients worked with one-on-one, in their offices; two authorised security rounds on HydraDB.</p>
         </div>
       </div>
     </section>

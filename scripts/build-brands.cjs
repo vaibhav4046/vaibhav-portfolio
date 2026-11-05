@@ -37,6 +37,9 @@ const MARKS = {
   "Three.js": "threedotjs",
   "PyTorch": "pytorch",
   "RocketRide": "rocketride",
+  "Rust": "rust", "Go": "go", "Gemini and Google ADK": "googlegemini", "NVIDIA NIM": "nvidia",
+  "Vitest": "vitest", "Tauri": "tauri", "Solidity": "solidity", "Electron": "electron", "SQLite": "sqlite",
+  "GitHub Actions": "githubactions", "Sentry": "sentry", "PostHog": "posthog",
 };
 
 function symbolFromSimpleIcon(slug) {

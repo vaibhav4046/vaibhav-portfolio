@@ -385,11 +385,16 @@ main[tabindex="-1"]:focus { outline: none; }
 .r-tag { display: flex; justify-content: space-between; gap: .7rem; font: 600 .58rem/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
 .r-tag b { color: var(--accent); }
 .withheld { margin-top: .7rem; color: var(--faint) !important; font-size: .78rem !important; }
-.skills { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--rule); border-radius: 20px; background: var(--rule); }
+.skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--rule); border-radius: 20px; background: var(--rule); }
 .skill-col { min-width: 0; padding: 1.2rem 1.2rem 1.45rem; background: var(--surface); }
 .skill-col h3 { margin-bottom: 1rem; color: var(--accent); font: 700 .66rem/1.2 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
 .chiplist { display: grid; gap: .42rem; }
 .chiplist li { color: var(--ink-soft); font-size: .87rem; }
+.chiplist li small { display: block; margin-top: .1rem; color: var(--muted); font-size: .74rem; line-height: 1.35; }
+.chip-text { display: flex; flex-direction: column; min-width: 0; }
+.skill-col { display: flex; flex-direction: column; }
+.skill-proof { margin: auto 0 0; padding-top: .9rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .76rem; line-height: 1.5; }
+.skill-col .chiplist { margin-bottom: 1.1rem; }
 .cert-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1rem; }
 .cert-card { min-height: 150px; }
 .cert-card p { color: var(--muted); font: 500 .59rem/1.5 var(--font-mono); }
@@ -532,7 +537,7 @@ main[tabindex="-1"]:focus { outline: none; }
   .work-row .work-figure, .work-row:nth-child(even) .work-figure { grid-column: 2; grid-row: 1; }
   .work-row .work-body, .work-row:nth-child(even) .work-body { grid-column: 2; grid-row: 2; }
   .work-row .work-num, .work-row:nth-child(even) .work-num { grid-column: 1; grid-row: 1 / span 2; }
-  .skills { grid-template-columns: repeat(3, 1fr); }
+  .skills { grid-template-columns: repeat(2, 1fr); }
   .cert-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
