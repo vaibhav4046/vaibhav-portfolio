@@ -737,3 +737,9 @@ main[tabindex="-1"]:focus { outline: none; }
   .cat-chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; }
 }
+
+/* Moving between pages cross-fades instead of flashing white, and the top bar stays where it is. Browsers without support just navigate. */
+@view-transition { navigation: auto; }
+.topbar { view-transition-name: topbar; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .24s; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }

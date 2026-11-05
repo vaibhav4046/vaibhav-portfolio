@@ -316,6 +316,13 @@
       var fromQuery = new URLSearchParams(location.search).get("q");
       if (fromQuery) input.value = fromQuery.slice(0, 60);
     } catch (error) {}
+    input.setAttribute("aria-keyshortcuts", "/");
+    document.addEventListener("keydown", function (event) {
+      var tag = (event.target && event.target.tagName) || "";
+      if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
+      event.preventDefault();
+      input.focus();
+    });
     apply(false);
   }
 
