@@ -46,9 +46,9 @@ name_style = ParagraphStyle("Name", parent=styles["Normal"], fontName="DejaVu-Bo
 role_style = ParagraphStyle("Role", parent=styles["Normal"], fontName="DejaVu", fontSize=10, leading=12, textColor=MUTED, spaceAfter=5)
 contact_style = ParagraphStyle("Contact", parent=styles["Normal"], fontName="DejaVu", fontSize=8.3, leading=10.4, textColor=MUTED, linkColor=LINK, spaceAfter=5)
 availability_style = ParagraphStyle("Availability", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8.3, leading=10.4, textColor=INK, borderColor=RULE, borderWidth=.6, borderPadding=(4, 6, 4, 6), spaceAfter=5)
-section_style = ParagraphStyle("Section", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8.2, leading=10, textColor=ACCENT, tracking=1.1, spaceBefore=6, spaceAfter=3.5)
-body_style = ParagraphStyle("Body", parent=styles["Normal"], fontName="DejaVu", fontSize=9.1, leading=11.2, textColor=INK, alignment=TA_LEFT, spaceAfter=3, linkColor=LINK)
-small_style = ParagraphStyle("Small", parent=body_style, fontSize=8.5, leading=10.4)
+section_style = ParagraphStyle("Section", parent=styles["Normal"], fontName="DejaVu-Bold", fontSize=8.2, leading=10, textColor=ACCENT, tracking=1.1, spaceBefore=4.5, spaceAfter=2.5)
+body_style = ParagraphStyle("Body", parent=styles["Normal"], fontName="DejaVu", fontSize=8.8, leading=10.6, textColor=INK, alignment=TA_LEFT, spaceAfter=3, linkColor=LINK)
+small_style = ParagraphStyle("Small", parent=body_style, fontSize=8.1, leading=9.55)
 label_style = ParagraphStyle("Label", parent=small_style, fontName="DejaVu-Bold", textColor=MUTED)
 
 
@@ -81,15 +81,15 @@ doc = SimpleDocTemplate(
     pagesize=A4,
     rightMargin=12 * mm,
     leftMargin=12 * mm,
-    topMargin=9 * mm,
-    bottomMargin=8 * mm,
+    topMargin=8 * mm,
+    bottomMargin=7 * mm,
     title="Vaibhav Lalwani - AI Systems Engineer",
     author="Vaibhav Lalwani",
 )
 
 story = [
     Paragraph("Vaibhav Lalwani", name_style),
-    Paragraph("AI Systems Engineer | MSc Advanced Data Science &amp; AI, University of Liverpool", role_style),
+    Paragraph("AI Systems Engineer | Applied AI and forward-deployed engineering | MSc Advanced Data Science &amp; AI, University of Liverpool", role_style),
     Paragraph(
         "Liverpool, UK | +44 7544 537 860 | "
         "<a href='mailto:vaibhavlalwani26969@gmail.com'>vaibhavlalwani26969@gmail.com</a> | "
@@ -98,21 +98,23 @@ story = [
         "<a href='https://linkedin.com/in/vaibhav-lalwani'>LinkedIn</a>",
         contact_style,
     ),
-    Paragraph("Open to UK part-time AI/software roles and internships | Graduate roles from January 2027", availability_style),
+    Paragraph("Open to UK part-time roles and internships in applied AI, ML engineering and forward-deployed engineering | Graduate roles from January 2027", availability_style),
     section("Profile"),
     Paragraph(
-        "AI systems engineer building production LLM applications, retrieval pipelines and agent products end to end. "
-        "Work spans evaluation, model orchestration, APIs, data, deployment and evidence-first interfaces. "
-        "Shipped 20+ AI applications across product, academic and client contexts.",
+        "AI systems engineer building production LLM applications, retrieval pipelines and agent products end to end, then fitting them into the customer's own workflow: "
+        "scoping, evals before rollout, deployment and hand-off. Four hackathon wins in 2026; 20+ AI applications shipped, with 20+ clients served one-on-one in their offices.",
         body_style,
     ),
     section("Skills"),
 ]
 
 skills = [
-    ("AI systems", "RAG, LLM evaluation, agents and tools, structured outputs, MCP, PyTorch, OpenAI, Anthropic, Gemini, Groq"),
-    ("Engineering", "Python, TypeScript, JavaScript, FastAPI, Node.js, React, Next.js, REST APIs"),
-    ("Data & ship", "Postgres, pgvector, Supabase, Redis, BullMQ, HydraDB, Docker, Vercel, GCP Cloud Run, GitHub Actions"),
+    ("AI systems", "Claude, OpenAI, Gemini and ADK, Groq, NVIDIA NIM, Ollama, AssemblyAI speech, QLoRA; MCP and WebMCP, multi-agent orchestration, structured outputs, approval gates; "
+                   "RAG, hybrid search and rank fusion, reranking, citations; eval sets, regression gates, LangSmith"),
+    ("Languages", "TypeScript, Python, Rust (STILL core service, ATKIN's Tauri backend), Go (Dolphin Tank), SQL, Solidity"),
+    ("Product", "React 19, Next.js 15, Node.js, FastAPI, Tauri, Three.js, WebSockets, Web Push, REST APIs, Vitest, Playwright"),
+    ("Data and ship", "Postgres and pgvector, MongoDB Atlas Vector Search, Supabase, Redis and BullMQ, HydraDB, Docker, Vercel, GCP Cloud Run, GitHub Actions, Sentry, PostHog"),
+    ("Delivery", "Scoping with the client team, existing-workflow fit, eval set agreed before rollout, runbook and video hand-off, privacy by design, authorised security testing"),
 ]
 skill_table = Table(
     [[Paragraph(label, label_style), Paragraph(value, small_style)] for label, value in skills],
@@ -128,40 +130,60 @@ skill_table.setStyle(TableStyle([
 story.append(skill_table)
 story.append(section("Experience"))
 story.extend(role_row(
+    "Instructor | Robocode UK",
+    "Aug 2026 - Present",
+    "Part-time, Liverpool, on-site",
+    ["Teaching coding and robotics to young learners in Liverpool."],
+))
+story.extend(role_row(
     "AI Engineer, Full-Stack | Meta Solution Technologies",
     "Apr - May 2026",
-    "Remote, UK",
+    "Part-time, remote",
     [
-        "Built features on Next.js 15, React 19 and TypeScript over a Python LLM backend with Postgres and pgvector.",
-        "Delivered structured-output flows, Supabase OAuth/magic-link authentication, BullMQ/Redis background jobs and 10-language i18n.",
+        "AI-guided admissions platform for international students applying to UK and US universities: Next.js 15, React 19 and TypeScript over a Python LLM backend; Zod-validated structured outputs, "
+        "prompts regressed against a fixed eval set before each rollout; RAG on Postgres and pgvector with reranking and citations; BullMQ and Redis, Docker, Cloud Run, LangSmith, Sentry, PostHog.",
     ],
 ))
 story.extend(role_row(
-    "Software Engineer | Recruit Pilot",
+    "Software Engineer | RecruitPilot AI",
     "Jan - Apr 2026",
     "Part-time, remote",
-    ["Delivered React and TypeScript product features and fixes against a live REST API within a weekly review and release cadence."],
+    ["Built React and TypeScript features against a REST API for a recruitment-tech product, in code review and a weekly sprint cadence alongside senior engineers."],
 ))
 story.extend(role_row(
-    "AI Engineer | Independent",
+    "AI Engineer, Freelance | Self-employed",
     "May 2024 - Jan 2026",
+    "Remote and on-site",
+    [
+        "Delivered 20+ custom AI applications for SaaS, e-commerce, real estate and consulting clients, and built and sold 5 proprietary AI agents.",
+        "Worked one-on-one with 20+ clients in their offices, on their workflows; every engagement ended with a README, a walkthrough video and a hand-off document.",
+    ],
+))
+story.extend(role_row(
+    "Front-End Developer, Internship | Unified Mentor",
+    "Mar - May 2025",
     "Remote",
-    ["Built LLM applications and autonomous agents across SaaS, research and operations; owned data, backend, interface, deployment and hand-off."],
+    ["Built React UI features on a learner-facing education platform: lessons, progression and learner dashboards against a REST API."],
 ))
 
 story.append(section("Selected work"))
 projects = [
-    ("HydraSentry", "HydraDB Build Blitz winner. Agent-memory integrity layer that checks provenance, blocks unsafe context and emits a signed review certificate.", "https://github.com/vaibhav4046/hydrasentry"),
-    ("QueueProof", "HydraDB Connectors Hackathon winner. Cross-source retrieval workspace with claim-level citations and inspectable evidence across connected work sources.", "https://github.com/vaibhav4046/queueproof"),
-    ("Qyntra", "Wikithon 2026 finalist. Personal knowledge system combining grounded answers with a navigable 3D relationship map.", "https://github.com/vaibhav4046/qyntra-app"),
+    ("Yuzu", "SharedOS Hackathon Judges' Pick. A market where agents bid, prove capability, contract, execute and settle with signed receipts.", "https://github.com/vaibhav4046/yuzu"),
+    ("Leverage", "RocketRide x SCU Buildathon winner. An auction hires cheaper models per task; the repository's own tests decide what counts.", "https://github.com/vaibhav4046/leverage"),
+    ("HydraSentry", "HydraDB Build Blitz winner. Agent-memory integrity layer that blocks unsafe context and signs a review certificate.", "https://github.com/vaibhav4046/hydrasentry"),
+    ("QueueProof", "HydraDB Connectors Hackathon winner. Cross-source retrieval with claim-level citations back to the source record.", "https://github.com/vaibhav4046/queueproof"),
+    ("Stay", "Voice companion for adults with ADHD on AssemblyAI streaming speech. Submitted to AssemblyAI Voice Hackathon Week.", "https://github.com/vaibhav4046/stay"),
+    ("Qyntra", "Wikithon 2026 finalist. Personal knowledge system with grounded answers and a 3D relationship map.", "https://github.com/vaibhav4046/qyntra-app"),
+    ("STILL and ATKIN", "Rust systems work: STILL's core service for GitLab Duo repairs, ATKIN's Tauri backend for a local-first legal workspace.", "https://github.com/vaibhav4046/still"),
 ]
 for name, description, url in projects:
     story.append(Paragraph(f"<b>{name}</b> - {description} <a href='{url}'>Source</a>", small_style))
 
 story.extend([
-    section("Research & education"),
+    section("Security, research and education"),
     Paragraph(
-        "<b>NEXUS</b> (2026), corrected v2 position paper on on-controller transformer inference and speculative edge execution; architecture and analytical model, without prototype or gameplay-corpus results. "
+        "<b>Hack HydraDB</b> (2026): top 3 of 20+ in an authorised security round, and 6 defects filed in a second authorised read-only bug bash; coordinated disclosure, specifics withheld. "
+        "<b>NEXUS</b> (2026): corrected v2 position paper on on-controller transformer inference; architecture and analytical model, no prototype results. "
         "<a href='https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming'>Corrected v2</a>",
         small_style,
     ),
