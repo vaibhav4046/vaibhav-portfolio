@@ -1,6 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 875" width="1400" height="875" role="img" aria-labelledby="t d">
   <title id="t">VYREALM editor, drawn as a diagram</title>
   <desc id="d">A video editor window with a preview, a video track of three clips, a caption track and an audio waveform, with a playhead partway through.</desc>
+  <style>
+    .ph { animation: sweep 7s linear infinite; }
+    .bar { transform-box: fill-box; transform-origin: left center; animation: fill 7s linear infinite; }
+    .wave { animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes sweep { from { transform: translateX(-420px); } to { transform: translateX(432px); } }
+    @keyframes fill { from { transform: scaleX(0.08); } to { transform: scaleX(1); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+    @media (prefers-reduced-motion: reduce) { .ph, .bar, .wave { animation: none; } }
+  </style>
   <defs>
     <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#161616"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient>
     <linearGradient id="clip" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a30"/><stop offset="1" stop-color="#d9480a"/></linearGradient>
@@ -35,7 +44,7 @@
     </g>
     <rect x="854" y="352" width="424" height="1" fill="#2a2a28"/>
     <text x="854" y="388" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#f7f7f5">Export</text>
-    <rect x="854" y="406" width="424" height="14" rx="7" fill="#242422"/><rect x="854" y="406" width="268" height="14" rx="7" fill="#ff6a1a"/>
+    <rect x="854" y="406" width="424" height="14" rx="7" fill="#242422"/><rect class="bar" x="854" y="406" width="424" height="14" rx="7" fill="#ff6a1a"/>
     <text x="854" y="452" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#a2a29c">Rendering 1080p on this machine</text>
     <!-- timeline -->
     <rect x="96" y="562" width="1208" height="226" rx="12" fill="#0b0b0b" stroke="#2a2a28"/>
@@ -49,10 +58,10 @@
     <!-- caption track -->
     <g fill="#f7f7f5" fill-opacity=".92"><rect x="216" y="672" width="120" height="30" rx="7"/><rect x="344" y="672" width="170" height="30" rx="7"/><rect x="560" y="672" width="140" height="30" rx="7"/><rect x="756" y="672" width="190" height="30" rx="7"/><rect x="954" y="672" width="94" height="30" rx="7"/></g>
     <!-- waveform -->
-    <g fill="#ff6a1a" fill-opacity=".75"><path d="M200 748h4v-10h-4zM208 748h4v-24h-4zM216 748h4v-14h-4zM224 748h4v-30h-4zM232 748h4v-18h-4zM240 748h4v-34h-4zM248 748h4v-12h-4zM256 748h4v-26h-4zM264 748h4v-16h-4zM272 748h4v-32h-4zM280 748h4v-20h-4zM288 748h4v-8h-4zM296 748h4v-28h-4zM304 748h4v-22h-4zM312 748h4v-34h-4zM320 748h4v-14h-4zM328 748h4v-26h-4zM336 748h4v-10h-4zM344 748h4v-30h-4zM352 748h4v-18h-4zM360 748h4v-24h-4zM368 748h4v-12h-4zM376 748h4v-32h-4zM384 748h4v-20h-4zM392 748h4v-28h-4zM400 748h4v-8h-4zM408 748h4v-26h-4zM416 748h4v-16h-4zM424 748h4v-34h-4zM432 748h4v-22h-4zM440 748h4v-12h-4zM448 748h4v-30h-4zM456 748h4v-18h-4zM464 748h4v-24h-4zM472 748h4v-10h-4zM480 748h4v-28h-4zM488 748h4v-14h-4zM496 748h4v-32h-4z"/></g>
+    <g class="wave" fill="#ff6a1a" fill-opacity=".75"><path d="M200 748h4v-10h-4zM208 748h4v-24h-4zM216 748h4v-14h-4zM224 748h4v-30h-4zM232 748h4v-18h-4zM240 748h4v-34h-4zM248 748h4v-12h-4zM256 748h4v-26h-4zM264 748h4v-16h-4zM272 748h4v-32h-4zM280 748h4v-20h-4zM288 748h4v-8h-4zM296 748h4v-28h-4zM304 748h4v-22h-4zM312 748h4v-34h-4zM320 748h4v-14h-4zM328 748h4v-26h-4zM336 748h4v-10h-4zM344 748h4v-30h-4zM352 748h4v-18h-4zM360 748h4v-24h-4zM368 748h4v-12h-4zM376 748h4v-32h-4zM384 748h4v-20h-4zM392 748h4v-28h-4zM400 748h4v-8h-4zM408 748h4v-26h-4zM416 748h4v-16h-4zM424 748h4v-34h-4zM432 748h4v-22h-4zM440 748h4v-12h-4zM448 748h4v-30h-4zM456 748h4v-18h-4zM464 748h4v-24h-4zM472 748h4v-10h-4zM480 748h4v-28h-4zM488 748h4v-14h-4zM496 748h4v-32h-4z"/></g>
     <g fill="#ff6a1a" fill-opacity=".45"><path d="M512 748h4v-18h-4zM520 748h4v-28h-4zM528 748h4v-12h-4zM536 748h4v-32h-4zM544 748h4v-20h-4zM552 748h4v-26h-4zM560 748h4v-10h-4zM568 748h4v-30h-4zM576 748h4v-16h-4zM584 748h4v-24h-4zM592 748h4v-34h-4zM600 748h4v-14h-4zM608 748h4v-28h-4zM616 748h4v-20h-4zM624 748h4v-8h-4zM632 748h4v-30h-4zM640 748h4v-18h-4zM648 748h4v-26h-4zM656 748h4v-12h-4zM664 748h4v-32h-4zM672 748h4v-22h-4zM680 748h4v-16h-4zM688 748h4v-28h-4zM696 748h4v-10h-4zM720 748h4v-24h-4zM728 748h4v-14h-4zM736 748h4v-30h-4zM744 748h4v-20h-4zM752 748h4v-8h-4zM760 748h4v-28h-4zM768 748h4v-18h-4zM776 748h4v-34h-4zM784 748h4v-12h-4zM792 748h4v-26h-4zM800 748h4v-16h-4zM808 748h4v-32h-4zM816 748h4v-22h-4zM824 748h4v-10h-4zM832 748h4v-30h-4zM840 748h4v-18h-4zM848 748h4v-24h-4zM856 748h4v-12h-4zM864 748h4v-28h-4zM872 748h4v-8h-4zM880 748h4v-26h-4zM888 748h4v-16h-4zM896 748h4v-32h-4zM904 748h4v-20h-4zM912 748h4v-14h-4zM920 748h4v-30h-4zM928 748h4v-10h-4zM936 748h4v-24h-4zM944 748h4v-18h-4zM952 748h4v-28h-4zM960 748h4v-12h-4zM968 748h4v-32h-4zM976 748h4v-22h-4zM984 748h4v-8h-4zM992 748h4v-26h-4zM1000 748h4v-16h-4zM1008 748h4v-30h-4zM1016 748h4v-12h-4zM1024 748h4v-24h-4zM1032 748h4v-18h-4zM1040 748h4v-10h-4z"/></g>
     <!-- playhead -->
-    <path d="M620 596v186" stroke="#f7f7f5" stroke-width="2"/><path d="M610 582h20l-10 14z" fill="#f7f7f5"/>
+    <g class="ph"><path d="M620 596v186" stroke="#f7f7f5" stroke-width="2"/><path d="M610 582h20l-10 14z" fill="#f7f7f5"/></g>
   </g>
   <rect x="60.5" y="60.5" width="1279" height="754" rx="21.5" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
 </svg>

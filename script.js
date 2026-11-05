@@ -212,6 +212,64 @@
   }
 
 
+
+  /* Silent preview clips. Each [data-clip] holds a poster image and an empty <video>; the clip is fetched and played only
+     when the card is hovered or focused (mouse), or when it is mostly on screen (touch, and clips marked data-autoplay).
+     Nothing downloads on load, a visitor who asked for less motion or for saved data keeps the poster, and with no
+     script the poster is simply the picture. */
+  function initClips() {
+    var hosts = all("[data-clip]");
+    if (!hosts.length || reduceMotion) return;
+    try { if (navigator.connection && navigator.connection.saveData) return; } catch (error) {}
+    var fine = false;
+    try { fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches; } catch (error) {}
+    root.classList.add("clips-on");
+    var current = null;
+
+    function videoOf(host) {
+      var video = host.querySelector("video");
+      if (video && !video.getAttribute("src")) video.setAttribute("src", host.getAttribute("data-clip"));
+      return video;
+    }
+    function stop(host) {
+      var video = host.querySelector("video");
+      host.classList.remove("is-playing");
+      if (video) { try { video.pause(); video.currentTime = 0; } catch (error) {} }
+      if (current === host) current = null;
+    }
+    function play(host) {
+      if (current && current !== host && !current.hasAttribute("data-autoplay")) stop(current);
+      var video = videoOf(host);
+      if (!video) return;
+      if (!host.hasAttribute("data-autoplay")) current = host;
+      var started = video.play();
+      if (started && started.then) started.then(function () { host.classList.add("is-playing"); }).catch(function () {});
+      else host.classList.add("is-playing");
+    }
+
+    var watcher = null;
+    if ("IntersectionObserver" in window) {
+      watcher = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) play(entry.target);
+          else stop(entry.target);
+        });
+      }, { threshold: [0.62] });
+    }
+
+    hosts.forEach(function (host) {
+      var auto = host.hasAttribute("data-autoplay");
+      if (auto || !fine) { if (watcher) watcher.observe(host); return; }
+      var scope = host.closest("article") || host;
+      scope.addEventListener("pointerenter", function () { play(host); });
+      scope.addEventListener("pointerleave", function () { stop(host); });
+      scope.addEventListener("focusin", function () { play(host); });
+      scope.addEventListener("focusout", function () { stop(host); });
+    });
+
+    document.addEventListener("visibilitychange", function () { if (document.hidden && current) stop(current); });
+  }
+
   function boot() {
     try { initYear(); } catch (error) {}
     try { initProgress(); } catch (error) {}
@@ -220,6 +278,7 @@
     try { initScrollSpy(); } catch (error) {}
     try { initMobileMenu(); } catch (error) {}
     try { initAnchorNavigation(); } catch (error) {}
+    try { initClips(); } catch (error) {}
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

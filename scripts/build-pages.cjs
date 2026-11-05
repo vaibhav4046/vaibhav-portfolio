@@ -279,17 +279,17 @@ const ARCHIVE = [
   {
     num: "18", name: "Keystone", tag: "Code review · Graph",
     desc: "Governed change review on the GitLab Orbit code knowledge graph: deterministic blast radius, precedent at the moment of decision and a tamper-evident audit ledger. GitLab Transcend Hackathon entry.",
-    source: "https://github.com/vaibhav4046/keystone",
+    live: "https://vaibhav4046.github.io/keystone/", source: "https://github.com/vaibhav4046/keystone",
   },
   {
     num: "19", name: "PitchCraft", tag: "Agents · Trust and safety",
     desc: "An agent that flags ticket-resale scams. Gemini and Google ADK grounded in MongoDB Atlas Vector Search and the MongoDB MCP server. Google Cloud Rapid Agent Hackathon, MongoDB track.",
-    live: "https://frontend-nu-ochre-z41mw3z0l5.vercel.app", source: "https://github.com/vaibhav4046/PitchCraft-Agent",
+    live: "https://frontend-nu-ochre.vercel.app", source: "https://github.com/vaibhav4046/PitchCraft-Agent",
   },
   {
     num: "20", name: "RecallOps Cortex", tag: "Agents · SRE",
     desc: "A recall-containment command center. A live openFDA recall scoped across BigQuery into a blast radius, with drafted actions behind an audit chain.",
-    live: "https://recall-ops.vercel.app", source: "https://github.com/vaibhav4046/RecallOps",
+    source: "https://github.com/vaibhav4046/RecallOps",
   },
   {
     num: "21", name: "CIVICTAS", tag: "Multi-agent · Civic",
@@ -735,6 +735,16 @@ function coverSlug(p) {
   return p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+/* A preview clip lives in /clips/<slug>.mp4 with a poster at /clips/<slug>.webp. The poster is the real picture; the empty <video>
+   is filled by script.js on hover, so nothing is fetched until someone asks. */
+const CHIP = '<span class="clip-chip" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 1.2v9.6L10.6 6z"/></svg>Watch preview</span>';
+function hasClip(slug) { return fs.existsSync(path.join(ROOT, "clips", slug + ".mp4")); }
+function clipLayers(slug, w, h, alt, eager) {
+  return `<img src="/clips/${slug}.webp" alt="${alt}" width="${w}" height="${h}" loading="${eager ? "eager" : "lazy"}" decoding="async" />
+            <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="${w}" height="${h}"></video>
+            ${CHIP}`;
+}
+
 function renderArchiveCard(p, index) {
   var nameHref = p.slug ? "/work/" + p.slug : (p.live || p.source);
   var external = p.slug ? "" : ' target="_blank" rel="noopener"';
@@ -747,8 +757,9 @@ function renderArchiveCard(p, index) {
   // The cover sits beside the name and the description it illustrates, so it is
   // decorative in context and announcing it again would only add noise.
   return `        <article class="cat-card reveal${index === 0 ? " cat-lead" : ""}">
-          <div class="cat-media">
-            <img src="/img/cards/${coverSlug(p)}.webp" alt="" width="900" height="563" loading="lazy" decoding="async" />
+          <div class="cat-media"${hasClip(coverSlug(p)) ? ' data-clip="/clips/' + coverSlug(p) + '.mp4"' : ""}>
+            ${hasClip(coverSlug(p)) ? clipLayers(coverSlug(p), 1280, 800, "", false) : '<img src="/img/cards/' + coverSlug(p) + '.webp" alt="" width="900" height="563" loading="lazy" decoding="async" />'}
+            <a class="cat-media-link" href="${nameHref}"${external} tabindex="-1" aria-hidden="true"></a>
             <span class="cat-num">${p.num}</span>
           </div>
           <div class="cat-body">
@@ -918,11 +929,11 @@ function buildDetail(slug, d) {
       <div class="detail-cta">
 ${renderCta(d.cta)}
       </div>
-      <figure class="detail-figure">
+      <figure class="detail-figure"${hasClip(slug) ? ' data-clip="/clips/' + slug + '.mp4" data-autoplay' : ""}>
         <picture>
           <source srcset="${webp}" type="image/webp" />
           <img src="${d.img}" alt="${d.imgAlt}" width="${d.imgWidth}" height="${d.imgHeight}" loading="eager" decoding="async" />
-        </picture>
+        </picture>${hasClip(slug) ? '\n        <video class="clip-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback width="' + d.imgWidth + '" height="' + d.imgHeight + '"></video>' : ""}
       </figure>
     </header>
 
