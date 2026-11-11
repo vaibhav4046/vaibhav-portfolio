@@ -29,6 +29,7 @@ A fast, proof-first portfolio for production LLM applications, retrieval systems
 - `/` — positioning, selected work, about, experience, recognition, research, capabilities, education and contact
 - `/work` — complete work archive
 - `/work/{project}` — six detailed case studies
+- `/Vaibhav_Lalwani_Resume.pdf` — résumé
 
 ## Architecture
 
