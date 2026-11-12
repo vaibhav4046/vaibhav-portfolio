@@ -83,13 +83,13 @@ doc = SimpleDocTemplate(
     leftMargin=12 * mm,
     topMargin=8 * mm,
     bottomMargin=7 * mm,
-    title="Vaibhav Lalwani - AI Systems Engineer",
+    title="Vaibhav Lalwani - Applied AI Engineer (Python, LLM systems)",
     author="Vaibhav Lalwani",
 )
 
 story = [
     Paragraph("Vaibhav Lalwani", name_style),
-    Paragraph("AI Systems Engineer | Applied AI and forward-deployed engineering | MSc Advanced Data Science &amp; AI, University of Liverpool", role_style),
+    Paragraph("Applied AI Engineer (Python, LLM systems)", role_style),
     Paragraph(
         "Liverpool, UK | +44 7544 537 860 | "
         "<a href='mailto:vaibhavlalwani26969@gmail.com'>vaibhavlalwani26969@gmail.com</a> | "
@@ -98,99 +98,75 @@ story = [
         "<a href='https://linkedin.com/in/vaibhav-lalwani'>LinkedIn</a>",
         contact_style,
     ),
-    Paragraph("Open to UK part-time roles and internships in applied AI, ML engineering and forward-deployed engineering | Graduate roles from January 2027", availability_style),
-    section("Profile"),
+    Paragraph("Student visa, moving to Graduate visa in early 2027 with full right to work. Eligible for the Skilled Worker new entrant rate.", availability_style),
+    section("Summary"),
     Paragraph(
-        "AI systems engineer building production LLM applications, retrieval pipelines and agent products end to end, then fitting them into the customer's own workflow: "
-        "scoping, evals before rollout, deployment and hand-off. Four hackathon wins in 2026; 20+ AI applications shipped, with 20+ clients served one-on-one in their offices.",
+        "Applied AI engineer and MSc Advanced Data Science &amp; AI student at the University of Liverpool, building production LLM applications, "
+        "retrieval pipelines and agent products end to end, with evaluation and verification treated as part of the build. "
+        "2026 hackathon record includes the HydraDB x Connectors win (QueueProof) and the SharedOS Judges' Pick (Yuzu).",
         body_style,
     ),
-    section("Skills"),
+    section("Professional Experience"),
 ]
 
-skills = [
-    ("AI systems", "Claude, OpenAI, Gemini and ADK, Groq, NVIDIA NIM, Ollama, AssemblyAI speech, QLoRA; MCP and WebMCP, multi-agent orchestration, structured outputs, approval gates; "
-                   "RAG, hybrid search and rank fusion, reranking, citations; eval sets, regression gates, LangSmith"),
-    ("Languages", "TypeScript, Python, Rust (STILL core service, ATKIN's Tauri backend), Go (Dolphin Tank), SQL, Solidity"),
-    ("Product", "React 19, Next.js 15, Node.js, FastAPI, Tauri, Three.js, WebSockets, Web Push, REST APIs, Vitest, Playwright"),
-    ("Data and ship", "Postgres and pgvector, MongoDB Atlas Vector Search, Supabase, Redis and BullMQ, HydraDB, Docker, Vercel, GCP Cloud Run, GitHub Actions, Sentry, PostHog"),
-    ("Delivery", "Scoping with the client team, existing-workflow fit, eval set agreed before rollout, runbook and video hand-off, privacy by design, authorised security testing"),
-]
-skill_table = Table(
-    [[Paragraph(label, label_style), Paragraph(value, small_style)] for label, value in skills],
-    colWidths=[27 * mm, 154 * mm],
-)
-skill_table.setStyle(TableStyle([
-    ("VALIGN", (0, 0), (-1, -1), "TOP"),
-    ("LEFTPADDING", (0, 0), (-1, -1), 0),
-    ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-    ("TOPPADDING", (0, 0), (-1, -1), 1),
-    ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
-]))
-story.append(skill_table)
-story.append(section("Experience"))
 story.extend(role_row(
-    "Instructor | Robocode UK",
-    "Aug 2026 - Present",
-    "Part-time, Liverpool, on-site",
-    ["Teaching coding and robotics to young learners in Liverpool."],
-))
-story.extend(role_row(
-    "AI Engineer, Full-Stack | Meta Solution Technologies",
+    "Full-Stack / AI Engineer | Meta Solution Technologies",
     "Apr - May 2026",
     "Part-time, remote",
     [
-        "AI-guided admissions platform for international students applying to UK and US universities: Next.js 15, React 19 and TypeScript over a Python LLM backend; Zod-validated structured outputs, "
-        "prompts regressed against a fixed eval set before each rollout; RAG on Postgres and pgvector with reranking and citations; BullMQ and Redis, Docker, Cloud Run, LangSmith, Sentry, PostHog.",
+        "Built an AI-guided admissions workflow using Next.js, React, TypeScript and Python-backed REST APIs; integrated Supabase authentication and PostgreSQL/pgvector retrieval.",
+        "Implemented document-processing and email workflows using Redis/BullMQ; handled validation, failure states and multilingual interfaces.",
     ],
 ))
 story.extend(role_row(
-    "Software Engineer | RecruitPilot AI",
+    "Software Engineer (Part-time) | Recruit Pilot",
     "Jan - Apr 2026",
     "Part-time, remote",
-    ["Built React and TypeScript features against a REST API for a recruitment-tech product, in code review and a weekly sprint cadence alongside senior engineers."],
+    ["Delivered React/TypeScript features and REST API integrations for a recruitment product, participating in code review and weekly release cycles."],
 ))
 story.extend(role_row(
-    "AI Engineer, Freelance | Self-employed",
-    "May 2024 - Jan 2026",
-    "Remote and on-site",
-    [
-        "Delivered 20+ custom AI applications for SaaS, e-commerce, real estate and consulting clients, and built and sold 5 proprietary AI agents.",
-        "Worked one-on-one with 20+ clients in their offices, on their workflows; every engagement ended with a README, a walkthrough video and a hand-off document.",
-    ],
+    "Coding Instructor | RoboCode UK",
+    "Aug 2026 - Present",
+    "Part-time, Liverpool, on-site",
+    ["Completed instructor induction and onboarding; preparing Python and robotics lesson exercises and troubleshooting examples ahead of first class assignments."],
 ))
 story.extend(role_row(
-    "Front-End Developer, Internship | Unified Mentor",
+    "Front-End Developer Intern | Unified Mentor",
     "Mar - May 2025",
     "Remote",
-    ["Built React UI features on a learner-facing education platform: lessons, progression and learner dashboards against a REST API."],
+    ["Built React features for a learner-facing platform, including lessons, progression views and REST-connected dashboards."],
 ))
 
-story.append(section("Selected work"))
+story.append(section("Selected Engineering Projects"))
 projects = [
-    ("Yuzu", "SharedOS Hackathon Judges' Pick. A market where agents bid, prove capability, contract, execute and settle with signed receipts.", "https://github.com/vaibhav4046/yuzu"),
-    ("Leverage", "RocketRide x SCU Buildathon winner. An auction hires cheaper models per task; the repository's own tests decide what counts.", "https://github.com/vaibhav4046/leverage"),
-    ("HydraSentry", "HydraDB Build Blitz winner. Agent-memory integrity layer that blocks unsafe context and signs a review certificate.", "https://github.com/vaibhav4046/hydrasentry"),
-    ("QueueProof", "HydraDB Connectors Hackathon winner. Cross-source retrieval with claim-level citations back to the source record.", "https://github.com/vaibhav4046/queueproof"),
-    ("Stay", "Voice companion for adults with ADHD on AssemblyAI streaming speech. Submitted to AssemblyAI Voice Hackathon Week.", "https://github.com/vaibhav4046/stay"),
-    ("Qyntra", "Wikithon 2026 finalist. Personal knowledge system with grounded answers and a 3D relationship map.", "https://github.com/vaibhav4046/qyntra-app"),
-    ("STILL and ATKIN", "Rust systems work: STILL's core service for GitLab Duo repairs, ATKIN's Tauri backend for a local-first legal workspace.", "https://github.com/vaibhav4046/still"),
+    ("HydraSentry", "AI-agent memory security SaaS (FastAPI, Next.js)",
+     "Built a multi-tenant FastAPI backend with Supabase magic-link auth, per-user API keys, rate limiting and an MCP gateway that blocks poisoned-memory actions; 237 pytest tests pass, CI on every push.",
+     "https://github.com/vaibhav4046/hydrasentry"),
+    ("Lacuna", "Provenance-first memory for AI agents",
+     "Built temporal retrieval across web, CLI and MCP surfaces that abstains when evidence conflicts; 2,348 Vitest tests; includes a LongMemEval benchmark harness with recorded runs.",
+     "https://github.com/vaibhav4046/lacuna"),
+    ("QueueProof", "Cross-source evidence workspace",
+     "Retrieval pipeline with claim-level citations, degraded-source handling and an approval boundary for external writes; 654 Vitest tests pass; evaluation fixtures, grading scripts and measured results are published in the repo.",
+     "https://github.com/vaibhav4046/queueproof"),
+    ("Kodro", "Offline-first robotics learning studio (Python)",
+     "Pygame/Pymunk simulation app with Pydantic-validated models, an enforced 85% coverage gate and reproducible scenario evaluations committed as data.",
+     "https://github.com/vaibhav4046/kodro"),
 ]
-for name, description, url in projects:
-    story.append(Paragraph(f"<b>{name}</b> - {description} <a href='{url}'>Source</a>", small_style))
+for name, tagline, description, url in projects:
+    story.append(Paragraph(f"<b>{name}</b> | {tagline} &nbsp;<a href='{url}'>Source</a>", small_style))
+    story.append(Paragraph(description, small_style))
 
 story.extend([
-    section("Security, research and education"),
+    section("Selected Achievements"),
     Paragraph(
-        "<b>Hack HydraDB</b> (2026): top 3 of 20+ in an authorised security round, and 6 defects filed in a second authorised read-only bug bash; coordinated disclosure, specifics withheld. "
-        "<b>NEXUS</b> (2026): corrected v2 position paper on on-controller transformer inference; architecture and analytical model, no prototype results. "
-        "<a href='https://www.researchgate.net/publication/404525159_NEXUS_On-Controller_Transformer_Inference_and_Speculative_Edge_Execution_for_Console-Wired_Latency_Parity_in_Cloud_Gaming'>Corrected v2</a>",
+        "HydraDB x Connectors Winner (QueueProof) | SharedOS 2026 Judges' Pick (Yuzu) | HydraDB WikiThon Finalist (QyntraWiki Nexus) | Product Hunt #24 of the day (Kodro)",
         small_style,
     ),
+    section("Education"),
 ])
 education = Table([
-    [Paragraph("<b>University of Liverpool</b><br/>MSc Advanced Data Science &amp; Artificial Intelligence", small_style), Paragraph("Jan 2026 - Jan 2027", small_style)],
-    [Paragraph("<b>Christ University, Bengaluru</b><br/>Bachelor of Computer Applications", small_style), Paragraph("2022 - 2025", small_style)],
+    [Paragraph("<b>MSc Advanced Data Science &amp; Artificial Intelligence</b> | University of Liverpool", small_style), Paragraph("Expected Jan 2027", small_style)],
+    [Paragraph("<b>BCA</b> | Christ University, Bengaluru", small_style), Paragraph("2022 - 2025", small_style)],
 ], colWidths=[143 * mm, 38 * mm])
 education.setStyle(TableStyle([
     ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -202,5 +178,39 @@ education.setStyle(TableStyle([
 ]))
 story.append(education)
 
+story.append(section("Certifications"))
+certs = [
+    ("Artificial Intelligence on Microsoft Azure", "Microsoft, Coursera", "VYN3SU1H9I3Z"),
+    ("Microsoft Azure Machine Learning", "Microsoft, Coursera", "H4BG7UI694TN"),
+    ("Natural Language Processing in Microsoft Azure", "Microsoft, Coursera", "2W2FIN6EVBSL"),
+    ("Computer Vision in Microsoft Azure", "Microsoft, Coursera", "OO1BFMY72ZDB"),
+    ("Introduction to AI", "Google, Coursera", "ZDO3B89P0WKZ"),
+]
+for name, issuer, cert_id in certs:
+    story.append(Paragraph(
+        f"<b>{name}</b> ({issuer}) - certificate ID <a href='https://coursera.org/verify/{cert_id}'>{cert_id}</a>, Nov 2025",
+        small_style,
+    ))
+
+story.extend([
+    section("Technical Skills"),
+    Paragraph(
+        "<b>Languages:</b> Python, TypeScript, JavaScript, SQL",
+        small_style,
+    ),
+    Paragraph(
+        "<b>APIs and backend:</b> FastAPI, REST, Node.js, PostgreSQL, Supabase, Redis, BullMQ, Docker",
+        small_style,
+    ),
+    Paragraph(
+        "<b>AI engineering:</b> LLM APIs, RAG and retrieval evaluation, MCP servers, structured output validation with fallbacks, prompt/injection red-teaming",
+        small_style,
+    ),
+    Paragraph(
+        "<b>Experiment practice:</b> benchmark fixtures, logged and reproducible runs, error-handling and timeout paths, cost-conscious local-model evaluation, Git, GitHub Actions, pytest, Vitest",
+        small_style,
+    ),
+])
+
 doc.build(story)
-print(f"Built {OUTPUT.name}")
+print(f"Wrote {OUTPUT}")
