@@ -1,4 +1,4 @@
-# Vaibhav Lalwani — AI Systems Engineer
+# Vaibhav Lalwani — Applied AI Engineer (Python, LLM systems)
 
 <p align="center">
   <a href="https://vaibhavlalwani.vercel.app">
