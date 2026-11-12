@@ -128,7 +128,7 @@ story.extend(role_row(
     "Coding Instructor | RoboCode UK",
     "Aug 2026 - Present",
     "Part-time, Liverpool, on-site",
-    ["Completed instructor induction and onboarding; preparing Python and robotics lesson exercises and troubleshooting examples ahead of first class assignments."],
+    ["Onboarded; compliance training complete; teacher induction in progress."],
 ))
 story.extend(role_row(
     "Front-End Developer Intern | Unified Mentor",
