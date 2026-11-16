@@ -16,7 +16,7 @@
 .stay-step h3 { margin: 0 0 0.3rem; font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.01em; }
 .stay-step p { margin: 0; max-width: 46ch; color: var(--ink-soft); }
 .stay-after { padding-bottom: var(--section-y); }
-.stay-proof { margin: 0; max-width: 64ch; padding-left: 1rem; border-left: 2px solid var(--accent); color: var(--muted); font-size: 0.95rem; }
+.stay-proof { margin: 0; max-width: 64ch; color: var(--muted); font-size: 0.95rem; }
 .stay-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 1.8rem 0 0; }
 
 .stay-stage { display: grid; gap: 1.2rem; }

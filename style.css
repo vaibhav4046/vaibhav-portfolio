@@ -1,4 +1,8 @@
 /* Vaibhav Lalwani — premium dark portfolio system */
+/* Both faces are self-hosted (the CSP allows no outside requests). Archivo is one variable file; Doto is the dot-matrix face
+   used only for the big figures, so it matches the contribution lattice. Licences sit beside the files in /fonts. */
+@font-face { font-family: "Archivo"; src: url("/fonts/archivo.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-style: normal; font-display: swap; }
+@font-face { font-family: "Doto"; src: url("/fonts/doto.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
 :root,
 :root[data-theme="light"],
 :root[data-theme="dark"] {
@@ -18,7 +22,8 @@
   --glow: rgba(255, 106, 26, 0.25);
   --shadow: 0 32px 80px rgba(0, 0, 0, 0.42);
 
-  --font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Archivo", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-dot: "Doto", "SFMono-Regular", Consolas, monospace;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --wrap: 1320px;
   --pad: clamp(1.1rem, 4.5vw, 4.5rem);
@@ -209,7 +214,8 @@ main[tabindex="-1"]:focus { outline: none; }
 .hero-eyebrow { display: flex; flex-wrap: wrap; align-items: center; margin-bottom: clamp(1.6rem, 3vw, 2.6rem); color: var(--muted); font: 600 .68rem/1.4 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
 .hero-eyebrow { gap: .4rem 2.2rem; }
 .hero-eyebrow span:first-child { color: var(--ink-soft); }
-.hero-title { max-width: 11ch; font-size: clamp(3.3rem, 7.2vw, 7.7rem); font-weight: 780; line-height: .91; letter-spacing: -.062em; }
+.hero-title { font-size: clamp(3.1rem, 6.1vw, 6.3rem); font-weight: 780; line-height: .93; letter-spacing: -.045em; }
+.hero-title .mark { white-space: nowrap; }
 /* The mask box carries extra room for descenders, pulled back so line rhythm is unchanged. */
 .hero-title .line { display: block; overflow: hidden; padding-bottom: .36em; margin-bottom: -.31em; }
 .hero-title .line > span { display: block; }
@@ -303,7 +309,7 @@ main[tabindex="-1"]:focus { outline: none; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; max-width: 900px; margin-bottom: clamp(2.4rem, 5vw, 4.6rem); }
 .section-index { display: inline-flex; align-items: center; gap: .65rem; color: var(--muted); font: 650 .69rem/1.3 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
 .section-index b { color: var(--accent); font-weight: 700; }
-.section-title { max-width: 18ch; font-size: clamp(2.55rem, 5.8vw, 6.2rem); font-weight: 760; line-height: .96; letter-spacing: -.055em; }
+.section-title { max-width: 18ch; font-size: clamp(2.5rem, 5.4vw, 5.6rem); font-weight: 760; line-height: .98; letter-spacing: -.04em; text-wrap: balance; }
 .section-lede { max-width: 56ch; color: var(--ink-soft); font-size: clamp(1.05rem, .96rem + .5vw, 1.4rem); line-height: 1.52; }
 
 /* Work */
@@ -329,7 +335,7 @@ main[tabindex="-1"]:focus { outline: none; }
 .work-body h3 a { transition: color .2s ease; }
 .work-body h3 a:hover { color: var(--accent); }
 .work-body > p { max-width: 58ch; color: var(--ink-soft); line-height: 1.58; }
-.proof-point { width: 100%; max-width: 58ch; padding: .8rem .9rem; border-left: 2px solid var(--accent); background: rgba(255,106,26,.045); }
+.proof-point { width: 100%; max-width: 58ch; padding: .8rem .9rem; border: 1px solid rgba(255,106,26,.2); border-radius: 12px; background: rgba(255,106,26,.045); }
 .proof-point span { display: block; margin-bottom: .22rem; color: var(--accent); font: 650 .58rem/1.2 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
 .proof-point strong { display: block; color: var(--ink-soft); font-size: .9rem; line-height: 1.45; }
 .tags { display: flex; flex-wrap: wrap; gap: .38rem; }
@@ -532,7 +538,7 @@ main[tabindex="-1"]:focus { outline: none; }
 /* Responsive */
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr); gap: 2rem; }
-  .hero-title { font-size: clamp(3.15rem, 7.5vw, 6.1rem); }
+  .hero-title { font-size: clamp(3rem, 6vw, 5.4rem); }
   .work-row { grid-template-columns: 48px minmax(0, 1fr); }
   .work-row .work-figure, .work-row:nth-child(even) .work-figure { grid-column: 2; grid-row: 1; }
   .work-row .work-body, .work-row:nth-child(even) .work-body { grid-column: 2; grid-row: 2; }
@@ -550,7 +556,7 @@ main[tabindex="-1"]:focus { outline: none; }
   .topbar-cta { padding-inline: .75rem; }
   .hero { padding-top: 2.4rem; }
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-title { max-width: 10ch; font-size: clamp(3.2rem, 12vw, 6rem); }
+  .hero-title { font-size: clamp(3rem, 10.5vw, 5.6rem); }
   .hero-sub { max-width: 58ch; }
   .hero-stage { min-height: min(520px, 118vw); }
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -580,7 +586,7 @@ main[tabindex="-1"]:focus { outline: none; }
   .nav a { font-size: .6rem; }
   /* Résumé lives in the mobile menu at this width, so the pill is redundant. */
   .topbar-cta { display: none; }
-  .hero-title { font-size: clamp(3rem, 15.6vw, 4.8rem); letter-spacing: -.065em; }
+  .hero-title { font-size: clamp(2.5rem, 13vw, 4.4rem); }
   .hero-cta { flex-direction: column; }
   .hero-cta .btn { width: 100%; }
   .hero-links { gap: .5rem; }

@@ -1,0 +1,57 @@
+# Keeps the site current without anyone touching it.
+#
+# Every six hours (and whenever the résumé PDF or the build scripts change) this pulls the public
+# repositories and contribution calendar from GitHub, rebuilds the pages, and commits the result
+# only if something actually changed. The push to main is what makes Vercel redeploy.
+name: Sync from GitHub
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "Vaibhav_Lalwani_Resume.pdf"
+      - "scripts/**"
+      - ".github/workflows/sync.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Pull repositories and contributions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/sync-github.mjs
+
+      - name: Rebuild pages
+        run: node scripts/build-pages.cjs
+
+      - name: Audit
+        run: npm run audit
+
+      - name: Commit when something changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "Vaibhav Lalwani"
+          git config user.email "115102797+vaibhav4046@users.noreply.github.com"
+          git add data/github.json index.html work.html work
+          git commit -m "chore: sync projects and activity from GitHub"
+          git push || (git pull --rebase && git push)

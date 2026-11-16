@@ -161,7 +161,7 @@
   /* ---- Counters in the hero stats ------------------------------------------ */
   function initCounters() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
-    var nodes = all(".hero-stats dt").filter(function (dt) { return /^\d+/.test(dt.textContent.trim()); });
+    var nodes = all(".hero-stats dt, .dotnum").filter(function (dt) { return /^\d+/.test(dt.textContent.trim()); });
     if (!nodes.length) return;
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -169,13 +169,15 @@
         observer.unobserve(entry.target);
         var dt = entry.target;
         var text = dt.textContent.trim();
-        var target = parseInt(text, 10);
-        var suffix = text.replace(/^\d+/, "");
+        var grouped = text.indexOf(",") >= 0;
+        var target = parseInt(text.replace(/,/g, ""), 10);
+        var suffix = text.replace(/^[\d,]+/, "");
         var start = performance.now();
         function step(now) {
           var t = clamp((now - start) / 1100, 0, 1);
           var eased = 1 - Math.pow(1 - t, 3);
-          dt.textContent = Math.round(target * eased) + suffix;
+          var shown = Math.round(target * eased);
+          dt.textContent = (grouped ? shown.toLocaleString("en-US") : shown) + suffix;
           if (t < 1) window.requestAnimationFrame(step);
         }
         window.requestAnimationFrame(step);

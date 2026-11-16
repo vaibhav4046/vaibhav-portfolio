@@ -1,0 +1,103 @@
+/* The parts of the site that rebuild themselves: the clip reel and the live GitHub section on the home page, and the
+   "not written up yet" list on the archive. Markup comes from scripts/build-pages.cjs. Loaded after style.css.
+   Every animation here is scroll-driven CSS behind @supports and a motion query, so with neither the content simply sits there. */
+
+.dotnum { font-family: var(--font-dot); font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: 0; color: var(--accent); }
+
+/* ------------------------------------------------------------------ reel */
+.reel { padding-block: clamp(3.5rem, 7vw, 6.5rem) clamp(3rem, 6vw, 5.5rem); border-top: 1px solid var(--rule); overflow: clip; }
+.reel-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 3rem; margin-bottom: clamp(1.6rem, 3vw, 2.6rem); }
+.reel-title { max-width: 16ch; font-size: clamp(2rem, 4.4vw, 4rem); font-weight: 760; line-height: 1; letter-spacing: -.035em; text-wrap: balance; }
+.reel-title .dotnum { font-size: 1.28em; line-height: .8; }
+.reel-note { max-width: 34ch; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.reel-rows { display: grid; gap: clamp(.7rem, 1.2vw, 1.1rem); }
+.reel-track { overflow-x: auto; scrollbar-width: none; padding-inline: var(--pad); }
+.reel-track::-webkit-scrollbar { display: none; }
+.reel-row { display: flex; gap: clamp(.7rem, 1.2vw, 1.1rem); width: max-content; }
+.reel-tile { position: relative; display: block; width: clamp(15rem, 27vw, 26rem); aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface-2); transition: border-color .3s ease, transform .5s var(--ease); }
+.reel-tile img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: saturate(.8) brightness(.86); transition: filter .4s ease, transform .9s var(--ease); }
+.reel-tile::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(6,6,6,.86), rgba(6,6,6,0) 52%); }
+.reel-cap { position: absolute; z-index: 3; right: .9rem; bottom: .75rem; left: .9rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.reel-cap b { font-size: clamp(1rem, .9rem + .5vw, 1.35rem); font-weight: 720; letter-spacing: -.02em; }
+.reel-cap i { overflow: hidden; color: var(--ink-soft); font: 600 .6rem/1.3 var(--font-mono); letter-spacing: .07em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.reel-tile .clip-chip { display: none; }
+.reel-tile:hover, .reel-tile:focus-visible, .reel-tile.is-playing { border-color: rgba(255,106,26,.55); }
+.reel-tile:hover img, .reel-tile:focus-visible img { filter: none; transform: scale(1.04); }
+.reel-tile:focus-visible { outline-offset: -3px; }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* The two rows slide past each other while the section crosses the screen. overflow stays scrollable (hidden, not clip)
+       so tabbing to a tile off the edge still brings it into view. */
+    .reel-track { overflow-x: hidden; }
+    /* The timeline is the section's own: each track is a scroll container, so an anonymous view() would bind to it and never move. */
+    .reel { view-timeline: --reel block; }
+    .reel-row { animation: reel-left linear both; animation-timeline: --reel; animation-range: cover 0% cover 100%; }
+    .reel-row-b { animation-name: reel-right; }
+  }
+}
+@keyframes reel-left { from { translate: 0 0; } to { translate: calc(100vw - 100% - 2 * var(--pad)) 0; } }
+@keyframes reel-right { from { translate: calc(100vw - 100% - 2 * var(--pad)) 0; } to { translate: 0 0; } }
+
+/* ------------------------------------------------------------------ live from GitHub */
+.live { padding-block: var(--section-y); border-top: 1px solid var(--rule); scroll-margin-top: 72px; }
+.live-head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 1.5rem clamp(2rem, 6vw, 6rem); align-items: end; margin-bottom: clamp(2rem, 4vw, 3.4rem); }
+.live-title { font-size: clamp(1.7rem, 3.2vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -.03em; text-wrap: balance; }
+.live-title .dotnum { display: block; margin-bottom: .12em; font-size: clamp(4.2rem, 13vw, 11rem); line-height: .82; }
+.live-note { max-width: 44ch; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+.live-note a, .fresh-note a { color: var(--ink); border-bottom: 1px solid rgba(255,106,26,.5); transition: color .2s ease; }
+.live-note a:hover { color: var(--accent); }
+
+.lattice { margin: 0 0 clamp(2.4rem, 5vw, 4rem); }
+.lattice-svg { display: block; width: 100%; height: auto; }
+.lattice .lv0 { fill: rgba(255,255,255,.07); }
+.lattice .lv1 { fill: color-mix(in srgb, var(--accent) 30%, #141414); }
+.lattice .lv2 { fill: color-mix(in srgb, var(--accent) 56%, #141414); }
+.lattice .lv3 { fill: var(--accent); }
+.lattice .lv4 { fill: #ffb685; }
+.lattice figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-top: .9rem; color: var(--muted); font: 600 .64rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+
+.live-list { border-bottom: 1px solid var(--rule); }
+.live-row { position: relative; display: grid; grid-template-columns: 5.2rem minmax(0, .7fr) minmax(0, 1.3fr) 13.5rem; gap: .4rem clamp(1rem, 2.5vw, 2.4rem); align-items: baseline; padding: 1.15rem .2rem; border-top: 1px solid var(--rule); transition: background .3s ease, padding .4s var(--ease); }
+.live-row:hover { background: linear-gradient(90deg, rgba(255,106,26,.07), rgba(255,106,26,0) 70%); padding-inline: .9rem .2rem; }
+.live-date { color: var(--faint); font: 600 .66rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.live-name { overflow-wrap: anywhere; font-size: clamp(1.15rem, 1rem + .7vw, 1.6rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.live-name a { transition: color .2s ease; }
+.live-row:hover .live-name a, .live-name a:hover { color: var(--accent); }
+.live-desc { max-width: 62ch; color: var(--muted); font-size: .93rem; line-height: 1.5; }
+.live-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .3rem 1rem; color: var(--faint); font: 650 .62rem/1.4 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
+.live-meta a { display: inline-flex; align-items: center; gap: .25rem; min-height: 32px; color: var(--ink-soft); transition: color .2s ease; }
+.live-meta a:hover { color: var(--accent); }
+.live-foot { margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+
+/* archive: repositories the sync found that have no write-up yet */
+.fresh { margin-block: clamp(3rem, 6vw, 5rem); scroll-margin-top: 170px; }
+.fresh-title { font-size: clamp(1.8rem, 3.4vw, 3.2rem); font-weight: 740; letter-spacing: -.035em; }
+.fresh-note { max-width: 60ch; margin: .8rem 0 1.8rem; color: var(--muted); }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* The year draws itself left to right, then each row of the list lifts as it enters. */
+    .lattice-svg { animation: lattice-draw linear both; animation-timeline: view(); animation-range: entry 30% cover 42%; }
+    .live-row { animation: row-in linear both; animation-timeline: view(); animation-range: entry 0% entry 90%; }
+  }
+}
+@keyframes lattice-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes row-in { from { opacity: .15; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+
+@media (max-width: 900px) {
+  .live-head { grid-template-columns: 1fr; }
+  .live-row { grid-template-columns: 4.4rem minmax(0, 1fr); }
+  .live-desc, .live-meta { grid-column: 2; }
+  .live-meta { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  /* A year of days is too fine to read at phone width, so the lattice keeps its size and scrolls sideways, newest edge first. */
+  .lattice { overflow-x: auto; scrollbar-width: none; direction: rtl; }
+  .lattice-svg { width: 640px; max-width: none; }
+  .lattice figcaption { direction: ltr; position: sticky; left: 0; }
+  .live-row { grid-template-columns: 1fr; padding-block: 1rem; }
+  .live-desc, .live-meta { grid-column: 1; }
+  .live-row:hover { padding-inline: .2rem; }
+  .reel-tile { width: 72vw; }
+}
