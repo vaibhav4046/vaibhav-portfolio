@@ -1,7 +1,17 @@
 {
   "user": "vaibhav4046",
-  "publicRepos": 71,
+  "publicRepos": 73,
   "repos": [
+    {
+      "name": "hardstop",
+      "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
+      "url": "https://github.com/vaibhav4046/hardstop",
+      "homepage": "",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-17",
+      "createdAt": "2026-11-17"
+    },
     {
       "name": "mcp-marketplace",
       "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
@@ -9,7 +19,7 @@
       "homepage": "https://mcp-marketplace-beryl.vercel.app/",
       "language": "TypeScript",
       "stars": 1,
-      "pushedAt": "2026-11-16",
+      "pushedAt": "2026-11-17",
       "createdAt": "2026-04-26"
     },
     {
@@ -474,7 +484,7 @@
     }
   ],
   "calendar": {
-    "total": 6551,
+    "total": 6577,
     "from": "2025-11-16",
     "to": "2026-11-17",
     "days": [
@@ -842,9 +852,9 @@
       108,
       1,
       28,
-      43,
+      45,
       26,
-      0
+      24
     ]
   }
 }
