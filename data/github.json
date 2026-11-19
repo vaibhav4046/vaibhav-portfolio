@@ -6,10 +6,10 @@
       "name": "hardstop",
       "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
       "url": "https://github.com/vaibhav4046/hardstop",
-      "homepage": "",
+      "homepage": "https://hardstop-omega.vercel.app/",
       "language": "TypeScript",
       "stars": 0,
-      "pushedAt": "2026-11-18",
+      "pushedAt": "2026-11-19",
       "createdAt": "2026-11-17"
     },
     {
@@ -484,9 +484,9 @@
     }
   ],
   "calendar": {
-    "total": 6636,
+    "total": 6665,
     "from": "2025-11-16",
-    "to": "2026-11-18",
+    "to": "2026-11-19",
     "days": [
       1,
       0,
@@ -855,7 +855,8 @@
       45,
       26,
       32,
-      51
+      57,
+      23
     ]
   }
 }
