@@ -19,7 +19,7 @@
       "homepage": "https://mcp-marketplace-beryl.vercel.app/",
       "language": "TypeScript",
       "stars": 1,
-      "pushedAt": "2026-11-19",
+      "pushedAt": "2026-11-20",
       "createdAt": "2026-04-26"
     },
     {
@@ -29,7 +29,7 @@
       "homepage": "https://mimir-site-dusky.vercel.app/",
       "language": "JavaScript",
       "stars": 0,
-      "pushedAt": "2026-11-16",
+      "pushedAt": "2026-11-20",
       "createdAt": "2026-11-15"
     },
     {
@@ -484,7 +484,7 @@
     }
   ],
   "calendar": {
-    "total": 6699,
+    "total": 6718,
     "from": "2025-11-16",
     "to": "2026-11-20",
     "days": [
@@ -857,7 +857,7 @@
       32,
       57,
       47,
-      10
+      29
     ]
   }
 }
