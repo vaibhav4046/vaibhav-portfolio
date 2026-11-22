@@ -1,6 +1,6 @@
 {
   "user": "vaibhav4046",
-  "publicRepos": 64,
+  "publicRepos": 68,
   "repos": [
     {
       "name": "cherry",
@@ -53,11 +53,31 @@
       "createdAt": "2026-08-13"
     },
     {
+      "name": "langchain-hardstop",
+      "description": "LangChain tools and a LangGraph guard node for HARDSTOP, a spending firewall for AI agents",
+      "url": "https://github.com/vaibhav4046/langchain-hardstop",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-21"
+    },
+    {
       "name": "langchain-lacuna",
       "description": "LangChain retriever with provenance and an abstaining LangGraph agent for Lacuna agent memory",
       "url": "https://github.com/vaibhav4046/langchain-lacuna",
       "homepage": "",
       "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
+    },
+    {
+      "name": "ledgerline",
+      "description": "Java 21 + Spring Boot double-entry payments ledger: idempotent transfers, Stripe test-mode webhooks, transactional outbox, Testcontainers concurrency tests, k6 load test",
+      "url": "https://github.com/vaibhav4046/ledgerline",
+      "homepage": "",
+      "language": "Java",
       "stars": 0,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-11-22"
@@ -83,6 +103,16 @@
       "createdAt": "2026-11-22"
     },
     {
+      "name": "mcp-marketplace",
+      "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
+      "url": "https://github.com/vaibhav4046/mcp-marketplace",
+      "homepage": "https://mcp-marketplace-beryl.vercel.app/",
+      "language": "TypeScript",
+      "stars": 1,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-04-26"
+    },
+    {
       "name": "mimir",
       "description": "Describe your workflow once. Mimir runs it. Local-first agent workspace with free local models.",
       "url": "https://github.com/vaibhav4046/mimir",
@@ -91,6 +121,16 @@
       "stars": 0,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-11-15"
+    },
+    {
+      "name": "nyc-rideshare-spark",
+      "description": "Scala + Spark 3.5 batch pipeline over 115M NYC rideshare trips: data-quality gate, incremental partitioned Parquet, measured join and pruning optimisations",
+      "url": "https://github.com/vaibhav4046/nyc-rideshare-spark",
+      "homepage": "",
+      "language": "Scala",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
     },
     {
       "name": "queueproof",
@@ -113,6 +153,16 @@
       "createdAt": "2026-09-09"
     },
     {
+      "name": "skillister",
+      "description": "Find, route, and install agent skills across any agent CLI. Skill discovery that still works at a thousand skills.",
+      "url": "https://github.com/vaibhav4046/skillister",
+      "homepage": "https://skillister.vercel.app/",
+      "language": "JavaScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-08-23"
+    },
+    {
       "name": "stay",
       "description": "Real-time voice companion for adults with ADHD: AssemblyAI streaming STT and TTS, safety-gated Groq LLM with tool calling, Next.js 15.",
       "url": "https://github.com/vaibhav4046/stay",
@@ -121,6 +171,26 @@
       "stars": 0,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-10-16"
+    },
+    {
+      "name": "taubench-reliability",
+      "description": "Reliability (pass^k) study on tau2-bench retail with a local 4B model: prompt rules help on held-out tasks, a same-model write verifier hurts",
+      "url": "https://github.com/vaibhav4046/taubench-reliability",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
+    },
+    {
+      "name": "ts-transformer-ablations",
+      "description": "Do transformers beat linear models for time-series forecasting? A controlled PyTorch ablation study on ETT (5 seeds, Diebold-Mariano tests).",
+      "url": "https://github.com/vaibhav4046/ts-transformer-ablations",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
     },
     {
       "name": "yuzu",
@@ -173,26 +243,6 @@
       "createdAt": "2026-06-24"
     },
     {
-      "name": "langchain-hardstop",
-      "description": "LangChain tools and a LangGraph guard node for HARDSTOP, a spending firewall for AI agents",
-      "url": "https://github.com/vaibhav4046/langchain-hardstop",
-      "homepage": "",
-      "language": "Python",
-      "stars": 0,
-      "pushedAt": "2026-11-21",
-      "createdAt": "2026-11-21"
-    },
-    {
-      "name": "mcp-marketplace",
-      "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
-      "url": "https://github.com/vaibhav4046/mcp-marketplace",
-      "homepage": "https://mcp-marketplace-beryl.vercel.app/",
-      "language": "TypeScript",
-      "stars": 1,
-      "pushedAt": "2026-11-21",
-      "createdAt": "2026-04-26"
-    },
-    {
       "name": "plainpost",
       "description": "PlainPost - consent-first hybrid AI letter explainer (Firebase AI Logic, on-device Gemini Nano + cloud fallback). #BuildHybridAI 2026 entry.",
       "url": "https://github.com/vaibhav4046/plainpost",
@@ -241,16 +291,6 @@
       "stars": 0,
       "pushedAt": "2026-11-21",
       "createdAt": "2026-04-02"
-    },
-    {
-      "name": "skillister",
-      "description": "Find, route, and install agent skills across any agent CLI. Skill discovery that still works at a thousand skills.",
-      "url": "https://github.com/vaibhav4046/skillister",
-      "homepage": "https://skillister.vercel.app/",
-      "language": "JavaScript",
-      "stars": 0,
-      "pushedAt": "2026-11-21",
-      "createdAt": "2026-08-23"
     },
     {
       "name": "castle-remembers",
@@ -554,7 +594,7 @@
     }
   ],
   "calendar": {
-    "total": 6674,
+    "total": 6704,
     "from": "2025-11-23",
     "to": "2026-11-22",
     "days": [
@@ -922,7 +962,7 @@
       47,
       32,
       52,
-      25
+      55
     ]
   }
 }
