@@ -1,7 +1,137 @@
 {
   "user": "vaibhav4046",
-  "publicRepos": 60,
+  "publicRepos": 64,
   "repos": [
+    {
+      "name": "cherry",
+      "description": "Turns a goal into a checked plan for coding agents, and serves human-approved skills to any agent over WebMCP and MCP.",
+      "url": "https://github.com/vaibhav4046/cherry",
+      "homepage": "https://cherry-wine.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-08-29"
+    },
+    {
+      "name": "grounding-reranker",
+      "description": "PyTorch cross-encoder that checks whether a cited passage supports a claim (VitaminC, 0.908 acc / ECE 0.019 on 55k test pairs)",
+      "url": "https://github.com/vaibhav4046/grounding-reranker",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
+    },
+    {
+      "name": "hardstop",
+      "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
+      "url": "https://github.com/vaibhav4046/hardstop",
+      "homepage": "https://hardstop-omega.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "name": "kodro",
+      "description": "Offline desktop rover simulator that teaches the UK Computing curriculum (KS3/KS4) through procedural Python. Pygame + Tk + SQLite. 522 tests, 91% coverage.",
+      "url": "https://github.com/vaibhav4046/kodro",
+      "homepage": "https://vaibhav4046.github.io/kodro/",
+      "language": "JavaScript",
+      "stars": 2,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-05-26"
+    },
+    {
+      "name": "lacuna",
+      "description": "Temporal, provenance-first memory for AI agents: every answer cites its source sentence, corrections supersede, conflicts stay visible, and it abstains with a typed reason. Web, CLI and MCP on HydraDB.",
+      "url": "https://github.com/vaibhav4046/lacuna",
+      "homepage": "https://lacuna-five.vercel.app/explore",
+      "language": "TypeScript",
+      "stars": 1,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-08-13"
+    },
+    {
+      "name": "langchain-lacuna",
+      "description": "LangChain retriever with provenance and an abstaining LangGraph agent for Lacuna agent memory",
+      "url": "https://github.com/vaibhav4046/langchain-lacuna",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
+    },
+    {
+      "name": "leverage",
+      "description": "MCP server that delegates test-verifiable coding tasks from your best model to local/free models: policy-gated auction, test-gated completion, checkpointed handoff on failure.",
+      "url": "https://github.com/vaibhav4046/leverage",
+      "homepage": "https://useleverage.vercel.app/",
+      "language": "TypeScript",
+      "stars": 1,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-09-03"
+    },
+    {
+      "name": "mcp-gatekeeper",
+      "description": "Deterministic, model-free MCP safety proxy for PostgreSQL: AST policy, optimistic concurrency, circuit breakers with compensation, savepoint rollback, hash-chained audit traces.",
+      "url": "https://github.com/vaibhav4046/mcp-gatekeeper",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-22"
+    },
+    {
+      "name": "mimir",
+      "description": "Describe your workflow once. Mimir runs it. Local-first agent workspace with free local models.",
+      "url": "https://github.com/vaibhav4046/mimir",
+      "homepage": "https://mimir-site-dusky.vercel.app/",
+      "language": "JavaScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-11-15"
+    },
+    {
+      "name": "queueproof",
+      "description": "Grounded RAG workspace over HydraDB: claim-level cited answers across work tools and docs, abstention on weak evidence, MCP server, human-approved action queue.",
+      "url": "https://github.com/vaibhav4046/queueproof",
+      "homepage": "https://queueproof.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-08-01"
+    },
+    {
+      "name": "reqkeeper",
+      "description": "At most one payment per debt: an MCP agent proposes, a human approves, and Request Network invoices settle through KeeperHub exactly once (Sepolia).",
+      "url": "https://github.com/vaibhav4046/reqkeeper",
+      "homepage": "https://reqkeeper.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-09-09"
+    },
+    {
+      "name": "stay",
+      "description": "Real-time voice companion for adults with ADHD: AssemblyAI streaming STT and TTS, safety-gated Groq LLM with tool calling, Next.js 15.",
+      "url": "https://github.com/vaibhav4046/stay",
+      "homepage": "https://stay-two-swart.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-10-16"
+    },
+    {
+      "name": "yuzu",
+      "description": "Agent-to-agent marketplace: listings assayed as untrusted evidence (rules + Llama Prompt Guard + LLM analyst), proof before payment, credits as SharedOS capability grants, Ed25519-signed receipts.",
+      "url": "https://github.com/vaibhav4046/yuzu",
+      "homepage": "https://yuzu-market.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-22",
+      "createdAt": "2026-09-08"
+    },
     {
       "name": "ATKIN",
       "description": "ATKIN: a sovereign legal workspace. Local-first matter intelligence with SHA-256 verifiable citation provenance. Windows desktop, Android companion, open source.",
@@ -11,16 +141,6 @@
       "stars": 0,
       "pushedAt": "2026-11-21",
       "createdAt": "2026-09-25"
-    },
-    {
-      "name": "cherry",
-      "description": "Cherry — the user-owned apprenticeship, memory, mission, and verification layer for AI agents. WebMCP Challenge 2026.",
-      "url": "https://github.com/vaibhav4046/cherry",
-      "homepage": "https://cherry-wine.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-11-21",
-      "createdAt": "2026-08-29"
     },
     {
       "name": "delos",
@@ -43,24 +163,24 @@
       "createdAt": "2026-03-06"
     },
     {
-      "name": "hardstop",
-      "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
-      "url": "https://github.com/vaibhav4046/hardstop",
-      "homepage": "https://hardstop-omega.vercel.app/",
+      "name": "hydrasentry",
+      "description": "Red-team harness for AI-agent memory: replays clean vs poisoned retrieved context, traces the graph path, blocks the tool call via MCP, signs a Memory Integrity Certificate.",
+      "url": "https://github.com/vaibhav4046/hydrasentry",
+      "homepage": "https://frontend-nu-ochre-z41mw3z0l5.vercel.app/",
       "language": "TypeScript",
       "stars": 0,
       "pushedAt": "2026-11-21",
-      "createdAt": "2026-11-17"
+      "createdAt": "2026-06-24"
     },
     {
-      "name": "hydrasentry",
-      "description": "HydraSentry - HydraDB-native context-integrity harness + MCP security cockpit for memory-powered AI agents (HydraDB Build Blitz).",
-      "url": "https://github.com/vaibhav4046/hydrasentry",
+      "name": "langchain-hardstop",
+      "description": "LangChain tools and a LangGraph guard node for HARDSTOP, a spending firewall for AI agents",
+      "url": "https://github.com/vaibhav4046/langchain-hardstop",
       "homepage": "",
-      "language": "JavaScript",
+      "language": "Python",
       "stars": 0,
       "pushedAt": "2026-11-21",
-      "createdAt": "2026-06-24"
+      "createdAt": "2026-11-21"
     },
     {
       "name": "mcp-marketplace",
@@ -133,16 +253,6 @@
       "createdAt": "2026-08-23"
     },
     {
-      "name": "mimir",
-      "description": "Describe your workflow once. Mimir runs it. Local-first agent workspace with free local models.",
-      "url": "https://github.com/vaibhav4046/mimir",
-      "homepage": "https://mimir-site-dusky.vercel.app/",
-      "language": "JavaScript",
-      "stars": 0,
-      "pushedAt": "2026-11-20",
-      "createdAt": "2026-11-15"
-    },
-    {
       "name": "castle-remembers",
       "description": "The Castle That Remembers: an explorable hand-painted 3D castle where keepsakes hold your memories. Manycore/Aholo Global AI Hackathon 2026.",
       "url": "https://github.com/vaibhav4046/castle-remembers",
@@ -211,16 +321,6 @@
       "stars": 0,
       "pushedAt": "2026-11-09",
       "createdAt": "2026-11-09"
-    },
-    {
-      "name": "stay",
-      "description": "Stay — Voice-first task-initiation and treatment-adherence companion for adults with ADHD (AssemblyAI Hackathon #2)",
-      "url": "https://github.com/vaibhav4046/stay",
-      "homepage": "https://stay-two-swart.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-11-05",
-      "createdAt": "2026-10-16"
     },
     {
       "name": "ricursive-openroad",
@@ -323,36 +423,6 @@
       "createdAt": "2026-09-29"
     },
     {
-      "name": "reqkeeper",
-      "description": "Exactly-once settlement of Request Network obligations through KeeperHub. An agent proposes, a human approves the exact bytes, and the second payment is refused.",
-      "url": "https://github.com/vaibhav4046/reqkeeper",
-      "homepage": "https://reqkeeper.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-09-23",
-      "createdAt": "2026-09-09"
-    },
-    {
-      "name": "kodro",
-      "description": "Offline desktop rover simulator that teaches the UK Computing curriculum (KS3/KS4) through procedural Python. Pygame + Tk + SQLite. 522 tests, 91% coverage.",
-      "url": "https://github.com/vaibhav4046/kodro",
-      "homepage": "https://vaibhav4046.github.io/kodro/",
-      "language": "JavaScript",
-      "stars": 2,
-      "pushedAt": "2026-09-19",
-      "createdAt": "2026-05-26"
-    },
-    {
-      "name": "yuzu",
-      "description": "The market where agents hire agents. Plant a goal and a budget; agents bid, prove they can do the job before any money moves, and hand the work back with a receipt of who was allowed to touch what. Built on the SharedOS ",
-      "url": "https://github.com/vaibhav4046/yuzu",
-      "homepage": "https://yuzu-market.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-09-13",
-      "createdAt": "2026-09-08"
-    },
-    {
       "name": "VYREALM",
       "description": "Local-first creator studio: editable projects, offline video editing, captions, media jobs and optional local generation.",
       "url": "https://github.com/vaibhav4046/VYREALM",
@@ -361,16 +431,6 @@
       "stars": 0,
       "pushedAt": "2026-09-08",
       "createdAt": "2026-09-08"
-    },
-    {
-      "name": "leverage",
-      "description": "An intelligence resource manager for MCP hosts. One frontier brain, an elastic workforce: hire local, free and subscription models under your best model, verify every result, replace workers that fail.",
-      "url": "https://github.com/vaibhav4046/leverage",
-      "homepage": "https://useleverage.vercel.app/",
-      "language": "TypeScript",
-      "stars": 1,
-      "pushedAt": "2026-09-06",
-      "createdAt": "2026-09-03"
     },
     {
       "name": "atkin-academic-screening",
@@ -391,26 +451,6 @@
       "stars": 0,
       "pushedAt": "2026-09-01",
       "createdAt": "2026-08-31"
-    },
-    {
-      "name": "queueproof",
-      "description": "QueueProof - decision-integrity layer: turns fragmented workplace evidence into a defensible, cited next action for humans and agents.",
-      "url": "https://github.com/vaibhav4046/queueproof",
-      "homepage": "https://queueproof.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-08-28",
-      "createdAt": "2026-08-01"
-    },
-    {
-      "name": "lacuna",
-      "description": "Lacuna: agent memory with temporal recall, exact provenance, contradiction handling and explicit abstention, across web, CLI and MCP.",
-      "url": "https://github.com/vaibhav4046/lacuna",
-      "homepage": "https://lacuna-five.vercel.app/explore",
-      "language": "TypeScript",
-      "stars": 1,
-      "pushedAt": "2026-08-25",
-      "createdAt": "2026-08-13"
     },
     {
       "name": "finaltab",
@@ -514,17 +554,10 @@
     }
   ],
   "calendar": {
-    "total": 6623,
-    "from": "2025-11-16",
-    "to": "2026-11-21",
+    "total": 6674,
+    "from": "2025-11-23",
+    "to": "2026-11-22",
     "days": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
       0,
       0,
       0,
@@ -888,7 +921,8 @@
       57,
       47,
       32,
-      26
+      52,
+      25
     ]
   }
 }
