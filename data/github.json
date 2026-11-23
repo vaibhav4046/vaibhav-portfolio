@@ -13,6 +13,26 @@
       "createdAt": "2026-11-17"
     },
     {
+      "name": "mcp-marketplace",
+      "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
+      "url": "https://github.com/vaibhav4046/mcp-marketplace",
+      "homepage": "https://mcp-marketplace-beryl.vercel.app/",
+      "language": "TypeScript",
+      "stars": 1,
+      "pushedAt": "2026-11-23",
+      "createdAt": "2026-04-26"
+    },
+    {
+      "name": "skillister",
+      "description": "Find, route, and install agent skills across any agent CLI. Skill discovery that still works at a thousand skills.",
+      "url": "https://github.com/vaibhav4046/skillister",
+      "homepage": "https://skillister.vercel.app/",
+      "language": "JavaScript",
+      "stars": 0,
+      "pushedAt": "2026-11-23",
+      "createdAt": "2026-08-23"
+    },
+    {
       "name": "ts-transformer-ablations",
       "description": "Do transformers beat linear models for time-series forecasting? A controlled PyTorch ablation study on ETT (5 seeds, Diebold-Mariano tests).",
       "url": "https://github.com/vaibhav4046/ts-transformer-ablations",
@@ -113,16 +133,6 @@
       "createdAt": "2026-11-22"
     },
     {
-      "name": "mcp-marketplace",
-      "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
-      "url": "https://github.com/vaibhav4046/mcp-marketplace",
-      "homepage": "https://mcp-marketplace-beryl.vercel.app/",
-      "language": "TypeScript",
-      "stars": 1,
-      "pushedAt": "2026-11-22",
-      "createdAt": "2026-04-26"
-    },
-    {
       "name": "mimir",
       "description": "Describe your workflow once. Mimir runs it. Local-first agent workspace with free local models.",
       "url": "https://github.com/vaibhav4046/mimir",
@@ -161,16 +171,6 @@
       "stars": 0,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-09-09"
-    },
-    {
-      "name": "skillister",
-      "description": "Find, route, and install agent skills across any agent CLI. Skill discovery that still works at a thousand skills.",
-      "url": "https://github.com/vaibhav4046/skillister",
-      "homepage": "https://skillister.vercel.app/",
-      "language": "JavaScript",
-      "stars": 0,
-      "pushedAt": "2026-11-22",
-      "createdAt": "2026-08-23"
     },
     {
       "name": "stay",
@@ -594,7 +594,7 @@
     }
   ],
   "calendar": {
-    "total": 6709,
+    "total": 6756,
     "from": "2025-11-23",
     "to": "2026-11-23",
     "days": [
@@ -955,15 +955,15 @@
       108,
       1,
       28,
-      45,
+      46,
       26,
       32,
-      57,
+      65,
       47,
       32,
       52,
       56,
-      4
+      42
     ]
   }
 }
