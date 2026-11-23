@@ -3,6 +3,26 @@
   "publicRepos": 68,
   "repos": [
     {
+      "name": "hardstop",
+      "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
+      "url": "https://github.com/vaibhav4046/hardstop",
+      "homepage": "https://hardstop-omega.vercel.app/",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-23",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "name": "ts-transformer-ablations",
+      "description": "Do transformers beat linear models for time-series forecasting? A controlled PyTorch ablation study on ETT (5 seeds, Diebold-Mariano tests).",
+      "url": "https://github.com/vaibhav4046/ts-transformer-ablations",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-23",
+      "createdAt": "2026-11-22"
+    },
+    {
       "name": "cherry",
       "description": "Turns a goal into a checked plan for coding agents, and serves human-approved skills to any agent over WebMCP and MCP.",
       "url": "https://github.com/vaibhav4046/cherry",
@@ -21,16 +41,6 @@
       "stars": 0,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-11-22"
-    },
-    {
-      "name": "hardstop",
-      "description": "HARDSTOP: a spending firewall for AI agents. One Fe policy kernel, enforced on-chain and simulated natively.",
-      "url": "https://github.com/vaibhav4046/hardstop",
-      "homepage": "https://hardstop-omega.vercel.app/",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-11-22",
-      "createdAt": "2026-11-17"
     },
     {
       "name": "kodro",
@@ -176,16 +186,6 @@
       "name": "taubench-reliability",
       "description": "Reliability (pass^k) study on tau2-bench retail with a local 4B model: prompt rules help on held-out tasks, a same-model write verifier hurts",
       "url": "https://github.com/vaibhav4046/taubench-reliability",
-      "homepage": "",
-      "language": "Python",
-      "stars": 0,
-      "pushedAt": "2026-11-22",
-      "createdAt": "2026-11-22"
-    },
-    {
-      "name": "ts-transformer-ablations",
-      "description": "Do transformers beat linear models for time-series forecasting? A controlled PyTorch ablation study on ETT (5 seeds, Diebold-Mariano tests).",
-      "url": "https://github.com/vaibhav4046/ts-transformer-ablations",
       "homepage": "",
       "language": "Python",
       "stars": 0,
@@ -594,9 +594,9 @@
     }
   ],
   "calendar": {
-    "total": 6704,
+    "total": 6709,
     "from": "2025-11-23",
-    "to": "2026-11-22",
+    "to": "2026-11-23",
     "days": [
       0,
       0,
@@ -962,7 +962,8 @@
       47,
       32,
       52,
-      55
+      56,
+      4
     ]
   }
 }
