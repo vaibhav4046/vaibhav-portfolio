@@ -13,13 +13,23 @@
       "createdAt": "2026-11-17"
     },
     {
+      "name": "mcp-gatekeeper",
+      "description": "Deterministic, model-free MCP safety proxy for PostgreSQL: AST policy, optimistic concurrency, circuit breakers with compensation, savepoint rollback, hash-chained audit traces.",
+      "url": "https://github.com/vaibhav4046/mcp-gatekeeper",
+      "homepage": "",
+      "language": "Python",
+      "stars": 0,
+      "pushedAt": "2026-11-24",
+      "createdAt": "2026-11-22"
+    },
+    {
       "name": "mcp-marketplace",
       "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
       "url": "https://github.com/vaibhav4046/mcp-marketplace",
       "homepage": "https://mcp-marketplace-beryl.vercel.app/",
       "language": "TypeScript",
       "stars": 1,
-      "pushedAt": "2026-11-23",
+      "pushedAt": "2026-11-24",
       "createdAt": "2026-04-26"
     },
     {
@@ -29,7 +39,7 @@
       "homepage": "https://skillister.vercel.app/",
       "language": "JavaScript",
       "stars": 0,
-      "pushedAt": "2026-11-23",
+      "pushedAt": "2026-11-24",
       "createdAt": "2026-08-23"
     },
     {
@@ -121,16 +131,6 @@
       "stars": 1,
       "pushedAt": "2026-11-22",
       "createdAt": "2026-09-03"
-    },
-    {
-      "name": "mcp-gatekeeper",
-      "description": "Deterministic, model-free MCP safety proxy for PostgreSQL: AST policy, optimistic concurrency, circuit breakers with compensation, savepoint rollback, hash-chained audit traces.",
-      "url": "https://github.com/vaibhav4046/mcp-gatekeeper",
-      "homepage": "",
-      "language": "Python",
-      "stars": 0,
-      "pushedAt": "2026-11-22",
-      "createdAt": "2026-11-22"
     },
     {
       "name": "mimir",
@@ -594,7 +594,7 @@
     }
   ],
   "calendar": {
-    "total": 6763,
+    "total": 6784,
     "from": "2025-11-23",
     "to": "2026-11-24",
     "days": [
@@ -964,7 +964,7 @@
       52,
       56,
       43,
-      6
+      27
     ]
   }
 }
