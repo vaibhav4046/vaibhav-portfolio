@@ -3,6 +3,16 @@
   "publicRepos": 69,
   "repos": [
     {
+      "name": "onq-even-g2",
+      "description": "OnQ — Proactive AI Copilot for Even Realities G2 Smart Glasses & R1 Ring (Default-NO Ring Confirmation, 4-bit Pixel Avatar, Dual-Track Telegram & Local Computer Bridge)",
+      "url": "https://github.com/vaibhav4046/onq-even-g2",
+      "homepage": "",
+      "language": "TypeScript",
+      "stars": 0,
+      "pushedAt": "2026-11-26",
+      "createdAt": "2026-11-25"
+    },
+    {
       "name": "mcp-marketplace",
       "description": "The registry of Model Context Protocol servers. Browse, search, and install MCP servers in seconds. Auto-synced daily.",
       "url": "https://github.com/vaibhav4046/mcp-marketplace",
@@ -11,16 +21,6 @@
       "stars": 1,
       "pushedAt": "2026-11-25",
       "createdAt": "2026-04-26"
-    },
-    {
-      "name": "onq-even-g2",
-      "description": "OnQ — Proactive AI Copilot for Even Realities G2 Smart Glasses & R1 Ring (Default-NO Ring Confirmation, 4-bit Pixel Avatar, Dual-Track Telegram & Local Computer Bridge)",
-      "url": "https://github.com/vaibhav4046/onq-even-g2",
-      "homepage": "",
-      "language": "TypeScript",
-      "stars": 0,
-      "pushedAt": "2026-11-25",
-      "createdAt": "2026-11-25"
     },
     {
       "name": "skillister",
@@ -604,9 +604,9 @@
     }
   ],
   "calendar": {
-    "total": 6817,
+    "total": 6847,
     "from": "2025-11-23",
-    "to": "2026-11-25",
+    "to": "2026-11-26",
     "days": [
       0,
       0,
@@ -975,7 +975,8 @@
       56,
       43,
       31,
-      29
+      48,
+      11
     ]
   }
 }
