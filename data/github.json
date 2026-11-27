@@ -9,7 +9,7 @@
       "homepage": "https://mcp-marketplace-beryl.vercel.app/",
       "language": "TypeScript",
       "stars": 1,
-      "pushedAt": "2026-11-26",
+      "pushedAt": "2026-11-27",
       "createdAt": "2026-04-26"
     },
     {
@@ -19,7 +19,7 @@
       "homepage": "",
       "language": "TypeScript",
       "stars": 0,
-      "pushedAt": "2026-11-26",
+      "pushedAt": "2026-11-27",
       "createdAt": "2026-11-25"
     },
     {
@@ -29,7 +29,7 @@
       "homepage": "https://skillister.vercel.app/",
       "language": "JavaScript",
       "stars": 0,
-      "pushedAt": "2026-11-26",
+      "pushedAt": "2026-11-27",
       "createdAt": "2026-08-23"
     },
     {
@@ -604,7 +604,7 @@
     }
   ],
   "calendar": {
-    "total": 6851,
+    "total": 6868,
     "from": "2025-11-23",
     "to": "2026-11-27",
     "days": [
@@ -976,8 +976,8 @@
       43,
       32,
       48,
-      14,
-      0
+      22,
+      9
     ]
   }
 }
